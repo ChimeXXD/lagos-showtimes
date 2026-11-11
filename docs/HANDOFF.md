@@ -14,7 +14,7 @@ Read this section first. The older sections below are still right for everything
 
 ### Chime's picks so far
 - **Direction B · Poster** (D-35), no changes asked for.
-- **Name: not settled.** Chime likes Sinima but wants it more Nigerian or Lagosian; Wetin Dey Show and Lagos Showtimes are out. Ten options are on `docs/design/direction-board/names.html` (open in Dia; "Copy my pick" gives one line). None is checked for clashes.
+- **Name: not settled.** Chime likes Sinima but wants it more Nigerian or Lagosian; Wetin Dey Show and Lagos Showtimes are out. Sinima stands alone: Chime does not want names built on it. Ten options (Sinima plus nine different names) are on `docs/design/direction-board/names.html` ("Copy my pick" gives one line). None is checked for clashes; the Hausa and Igbo meanings are unconfirmed.
 
 ### Do next
 1. **Chime picks the name** on `names.html`. Check that name for clashes (other apps, sites, companies), then log it and close O-1.

@@ -91,7 +91,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | ID | Question | Owner |
 | --- | --- | --- |
-| O-1 | **Final name.** Chime likes **Sinima** (11 Nov) but wants it to feel more Nigerian or Lagosian, and has ruled out Wetin Dey Show and Lagos Showtimes. Ten options around Sinima are on `docs/design/direction-board/names.html`. None is checked for clashes yet; check the one Chime picks. | Chime |
+| O-1 | **Final name.** Chime likes **Sinima** (11 Nov) but wants it to feel more Nigerian or Lagosian, and has ruled out Wetin Dey Show and Lagos Showtimes. Chime then asked for names that are not built on Sinima; ten options (Sinima plus nine others) are on `docs/design/direction-board/names.html`. None is checked for clashes yet, and the Hausa and Igbo meanings are unconfirmed; check the one Chime picks. | Chime |
 | O-2 | **Data permission status per source** (update as replies arrive). | Chime |
 | O-3 | **Push notifications**: Phase 2 as D-11 says, or try a $0 version this week (GitHub Actions cron + stored subscriptions)? Proposal: Phase 2. | Chime |
 | O-4 | **Host**: Vercel Hobby or Cloudflare Pages. Proposal: Vercel (portfolio is there; preview deploys). | Chime |

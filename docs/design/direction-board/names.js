@@ -1,15 +1,15 @@
-// names.html: name options around "Sinima", each shown in the header, a share message and a home-screen label.
+// names.html: name options (Sinima and nine that are not built on it), each shown in the header, a share message and a home-screen label.
 const NAMES = [
-  ["Sinima", "How \"cinema\" is said and spelt in Yoruba and Hausa. Short, and already yours."],
-  ["Sinima Eko", "\"Eko\" is the Yoruba name for Lagos. Says what it is and where, in two words."],
-  ["Eko Sinima", "The same two words, with Lagos first."],
-  ["Oya Sinima", "\"Oya\" means \"let's go\" or \"come on\". The thing you say to get people out of the house."],
-  ["Sinima Dey", "Pidgin for \"there's a film on\". Answers the question the site answers."],
-  ["Sinima Sharp", "From \"sharp sharp\": quickly. Fits \"what's starting soon\"."],
-  ["Gidi Sinima", "From \"Las Gidi\", the street name for Lagos. Younger and more playful than Eko."],
-  ["Sinima Naija", "Covers all of Nigeria, not only Lagos. Leaves room for other cities later."],
-  ["Which Sinima?", "The question friends ask each other before going out."],
-  ["E Don Start?", "Pidgin for \"has it started?\". No \"Sinima\" in it, but it is the worry the site settles."],
+  ["Sinima", "How \"cinema\" is said and spelt in Yoruba and Hausa. The one you already like, here to compare."],
+  ["Majigi", "Hausa for a film show or cinema. One word, easy to say, and not used much outside the north."],
+  ["Nkiri", "Igbo, from \"ihe nkiri\": something to watch, a show."],
+  ["Fiimu", "Yoruba for \"film\". As plain as Sinima, and it names the film, not the building."],
+  ["Oya", "\"Let's go\" or \"come on\". The word that gets people out of the house."],
+  ["No Dull", "Pidgin for \"don't sleep on it, don't miss out\". Fits a site about what starts soon."],
+  ["Sharp Sharp", "\"Quickly, right now.\" What you want when a film starts in 15 minutes."],
+  ["E Don Start?", "Pidgin for \"has it started?\". The worry the site settles."],
+  ["Abeg Wait", "Pidgin for \"please wait\". A nod to Stay or Go: don't leave before the scene after the credits."],
+  ["Gidi Reel", "\"Las Gidi\", the street name for Lagos, plus a film reel. The only one that says Lagos."],
 ];
 const KEY = "lagos-showtimes-name-pick";
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
