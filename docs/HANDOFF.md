@@ -1,12 +1,25 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 3 is built, waiting for Chime on the phone; Day 4 is next (Wed 11 Nov 2026, night)
+## Now: the home screen is being redesigned; nothing more is built until Chime approves mockups (Thu 12 Nov 2026)
+
+**Read D-49 first.** Chime rejected the Day 3 home screen as a design. The plan's Day 4 is on hold.
+
+- **Approved:** the structure in `docs/design/structure/Sinima - Sitemap and user journey (draft 2).pdf` (source: `sitemap-and-journey.html` beside it; re-render with Playwright's `page.pdf`). Cinemas first, Films and Starting soon as tabs, area as chips, a panel per showing, day tabs.
+- **With Chime now:** `docs/design/reference-board/round2.html`, 44 references in six sections for the new structure (local only, like the first board; answers come back by "Copy all answers"). Chime's share pick from round one (Fixtured) leads the Share section and must go into the app.
+- **Next, in order:** (1) read Chime's answers into `REFERENCES.md`; (2) a font page: free fonts close to TT Neoris (cofounder.co's, paid), each on the same real screen; (3) Danfo colours on real screens, light and dark, contrast checked; (4) two or three full mockups, desktop and phone side by side, real posters, for Chime to pick; (5) only after "go with it": rebuild, checked against the mockup.
+- **Posters:** never an empty box. TMDB poster where matched (14 of 31), hand matches next, and a designed title poster for the rest. Real posters for unmatched Nollywood films would need a rule change (posters from films' official pages) or Chime adding them to TMDB.
+- **How Chime wants things shown:** documents as designed PDFs, not plain pages; references on a board to tick; say back what was understood before starting.
+- **Format filter (D-50):** find a film by format (IMAX, 3D, 4D) and area; only Filmhouse rows carry a format today. It is page 9 of the structure PDF, now draft 2.
+- **`.claude/proof.json`:** Chime confirms every change to it in advance (12 Nov); do not ask. It now runs typecheck, browser tests and budget in order as one check.
+
+## Earlier: Day 3 as built (Wed 11 Nov 2026, night)
 
 Read this first, then the Day 2 section under it for the data pipeline. Where they disagree, this one is right.
 
 - **Built:** `/`, `/area/[slug]`, a plain `/film/[slug]`; showing rows, sections by the clock, area picker with a remembered area, "Now showing" with a filter, empty state with neighbouring areas, sample and stale banners. Details and open cases: D-48 and the Day 3 entry in `PROGRESS.md`.
 - **Checks:** 324 unit and 32 browser tests pass. 23 of 40 features pass; D3-3 (Chime approves on the phone) is the one Day 3 item left.
-- **Waiting for Chime:** a poster pick (`docs/design/direction-board/posters.html`; its poster images are local only, in the git-ignored `images/posters/`); a look on the phone; whether the wordmark should go to the saved area; three TMDB hand matches (Ikenga, Ramayana, Verity); whether `.claude/proof.json` may change so build and typecheck stop colliding.
+- **Waiting for Chime:** a poster pick (`docs/design/direction-board/posters.html`; its poster images are local only, in the git-ignored `images/posters/`); a look on the phone; whether the wordmark should go to the saved area; three TMDB hand matches (Ikenga, Ramayana, Verity).
+- **The gate:** `.claude/proof.json` now runs typecheck, then the browser tests (which build the site), then the budget as one check, in that order (Chime's OK, 11 Nov). Before, three checks built or read `.next` at once and the typecheck failed at random.
 - **Risks to deal with:** `/` weighs 195.7 KB of 200 with a full programme, so it must carry less before live booking links arrive; the site empties two days after a build; type sizes in components are not tokens; Vercel has not yet been seen running the prebuild step.
 - **Do next (Day 4):** film page grouped by area with the Stay or Go tile, cinema page, "Started 5 min ago" rows with no Book link, then the Should items. Wire in posters once Chime picks.
 

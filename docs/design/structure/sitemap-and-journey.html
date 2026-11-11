@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima · Sitemap and user journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --butter: #fffbea; --dust: #f6ecc2; --tar: #15130c; --yellow: #ffcb05; --paper: #ffffff;
+    --muted: #6b6654; --line: #e3d9ae; --soft: #faf3d3; --out: #2b2a25;
+    --p1: #d9482b; --p2: #2f6f9f; --p3: #6a4c93; --p4: #3d7a4a; --p5: #b8791f; --p6: #8a4f3d;
+  }
+  * { box-sizing: border-box; }
+  @page { size: 1123px 794px; margin: 0; }
+  html, body { margin: 0; background: #d9d3bd; color: var(--tar); font: 400 13px/1.45 "Instrument Sans", system-ui, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { position: relative; width: 1123px; height: 794px; margin: 24px auto; padding: 44px 56px 40px; background: var(--butter); overflow: hidden; break-after: page; }
+  @media print { html, body { background: var(--butter); } .page { margin: 0; } }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .eyebrow { font: 500 10.5px/1 "IBM Plex Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  h1 { margin: 10px 0 6px; font-size: 34px; line-height: 1.08; font-weight: 600; letter-spacing: -0.02em; }
+  h2 { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+  .lede { margin: 0; max-width: 760px; font-size: 14.5px; color: #3b3829; }
+  .foot { position: absolute; left: 56px; right: 56px; bottom: 18px; display: flex; justify-content: space-between; font: 400 10px/1 "IBM Plex Mono", monospace; color: var(--muted); }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+  .card.soft { background: var(--soft); }
+  .card.dark { background: var(--tar); color: var(--butter); border-color: var(--tar); }
+  .grid { display: grid; gap: 14px; }
+  .tag { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 999px; font: 500 10px/1 "IBM Plex Mono", monospace; background: var(--dust); }
+  .tag.y { background: var(--yellow); }
+  .tag.d { background: var(--tar); color: var(--butter); }
+  .num { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: var(--tar); color: var(--yellow); font: 500 11px/1 "IBM Plex Mono", monospace; }
+  p { margin: 0; }
+  .small { font-size: 11.5px; color: var(--muted); }
+  ul.plain { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+  ul.plain li { padding-left: 14px; position: relative; }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 999px; background: var(--yellow); outline: 1px solid var(--tar); }
+
+  /* Cover */
+  .cover { background: var(--tar); color: var(--butter); padding: 64px 72px; }
+  .cover h1 { font-size: 68px; max-width: 520px; margin-top: 130px; line-height: 1.02; }
+  .cover .eyebrow { color: #b9b08a; }
+  .cover .lede { color: #d8d0ac; font-size: 16px; max-width: 500px; margin-top: 18px; }
+  .cover .brand { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 600; }
+  .cover .brand svg { height: 44px; width: 33px; }
+  .cover .meta { position: absolute; left: 72px; bottom: 56px; display: flex; gap: 40px; font: 400 11px/1.5 "IBM Plex Mono", monospace; color: #b9b08a; }
+  .cover .meta b { display: block; color: var(--butter); font-weight: 500; }
+  .cover .strip { position: absolute; right: -70px; top: 120px; display: grid; grid-template-columns: repeat(3, 138px); gap: 16px; transform: rotate(-8deg); }
+  .cover .strip i { display: block; height: 206px; border-radius: 16px; }
+
+  /* Mini wireframes */
+  .phone { width: 148px; height: 268px; padding: 9px 8px; border-radius: 20px; border: 1.5px solid var(--tar); background: var(--butter); overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 6px; font-size: 7.5px; line-height: 1.25; }
+  .phone > * { min-width: 0; }
+  .steps .phone { width: 136px; height: 252px; }
+  .phone .bar { display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 9px; }
+  .phone .bar svg { height: 12px; width: 9px; margin-right: 3px; vertical-align: -2px; }
+  .pill { display: inline-flex; align-items: center; height: 14px; padding: 0 6px; border-radius: 999px; background: var(--dust); font-size: 7px; font-weight: 600; white-space: nowrap; }
+  .pill.on { background: var(--tar); color: var(--butter); }
+  .pill.y { background: var(--yellow); }
+  .row { display: flex; gap: 4px; flex-wrap: nowrap; overflow: hidden; min-height: 14px; }
+  .ttl { font-weight: 700; font-size: 11px; line-height: 1.1; letter-spacing: -0.01em; }
+  .cin { display: grid; grid-template-columns: 26px 1fr; gap: 6px; align-items: center; padding: 5px; border-radius: 9px; background: var(--paper); border: 1px solid var(--line); }
+  .cin i { width: 26px; height: 26px; border-radius: 7px; background: var(--tar); }
+  .cin b { display: block; font-size: 8px; }
+  .cin span { color: var(--muted); }
+  .posters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+  .posters > div { min-width: 0; }
+  .posters.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .po { border-radius: 6px; aspect-ratio: 2 / 3; }
+  .po + em, .cap { display: block; font-style: normal; font-weight: 600; font-size: 7px; margin-top: 2px; }
+  .c1 { background: var(--p1); } .c2 { background: var(--p2); } .c3 { background: var(--p3); } .c4 { background: var(--p4); } .c5 { background: var(--p5); } .c6 { background: var(--p6); }
+  .sheet { margin: auto -8px -9px; padding: 9px 9px 12px; border-radius: 14px 14px 0 0; background: var(--paper); border-top: 1.5px solid var(--tar); display: grid; gap: 5px; }
+  .btn { display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 999px; background: var(--yellow); font-weight: 700; font-size: 8.5px; border: 1px solid var(--tar); }
+  .btn.ghost { background: transparent; }
+  .time { font-weight: 700; font-size: 15px; letter-spacing: -0.02em; }
+  .browser { background: #ffffff; border-color: var(--out); }
+  .browser .url { height: 14px; border-radius: 999px; background: #eeeeee; display: flex; align-items: center; padding: 0 6px; font: 400 6.5px/1 "IBM Plex Mono", monospace; color: #555; }
+  .skel { height: 8px; border-radius: 4px; background: #e6e6e6; }
+  .desk { width: 330px; height: 168px; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--tar); background: var(--butter); display: grid; align-content: start; gap: 7px; font-size: 7.5px; overflow: hidden; }
+  .desk .posters { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+
+  /* Journey */
+  .steps { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; margin-top: 18px; align-items: start; }
+  .step { display: grid; justify-items: center; gap: 8px; position: relative; text-align: center; padding: 0 4px; }
+  .step + .step::before { content: ""; position: absolute; left: -9px; top: 158px; width: 18px; height: 1.5px; background: var(--tar); }
+  .step + .step::after { content: ""; position: absolute; left: 3px; top: 154px; border: 4.5px solid transparent; border-left-color: var(--tar); }
+  .step h3 { margin: 4px 0 0; font-size: 12.5px; font-weight: 600; }
+  .step p { font-size: 10.5px; color: var(--muted); line-height: 1.35; }
+  .step .phone { text-align: left; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { text-align: left; font: 500 10px/1.2 "IBM Plex Mono", monospace; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 0 10px 7px 0; border-bottom: 1px solid var(--tar); }
+  td { vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); }
+  td b { font-weight: 600; }
+  .legend { display: flex; gap: 18px; align-items: center; font-size: 11px; color: var(--muted); }
+  .legend i { display: inline-block; width: 22px; height: 14px; border-radius: 5px; vertical-align: -3px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="mark" viewBox="19 8 62 84"><path fill="currentColor" fill-rule="evenodd" d="M34 8H66A15 15 0 0 1 81 23A3.5 3.5 0 0 1 78.29,26.41A12 12 0 0 0 78.29,49.79A3.5 3.5 0 0 1 81 53.2V77A15 15 0 0 1 66 92H34A15 15 0 0 1 19 77A3.5 3.5 0 0 1 21.71,73.59A12 12 0 0 0 21.71,50.21A3.5 3.5 0 0 1 19 46.8V23A15 15 0 0 1 34 8ZM36.1 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0ZM46.6 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0ZM57.1 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0Z"/><g fill="#ffcb05"><circle cx="39.5" cy="50" r="3.4"/><circle cx="50" cy="50" r="3.4"/><circle cx="60.5" cy="50" r="3.4"/></g></symbol>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15130c"/></marker>
+</defs></svg>
+
+<!-- 1. Cover -->
+<section class="page cover">
+  <div class="brand"><svg><use href="#mark"/></svg>Sinima</div>
+  <div class="strip"><i class="c1"></i><i class="c2"></i><i class="c5"></i><i class="c3"></i><i class="c4"></i><i class="c6"></i></div>
+  <p class="eyebrow" style="margin-top:0;position:absolute;top:74px;right:72px">Draft 2 · structure approved, format journey added</p>
+  <h1>Sitemap and user journey</h1>
+  <p class="lede">How the app is put together and how someone moves through it, from opening Sinima to booking on the cinema's own site. Nothing here is built yet. It is here so we agree on the structure before any screen is designed.</p>
+  <div class="meta"><span><b>Prepared for</b>Chime</span><span><b>Date</b>11 November 2026</span><span><b>Covers</b>Structure and flow only. No visual design.</span><span><b>Pages</b>10</span></div>
+</section>
+
+<!-- 2. The idea -->
+<section class="page">
+  <p class="eyebrow">01 · The idea</p>
+  <h1>Start from the cinema, not from a list of times</h1>
+  <p class="lede">What you asked for, as I understand it: you open Sinima and see the cinemas near you. You pick one and see what it is showing, as posters, by day. You tap a time and book on that cinema's own site.</p>
+  <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 16px;">
+    <div class="card soft">
+      <span class="tag">Before · what is live now</span>
+      <h2 style="margin-top:10px">One long list of times</h2>
+      <ul class="plain">
+        <li>Home is a single column of showings sorted by start time.</li>
+        <li>Your area hides behind a button that opens a list.</li>
+        <li>One showing per row, on desktop too. Posters are empty boxes.</li>
+        <li>No way to start from a cinema you already like.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag y">After · this proposal</span>
+      <h2 style="margin-top:10px">Cinemas first, films as posters, three ways in</h2>
+      <ul class="plain">
+        <li>Home shows cinemas, nearest your area first. Your area is on the page, not in a dropdown.</li>
+        <li>A cinema's films are poster cards in a grid: several per row on desktop, two per row on a phone.</li>
+        <li>Every film has artwork. No empty boxes.</li>
+        <li>Two other ways in for people who think differently: by film, or by what starts soon.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 12px;">
+    <div class="card"><span class="num">1</span><h2 style="margin-top:8px">Cinemas</h2><p class="small">"I go to Filmhouse Lekki. What's on?" The default. Pick a cinema, see its films by day.</p></div>
+    <div class="card"><span class="num">2</span><h2 style="margin-top:8px">Films</h2><p class="small">"I want to see Clayface. Where and when?" Pick a film, see every cinema showing it.</p></div>
+    <div class="card"><span class="num">3</span><h2 style="margin-top:8px">Starting soon</h2><p class="small">"I'm free now. What can I catch?" Films starting in the next 2 hours near you.</p></div>
+  </div>
+  <div class="card" style="margin-top:12px;display:grid;grid-template-columns:auto auto 1fr;gap:22px;align-items:center;padding:12px 18px">
+      <div class="desk">
+        <div class="bar" style="display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:9px"><span><svg style="height:12px;width:9px;vertical-align:-2px;margin-right:3px"><use href="#mark"/></svg>Sinima</span><span class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Starting soon</span><span class="pill y">Lekki ✓</span></span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="ttl">Filmhouse Lekki IMAX</span><span class="row"><span class="pill on">Today</span><span class="pill">Tomorrow</span></span></div>
+        <div class="posters"><div><div class="po c1"></div><em>Clayface</em><div class="row"><span class="pill">18:15</span></div></div><div><div class="po c2"></div><em>Street Fighter</em><div class="row"><span class="pill">19:00</span></div></div><div><div class="po c3"></div><em>Ramayana</em><div class="row"><span class="pill">19:10</span></div></div><div><div class="po c4"></div><em>Whalefall</em><div class="row"><span class="pill">20:00</span></div></div><div><div class="po c5"></div><em>Agbara Nla</em><div class="row"><span class="pill">20:30</span></div></div></div>
+      </div>
+      <div class="phone" style="height:168px;width:120px">
+        <div class="bar"><span>‹ Cinemas</span><span class="pill">Search</span></div>
+        <div class="ttl">Filmhouse Lekki IMAX</div>
+        <div class="row"><span class="pill on">Today</span><span class="pill">Tomorrow</span></div>
+        <div class="posters two"><div><div class="po c1"></div><em>Clayface</em><div class="row"><span class="pill">18:15</span><span class="pill">19:30</span></div></div><div><div class="po c2"></div><em>Street Fighter</em><div class="row"><span class="pill">19:00</span><span class="pill">21:40</span></div></div></div>
+      </div>
+      <div><span class="tag">A diagram, not a design</span><h2 style="margin-top:8px">Several posters per row, lined up</h2><p class="small">A cinema's page on a desktop and on a phone. The number per row follows the width of the screen: as many as line up cleanly on a desktop, two on a phone. All three ways in end at one showing, with a Book button that opens the cinema's own site.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>2 / 10</span></div>
+</section>
+
+<!-- 3. Sitemap -->
+<section class="page">
+  <p class="eyebrow">02 · Sitemap</p>
+  <h1 style="font-size:28px">Every screen, and how they connect</h1>
+  <svg viewBox="0 0 1010 560" width="1010" height="560" style="margin-top:6px;font-family:'Instrument Sans',sans-serif">
+    <g stroke="#15130c" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
+      <path d="M505 62V92"/><path d="M505 78H170V92"/><path d="M505 78H840V92"/>
+      <path d="M170 168V232"/><path d="M505 168V232"/>
+      <path d="M840 168V330H640"/>
+      <path d="M262 268H410" stroke-dasharray="4 4"/><path d="M410 286H262" stroke-dasharray="4 4"/>
+      <path d="M170 308V352H372"/><path d="M505 308V330"/>
+      <path d="M505 414V452"/><path d="M420 414V436H170V452"/><path d="M590 414V436H840V452"/>
+    </g>
+    <path d="M840 452V424H660" stroke="#15130c" stroke-width="1.2" fill="none" stroke-dasharray="3 4" marker-end="url(#arrow)"/>
+    <!-- Global -->
+    <rect x="330" y="14" width="350" height="48" rx="14" fill="#15130c"/>
+    <text x="505" y="35" text-anchor="middle" fill="#fffbea" font-size="14" font-weight="600">Sinima</text>
+    <text x="505" y="52" text-anchor="middle" fill="#cfc7a3" font-size="10.5">On every screen: logo · the three tabs · search · your area · notices</text>
+    <!-- Tabs -->
+    <g font-size="13" font-weight="600">
+      <rect x="60" y="94" width="220" height="74" rx="14" fill="#ffcb05" stroke="#15130c" stroke-width="1.4"/>
+      <text x="76" y="118">Cinemas</text><text x="76" y="136" font-size="10.5" font-weight="400">Home. Cinemas near your area first,</text><text x="76" y="150" font-size="10.5" font-weight="400">then the rest of Lagos.</text>
+      <text x="264" y="118" text-anchor="end" font-size="9.5" font-weight="500" font-family="IBM Plex Mono">/</text>
+      <rect x="395" y="94" width="220" height="74" rx="14" fill="#ffffff" stroke="#15130c" stroke-width="1.4"/>
+      <text x="411" y="118">Films</text><text x="411" y="136" font-size="10.5" font-weight="400">Every film showing in Lagos,</text><text x="411" y="150" font-size="10.5" font-weight="400">as posters, with search and format chips.</text>
+      <text x="599" y="118" text-anchor="end" font-size="9.5" font-weight="500" font-family="IBM Plex Mono">/films</text>
+      <rect x="730" y="94" width="220" height="74" rx="14" fill="#ffffff" stroke="#15130c" stroke-width="1.4"/>
+      <text x="746" y="118">Starting soon</text><text x="746" y="136" font-size="10.5" font-weight="400">Showings in the next 2 hours near</text><text x="746" y="150" font-size="10.5" font-weight="400">you, then later tonight.</text>
+      <text x="934" y="118" text-anchor="end" font-size="9.5" font-weight="500" font-family="IBM Plex Mono">/soon</text>
+    </g>
+    <text x="180" y="204" font-size="10" fill="#6b6654">pick a cinema</text>
+    <text x="515" y="204" font-size="10" fill="#6b6654">pick a film</text>
+    <text x="852" y="250" font-size="10" fill="#6b6654">tap a showing</text>
+    <!-- Level 2 -->
+    <g font-size="13" font-weight="600">
+      <rect x="60" y="234" width="220" height="74" rx="14" fill="#ffffff" stroke="#15130c" stroke-width="1.4"/>
+      <text x="76" y="258">Cinema page</text><text x="76" y="276" font-size="10.5" font-weight="400">Its films as poster cards with times.</text><text x="76" y="290" font-size="10.5" font-weight="400">Day tabs. Address. Source of the times.</text>
+      <text x="264" y="258" text-anchor="end" font-size="9.5" font-weight="500" font-family="IBM Plex Mono">/cinema/…</text>
+      <rect x="395" y="234" width="220" height="74" rx="14" fill="#ffffff" stroke="#15130c" stroke-width="1.4"/>
+      <text x="411" y="258">Film page</text><text x="411" y="276" font-size="10.5" font-weight="400">Poster, runtime, Stay or Go. Every</text><text x="411" y="290" font-size="10.5" font-weight="400">cinema showing it, yours first. Day tabs.</text>
+      <text x="599" y="258" text-anchor="end" font-size="9.5" font-weight="500" font-family="IBM Plex Mono">/film/…</text>
+    </g>
+    <text x="336" y="262" text-anchor="middle" font-size="9.5" fill="#6b6654">tap a poster</text>
+    <text x="336" y="300" text-anchor="middle" font-size="9.5" fill="#6b6654">tap a cinema</text>
+    <text x="270" y="346" text-anchor="middle" font-size="10" fill="#6b6654">tap a time</text>
+    <text x="548" y="324" font-size="10" fill="#6b6654">tap a time</text>
+    <!-- Showing -->
+    <rect x="372" y="332" width="268" height="82" rx="14" fill="#faf3d3" stroke="#15130c" stroke-width="1.4" stroke-dasharray="6 4"/>
+    <text x="388" y="356" font-size="13" font-weight="600">One showing</text>
+    <text x="624" y="356" text-anchor="end" font-size="9.5" font-weight="500" font-family="IBM Plex Mono">panel over the page</text>
+    <text x="388" y="374" font-size="10.5">Film, cinema, day and time. Countdown.</text>
+    <text x="388" y="388" font-size="10.5">Where the time came from and how fresh it is.</text>
+    <text x="388" y="402" font-size="10.5" font-weight="600">Book · Remind me · Share</text>
+    <!-- Outside -->
+    <g font-size="12.5" font-weight="600" fill="#fffbea">
+      <rect x="60" y="454" width="220" height="64" rx="14" fill="#2b2a25"/><text x="76" y="478">Your phone's calendar</text><text x="76" y="496" font-size="10.5" font-weight="400" fill="#cfc7a3">Remind me adds the showing with an</text><text x="76" y="509" font-size="10.5" font-weight="400" fill="#cfc7a3">alert 30 minutes before.</text>
+      <rect x="395" y="454" width="220" height="64" rx="14" fill="#2b2a25"/><text x="411" y="478">The cinema's own site</text><text x="411" y="496" font-size="10.5" font-weight="400" fill="#cfc7a3">Book opens it in a new tab. Seats and</text><text x="411" y="509" font-size="10.5" font-weight="400" fill="#cfc7a3">payment happen there, never on Sinima.</text>
+      <rect x="730" y="454" width="220" height="64" rx="14" fill="#2b2a25"/><text x="746" y="478">WhatsApp and other apps</text><text x="746" y="496" font-size="10.5" font-weight="400" fill="#cfc7a3">Share sends a link that opens</text><text x="746" y="509" font-size="10.5" font-weight="400" fill="#cfc7a3">straight on this showing.</text>
+    </g>
+    <text x="748" y="418" font-size="9.5" fill="#6b6654">a shared link comes back here</text>
+    <!-- About + area -->
+    <rect x="730" y="262" width="100" height="0" fill="none"/>
+    <rect x="700" y="350" width="0" height="0"/>
+    <g font-size="11.5" font-weight="600">
+      <rect x="60" y="534" width="0" height="0"/>
+    </g>
+  </svg>
+  <div style="position:absolute;left:56px;right:56px;bottom:40px;display:flex;justify-content:space-between;align-items:center">
+    <div class="legend">
+      <span><i style="background:#ffcb05;border:1.4px solid #15130c"></i>Where you land</span>
+      <span><i style="background:#fff;border:1.4px solid #15130c"></i>A page</span>
+      <span><i style="background:#faf3d3;border:1.4px dashed #15130c"></i>A panel over the page</span>
+      <span><i style="background:#2b2a25"></i>Outside Sinima</span>
+    </div>
+    <p class="small" style="max-width:430px;text-align:right">Also: <b style="color:var(--tar)">About</b> (/about), linked from the footer: where times come from, the TMDB notice, how to ask for a removal. <b style="color:var(--tar)">Area links</b> (/area/lekki) open Cinemas with that area already chosen, for sharing.</p>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>3 / 10</span></div>
+</section>
+
+<!-- 4. Screens -->
+<section class="page">
+  <p class="eyebrow">03 · Screen by screen</p>
+  <h1 style="font-size:28px">What is on each screen, and where it leads</h1>
+  <table style="margin-top:16px">
+    <thead><tr><th style="width:150px">Screen</th><th style="width:330px">What you see</th><th style="width:280px">What you can do</th><th>Leads to</th></tr></thead>
+    <tbody>
+      <tr><td><b>Cinemas</b> <span class="tag y">home</span></td><td>Your area, shown on the page. Cinema cards, nearest first: name, area, how many films today, the next start time.</td><td>Change your area. Pick a cinema. Search for a film or cinema.</td><td>Cinema page</td></tr>
+      <tr><td><b>Cinema page</b></td><td>The cinema's name, address and website. Day tabs. Its films as poster cards in a grid, each with that day's times.</td><td>Switch day. Tap a time. Tap a poster for the film. Open the cinema in maps.</td><td>One showing · Film page</td></tr>
+      <tr><td><b>Films</b></td><td>Every film showing in Lagos as a poster grid, with a search box and format chips (IMAX, 3D, 4D).</td><td>Type to narrow the list. Choose a format. Tap a film.</td><td>Film page</td></tr>
+      <tr><td><b>Film page</b></td><td>Poster, runtime, rating. Stay or Go: is there a scene after the credits, and who says so. Cinemas showing it, your area first, with times. Day tabs.</td><td>Switch day. Filter by format and area. Tap a time. Tap a cinema's name.</td><td>One showing · Cinema page</td></tr>
+      <tr><td><b>Starting soon</b></td><td>Poster cards for showings in the next 2 hours near you, each with its countdown; then later tonight.</td><td>Tap a card.</td><td>One showing</td></tr>
+      <tr><td><b>One showing</b> <span class="tag">panel</span></td><td>Film, cinema, day and time. "Starts in 45 min". Where the time came from and how fresh it is.</td><td>Book. Remind me. Share. Close.</td><td>The cinema's site · calendar · WhatsApp</td></tr>
+      <tr><td><b>About</b></td><td>How times are collected, each source and its status, the TMDB notice, how to ask for a removal, privacy.</td><td>Read. Follow a source link.</td><td>Outside links</td></tr>
+    </tbody>
+  </table>
+  <div class="grid" style="grid-template-columns: 1.2fr 1fr; margin-top:16px">
+    <div class="card soft"><h2>Notices that can appear on any screen</h2><p class="small" style="color:#3b3829">"Sample data" while the site runs on saved pages. "Some times were read yesterday" when a source is a day old. "You're offline" with the age of the saved times. One notice at a time, the most serious one.</p></div>
+    <div class="card soft"><h2>Not in this structure</h2><p class="small" style="color:#3b3829">Accounts, ticket sales, seat maps, ads, push notifications. A week view: most cinemas publish only today and tomorrow, so the day tabs show as many days as the data holds.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>4 / 10</span></div>
+</section>
+
+<!-- 5. Area -->
+<section class="page">
+  <p class="eyebrow">04 · Your area</p>
+  <h1 style="font-size:28px">Your area lives on the page, not in a dropdown</h1>
+  <p class="lede">The area decides the order of everything: cinemas, films' cinema lists and Starting soon all put your area first, then the areas next to it, then the rest of Lagos. It is a sentence on the page with chips beside it, always visible, changed with one tap.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px;justify-items:center">
+    <div class="step"><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Where are you watching?</div>
+      <div class="btn">Use my location</div>
+      <div class="row"><span class="pill">Lekki</span><span class="pill">V.I.</span><span class="pill">Ikeja</span><span class="pill">Yaba</span></div>
+      <div class="row"><span class="pill">Surulere</span><span class="pill">Festac</span><span class="pill">More</span></div>
+      <div class="cin"><i></i><div><b>All cinemas in Lagos</b><span>22 cinemas, A to Z</span></div></div>
+      <div class="cin"><i></i><div><b>Filmhouse Lekki IMAX</b><span>Lekki</span></div></div>
+    </div><h3>First visit</h3><p>No area yet. All of Lagos is listed, with the question on top. Nothing blocks the page.</p></div>
+    <div class="step"><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Cinemas near Lekki</div>
+      <div class="row"><span class="pill y">Lekki ✓</span><span class="pill">V.I.</span><span class="pill">Sangotedo</span><span class="pill">All</span></div>
+      <div class="cin"><i></i><div><b>Filmhouse Lekki IMAX</b><span>Lekki · 9 films · next 18:15</span></div></div>
+      <div class="cin"><i></i><div><b>Genesis Purple Mall</b><span>Lekki · 8 films · next 18:30</span></div></div>
+      <div class="cap" style="color:var(--muted)">NEXT TO LEKKI</div>
+      <div class="cin"><i></i><div><b>Filmhouse Oniru</b><span>Victoria Island · next 18:40</span></div></div>
+    </div><h3>After you choose</h3><p>Your area's cinemas come first, then the neighbouring areas, labelled. The chip shows what is set.</p></div>
+    <div class="step"><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Cinemas near Ikeja</div>
+      <div class="row"><span class="pill">Lekki</span><span class="pill y">Ikeja ✓</span><span class="pill">Maryland</span><span class="pill">All</span></div>
+      <div class="cin"><i></i><div><b>Silverbird Ikeja</b><span>Ikeja · 16 films · next 18:20</span></div></div>
+      <div class="cin"><i></i><div><b>Viva Cinemas Ikeja</b><span>Ikeja · 7 films · next 18:45</span></div></div>
+      <div class="cap" style="color:var(--muted)">NEXT TO IKEJA</div>
+      <div class="cin"><i></i><div><b>Genesis Maryland Mall</b><span>Maryland · next 18:10</span></div></div>
+    </div><h3>Changing it</h3><p>Tap another chip. The list reorders in place. No sheet, no page of options.</p></div>
+    <div class="step"><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Cinemas near Lekki</div>
+      <div class="row"><span class="pill y">Lekki ✓</span><span class="pill">V.I.</span><span class="pill">Sangotedo</span><span class="pill">All</span></div>
+      <div class="cin"><i></i><div><b>Filmhouse Lekki IMAX</b><span>Lekki · 9 films · next 18:15</span></div></div>
+      <div class="cin"><i></i><div><b>Genesis Purple Mall</b><span>Lekki · 8 films · next 18:30</span></div></div>
+      <div class="cin"><i></i><div><b>Grand Cinemas Lekki</b><span>Lekki · 6 films · next 19:00</span></div></div>
+      <div class="cin"><i></i><div><b>Filmhouse Circle Mall</b><span>Lekki · 5 films · next 19:10</span></div></div>
+    </div><h3>Next time you open it</h3><p>Sinima remembers the area on your phone and opens with it set. Nothing is sent anywhere.</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr;margin-top:18px">
+    <div class="card"><h2>"Nearest" means area, for now</h2><p class="small">We know each cinema's area, not its exact position on a map. So the order is: your area, the areas next to it, then the rest. No distances or travel times are shown, because we could not stand behind them.</p></div>
+    <div class="card"><h2>Use my location</h2><p class="small">Only when you tap it. The phone works out the closest area and Sinima keeps just that area's name. If you say no: "No problem. Pick your area."</p></div>
+    <div class="card"><h2>On desktop</h2><p class="small">The same chips sit in a row under the header. The cinema cards and posters form a grid of several per row instead of a single column.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>5 / 10</span></div>
+</section>
+
+<!-- 6. Main journey -->
+<section class="page">
+  <p class="eyebrow">05 · The main journey</p>
+  <h1 style="font-size:28px">From opening Sinima to booking at the cinema</h1>
+  <p class="lede">Amaka is in Lekki after work and wants to see a film tonight. Seven steps, about a minute.</p>
+  <div class="steps">
+    <div class="step"><span class="num">1</span><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Where are you watching?</div>
+      <div class="btn">Use my location</div>
+      <div class="row"><span class="pill">Lekki</span><span class="pill">V.I.</span><span class="pill">Ikeja</span></div>
+      <div class="cin"><i></i><div><b>All cinemas in Lagos</b><span>22 cinemas</span></div></div>
+    </div><h3>Opens Sinima</h3><p>From a link, a search, or the icon on her home screen.</p></div>
+    <div class="step"><span class="num">2</span><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill on">Cinemas</span><span class="pill">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Cinemas near Lekki</div>
+      <div class="row"><span class="pill y">Lekki ✓</span><span class="pill">V.I.</span><span class="pill">All</span></div>
+      <div class="cin"><i></i><div><b>Filmhouse Lekki IMAX</b><span>9 films · next 18:15</span></div></div>
+      <div class="cin"><i></i><div><b>Genesis Purple Mall</b><span>8 films · next 18:30</span></div></div>
+      <div class="cin"><i></i><div><b>Grand Cinemas Lekki</b><span>6 films · next 19:00</span></div></div>
+    </div><h3>Sets her area</h3><p>Taps Lekki. Next time it is already set.</p></div>
+    <div class="step"><span class="num">3</span><div class="phone">
+      <div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="ttl">Cinemas near Lekki</div>
+      <div class="cin" style="outline:2px solid var(--tar);background:var(--yellow)"><i></i><div><b>Filmhouse Lekki IMAX</b><span style="color:var(--tar)">9 films · next 18:15</span></div></div>
+      <div class="cin"><i></i><div><b>Genesis Purple Mall</b><span>8 films · next 18:30</span></div></div>
+      <div class="cin"><i></i><div><b>Grand Cinemas Lekki</b><span>6 films · next 19:00</span></div></div>
+      <div class="cin"><i></i><div><b>Filmhouse Circle Mall</b><span>5 films · next 19:10</span></div></div>
+    </div><h3>Picks a cinema</h3><p>Her usual one is at the top because it is in her area.</p></div>
+    <div class="step"><span class="num">4</span><div class="phone">
+      <div class="bar"><span>‹ Cinemas</span><span class="pill">Search</span></div>
+      <div class="ttl">Filmhouse Lekki IMAX</div>
+      <div class="row"><span class="pill on">Today</span><span class="pill">Tomorrow</span></div>
+      <div class="posters two">
+        <div><div class="po c1"></div><em>Clayface</em><div class="row"><span class="pill">18:15</span><span class="pill y">19:30</span></div></div>
+        <div><div class="po c2"></div><em>Street Fighter</em><div class="row"><span class="pill">19:00</span><span class="pill">21:40</span></div></div>
+      </div>
+    </div><h3>Browses the films</h3><p>Posters with tonight's times. Taps 19:30 under Clayface.</p></div>
+    <div class="step"><span class="num">5</span><div class="phone">
+      <div class="bar"><span>‹ Cinemas</span></div>
+      <div class="ttl" style="opacity:.35">Filmhouse Lekki IMAX</div>
+      <div class="sheet">
+        <div style="display:grid;grid-template-columns:34px 1fr;gap:6px"><div class="po c1"></div><div><b style="font-size:9px">Clayface</b><br>Filmhouse Lekki IMAX<br><span class="time">19:30</span> <span class="pill">Starts in 45 min</span></div></div>
+        <div style="color:var(--muted)">From Lagocine, which read Filmhouse's site 2 hours ago</div>
+        <div class="pill" style="justify-self:start">Stay: scene after the credits</div>
+        <div class="btn">Book on Filmhouse's site</div>
+        <div class="row"><div class="btn ghost" style="flex:1">Remind me</div><div class="btn ghost" style="flex:1">Share</div></div>
+      </div>
+    </div><h3>Checks the showing</h3><p>Time, countdown, how fresh the time is, and whether to stay for the credits.</p></div>
+    <div class="step"><span class="num">6</span><div class="phone">
+      <div class="bar"><span>‹ Cinemas</span></div>
+      <div class="ttl" style="opacity:.35">Filmhouse Lekki IMAX</div>
+      <div class="sheet">
+        <div style="display:grid;grid-template-columns:34px 1fr;gap:6px"><div class="po c1"></div><div><b style="font-size:9px">Clayface</b><br>Filmhouse Lekki IMAX<br><span class="time">19:30</span></div></div>
+        <div class="btn" style="outline:2.5px solid var(--tar);outline-offset:2px">Book on Filmhouse's site ↗</div>
+        <div style="color:var(--muted)">Opens filmhouseng.com in a new tab. Sinima stays open behind it.</div>
+      </div>
+    </div><h3>Taps Book</h3><p>The button names the site it opens, so there is no surprise.</p></div>
+    <div class="step"><span class="num">7</span><div class="phone browser">
+      <div class="url">filmhouseng.com/…/select-tickets</div>
+      <div class="ttl">Clayface · 19:30</div>
+      <div style="color:#555">Filmhouse Lekki IMAX · Wed 11 Nov</div>
+      <div class="skel" style="width:70%"></div><div class="skel"></div><div class="skel" style="width:85%"></div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:4px">
+        <i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px;background:#15130c"></i><i class="skel" style="height:10px;background:#15130c"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i>
+        <i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i><i class="skel" style="height:10px"></i>
+      </div>
+      <div class="btn" style="background:#15130c;color:#fff;border-color:#15130c;margin-top:6px">Pay</div>
+    </div><h3>Books at the cinema</h3><p>Lands on that exact showing on the cinema's site. Seats and payment happen there.</p></div>
+  </div>
+  <div class="card dark" style="margin-top:16px;display:flex;gap:26px;align-items:center;padding:12px 18px">
+    <b style="font-size:13px;white-space:nowrap">Sinima's job ends at step 6.</b>
+    <span style="font-size:11.5px;color:#d8d0ac">We never sell a ticket, take payment or add anything to the link. If the showing has already started, there is no Book button at all: it reads "Started 5 min ago".</span>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+    <div class="card"><h2>Four taps on a first visit</h2><p class="small">Area, cinema, time, Book. Then she is on the cinema's site.</p></div>
+    <div class="card"><h2>Three taps after that</h2><p class="small">Her area is remembered, so she opens straight onto the cinemas near Lekki.</p></div>
+    <div class="card"><h2>Nothing to sign up for</h2><p class="small">No account, no email, no app to install. The area is kept on her phone only.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>6 / 10</span></div>
+</section>
+
+<!-- 7. Book -->
+<section class="page">
+  <p class="eyebrow">06 · The Book button</p>
+  <h1 style="font-size:28px">Where Book takes you, case by case</h1>
+  <p class="lede">"Directed to the correct cinema site" depends on what each cinema publishes. Sinima only ever uses the link that came with the showing, checked to be on that cinema's own site or the ticketing service it uses.</p>
+  <svg viewBox="0 0 1010 250" width="1010" height="250" style="margin-top:14px;font-family:'Instrument Sans',sans-serif">
+    <g stroke="#15130c" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
+      <path d="M150 78H210"/><path d="M400 78H470"/><path d="M660 78H730"/>
+      <path d="M305 114V168"/><path d="M565 114V168"/><path d="M825 114V168"/>
+    </g>
+    <rect x="10" y="48" width="140" height="60" rx="14" fill="#15130c"/><text x="80" y="74" text-anchor="middle" fill="#fffbea" font-size="13" font-weight="600">You tap a time</text><text x="80" y="91" text-anchor="middle" fill="#cfc7a3" font-size="10.5">One showing opens</text>
+    <g font-size="12.5" font-weight="600">
+      <rect x="212" y="42" width="188" height="72" rx="14" fill="#fff" stroke="#15130c" stroke-width="1.4"/><text x="306" y="68" text-anchor="middle">Has it started?</text><text x="306" y="86" text-anchor="middle" font-size="10.5" font-weight="400">Checked on your phone's clock,</text><text x="306" y="100" text-anchor="middle" font-size="10.5" font-weight="400">in Lagos time.</text>
+      <rect x="472" y="42" width="188" height="72" rx="14" fill="#fff" stroke="#15130c" stroke-width="1.4"/><text x="566" y="68" text-anchor="middle">Is the time still trusted?</text><text x="566" y="86" text-anchor="middle" font-size="10.5" font-weight="400">Read today or yesterday: yes.</text><text x="566" y="100" text-anchor="middle" font-size="10.5" font-weight="400">Older than that: no.</text>
+      <rect x="732" y="42" width="188" height="72" rx="14" fill="#fff" stroke="#15130c" stroke-width="1.4"/><text x="826" y="68" text-anchor="middle">Did a link come with it?</text><text x="826" y="86" text-anchor="middle" font-size="10.5" font-weight="400">On the cinema's own site or its</text><text x="826" y="100" text-anchor="middle" font-size="10.5" font-weight="400">ticketing service, https only.</text>
+    </g>
+    <g font-size="10" fill="#6b6654"><text x="180" y="70" text-anchor="middle"></text><text x="435" y="70" text-anchor="middle">no</text><text x="695" y="70" text-anchor="middle">yes</text><text x="318" y="146">yes</text><text x="578" y="146">no</text><text x="838" y="146">no</text><text x="938" y="70">yes</text></g>
+    <path d="M920 78H960V196H930" stroke="#15130c" stroke-width="1.4" fill="none" marker-end="url(#arrow)"/>
+    <g font-size="11.5">
+      <rect x="212" y="170" width="188" height="56" rx="14" fill="#faf3d3" stroke="#15130c" stroke-width="1.2"/><text x="306" y="194" text-anchor="middle" font-weight="600">"Started 5 min ago"</text><text x="306" y="211" text-anchor="middle" font-size="10.5">No Book button.</text>
+      <rect x="472" y="170" width="188" height="56" rx="14" fill="#faf3d3" stroke="#15130c" stroke-width="1.2"/><text x="566" y="194" text-anchor="middle" font-weight="600">"Check on Filmhouse's site"</text><text x="566" y="211" text-anchor="middle" font-size="10.5">A link to look, not to book.</text>
+      <rect x="732" y="170" width="196" height="56" rx="14" fill="#ffcb05" stroke="#15130c" stroke-width="1.4"/><text x="830" y="194" text-anchor="middle" font-weight="600">Book on the cinema's site ↗</text><text x="830" y="211" text-anchor="middle" font-size="10.5">or "Tickets at the cinema" if no link</text>
+    </g>
+  </svg>
+  <table style="margin-top:8px">
+    <thead><tr><th style="width:230px">Cinemas</th><th style="width:330px">Where Book lands</th><th>What we know today</th></tr></thead>
+    <tbody>
+      <tr><td><b>Filmhouse</b> · 7 cinemas</td><td>That exact showing's ticket page on filmhouseng.com</td><td>A link per showing in the saved data</td></tr>
+      <tr><td><b>Genesis</b> · 3 cinemas</td><td>That showing's "book now" page on genesiscinemas.com</td><td>A link per showing in the saved data</td></tr>
+      <tr><td><b>EbonyLife</b> · 1 cinema</td><td>That showing on ebonylifecinemas.com</td><td>A link per showing in the saved data</td></tr>
+      <tr><td><b>Silverbird Ikeja</b></td><td>That showing on Veezi, the ticketing service Silverbird uses</td><td>A link per showing in the saved data</td></tr>
+      <tr><td><b>Blue Pictures, Filmworld, Grand, Magnificent, Ozone, Sky, THC, Viva</b> · 8 cinemas</td><td>No online booking found. The panel says "Tickets at the cinema" and shows the address.</td><td>No booking page listed for any of them</td></tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:10px">Counted from the Lagos listing saved on 11 Nov 2026: 207 of 353 showings carried a booking link. While the site runs on that saved sample, every button reads "Sample only" and nothing can be booked.</p>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>7 / 10</span></div>
+</section>
+
+<!-- 8. Other journeys -->
+<section class="page">
+  <p class="eyebrow">07 · Other ways through</p>
+  <h1 style="font-size:28px">Three more journeys, same ending</h1>
+  <div class="grid" style="margin-top:16px;gap:12px">
+    <div class="card" style="display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:center">
+      <div><span class="tag y">B · I know the film</span><h2 style="margin-top:8px">"Where is Clayface showing?"</h2><p class="small">Tunde has a film in mind and will go wherever suits.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;font-size:11.5px">
+        <div class="card soft" style="padding:10px 12px"><b>Films tab</b><br><span class="small">Poster grid of everything showing</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Types "clay"</b><br><span class="small">The grid narrows as he types</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Film page</b><br><span class="small">Cinemas showing it, his area first</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Taps a time</b><br><span class="small">One showing opens</span></div>
+        <div class="card dark" style="padding:10px 12px"><b>Book</b><br><span style="font-size:11px;color:#d8d0ac">That cinema's own site</span></div>
+      </div>
+    </div>
+    <div class="card" style="display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:center">
+      <div><span class="tag y">C · I'm free now</span><h2 style="margin-top:8px">"What can I catch?"</h2><p class="small">Chime is leaving work and wants whatever starts next nearby.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;font-size:11.5px">
+        <div class="card soft" style="padding:10px 12px"><b>Starting soon tab</b><br><span class="small">Next 2 hours in his area</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Scans the cards</b><br><span class="small">Poster, time, "Starts in 25 min"</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Nothing soon?</b><br><span class="small">The areas next door, with counts</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Taps a card</b><br><span class="small">One showing opens</span></div>
+        <div class="card dark" style="padding:10px 12px"><b>Book</b><br><span style="font-size:11px;color:#d8d0ac">That cinema's own site</span></div>
+      </div>
+    </div>
+    <div class="card" style="display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:center">
+      <div><span class="tag y">D · A friend sent a link</span><h2 style="margin-top:8px">"Coming to this one?"</h2><p class="small">Ngozi gets a WhatsApp message and has never opened Sinima.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;font-size:11.5px">
+        <div class="card soft" style="padding:10px 12px"><b>Taps the link</b><br><span class="small">"Clayface · Filmhouse Lekki · Wed 19:30"</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Lands on the showing</b><br><span class="small">The panel is open on the cinema's page</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Remind me</b><br><span class="small">Adds it to her calendar, alert 30 min before</span></div>
+        <div class="card soft" style="padding:10px 12px"><b>Or Book</b><br><span class="small">Same button, same rules</span></div>
+        <div class="card dark" style="padding:10px 12px"><b>Closes the panel</b><br><span style="font-size:11px;color:#d8d0ac">She is on the cinema page and can look around</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
+    <div class="card soft"><h2>The film has started</h2><p class="small" style="color:#3b3829">"Started 5 min ago", no Book. It leaves Starting soon straight away.</p></div>
+    <div class="card soft"><h2>The times are a day old</h2><p class="small" style="color:#3b3829">The showing says "read yesterday · check with the cinema". Book still works.</p></div>
+    <div class="card soft"><h2>Nothing showing today</h2><p class="small" style="color:#3b3829">The cinema page opens on the next day that has films, and says so.</p></div>
+    <div class="card soft"><h2>A cinema we don't cover</h2><p class="small" style="color:#3b3829">It is listed as "Times not available yet" with its website, never left out silently.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>8 / 10</span></div>
+</section>
+
+<!-- 9. Format -->
+<section class="page">
+  <p class="eyebrow">08 · By format</p>
+  <h1 style="font-size:28px">"Where is Spider-Man showing in IMAX?"</h1>
+  <p class="lede">A fifth journey, added at your request. Pick a film, choose a format and an area, and see only the cinemas that match. Formats are IMAX, 3D and 4D (moving seats, sold in Lagos as MX4D); 2D is the standard.</p>
+  <div class="steps" style="grid-template-columns:repeat(5,1fr);margin-top:14px">
+    <div class="step"><span class="num">1</span><div class="phone"><div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="row"><span class="pill">Cinemas</span><span class="pill on">Films</span><span class="pill">Soon</span></div>
+      <div class="ttl">Films in Lagos</div>
+      <div class="row"><span class="pill">All</span><span class="pill y">IMAX ✓</span><span class="pill">3D</span><span class="pill">4D</span></div>
+      <div class="posters two"><div><div class="po c2"></div><em>Spider-Man</em><div class="row"><span class="pill on">IMAX</span></div></div><div><div class="po c3"></div><em>Ramayana</em><div class="row"><span class="pill on">IMAX</span><span class="pill on">4D</span></div></div></div>
+    </div><h3>Chooses a format</h3><p>Format chips sit on the Films tab. Only films showing in IMAX stay.</p></div>
+    <div class="step"><span class="num">2</span><div class="phone"><div class="bar"><span><svg><use href="#mark"/></svg>Sinima</span><span class="pill">Search</span></div>
+      <div class="ttl">Films in Lagos</div>
+      <div class="row"><span class="pill y">IMAX ✓</span><span class="pill">3D</span><span class="pill">4D</span></div>
+      <div class="posters two"><div style="outline:2px solid var(--tar);outline-offset:2px;border-radius:8px"><div class="po c2"></div><em>Spider-Man</em><div class="row"><span class="pill on">IMAX</span></div></div><div><div class="po c3"></div><em>Ramayana</em><div class="row"><span class="pill on">IMAX</span><span class="pill on">4D</span></div></div></div>
+    </div><h3>Picks the film</h3><p>Each poster carries small tags for the formats it is showing in.</p></div>
+    <div class="step"><span class="num">3</span><div class="phone">
+      <div class="bar"><span>‹ Films</span><span class="pill">Search</span></div>
+      <div style="display:grid;grid-template-columns:34px 1fr;gap:6px"><div class="po c2"></div><div><div class="ttl">Spider-Man: Brand New Day</div>2 h 25 min · 12A</div></div>
+      <div class="row"><span class="pill">All formats</span><span class="pill y">IMAX ✓</span><span class="pill">2D</span></div>
+      <div class="row"><span class="pill y">Lekki ✓</span><span class="pill">V.I.</span><span class="pill">All Lagos</span></div>
+      <div class="row"><span class="pill on">Today</span><span class="pill">Tomorrow</span></div>
+    </div><h3>Format and area</h3><p>On the film's page the same chips are set, with area and day beside them.</p></div>
+    <div class="step"><span class="num">4</span><div class="phone">
+      <div class="bar"><span>‹ Films</span></div>
+      <div class="ttl">Spider-Man in IMAX near Lekki</div>
+      <div class="cin"><i></i><div><b>Filmhouse Lekki IMAX</b><span>Lekki</span><div class="row" style="margin-top:3px"><span class="pill y">19:45</span><span class="pill">22:30</span></div></div></div>
+      <div class="cin"><i></i><div><b>Filmhouse Circle Mall</b><span>Lekki</span><div class="row" style="margin-top:3px"><span class="pill">20:10</span></div></div></div>
+      <div style="color:var(--muted)">2 cinemas match. 3 more in Lekki show it in 2D or don't say.</div>
+    </div><h3>Only matching cinemas</h3><p>The list shrinks to the cinemas showing it that way, and says what it left out.</p></div>
+    <div class="step"><span class="num">5</span><div class="phone">
+      <div class="bar"><span>‹ Films</span></div>
+      <div class="ttl" style="opacity:.35">Spider-Man in IMAX</div>
+      <div class="sheet">
+        <div style="display:grid;grid-template-columns:34px 1fr;gap:6px"><div class="po c2"></div><div><b style="font-size:9px">Spider-Man</b> <span class="pill on">IMAX</span><br>Filmhouse Lekki IMAX<br><span class="time">19:45</span></div></div>
+        <div class="btn">Book on Filmhouse's site ↗</div>
+        <div class="row"><div class="btn ghost" style="flex:1">Remind me</div><div class="btn ghost" style="flex:1">Share</div></div>
+      </div>
+    </div><h3>Taps a time, then Book</h3><p>The same panel as every other journey, with the format shown.</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.25fr 1fr 1fr;margin-top:14px">
+    <div class="card"><h2>What the data can and can't say today</h2><p class="small" style="color:#3b3829">In the Lagos listing saved on 11 Nov, only the 7 Filmhouse cinemas say the format of each showing (IMAX at Lekki IMAX and Circle Mall, MX4D at Landmark). The other 13 cinemas give no format at all. With a format chosen they are left out and counted: "13 cinemas don't say their format". We never guess one.</p></div>
+    <div class="card"><h2>Where the format shows</h2><p class="small" style="color:#3b3829">A tag on poster cards, on each time, in the showing panel and on the share card. On the Cinemas tab, a cinema shows the formats it has ("IMAX · 4D") and the same chips filter the list.</p></div>
+    <div class="card"><h2>Films not out yet</h2><p class="small" style="color:#3b3829">Cinemas publish about two days ahead, so a film can be found once it has a showing. A "coming soon" list is not in this structure; say if you want it added.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>9 / 10</span></div>
+</section>
+
+<!-- 9. Decisions -->
+<section class="page">
+  <p class="eyebrow">09 · Approved</p>
+  <h1 style="font-size:28px">Six decisions, approved on 12 November</h1>
+  <p class="lede">You approved all six. They are kept here as the record. New in this draft: the format journey on the page before this one.</p>
+  <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:18px;gap:12px">
+    <div class="card"><span class="num">1</span><h2 style="margin-top:8px">Home is Cinemas</h2><p class="small">Opening Sinima shows cinemas, nearest your area first. Films and Starting soon are the other two tabs. <b style="color:var(--tar)">My recommendation: yes.</b></p></div>
+    <div class="card"><span class="num">2</span><h2 style="margin-top:8px">Area as chips on the page</h2><p class="small">Your area is always visible and changes with one tap. No dropdown and no sheet. "Use my location" is offered once, at the top.</p></div>
+    <div class="card"><span class="num">3</span><h2 style="margin-top:8px">A time opens a panel, not the cinema's site</h2><p class="small">Tapping a time shows the showing first (freshness, countdown, Remind me, Share), with Book as the main button. The other option is for a time to open the cinema's site at once, which is one tap shorter but skips all of that.</p></div>
+    <div class="card"><span class="num">4</span><h2 style="margin-top:8px">Days, not weeks</h2><p class="small">Day tabs show as many days as each cinema has published, usually today and tomorrow. A week view would be mostly empty.</p></div>
+    <div class="card"><span class="num">5</span><h2 style="margin-top:8px">Starting soon becomes a tab</h2><p class="small">It was the whole home page and the app's one-line pitch. Here it is one of three ways in. If you would rather it stayed on the home page as a strip above the cinemas, say so.</p></div>
+    <div class="card"><span class="num">6</span><h2 style="margin-top:8px">Cinemas we can't read are still listed</h2><p class="small">Silverbird Galleria and Leisure Mall have no times in our source. They appear as "Times not available yet" with a link to their own site.</p></div>
+  </div>
+  <div class="card dark" style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px">
+    <div><b>After your yes</b><p style="font-size:11.5px;color:#d8d0ac;margin-top:4px">A reference board for the new structure, a font page with free fonts close to the one on cofounder.co, and Danfo applied to real screens.</p></div>
+    <div><b>Then</b><p style="font-size:11.5px;color:#d8d0ac;margin-top:4px">Full designs of each screen, desktop and phone side by side, for you to pick from. Nothing is built until you say "go with it".</p></div>
+    <div><b>About this document</b><p style="font-size:11.5px;color:#d8d0ac;margin-top:4px">The small screens are diagrams of structure, not designs. The colours are Danfo, as a first test. The font is a stand-in.</p></div>
+  </div>
+  <div class="foot"><span>Sinima · Sitemap and user journey · Draft 2</span><span>10 / 10</span></div>
+</section>
+</body>
+</html>

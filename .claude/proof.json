@@ -1,10 +1,8 @@
 {
   "checks": [
-    { "name": "types", "run": "npm run --silent typecheck", "when": ["src/", "scripts/", "tests/", "tsconfig.json", "package.json"] },
     { "name": "lint", "run": "npm run --silent lint", "when": ["src/", "scripts/", "tests/", "eslint.config.mjs", "package.json"] },
     { "name": "test", "run": "npx --no-install vitest run --bail=1", "when": ["src/", "scripts/", "tests/unit/", "data/", "docs/examples/", "vitest.config.ts", "package.json"] },
-    { "name": "build-budget", "run": "npm run --silent build && npm run --silent budget", "when": ["src/", "public/", "data/", "next.config.ts", "postcss.config.mjs", "scripts/check-budget.mjs", "package.json"], "timeout": 600 },
-    { "name": "e2e", "run": "npx --no-install playwright test --max-failures=1", "when": ["src/", "public/", "tests/e2e/", "playwright.config.ts", "scripts/serve-out.mjs"], "timeout": 900 },
+    { "name": "types-build-e2e-budget", "run": "npm run --silent typecheck && npx --no-install playwright test --max-failures=1 && npm run --silent budget", "when": ["src/", "scripts/", "tests/", "public/", "data/", "tsconfig.json", "next.config.ts", "postcss.config.mjs", "playwright.config.ts", "package.json"], "timeout": 900 },
     { "name": "spec", "run": "node \"$CLAUDE_PLUGIN_ROOT/skills/discover/scripts/check-spec.mjs\" docs/SPEC.md docs/features.json", "when": ["docs/SPEC.md", "docs/features.json"] }
   ],
   "maxRounds": 5
