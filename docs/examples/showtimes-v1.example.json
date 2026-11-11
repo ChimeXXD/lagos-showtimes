@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-06T16:05:00Z",
+  "timeZone": "Africa/Lagos",
+  "sample": true,
+  "sources": [
+    {
+      "id": "filmhouse",
+      "name": "Filmhouse's site",
+      "url": "https://filmhouseng.com/",
+      "method": "public-page",
+      "status": "pending",
+      "via": null,
+      "fetchedAt": "2026-11-06T14:05:00Z",
+      "lastOkAt": "2026-11-06T14:05:00Z",
+      "health": "ok"
+    },
+    {
+      "id": "lagocine",
+      "name": "Lagocine",
+      "url": "https://lagocine.com/",
+      "method": "permission-feed",
+      "status": "pending",
+      "via": null,
+      "fetchedAt": "2026-11-05T14:06:00Z",
+      "lastOkAt": "2026-11-05T14:06:00Z",
+      "health": "ok"
+    }
+  ],
+  "cinemas": [
+    {
+      "id": "filmhouse-lekki-imax",
+      "name": "Filmhouse Lekki IMAX",
+      "chain": "Filmhouse",
+      "area": "lekki",
+      "address": "The Rock Drive, off Bisola Durosinmi Etti Drive, Lekki Phase 1, Lagos",
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "sourceIds": ["filmhouse"]
+    },
+    {
+      "id": "ebonylife-vi",
+      "name": "EbonyLife Cinemas",
+      "chain": "EbonyLife",
+      "area": "victoria-island",
+      "address": "1637 Adetokunbo Ademola Street, Victoria Island, Lagos",
+      "geo": null,
+      "website": "https://ebonylifecinemas.com/",
+      "sourceIds": ["lagocine"]
+    }
+  ],
+  "films": [
+    {
+      "id": "spider-man-brand-new-day",
+      "title": "Spider-Man: Brand New Day",
+      "runtimeMin": null,
+      "rating": null,
+      "origin": "hollywood",
+      "tmdbId": null,
+      "credits": {
+        "during": "unknown",
+        "after": "unknown",
+        "confidence": "unknown",
+        "sources": [],
+        "count": null
+      }
+    },
+    {
+      "id": "one-gidi-night",
+      "title": "One Gidi Night",
+      "runtimeMin": null,
+      "rating": null,
+      "origin": "nollywood",
+      "tmdbId": null,
+      "credits": {
+        "during": "unknown",
+        "after": "unknown",
+        "confidence": "unknown",
+        "sources": [],
+        "count": null
+      }
+    }
+  ],
+  "showings": [
+    {
+      "id": "filmhouse-lekki-imax_spider-man-brand-new-day_2026-11-06T18:30:00Z",
+      "filmId": "spider-man-brand-new-day",
+      "cinemaId": "filmhouse-lekki-imax",
+      "screenId": null,
+      "startsAt": "2026-11-06T18:30:00Z",
+      "format": "IMAX",
+      "language": null,
+      "price": null,
+      "bookingUrl": "https://www.filmhouseng.com/",
+      "sourceId": "filmhouse",
+      "fetchedAt": "2026-11-06T14:05:00Z"
+    },
+    {
+      "id": "ebonylife-vi_one-gidi-night_2026-11-06T19:15:00Z",
+      "filmId": "one-gidi-night",
+      "cinemaId": "ebonylife-vi",
+      "screenId": null,
+      "startsAt": "2026-11-06T19:15:00Z",
+      "format": "2D",
+      "language": "English",
+      "price": { "amountNgn": 6000, "label": "Standard" },
+      "bookingUrl": "https://ebonylifecinemas.com/",
+      "sourceId": "lagocine",
+      "via": { "name": "EbonyLife's site", "url": "https://ebonylifecinemas.com/", "fetchedAt": "2026-11-05T14:06:00Z" },
+      "fetchedAt": "2026-11-05T14:06:00Z"
+    }
+  ]
+}

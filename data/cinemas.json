@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-11-06",
+  "about": "Seed registry of Lagos cinemas confirmed on pages opened on 6 Nov 2026. Unverified fields are null. geo is filled on Day 2 from each cinema's own page or map pin; never guessed.",
+  "areas": [
+    {
+      "slug": "lekki",
+      "name": "Lekki"
+    },
+    {
+      "slug": "victoria-island",
+      "name": "Victoria Island"
+    },
+    {
+      "slug": "ikeja",
+      "name": "Ikeja"
+    },
+    {
+      "slug": "surulere",
+      "name": "Surulere"
+    },
+    {
+      "slug": "yaba",
+      "name": "Yaba"
+    },
+    {
+      "slug": "lagos-island",
+      "name": "Lagos Island"
+    },
+    {
+      "slug": "festac",
+      "name": "Festac"
+    },
+    {
+      "slug": "maryland",
+      "name": "Maryland"
+    },
+    {
+      "slug": "agege",
+      "name": "Agege"
+    },
+    {
+      "slug": "sangotedo",
+      "name": "Sangotedo"
+    },
+    {
+      "slug": "ikorodu-road",
+      "name": "Ikorodu Road"
+    },
+    {
+      "slug": "idimu",
+      "name": "Idimu"
+    }
+  ],
+  "areasWithoutCinemasYet": [
+    {
+      "slug": "ikorodu",
+      "name": "Ikorodu",
+      "note": "Chime listed Ikorodu; no cinema in Ikorodu town confirmed. Magnificent is on Ikorodu Road."
+    }
+  ],
+  "cinemas": [
+    {
+      "id": "filmhouse-lekki-imax",
+      "name": "Filmhouse Lekki IMAX",
+      "chain": "Filmhouse",
+      "area": "lekki",
+      "address": "The Rock Drive, off Bisola Durosinmi Etti Drive, Lekki Phase 1, Lagos",
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-lekki-imax/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://www.legit.ng/1260453-imax-lekki-ticket-bookings-contacts-address-opening-hours-ticket-prices-website.html",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": "Nairametrics lists 'Filmhouse Lekki' as 3rd most visited Lagos cinema in 2024 (133,226 admissions)."
+    },
+    {
+      "id": "filmhouse-surulere",
+      "name": "Filmhouse Surulere",
+      "chain": "Filmhouse",
+      "area": "surulere",
+      "address": null,
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-surulere/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": null
+    },
+    {
+      "id": "filmhouse-circle-mall",
+      "name": "Filmhouse Circle Mall",
+      "chain": "Filmhouse",
+      "area": "lekki",
+      "address": null,
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-circle-mall/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": "Nairametrics places Circle Mall at Jakande."
+    },
+    {
+      "id": "filmhouse-ikota",
+      "name": "Filmhouse Ikota",
+      "chain": "Filmhouse",
+      "area": "lekki",
+      "address": null,
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-ikota/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": null
+    },
+    {
+      "id": "filmhouse-palms-lekki",
+      "name": "Filmhouse Palms Mall Lekki",
+      "chain": "Filmhouse",
+      "area": "lekki",
+      "address": null,
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-palms-lekki/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": null
+    },
+    {
+      "id": "filmhouse-oniru",
+      "name": "Filmhouse Oniru",
+      "chain": "Filmhouse",
+      "area": "victoria-island",
+      "address": null,
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-oniru/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": null
+    },
+    {
+      "id": "filmhouse-landmark",
+      "name": "Filmhouse Landmark",
+      "chain": "Filmhouse",
+      "area": "victoria-island",
+      "address": null,
+      "geo": null,
+      "website": "https://filmhouseng.com/",
+      "bookingHost": "www.filmhouseng.com",
+      "lagocinePage": "https://lagocine.com/cinema/filmhouse-landmark/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": null
+    },
+    {
+      "id": "genesis-purple-lekki",
+      "name": "Genesis Deluxe Purple Mall",
+      "chain": "Genesis",
+      "area": "lekki",
+      "address": "Purple Mall, Freedom Way, Lekki Phase 1, Lagos (no street number found)",
+      "geo": null,
+      "website": "https://genesiscinemas.com/",
+      "bookingHost": "genesiscinemas.com",
+      "lagocinePage": "https://lagocine.com/cinema/genesis-purple-lekki/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://thisdaylive.com/index.php/2024/12/27/genesis-cinema-opens-lagos-flagship-in-lekki"
+      ],
+      "notes": null
+    },
+    {
+      "id": "genesis-festac",
+      "name": "Genesis Deluxe Festival Mall",
+      "chain": "Genesis",
+      "area": "festac",
+      "address": "Festival Mall, Festac, Lagos (no street address found)",
+      "geo": null,
+      "website": "https://genesiscinemas.com/",
+      "bookingHost": "genesiscinemas.com",
+      "lagocinePage": "https://lagocine.com/cinema/genesis-festac/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/",
+        "https://thisdaylive.com/index.php/2024/12/27/genesis-cinema-opens-lagos-flagship-in-lekki"
+      ],
+      "notes": null
+    },
+    {
+      "id": "genesis-maryland",
+      "name": "Genesis Deluxe Maryland Mall",
+      "chain": "Genesis",
+      "area": "maryland",
+      "address": "Maryland Mall, Maryland, Lagos (no street address found)",
+      "geo": null,
+      "website": "https://genesiscinemas.com/",
+      "bookingHost": "genesiscinemas.com",
+      "lagocinePage": "https://lagocine.com/cinema/genesis-maryland/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": null
+    },
+    {
+      "id": "silverbird-ikeja",
+      "name": "Silverbird Cinemas Ikeja",
+      "chain": "Silverbird",
+      "area": "ikeja",
+      "address": "Ikeja City Mall, Ikeja, Lagos (no street address found)",
+      "geo": null,
+      "website": null,
+      "bookingHost": "ticketing.eu.veezi.com",
+      "lagocinePage": "https://lagocine.com/cinema/silverbird-ikeja/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/",
+        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive",
+        "https://www.vanguardngr.com/2026/02/top-10-largest-cinemas-in-nigeria-by-ticket-revenue"
+      ],
+      "notes": "Most visited Lagos cinema in 2024 (206,440 admissions); top Nigerian cinema by 2025 revenue (5 screens, per Vanguard). Booking via Veezi."
+    },
+    {
+      "id": "silverbird-galleria",
+      "name": "Silverbird Cinemas Galleria",
+      "chain": "Silverbird",
+      "area": "victoria-island",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": "ticketing.eu.veezi.com",
+      "lagocinePage": null,
+      "listedOnLagocine": false,
+      "sourceUrls": [
+        "https://ticketing.eu.veezi.com/sessions/?siteToken=4x3z2wcre0rek2beab5w344ae0",
+        "https://lagocine.com/cinemas/",
+        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
+      ],
+      "notes": "Veezi page showed 'No shows currently scheduled' on 6 Nov 2026; Lagocine lists one Silverbird cinema as missing. Operating status unverified."
+    },
+    {
+      "id": "ebonylife-vi",
+      "name": "EbonyLife Cinemas",
+      "chain": "EbonyLife",
+      "area": "victoria-island",
+      "address": "1637 Adetokunbo Ademola Street, Victoria Island, Lagos",
+      "geo": null,
+      "website": "https://ebonylifecinemas.com/",
+      "bookingHost": "ebonylifecinemas.com",
+      "lagocinePage": "https://lagocine.com/cinema/ebonylife-vi/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinema/ebonylife-vi/",
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": "Top single cinema in Nigeria by 2024 share per FilmOne (via TechCabal)."
+    },
+    {
+      "id": "blue-pictures-onikan",
+      "name": "Blue Pictures Cinemas City Mall",
+      "chain": "Blue Pictures",
+      "area": "lagos-island",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/blue-pictures-onikan/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": "No booking page found by Lagocine; tickets at the cinema."
+    },
+    {
+      "id": "filmworld-idimu",
+      "name": "Filmworld Cinemas Idimu",
+      "chain": "Filmworld",
+      "area": "idimu",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/filmworld-idimu/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": "Nairametrics lists 'Filmworld Cinemas, Ikotun' (41,911 admissions, 2024); may be the same site. No booking page found by Lagocine."
+    },
+    {
+      "id": "grand-lekki",
+      "name": "Grand Cinemas Lekki",
+      "chain": "Grand",
+      "area": "lekki",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/grand-lekki/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": "No booking page found by Lagocine."
+    },
+    {
+      "id": "magnificent-ikorodu-road",
+      "name": "Magnificent Cinemas Ikorodu Road",
+      "chain": "Magnificent",
+      "area": "ikorodu-road",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/magnificent-ikorodu-road/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": "On Ikorodu Road, not in Ikorodu town. No booking page found by Lagocine."
+    },
+    {
+      "id": "ozone-yaba",
+      "name": "Ozone Cinemas Yaba",
+      "chain": "Ozone",
+      "area": "yaba",
+      "address": "E-Centre, Yaba, Lagos (no street address found)",
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/ozone-yaba/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
+      ],
+      "notes": "No booking page found by Lagocine."
+    },
+    {
+      "id": "sky-sangotedo",
+      "name": "Sky Cinemas Sangotedo",
+      "chain": "Sky",
+      "area": "sangotedo",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/sky-sangotedo/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+      ],
+      "notes": "8th most visited Lagos cinema in 2024 (46,085 admissions). No booking page found by Lagocine."
+    },
+    {
+      "id": "thc-agege",
+      "name": "THC Cinema Agege",
+      "chain": "THC",
+      "area": "agege",
+      "address": null,
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/thc-agege/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/"
+      ],
+      "notes": "No booking page found by Lagocine."
+    },
+    {
+      "id": "viva-ikeja",
+      "name": "Viva Cinemas Ikeja",
+      "chain": "Viva",
+      "area": "ikeja",
+      "address": "Jara Mall, Ikeja, Lagos (no street address found)",
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": "https://lagocine.com/cinema/viva-ikeja/",
+      "listedOnLagocine": true,
+      "sourceUrls": [
+        "https://lagocine.com/cinemas/",
+        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
+      ],
+      "notes": "No booking page found by Lagocine."
+    },
+    {
+      "id": "leisure-mall-surulere",
+      "name": "Leisure Mall Cinema",
+      "chain": "Independent (unverified)",
+      "area": "surulere",
+      "address": "Leisure Mall, Surulere, Lagos",
+      "geo": null,
+      "website": null,
+      "bookingHost": null,
+      "lagocinePage": null,
+      "listedOnLagocine": false,
+      "sourceUrls": [
+        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
+      ],
+      "notes": "Named by Discover Lagos; not on Lagocine on 6 Nov 2026. Operating status unverified."
+    }
+  ]
+}

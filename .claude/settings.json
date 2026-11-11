@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run budget)",
+      "Bash(npm run test:e2e)",
+      "Bash(npm run test:e2e *)",
+      "Bash(npm test)",
+      "Bash(npm test *)",
+      "Bash(npm run refresh -- --fixtures)",
+      "Bash(npx playwright test *)",
+      "Bash(npx playwright install chromium)",
+      "Bash(npx vitest run *)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push -q origin main)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)"
+    ]
+  }
+}

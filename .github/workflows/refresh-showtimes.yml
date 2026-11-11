@@ -1,0 +1,65 @@
+# ---------------------------------------------------------------------------------------------
+# DISABLED TEMPLATE. Do not enable until at least one source in data/sources.json is "cleared"
+# (written permission, or robots.txt + terms checked and quoted), and Chime has confirmed it in
+# docs/DECISIONS.md (D-07, D-08).
+#
+# To enable:
+#   1. Uncomment the `schedule:` block below.
+#   2. Change `if: false` on the job to `if: true` (or remove the line).
+#   3. Log the change as a new decision.
+#
+# The script only runs sources with status "cleared"; any other source in a scheduled run fails it.
+# Times are UTC: 05:17, 11:17, 15:17 UTC = 06:17, 12:17, 16:17 in Lagos. Odd minutes avoid the
+# top-of-hour queue. In a public repo, GitHub disables schedules after 60 days without activity.
+# ---------------------------------------------------------------------------------------------
+name: Refresh showtimes (disabled)
+
+on:
+  # schedule:
+  #   - cron: "17 5,11,15 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-showtimes
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: false   # disabled until a source is cleared (D-08)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch cleared sources, validate, write data/showtimes.json
+        run: npm run refresh
+        env:
+          FETCH_USER_AGENT: "LagosShowtimesBot/0.1 (+https://github.com/ChimeXXD/lagos-showtimes)"
+          TMDB_READ_TOKEN: ${{ secrets.TMDB_READ_TOKEN }}
+
+      - name: Commit if changed
+        run: |
+          # Stage first: `git diff` alone does not see files that are new in this run.
+          # The per-area files in public/data/ are part of the same refresh (docs/DATA.md).
+          git add -A -- data
+          if [ -d public/data ]; then git add -A -- public/data; fi
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          # Commit as the repo owner: Vercel Hobby may not deploy other authors' commits
+          # on a private repo (D-27).
+          git config user.name "Chimexd"
+          git config user.email "55363319+ChimeXXD@users.noreply.github.com"
+          git commit -m "chore(data): refresh showtimes"
+          git push

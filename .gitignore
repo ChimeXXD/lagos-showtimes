@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Tests
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+coverage/
+
+# Env (keys live in .env.local and GitHub Secrets)
+.env
+.env.local
+.env.*.local
+
+# Hosts
+.vercel/
+.wrangler/
+
+# macOS
+.DS_Store
+
+# Claude local state
+.claude/settings.local.json
+.claude/worktrees/
+
+# Reference screenshots: other products' copyrighted UI, kept local only (D-13)
+docs/design/reference-board/images/
+docs/design/direction-board/images/
+
+# Scratch fetches during the audit (save real fixtures under tests/fixtures/ instead)
+tmp/

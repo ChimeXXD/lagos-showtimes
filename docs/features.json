@@ -1,0 +1,538 @@
+{
+  "features": [
+    {
+      "id": "D0-1",
+      "day": 0,
+      "priority": "must",
+      "title": "Repo scaffold: git, private GitHub repo, first commit of the docs",
+      "criteria": [
+        "first commit exists",
+        "remote is private"
+      ],
+      "verify": "git log --oneline | head -1; gh repo view --json visibility",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D0-2",
+      "day": 0,
+      "priority": "must",
+      "title": "Next.js static-export app with the portfolio's exact versions",
+      "criteria": [
+        "package.json pins next 16.4.3, react 19.3.1, typescript 5.9.3, tailwindcss 4.3.3, @playwright/test 1.64.1",
+        "npm run build writes out/",
+        "one Vitest and one Playwright test pass"
+      ],
+      "verify": "npm ci && npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D0-3",
+      "day": 0,
+      "priority": "must",
+      "title": "CI green on push to main",
+      "criteria": [
+        "ci.yml runs lint, typecheck, unit tests, build, e2e",
+        "latest run on main is green"
+      ],
+      "verify": "gh run list --workflow ci.yml --limit 1",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D0-7",
+      "day": 0,
+      "priority": "must",
+      "title": "Empty-app size measured and the budget set (D-21)",
+      "criteria": [
+        "transferred size and gzipped JS of the empty scaffold recorded in PROGRESS.md",
+        "budget numbers logged as a decision and enforced by scripts/check-budget.mjs"
+      ],
+      "verify": "npm run build && npm run budget",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D0-4",
+      "day": 0,
+      "priority": "must",
+      "title": "Private deploy on the free host",
+      "criteria": [
+        "deploy URL loads",
+        "not linked publicly"
+      ],
+      "verify": "manual: open the deploy URL on the phone",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D0-5",
+      "day": 0,
+      "priority": "must",
+      "title": "Data-source audit in data/sources.json",
+      "criteria": [
+        "every source has robots and terms checked, with quotes or 'not found'",
+        "listing URL pattern and days ahead recorded",
+        "one fixture saved per reachable source, cut down to listing markup before commit (D-24)"
+      ],
+      "verify": "node -e \"const s=require('./data/sources.json');console.log(s.sources.map(x=>[x.id,x.robots.checkedAt,x.terms.checkedAt]))\"",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D0-6",
+      "day": 0,
+      "priority": "must",
+      "title": "Permission emails sent by Chime",
+      "criteria": [
+        "askedAt filled for Lagocine and each chain",
+        "DECISIONS O-2 table updated"
+      ],
+      "verify": "manual: Chime confirms",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-1",
+      "day": 1,
+      "priority": "must",
+      "title": "References collected and summarised",
+      "criteria": [
+        "30-50 picks by surface in REFERENCES.md",
+        "pattern summary written",
+        "images git-ignored"
+      ],
+      "verify": "grep -c '^| [0-9]' docs/design/REFERENCES.md",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-2",
+      "day": 1,
+      "priority": "must",
+      "title": "Direction board with three directions; Chime picks one and the name",
+      "criteria": [
+        "three directions at 390 px",
+        "pick and name logged as decisions"
+      ],
+      "verify": "open docs/design/direction-board/index.html",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-3",
+      "day": 1,
+      "priority": "must",
+      "title": "Tokens and UI brief §1-3",
+      "criteria": [
+        "src/styles/tokens.css exists",
+        "check-tokens lint passes"
+      ],
+      "verify": "npm run lint",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-4",
+      "day": 1,
+      "priority": "must",
+      "title": "Time helpers: UTC in, Africa/Lagos out",
+      "criteria": [
+        "lagosLocalToUtc and formatTime tested",
+        "device zone ignored",
+        "midnight shows handled"
+      ],
+      "verify": "npm test -- lib/time",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-5",
+      "day": 1,
+      "priority": "must",
+      "title": "Freshness wording for every band",
+      "criteria": [
+        "each DATA.md band has a test at both edges",
+        "via wording tested",
+        "sample wording tested"
+      ],
+      "verify": "npm test -- lib/wording/freshness",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-6",
+      "day": 1,
+      "priority": "must",
+      "title": "Showing state and countdown",
+      "criteria": [
+        "upcoming/starting/started/ended at boundary seconds",
+        "started is never bookable"
+      ],
+      "verify": "npm test -- lib/time/showingState",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-7",
+      "day": 1,
+      "priority": "must",
+      "title": "Credits wording never says Go without a source",
+      "criteria": [
+        "every DATA.md credits row tested",
+        "one named source -> Stay with the source named (D-19)",
+        "missing keyword -> 'not known yet'",
+        "Go only with a manual entry that has a link"
+      ],
+      "verify": "npm test -- lib/wording/credits",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D1-8",
+      "day": 1,
+      "priority": "must",
+      "title": ".ics generator",
+      "criteria": [
+        "UTC DTSTART with Z",
+        "VALARM -PT30M",
+        "CRLF and line folding",
+        "UID and DTSTAMP"
+      ],
+      "verify": "npm test -- lib/ics",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D2-1",
+      "day": 2,
+      "priority": "must",
+      "title": "Schema v1 types and validator",
+      "criteria": [
+        "DATA.md example validates",
+        "each rule in DATA.md has a failing fixture"
+      ],
+      "verify": "npm test -- lib/data",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D2-2",
+      "day": 2,
+      "priority": "must",
+      "title": "Parsers for two sources on saved fixtures",
+      "criteria": [
+        "tests pass on saved HTML/JSON",
+        "times converted to UTC once"
+      ],
+      "verify": "npm test -- scripts/sources",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D2-3",
+      "day": 2,
+      "priority": "must",
+      "title": "refresh --fixtures writes valid showtimes.json and per-area files on today's dates",
+      "criteria": [
+        "files validate",
+        "sample is true",
+        "showings dated today and tomorrow in Lagos with the fixtures' wall-clock times (D-20)",
+        "one file per area plus all.json (D-18)",
+        "size within budget"
+      ],
+      "verify": "npm run refresh -- --fixtures && npm test -- validate && npm test -- scripts/refresh",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D2-4",
+      "day": 2,
+      "priority": "must",
+      "title": "TMDB credits lookup at build time",
+      "criteria": [
+        "films matched to TMDB ids where found",
+        "keywords 179430/179431 read",
+        "key never in client bundle",
+        "tmdb-overrides.json and credits-manual.json merged; ambiguous match stays unmatched (D-19, D-25)",
+        "share of films with an answer printed"
+      ],
+      "verify": "node scripts/tmdb.ts --dry-run; grep -r TMDB out/ || echo clean",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D3-1",
+      "day": 3,
+      "priority": "must",
+      "title": "Area page and home: Starting soon near you (D-18)",
+      "criteria": [
+        "/area/[slug] and / list next 2 hours, then later tonight, then tomorrow",
+        "sorted by start time",
+        "static HTML holds the time-ordered list",
+        "returning visitor on / lands on the saved area"
+      ],
+      "verify": "npm run test:e2e -- home",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D3-2",
+      "day": 3,
+      "priority": "must",
+      "title": "Freshness line and banners on every showing",
+      "criteria": [
+        "every row has a freshness line",
+        "stale and sample banners show when due"
+      ],
+      "verify": "npm run test:e2e -- freshness",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D3-4",
+      "day": 3,
+      "priority": "must",
+      "title": "Now showing film list with a filter box (D-22)",
+      "criteria": [
+        "typing part of a title leaves only matching films",
+        "tapping a film opens its page"
+      ],
+      "verify": "npm run test:e2e -- films",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D3-5",
+      "day": 3,
+      "priority": "must",
+      "title": "Empty state offers neighbouring areas (D-22)",
+      "criteria": [
+        "area with nothing in 2 hours shows its neighbours with counts",
+        "no distances or travel times"
+      ],
+      "verify": "npm run test:e2e -- empty",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D3-3",
+      "day": 3,
+      "priority": "must",
+      "title": "Chime approves home on the phone",
+      "criteria": [
+        "screenshot at 390x844 approved"
+      ],
+      "verify": "manual",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D4-1",
+      "day": 4,
+      "priority": "must",
+      "title": "Film page with every showing in Lagos",
+      "criteria": [
+        "grouped by area, sorted by time",
+        "Stay or Go chip"
+      ],
+      "verify": "npm run test:e2e -- film",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D4-2",
+      "day": 4,
+      "priority": "must",
+      "title": "Cinema and area pages",
+      "criteria": [
+        "today and tomorrow",
+        "address and source line"
+      ],
+      "verify": "npm run test:e2e -- cinema",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D4-3",
+      "day": 4,
+      "priority": "must",
+      "title": "Started showings never bookable (e2e)",
+      "criteria": [
+        "row at now-1 min says Started and has no Book link"
+      ],
+      "verify": "npm run test:e2e -- started",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D4-4",
+      "day": 4,
+      "priority": "should",
+      "title": "Filters: kids, Nollywood/Hollywood, format",
+      "criteria": [
+        "filters combine",
+        "empty state per filter"
+      ],
+      "verify": "npm run test:e2e -- filters",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D4-5",
+      "day": 4,
+      "priority": "should",
+      "title": "Runtime and \"out about\" time; Report a wrong time link (D-22)",
+      "criteria": [
+        "shown only when runtime is known, worded as about",
+        "report link opens a pre-filled issue or email, with no tracking"
+      ],
+      "verify": "npm run test:e2e -- film",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D5-1",
+      "day": 5,
+      "priority": "must",
+      "title": "Remind me (.ics) and countdown",
+      "criteria": [
+        "opens in iPhone Calendar and Google Calendar with a 30-min alert",
+        "countdown updates"
+      ],
+      "verify": "manual on both phones + npm run test:e2e -- remind",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D5-2",
+      "day": 5,
+      "priority": "should",
+      "title": "Share to WhatsApp with preview card; link opens on the exact showing",
+      "criteria": [
+        "Web Share or wa.me fallback",
+        "OG image per film",
+        "shared URL scrolls to and marks the showing (D-22)"
+      ],
+      "verify": "manual: paste link in WhatsApp",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D5-3",
+      "day": 5,
+      "priority": "should",
+      "title": "Install and offline",
+      "criteria": [
+        "manifest valid",
+        "offline shows saved times with their age"
+      ],
+      "verify": "npm run test:e2e -- offline",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D6-1",
+      "day": 6,
+      "priority": "must",
+      "title": "Page weight budget and Lighthouse",
+      "criteria": [
+        "home and area pages within the Day 0 budget (D-21)",
+        "Lighthouse mobile >= 90 performance and accessibility"
+      ],
+      "verify": "npm run build && npm run budget",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D6-2",
+      "day": 6,
+      "priority": "must",
+      "title": "Accessibility pass",
+      "criteria": [
+        "keyboard, VoiceOver, TalkBack, 200% zoom",
+        "rows read as full sentences"
+      ],
+      "verify": "manual + axe in Playwright",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D6-3",
+      "day": 6,
+      "priority": "must",
+      "title": "About page: sources, TMDB notice and logo, takedown",
+      "criteria": [
+        "every source with status",
+        "TMDB notice text exact"
+      ],
+      "verify": "npm run test:e2e -- about",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D6-4",
+      "day": 6,
+      "priority": "should",
+      "title": "Refresh workflow live for cleared sources only",
+      "criteria": [
+        "schedule enabled only if a source is cleared",
+        "otherwise disabled and stated in README"
+      ],
+      "verify": "cat .github/workflows/refresh-showtimes.yml",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D7-1",
+      "day": 7,
+      "priority": "must",
+      "title": "README, case study and screen recording",
+      "criteria": [
+        "README with screenshots, diagram, honest numbers, permission status",
+        "docs/CASE-STUDY.md drafted"
+      ],
+      "verify": "manual",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "D7-2",
+      "day": 7,
+      "priority": "must",
+      "title": "Repo public (MIT) and live",
+      "criteria": [
+        "gh repo view shows PUBLIC",
+        "live URL works on the phone"
+      ],
+      "verify": "gh repo view --json visibility",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "P2-1",
+      "day": "after-day-7",
+      "priority": "later",
+      "title": "Web Push reminders for installed users (D-11)",
+      "criteria": [
+        "fires on iPhone Home Screen app and Android"
+      ],
+      "verify": "manual",
+      "passes": false,
+      "evidence": ""
+    },
+    {
+      "id": "P3-1",
+      "day": "after-day-7",
+      "priority": "later",
+      "title": "Crowd credits confirmations",
+      "criteria": [
+        "'Confirmed by N viewers in Lagos' with a minimum N"
+      ],
+      "verify": "manual",
+      "passes": false,
+      "evidence": ""
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+/*
+ * Design tokens. The only file where colour values may be written (scripts/check-tokens.mjs).
+ * PLACEHOLDER VALUES: neutral defaults for the Day 0 scaffold. The real palette, type scale and
+ * motion come from the direction Chime picks on Day 1 (D-13, UI brief §2).
+ */
+:root {
+  color-scheme: light dark;
+
+  --color-bg: light-dark(#ffffff, #111111);
+  --color-surface: light-dark(#f4f4f2, #1c1c1c);
+  --color-text: light-dark(#141414, #f2f2f0);
+  --color-text-muted: light-dark(#55554f, #a8a8a2);
+  --color-focus: light-dark(#0b57d0, #9ec1ff);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

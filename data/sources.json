@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "auditedOn": "2026-11-11",
+  "about": "Source registry. Robots checked 11 Nov 2026 (one request per host). Terms and listing patterns are part-done: see each entry's notes. Only status 'cleared' sources run on a schedule (D-08). Format: docs/DATA.md.",
+  "sources": [
+    {
+      "id": "lagocine",
+      "name": "Lagocine",
+      "owner": "Lagocine (operator not named)",
+      "homepage": "https://lagocine.com/",
+      "listingUrlPattern": null,
+      "method": "permission-feed",
+      "status": "pending",
+      "robots": {
+        "checkedAt": "2026-11-11",
+        "allowsListing": true,
+        "quote": "User-agent: * / Allow: / / Sitemap: https://lagocine.com/sitemap.xml"
+      },
+      "terms": {
+        "url": null,
+        "checkedAt": "2026-11-11",
+        "allowsAutomated": null,
+        "quote": "No terms link on the home page; only /privacy/."
+      },
+      "permission": {
+        "askedAt": "2026-11-11",
+        "repliedAt": null,
+        "summary": "Asked by email to contact@lagocine.com from Chimezie on 11 Nov 2026. No reply yet."
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [
+        "filmhouse-lekki-imax",
+        "filmhouse-surulere",
+        "filmhouse-circle-mall",
+        "filmhouse-ikota",
+        "filmhouse-palms-lekki",
+        "filmhouse-oniru",
+        "filmhouse-landmark",
+        "genesis-purple-lekki",
+        "genesis-festac",
+        "genesis-maryland",
+        "silverbird-ikeja",
+        "ebonylife-vi",
+        "blue-pictures-onikan",
+        "filmworld-idimu",
+        "grand-lekki",
+        "magnificent-ikorodu-road",
+        "ozone-yaba",
+        "sky-sangotedo",
+        "thc-agege",
+        "viva-ikeja"
+      ],
+      "notes": "Preferred source if it agrees (D-07). Says it reads each cinema's own pages daily, sells nothing, takes no commission. 11 Nov: home page is static HTML (build stamp lagocine-built 2026-11-11T00:05:05+01:00). Still needs permission: robots allowing crawling is not a licence to republish (PRD)."
+    },
+    {
+      "id": "filmhouse",
+      "name": "Filmhouse's site",
+      "owner": "Filmhouse Cinemas (FilmOne)",
+      "homepage": "https://filmhouseng.com/",
+      "listingUrlPattern": null,
+      "method": "public-page",
+      "status": "pending",
+      "robots": {
+        "checkedAt": "2026-11-11",
+        "allowsListing": true,
+        "quote": "User-Agent: * / Allow: / / Disallow: /api/ / Disallow: /*/select-tickets / Disallow: /*/seat-plan / Disallow: /*/select-guest / Disallow: /*/select-movie (plus account, order and reservation paths)"
+      },
+      "terms": {
+        "url": null,
+        "checkedAt": "2026-11-11",
+        "allowsAutomated": null,
+        "quote": "No terms link found on the home page; only /privacy-policy (not read yet)."
+      },
+      "permission": {
+        "askedAt": "2026-11-11",
+        "repliedAt": null,
+        "summary": "Asked by email to onlinesupport@filmhouseng.com from Chimezie on 11 Nov 2026. No reply yet."
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [
+        "filmhouse-lekki-imax",
+        "filmhouse-surulere",
+        "filmhouse-circle-mall",
+        "filmhouse-ikota",
+        "filmhouse-palms-lekki",
+        "filmhouse-oniru",
+        "filmhouse-landmark"
+      ],
+      "notes": "Booking URL pattern: /movies/<film>/showtimes/<date>/<site>/select-tickets?showtime=<id>. robots.txt could not be read on 6 Nov. 11 Nov: robots.txt read at www.filmhouseng.com. Public pages are allowed, but /api/ and every /select-tickets page are disallowed, so we may link to a booking page but never fetch one. The home page HTML carries no showtimes (drawn by script); if the times come from /api/, they are off limits without permission. Contact addresses on the home page: onlinesupport@filmhouseng.com, sales@filmhouseng.com."
+    },
+    {
+      "id": "genesis",
+      "name": "Genesis's site",
+      "owner": "Genesis Deluxe Cinemas",
+      "homepage": "https://genesiscinemas.com/",
+      "listingUrlPattern": null,
+      "method": "public-page",
+      "status": "pending",
+      "robots": {
+        "checkedAt": "2026-11-11",
+        "allowsListing": null,
+        "quote": "User-agent: * / Content-Signal: search=yes,ai-train=no,use=reference / Allow: /  ... User-Agent: * / Disallow: /*?s="
+      },
+      "terms": {
+        "url": "https://genesiscinemas.com/terms-and-conditions/",
+        "checkedAt": "2026-11-11",
+        "allowsAutomated": null,
+        "quote": "Terms cover ticket sales only (\"Terms and Conditions for Ticket Sales: Box Office and Online Bookings\"). No clause on automated access, scraping or reuse found."
+      },
+      "permission": {
+        "askedAt": null,
+        "repliedAt": null,
+        "summary": null
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [
+        "genesis-purple-lekki",
+        "genesis-festac",
+        "genesis-maryland"
+      ],
+      "notes": "Booking URL pattern: /<site>/booknow/<id>. 11 Nov: robots.txt carries the same content signal (use=reference) that made Showtimes NG do-not-use, so allowsListing is left null: treat as needing written permission unless Chime decides otherwise. The home page HTML holds /<site>/booknow/<id> links for every location."
+    },
+    {
+      "id": "ebonylife",
+      "name": "EbonyLife's site",
+      "owner": "EbonyLife Cinemas",
+      "homepage": "https://ebonylifecinemas.com/",
+      "listingUrlPattern": null,
+      "method": "public-page",
+      "status": "pending",
+      "robots": {
+        "checkedAt": "2026-11-11",
+        "allowsListing": true,
+        "quote": "User-agent: *  (no Disallow lines)"
+      },
+      "terms": {
+        "url": null,
+        "checkedAt": "2026-11-11",
+        "allowsAutomated": null,
+        "quote": "No terms or privacy link on the home page; only /contact-us."
+      },
+      "permission": {
+        "askedAt": null,
+        "repliedAt": null,
+        "summary": null
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [
+        "ebonylife-vi"
+      ],
+      "notes": "Booking URL pattern: /movies/<uuid>?showTimeId=<uuid>&showtimeDate=<date>. 11 Nov: the site is a script-drawn app (17 KB HTML shell, no times in it). The times likely come from an API behind the page; ask before using it (RESEARCH.md)."
+    },
+    {
+      "id": "silverbird",
+      "name": "Silverbird's Veezi page",
+      "owner": "Silverbird Cinemas (Veezi ticketing)",
+      "homepage": "https://ticketing.eu.veezi.com/",
+      "listingUrlPattern": null,
+      "method": "public-page",
+      "status": "pending",
+      "robots": {
+        "checkedAt": "2026-11-11",
+        "allowsListing": true,
+        "quote": "ticketing.eu.veezi.com: User-agent: * / Disallow: /purchase/ ... / Disallow: /ticketing/selecttickets/ ... (no rule against /sessions/). silverbirdcinemas.com: User-agent: * / Content-Signal: search=yes,ai-train=no,use=reference / Allow: /"
+      },
+      "terms": {
+        "url": null,
+        "checkedAt": "2026-11-11",
+        "allowsAutomated": null,
+        "quote": "No terms link on the Veezi sessions page. silverbirdcinemas.com terms not looked for yet."
+      },
+      "permission": {
+        "askedAt": null,
+        "repliedAt": null,
+        "summary": null
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [
+        "silverbird-ikeja",
+        "silverbird-galleria"
+      ],
+      "notes": "Veezi sessions pages per site token. 11 Nov: Veezi /sessions/ pages are server-rendered and not disallowed; /purchase/ pages are disallowed, so link to them but never fetch them. The Galleria page still says \"No shows currently scheduled\". Silverbird Ikeja's site token is not recorded yet. Silverbird's own site carries the use=reference content signal."
+    },
+    {
+      "id": "syticks",
+      "name": "Syticks",
+      "owner": "Syticks",
+      "homepage": "https://api.syticks.com",
+      "listingUrlPattern": null,
+      "method": "api",
+      "status": "pending",
+      "robots": {
+        "checkedAt": "2026-11-11",
+        "allowsListing": null,
+        "quote": null
+      },
+      "terms": {
+        "url": null,
+        "checkedAt": null,
+        "allowsAutomated": null,
+        "quote": null
+      },
+      "permission": {
+        "askedAt": null,
+        "repliedAt": null,
+        "summary": null
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [],
+      "notes": "Public cinema API documented; which cinemas, auth and terms unknown. Ask. 11 Nov: api.syticks.com did not resolve (DNS) from this machine, so the documented API host could not be reached."
+    },
+    {
+      "id": "showtimes-ng",
+      "name": "Showtimes NG",
+      "owner": "Showtimes NG",
+      "homepage": "https://showtimes.ng/",
+      "listingUrlPattern": null,
+      "method": "public-page",
+      "status": "do-not-use",
+      "robots": {
+        "checkedAt": "2026-11-06",
+        "allowsListing": true,
+        "quote": "search=yes,ai-train=no,use=reference"
+      },
+      "terms": {
+        "url": null,
+        "checkedAt": null,
+        "allowsAutomated": null,
+        "quote": null
+      },
+      "permission": {
+        "askedAt": null,
+        "repliedAt": null,
+        "summary": null
+      },
+      "rateLimit": {
+        "minSecondsBetweenRequests": 5,
+        "maxRunsPerDay": 3
+      },
+      "daysAhead": null,
+      "cinemaIds": [],
+      "notes": "robots.txt content signal: search=yes, ai-train=no, use=reference. Do not use its data."
+    }
+  ]
+}
