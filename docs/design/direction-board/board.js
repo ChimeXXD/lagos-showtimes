@@ -133,7 +133,17 @@ const film = () => `<header class="top">
 
 const SCREENS = [["home", "Starting soon", home], ["home--stale", "The same list when the times are a day old", stale], ["film", "Film page with Stay or Go", film]];
 
-document.getElementById("directions").innerHTML = DIRECTIONS.map((d) => `<section class="direction" aria-labelledby="dir-${d.id}">
+// pick.html asks for the compare layout: one block per screen, with A, B and C side by side.
+const main = document.getElementById("directions");
+const compare = () => SCREENS.map(([key, caption, render]) => `<section class="direction" aria-labelledby="scr-${key}">
+  <h2 class="direction-name" id="scr-${key}" data-testid="compare.${key}.title">${caption}</h2>
+  <div class="frames">${DIRECTIONS.map((d) => `<figure class="shot">
+    <figcaption class="shot-name" data-testid="compare.${key}.${d.id}.caption">${d.name}</figcaption>
+    <div class="frame dir-${d.id}" data-screen="${d.id}-${key}">${render()}</div>
+  </figure>`).join("")}</div>
+</section>`).join("");
+
+main.innerHTML = main.dataset.layout === "compare" ? compare() : DIRECTIONS.map((d) => `<section class="direction" aria-labelledby="dir-${d.id}">
   <div class="direction-head">
     <h2 class="direction-name" id="dir-${d.id}" data-testid="direction.${d.id}.name">${d.name}</h2>
     <p class="direction-say" data-testid="direction.${d.id}.say">${d.say}</p>

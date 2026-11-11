@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick a direction · Lagos Showtimes</title>
+<!-- Board only. The site itself ships no blocking web font (UI brief §1.3). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..800&family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="board.css">
+<link rel="stylesheet" href="skins.css">
+<link rel="stylesheet" href="pick.css">
+</head>
+<body class="has-pickbar">
+<header class="board-top">
+  <h1 class="board-title" data-testid="pick.title">Pick a direction</h1>
+  <p class="board-lede" data-testid="pick.lede">Each screen is shown three ways: A, B and C, side by side. Choose at the bottom of the page.</p>
+  <div class="board-controls">
+    <div class="seg" role="group" aria-label="Light or dark">
+      <button type="button" data-theme-set="light" aria-pressed="true" data-testid="board.theme.light">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false" data-testid="board.theme.dark">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main id="directions" data-layout="compare"></main>
+
+<section class="pick-more" aria-labelledby="pick-more-title">
+  <h2 class="direction-name" id="pick-more-title" data-testid="pick.note.title">Anything to mix or change?</h2>
+  <label class="pick-label" for="pick-note" data-testid="pick.note.label">Optional. For example: "C's rows with B's film page".</label>
+  <textarea id="pick-note" class="pick-note" rows="3" data-testid="pick.note"></textarea>
+  <p class="board-note" data-testid="pick.mock">Film and cinema names are real. Times, runtimes and the credits answer are made up for this page. The dark tiles in B stand in for film posters.</p>
+</section>
+
+<div class="pickbar" role="region" aria-label="Your pick">
+  <div class="pick-group">
+    <span class="pick-legend" id="pick-dir-legend" data-testid="pick.direction.legend">Direction</span>
+    <div class="seg" role="group" aria-labelledby="pick-dir-legend">
+      <button type="button" data-pick="A · Rail" aria-pressed="false" data-testid="pick.direction.a">A · Rail</button>
+      <button type="button" data-pick="B · Poster" aria-pressed="false" data-testid="pick.direction.b">B · Poster</button>
+      <button type="button" data-pick="C · Board" aria-pressed="false" data-testid="pick.direction.c">C · Board</button>
+    </div>
+  </div>
+  <div class="pick-group">
+    <span class="pick-legend" id="pick-name-legend" data-testid="pick.name.legend">Name</span>
+    <div class="seg" role="group" aria-labelledby="pick-name-legend">
+      <button type="button" data-name-set="Lagos Showtimes" aria-pressed="true" data-testid="board.name.working">Lagos Showtimes</button>
+      <button type="button" data-name-set="Wetin Dey Show" aria-pressed="false" data-testid="board.name.wetin">Wetin Dey Show</button>
+      <button type="button" data-name-set="Sinima" aria-pressed="false" data-testid="board.name.sinima">Sinima</button>
+      <button type="button" data-name-set="Gidi Showtimes" aria-pressed="false" data-testid="board.name.gidi">Gidi Showtimes</button>
+    </div>
+  </div>
+  <div class="pick-group pick-send">
+    <button type="button" class="pick-copy" id="pick-copy" data-testid="pick.copy">Copy my pick</button>
+    <span class="pick-status" id="pick-status" role="status" data-testid="pick.status">Choose a direction first.</span>
+  </div>
+</div>
+
+<script defer src="board.js"></script>
+<script defer src="pick.js"></script>
+</body>
+</html>

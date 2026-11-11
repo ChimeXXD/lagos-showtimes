@@ -8,6 +8,8 @@ Read this section first. The older sections below are still right for everything
 - **Chime answered the reference board** (52 liked, 13 "Not for us"). Picks and the pattern summary are in `docs/design/REFERENCES.md`.
 - **Palette is chosen: G, with the Book button in a calm blue** (D-34: light `#2F5FB3`, dark `#8FB4F5`).
 - **Three directions are built** in `docs/design/direction-board/` (`index.html`, `board.css`, `skins.css`, `board.js`). Open with `open -a "Dia" "docs/design/direction-board/index.html"`. A · Rail (time in a left rail, soft cards, Figtree), B · Poster (poster on every row, black capsules, Outfit), C · Board (departures board, no cards, system font). The page has a Light/Dark switch and a name switch for the header.
+- **Chime picks on `docs/design/direction-board/pick.html`** (added because Chime wants to choose by looking, not by reading the terminal): each screen with A, B and C side by side, and a bar at the bottom for the direction, the name and a note. "Copy my pick" gives one line to paste back. Open with `open -a "Dia" "docs/design/direction-board/pick.html"`.
+- **Show, don't tell:** when Chime has to choose something visual, open an HTML page for it; keep the terminal reply short.
 - **Chime wants custom illustrations and a custom icon**, with references from Pinterest first (O-13). Not started: the style should follow the direction.
 
 ### Do next

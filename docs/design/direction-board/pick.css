@@ -1,0 +1,12 @@
+/* pick.html only: the compare layout and the bar that holds the choice. */
+.has-pickbar { padding-bottom: 180px; }
+.shot-name { color: var(--text); font-size: 15px; font-weight: 700; }
+.pick-more { max-width: 1240px; margin: 0 auto; padding-top: var(--s6); border-top: 1px solid var(--line); display: grid; gap: var(--s2); }
+.pick-label { color: var(--muted); font-size: 13px; }
+.pick-note { width: 100%; max-width: 70ch; padding: var(--s3); border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--text); font: 400 15px/1.45 var(--system); }
+.pickbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3) var(--s6); padding: var(--s3) var(--s6); border-top: 1px solid var(--line); background: var(--bg); }
+.pick-group { display: flex; align-items: center; gap: var(--s2); }
+.pick-legend { color: var(--muted); font-size: 13px; font-weight: 600; }
+.pick-send { margin-left: auto; }
+.pick-copy { min-height: 44px; padding: 0 var(--s6); border: 0; border-radius: 999px; background: var(--book); color: var(--book-text); font: 700 14px/1 var(--system); cursor: pointer; }
+.pick-status { color: var(--muted); font-size: 13px; }
