@@ -67,7 +67,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [x] `docs/design/direction-board/index.html`: three directions, each showing Starting soon, a film page with Stay or Go, and a stale-data state, at 390 px wide
 - [x] **Chime picks a direction and the name (O-1)**; log both as decisions (D-35: direction B · Poster; D-36: Sinima)
 - [x] Fill UI brief §1–3; write `src/styles/tokens.css` (D-37, D-38)
-- [ ] Draft icon, after the illustration references (O-13)
+- [x] Logo and icon: Ticket S in Ink and blue (D-42, D-43), in the header, tab, home screen and manifest
 - [ ] Core lane, tests first: `lib/time/lagos.ts`, `showingState.ts`, `lib/wording/freshness.ts`, `credits.ts`, `lib/ics/ics.ts`
 
 ### Day 2: Data
@@ -99,7 +99,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [ ] "Remind me" downloads an .ics with a 30-min alert; check on iPhone Calendar and Google Calendar (Android)
 - [ ] Countdown on the chosen showing ("Starts in 45 min")
 - [ ] Share: Web Share API with WhatsApp text fallback; the link opens on the exact showing (Should, D-22); OG preview card per film (Should)
-- [ ] Manifest, icons, service worker, network-first (D-25): offline shows last data with its age (Should)
+- [ ] Service worker, network-first (D-25; the manifest and icons were done on Day 1 with the logo): offline shows last data with its age (Should)
 
 ### Day 6: Harden
 - [ ] Budget check and Lighthouse ≥ 90 (mobile) on home and film pages

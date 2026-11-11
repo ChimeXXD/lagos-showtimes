@@ -35,6 +35,8 @@
   --color-stale: light-dark(#8a4b00, #f2c14e);
   --color-focus: light-dark(#0b57d0, #9cc2ff);
   --color-line: light-dark(#e2e2e2, #2c2c2c);
+  /* The three dots in the logo: blue on the black mark; on the white mark (dark mode) they read as holes. */
+  --color-logo-dot: light-dark(#2f5fb3, #0a0a0a);
   /* Stand-in behind a poster while it loads, and when there is none. Dark in both themes. */
   --color-poster: light-dark(#1f1f1f, #1f1f1f);
 

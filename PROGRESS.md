@@ -2,6 +2,30 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 1: logo and colours settled; logo in the app (Wed 11 Nov 2026, late night)
+
+**Changed**
+- Chime chose the logo, Ticket S (D-42), and the colours, Ink and blue (D-43), after four rounds of options on HTML pages (`logos.html`, `logos2.html`, `refine.html`, `ticket.html`). Three mascot images were generated with Figma AI on the GenAI-Labs team and not used.
+- Illustration style: Doodle (D-39).
+- In the app: `src/components/Logo.tsx` in the header; `public/icons/` (SVG tab icon, 192 and 512 PNG, maskable 512, Apple touch icon 180) drawn by `scripts/make-icons.mjs`; `public/manifest.webmanifest`; browser-bar colour read from `tokens.css` at build time.
+
+**Red first**
+- `tests/e2e/brand.spec.ts` › "the header shows the Ticket S mark beside the name" failed with "element(s) not found" before the logo was added.
+
+**Checked**
+- e2e: 10 pass (3 new: mark in the header as one cut shape; tab, Apple and manifest icons all return 200 as images; PNGs are 192, 512, 512 and 180 px). Theme tests now also check the browser-bar colour.
+- Unit: 29 pass. Lint (after it caught two colours typed into `layout.tsx`, now read from the tokens file) and typecheck clean.
+- Build and budget: home page 162.1 KB of 200 (JS 131.9 of 160).
+- Looked at the built home page at 390 px in light and dark, and at every icon.
+
+**Not verified**
+- Adding the site to a real phone's home screen. How the maskable icon is cropped by Android launchers.
+- No fresh-context or automated code review was run (cost rule: no helper agents without asking).
+- CI on GitHub for this commit; earlier runs today were cancelled by later pushes or failed on GitHub's network.
+
+**Next**
+- Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (D1-4 to D1-8). The doodle character and the empty state.
+
 ## Day 1: direction B written up; tokens and font in the app (Wed 11 Nov 2026, night)
 
 **Changed**

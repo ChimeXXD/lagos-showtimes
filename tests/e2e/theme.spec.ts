@@ -13,6 +13,8 @@ for (const [scheme, bg, text] of [
     const body = page.locator("body");
     await expect(body).toHaveCSS("background-color", rgb(bg));
     await expect(body).toHaveCSS("color", rgb(text));
+    // The browser bar matches the page.
+    await expect(page.locator(`meta[name="theme-color"][media*="${scheme}"]`)).toHaveAttribute("content", bg);
   });
 }
 

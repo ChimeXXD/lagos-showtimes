@@ -21,7 +21,9 @@ Constraints that still hold (unchanged from the draft): time is the hero; honest
 
 Not settled yet:
 - **Where poster images come from and what they cost** (Day 2, with the TMDB work). Never from cinema sites (rule 6). If they cannot fit the page budget (D-28) and TMDB's terms (D-31), posters stay on the film page only and rows use the title tile.
-- **Illustrations and the app icon** (O-13): references first, then the empty state.
+- **Illustrations:** the Doodle style (D-39); the character and the empty state are still to draw.
+
+**Logo (D-42, D-43):** Ticket S, a cinema ticket whose two notches make an S, with three tear-line dots. Ink with blue dots beside the wordmark "Sinima" (Outfit 600); white on an ink tile as the app icon. `src/components/Logo.tsx`; files in `docs/design/logo/`.
 
 ## 2. Tokens (`src/styles/tokens.css`)
 
