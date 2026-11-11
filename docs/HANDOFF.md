@@ -30,7 +30,7 @@ Read this section first. The older sections below are still right for everything
 - Poster source and cost are not settled: decide on Day 2 with the TMDB work (UI brief §1).
 
 ### Do next
-1. **Chime signs off the identity** on `docs/design/direction-board/identity.html`: the Screen face logo (D-40) with the colours, type and two phone screens. Doodle is the illustration style (D-39). After sign-off: put the icon into the app (favicon, home-screen icon, manifest), refine the doodle character, build the empty state. **When Chime says "present" a logo or identity, this page is the standard:** lockups on dark and light, mark, app icon, one colour, favicon at real sizes, colour swatches with names and uses, type, and the thing in use.
+1. **Logo and colours are open again (D-41).** Screen face and its black, white and blue are shortlisted only. Chime wants five more, completely different logos from the `ip-as-logo` skill (github.com/s1dashu/ip-as-logo-skill: one cute mascot peeking from the lower-left on a solid colour, two mascot colours plus one background), each in its own colour set, presented like `identity.html`. Blocked on two answers from Chime: (a) the skill needs an image model and forbids drawing in code; the only one reachable is Figma's `generate_image`, which spends Figma AI credits, and the budget is $0; (b) which mascot directions. Claude did not run `npx skills add` (it downloads and runs outside code); Chime can run it. **When Chime says "present" a logo or identity, `identity.html` is the standard.**
 2. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
 
 ### Not verified on the direction board

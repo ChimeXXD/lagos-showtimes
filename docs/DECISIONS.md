@@ -84,6 +84,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-40 | **The logo is "Screen face":** a cinema screen with two eyes glancing sideways, with the wordmark "Sinima" in Outfit 600. Black on white or white on black, with the eyes in the Book blue. Source files: `docs/design/logo/sinima-mark.svg` and `sinima-icon.svg`. Presented with the colours and type on `docs/design/direction-board/identity.html`. Still a first presentation: Chime may ask for refinements before it goes into the app (favicon, home-screen icon, manifest). Closes the icon part of O-13. | Chime shortlisted only this one of 20 options on `logos.html`, 11 Nov 2026. |
 
+| D-41 | **The logo and the colours are not decided; supersedes D-40 and reopens the colour part of D-34.** "Screen face" and its black, white and blue set are shortlisted, not chosen. Chime wants five more logos that are completely different, made with the `ip-as-logo` skill (a mascot peeking from the lower-left corner on a solid colour), each in a different colour set, presented at the standard of `identity.html`, and will pick from the six. The tokens in the app stay as they are until then. | Chime, 11 Nov 2026: "I haven't decided to use it yet... I haven't decided on the color either." |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -112,7 +114,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
 | O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
-| O-13 | **Logo sign-off.** The logo is chosen (D-40) and presented on `identity.html`. Open: Chime's sign-off or changes, then export into the app (favicon, home-screen icon, manifest) and refine the doodle character (D-39). | Chime |
+| O-13 | **Logo and colours.** Shortlisted: Screen face with black, white and blue (D-41). Waiting on Chime: how to make the five mascot logos (the `ip-as-logo` skill needs an image model; the only one available is Figma's, which uses paid Figma AI credits), and which mascot directions. | Chime |
 
 ### Data permission status (O-2)
 
