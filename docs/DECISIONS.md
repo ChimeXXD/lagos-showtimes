@@ -86,6 +86,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-41 | **The logo and the colours are not decided; supersedes D-40 and reopens the colour part of D-34.** "Screen face" and its black, white and blue set are shortlisted, not chosen. Chime wants five more logos that are completely different, made with the `ip-as-logo` skill (a mascot peeking from the lower-left corner on a solid colour), each in a different colour set, presented at the standard of `identity.html`, and will pick from the six. The tokens in the app stay as they are until then. | Chime, 11 Nov 2026: "I haven't decided to use it yet... I haven't decided on the color either." |
 
+| D-42 | **The logo is Ticket S.** A cinema ticket whose two round notches (high right, low left) make it an S, with three tear-line dots on the centre line. It is one cut shape: the notches and dots are real holes, each notch meets the edge through a small rounded shoulder. Wordmark "Sinima" in Outfit 600. Files: `docs/design/logo/sinima-mark.svg` (one colour) and `sinima-mark-two-colour.svg`. Supersedes D-40 (Screen face, now in `docs/design/logo/archive/`). The colours are still open: six sets for the logo and the app are on `docs/design/direction-board/ticket.html`. | Chime, 11 Nov 2026: "I like the pick. I think we should go with it", with a request to sculpt the mark properly (the notches were drawn as painted-over circles) and to see it in different colours. |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -114,7 +116,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
 | O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
-| O-13 | **Logo and colours.** Chime's three finalists (11 Nov), each refined and shown as a full identity on `docs/design/direction-board/refine.html`: Screen face in Ink and blue, Ticket S in Cream and brown, Front row in Marigold night. Chime also likes the Palm green; all three are shown in it at the foot of the page. The mascots were not picked. Chime chooses one; then tokens, favicon and manifest follow. | Chime |
+| O-13 | **Colours for the logo and the app.** The logo is settled (D-42). Chime picks one of six colour sets on `ticket.html`: Cream and brown, Palm, Marigold night, Ink and blue (what the app uses today), Lagoon, Danfo. Each has light and dark values that pass the contrast targets. | Chime |
 
 ### Data permission status (O-2)
 

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima · Ticket S and its colours</title>
+<!-- Presentation page. The site ships its own 25 KB copy of Outfit. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="ticket.css">
+</head>
+<body>
+<main class="page">
+  <header class="top">
+    <p class="eyebrow">Identity · the logo is chosen</p>
+    <h1>Ticket S</h1>
+    <p class="lede">The mark is now one properly cut shape: the notches and the tear-line dots are real holes, so it sits cleanly on any colour, photo or pattern. Below it, six colour sets for the logo and the app, each with the Starting soon screen in light and dark. Pick the colours you want the app to be.</p>
+  </header>
+  <section class="craft" id="craft"></section>
+  <div id="sets"></div>
+</main>
+<div class="bar" role="region" aria-label="Your pick">
+  <div class="seg" role="group" aria-label="Choose a colour set" id="choices"></div>
+  <label class="bar-note"><span>Note</span><input id="note" type="text" autocomplete="off" placeholder="Optional: what to change"></label>
+  <p class="bar-send"><button type="button" id="copy">Copy my pick</button> <span id="status" role="status">Choose a colour set.</span></p>
+</div>
+<script defer src="ticket.js"></script>
+</body>
+</html>
