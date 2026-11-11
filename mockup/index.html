@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sinima · home redesign, draft 2</title>
+<title>Sinima · home redesign, draft 3</title>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="mockup.css">
 </head>
 <body class="fit">
 <div class="bar">
-  <b>Sinima · home redesign, draft 2</b>
+  <b>Sinima · home redesign, draft 3</b>
   <label>Font
     <span class="seg" role="group" aria-label="Font">
       <button type="button" aria-pressed="true" data-font="Geist">Geist</button>
@@ -18,6 +18,12 @@
       <button type="button" aria-pressed="false" data-font="Hanken Grotesk">Hanken Grotesk</button>
       <button type="button" aria-pressed="false" data-font="Schibsted Grotesk">Schibsted Grotesk</button>
       <button type="button" aria-pressed="false" data-font="Manrope">Manrope</button>
+    </span>
+  </label>
+  <label>Colours
+    <span class="seg" role="group" aria-label="Theme">
+      <button type="button" aria-pressed="true" data-theme-set="light">Danfo light</button>
+      <button type="button" aria-pressed="false" data-theme-set="dark">Danfo dark</button>
     </span>
   </label>
   <button type="button" class="act" id="replayall">Replay all motion</button>
@@ -29,14 +35,8 @@
   </label>
 </div>
 <main class="doc">
-  <h1>The same layout, <span>in the style of cofounder.co</span></h1>
-  <p class="lede">The five screens you approved the layout of, redrawn with that site as the hard reference. Its colours, type, shapes and motion were measured from the live site, not guessed. Everything shown is real: the cinemas, films and times are from the Lagos listing saved on 11 November, with the clock at 13:45. Hover over cards, chips and times; scroll to see each screen arrive; press Replay on any frame.</p>
-  <div class="style">
-    <div><b>Colour</b>A warm off-white page, near-black ink, greys made from the ink, and hairlines at 10%. Colour only appears in pictures and one small green dot.<span class="sw"><i style="background:#f5f5f2"></i><i style="background:#fbfbf8"></i><i style="background:#171717"></i><i style="background:#262323"></i><i style="background:#2b8fe8"></i><i style="background:#71ce45"></i></span></div>
-    <div><b>Type</b>Headings at normal weight in two tones: the point in ink, the rest in grey. Small labels in a mono font, like their “1.0 — LAUNCH”. Their font, TT Neoris, is paid; try the six free ones above.</div>
-    <div><b>Shape</b>Buttons and chips with 8 px corners, not capsules. Cards with 12 px corners, a thin ring and a soft shadow. The dark button has their slight inner highlight.</div>
-    <div><b>Motion</b>Parts rise 8 px out of a slight blur over 0.42 s, one after another. Hover changes take 0.15 s. Panels slide on a long, soft ease. The share card pops with a small overshoot. All off for people who ask for less motion.</div>
-  </div>
+  <h1>The new Sinima, built from your picks</h1>
+  <p class="lede">Five screens, each at desktop and phone size, in the structure you approved. Under every screen is the list of your picks it follows and what was taken from each. Everything shown is real: the cinemas, films and times are from the Lagos listing saved on 11 November, with the clock at 13:45. This is the first design again, now with the motion from the second: parts rise in one after another as a screen scrolls into view, cards and times react when you hover, panels slide, and the share card pops. Press Replay all motion in the bar above, or Replay on any frame. The colours are unchanged for now; the yellow is next.</p>
   <div id="screens"></div>
   <div class="answer">
     <p id="picked">When you have a font you like, press the button. It copies one line to paste back to Claude; add what you want changed after it.</p>
