@@ -51,11 +51,11 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 ## Day by day
 
 ### Day 0: Setup, audit and ask
-- [ ] Chime decides the host (O-4), after the bot-commit check (O-8). Create private repo `ChimeXXD/lagos-showtimes` (D-17); first commit of these docs (push it together with the scaffold, so CI's first run has a `package.json`)
-- [ ] `create-next-app` with the portfolio versions (pin exact: next 16.4.3, react 19.3.1, typescript 5.9.3, tailwindcss 4.3.3, @playwright/test 1.64.1, eslint 9); `output: "export"`; add Vitest and cheerio (D-03)
-- [ ] Scripts: `lint`, `typecheck`, `test`, `test:e2e`, `build`, `budget`, `refresh`; one Vitest test and one Playwright test pass
-- [ ] CI (`.github/workflows/ci.yml`) green on push to `main`
-- [ ] Measure the empty app's transferred size and JS; set the budget from it and log it as a decision (D-21, O-9)
+- [x] Chime decides the host (O-4: Vercel, D-27). Repo is public from Day 0 (D-30). Originally: create private repo `ChimeXXD/lagos-showtimes` (D-17); first commit of these docs (push it together with the scaffold, so CI's first run has a `package.json`)
+- [x] `create-next-app` with the portfolio versions (pin exact: next 16.4.3, react 19.3.1, typescript 5.9.3, tailwindcss 4.3.3, @playwright/test 1.64.1, eslint 9); `output: "export"`; add Vitest and cheerio (D-03)
+- [x] Scripts: `lint`, `typecheck`, `test`, `test:e2e`, `build`, `budget`, `refresh`; one Vitest test and one Playwright test pass
+- [x] CI (`.github/workflows/ci.yml`) green on `main` (run 42931829240)
+- [x] Measure the empty app's transferred size and JS; set the budget from it and log it as a decision (D-21, O-9)
 - [ ] Private deploy on the chosen host (preview protected or unlisted)
 - [ ] **Data-source audit**: for each source in DECISIONS O-2, read robots.txt and terms, quote the relevant lines, note the listing URL pattern and how many days ahead it publishes. Fill `data/sources.json` (format in `DATA.md`). Save one listing page per source to `tmp/` by hand-triggered single request, then commit a cut-down copy (listing markup only) to `tests/fixtures/<source>/<date>.html` (D-24)
 - [ ] **Chime sends the outreach emails** (`docs/OUTREACH.md`): Lagocine first, then Filmhouse, Genesis, EbonyLife, Silverbird, Syticks. Log "Asked" dates in DECISIONS

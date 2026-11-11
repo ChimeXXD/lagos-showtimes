@@ -7,11 +7,11 @@
       "title": "Repo scaffold: git, private GitHub repo, first commit of the docs",
       "criteria": [
         "first commit exists",
-        "remote is private"
+        "remote is public from Day 0 (D-30, was: private)"
       ],
       "verify": "git log --oneline | head -1; gh repo view --json visibility",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "git log: 9119eaf; gh repo view --json visibility -> PUBLIC (11 Nov 2026)"
     },
     {
       "id": "D0-2",
@@ -24,8 +24,8 @@
         "one Vitest and one Playwright test pass"
       ],
       "verify": "npm ci && npm run lint && npm run typecheck && npm test && npm run build && npm run test:e2e",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "CI run 42931829240 on 9119eaf: install, lint, typecheck, unit tests (3), build, e2e (1) all passed; also passed locally 11 Nov"
     },
     {
       "id": "D0-3",
@@ -37,8 +37,8 @@
         "latest run on main is green"
       ],
       "verify": "gh run list --workflow ci.yml --limit 1",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "gh run list: run 42931829240 success on main (9119eaf), 11 Nov 2026"
     },
     {
       "id": "D0-7",
@@ -50,8 +50,8 @@
         "budget numbers logged as a decision and enforced by scripts/check-budget.mjs"
       ],
       "verify": "npm run build && npm run budget",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "npm run budget: 131.9 KB JS, 136.1 KB total on the empty app; limits 160/200 KB logged as D-26, confirmed D-28; budget step passed in CI run 42931829240"
     },
     {
       "id": "D0-4",

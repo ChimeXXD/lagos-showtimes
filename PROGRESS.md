@@ -22,6 +22,8 @@ Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry
 - Audit still open: terms for Filmhouse (privacy policy unread), EbonyLife, Silverbird; listing URL patterns and days ahead; cut-down fixtures (D-24); Silverbird Ikeja's Veezi token.
 - Whether Filmhouse and EbonyLife times sit behind an API (inferred from script-drawn pages with no times in the HTML).
 
+- CI on the public repo: run 42931829240 green on `9119eaf` (lint, typecheck, 3 unit tests, build, budget, 1 e2e). History was replaced with one clean commit before going public.
+
 **Next**
 - Chime: OK `.claude/proof.json`; read TMDB's terms (O-6). Done since: host is Vercel (D-27), budget confirmed (D-28), Genesis and Silverbird need a written yes (D-29), and the Lagocine and Filmhouse emails were sent on 11 Nov.
 - Repo made public on Day 0 (D-30) so Actions can run at $0. Chime: import the repo in Vercel.

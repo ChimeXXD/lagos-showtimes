@@ -16,7 +16,7 @@
 
 ### Do next
 1. Chime: import the repo in Vercel; read TMDB's terms (O-6) and add the key.
-2. Confirm CI is green on the public repo.
+2. CI is green on the public repo (run 42931829240). Private deploy (D0-4) is the last scaffold item.
 3. Finish the audit: remaining terms, listing URL patterns, days ahead, cut-down fixtures (D-24).
 4. Tick Day 0 in `PLAN.md` and `features.json` with evidence, then Day 1 (design direction + core lane).
 
