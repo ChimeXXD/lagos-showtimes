@@ -47,3 +47,7 @@ docs/design/logo/mascots/*.png
 # fresh for each build, not committed (D-45). Live data will be committed when a source is cleared.
 data/showtimes.json
 public/data/
+
+# Design mockup posters: TMDB images, kept local (D-31)
+mockup/posters/
+mockup/fonts/

@@ -117,3 +117,18 @@ Chime picked palette **G** (black and white, colour only on the Book button) and
   - How loud is Stay or Go: capsule, tile or small badge?
   - A loaded typeface (30 KB limit) or the phone's own font?
   - Illustration style and the app icon: reference pass still to do (O-13).
+
+## Round 2 (12 Nov 2026): picks for the new structure (D-49)
+
+Chime answered `reference-board/round2.html` (44 shown, 28 answered: 21 liked, 7 "Not for us"). The mockup in `mockup/` lists, under each screen, which of these it follows and what it takes from each. **Follow these closely: Chime's complaint about the Day 3 screen was that the picks were not followed.**
+
+| Section | Liked (what Chime ticked) | Not for us |
+| --- | --- | --- |
+| Home: cinemas near you | Fresha venue cards (Colour, Layout, Hierarchy); Subway (Visual style, Hierarchy, Layout); Live Nation (Layout) | IMDb's plain theatre list |
+| Your area, on the page | Apple Music (Visual style, Colour, Layout); Posh (Visual style, Layout, Hierarchy); Meetup (Visual style, Hierarchy, Layout); Careem (Layout); Sweatpals (Layout, Visual style) | |
+| Poster cards | HBO Max (Visual style, Colour, Layout, Hierarchy); Disney+ (Visual style, Layout); Airbnb (Visual style); Hypelist (Visual style) | |
+| A cinema's day | Fresha day tiles (Visual style, Layout); Airbnb "Select a time" (Visual style, Layout, Hierarchy) | Shopee showtimes |
+| One showing | X (Visual style, Hierarchy, Layout); Joi (Visual style, Layout); Clubhouse (Visual style, Layout); DICE (Layout); Time2book (Visual style, Colour, Hierarchy); Etsy (Visual style, Layout: "I like the idea of the poster") | Discord, Snapchat, Premier League, YouTube modal |
+| Share | Fixtured (Visual style, Interaction): "I really like this idea, so we need to integrate it into our webapp ... check the interactions as well"; Polarsteps (Layout) | |
+
+Fixtured's share flow, from the reference library's three screens: a share button on the event opens a sheet from the bottom with a heavy two-line headline, one line of text, a card tilted about 6 degrees, then "Share Event" (dark) and "Copy Link" (light); tapping Copy Link changes its label to "Link copied". The library holds still screens only, so the timing of the motion is ours.

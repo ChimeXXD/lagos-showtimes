@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima · home redesign, draft 1</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="mockup.css">
+</head>
+<body class="fit">
+<div class="bar">
+  <b>Sinima · home redesign, draft 1</b>
+  <label>Font
+    <span class="seg" role="group" aria-label="Font">
+      <button type="button" aria-pressed="true" data-font="Geist">Geist</button>
+      <button type="button" aria-pressed="false" data-font="Instrument Sans">Instrument Sans</button>
+      <button type="button" aria-pressed="false" data-font="Onest">Onest</button>
+      <button type="button" aria-pressed="false" data-font="Hanken Grotesk">Hanken Grotesk</button>
+      <button type="button" aria-pressed="false" data-font="Schibsted Grotesk">Schibsted Grotesk</button>
+      <button type="button" aria-pressed="false" data-font="Manrope">Manrope</button>
+    </span>
+  </label>
+  <label>Colours
+    <span class="seg" role="group" aria-label="Theme">
+      <button type="button" aria-pressed="true" data-theme-set="light">Danfo light</button>
+      <button type="button" aria-pressed="false" data-theme-set="dark">Danfo dark</button>
+    </span>
+  </label>
+  <label>Desktop frames
+    <span class="seg" role="group" aria-label="Desktop frame size">
+      <button type="button" aria-pressed="true" data-size="fit">Fit</button>
+      <button type="button" aria-pressed="false" data-size="full">Full size</button>
+    </span>
+  </label>
+</div>
+<main class="doc">
+  <h1>The new Sinima, built from your picks</h1>
+  <p class="lede">Five screens, each at desktop and phone size, in the structure you approved. Under every screen is the list of your picks it follows and what was taken from each. Everything shown is real: the cinemas, films and times are from the Lagos listing saved on 11 November, with the clock at 13:45. Use the bar above to try six fonts and the Danfo colours in light and dark.</p>
+  <div id="screens"></div>
+  <div class="answer">
+    <p id="picked">When you have a font you like, press the button. It copies one line to paste back to Claude; add what you want changed after it.</p>
+    <button type="button" id="pickbtn">Copy my pick</button>
+  </div>
+</main>
+<script src="data.js"></script>
+<script src="mockup.js"></script>
+</body>
+</html>
