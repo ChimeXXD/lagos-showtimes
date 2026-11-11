@@ -1,0 +1,74 @@
+/* What differs between the three directions. Shared pieces are in board.css. */
+
+/* A · Rail: the time sits in a left rail, each showing is a soft card. */
+.dir-a { --page: var(--surface); --card: var(--bg); --font: "Figtree", var(--system); }
+:root[data-theme="dark"] .dir-a { --page: var(--bg); --card: var(--surface); }
+.dir-a .rows { display: grid; gap: var(--s3); position: relative; }
+.dir-a .row { display: grid; grid-template-columns: 70px 1fr; gap: var(--s3); align-items: start; }
+.dir-a .when { display: grid; gap: 2px; padding-top: var(--s3); }
+.dir-a .time { font-size: 20px; line-height: 1.1; }
+.dir-a .count { color: var(--muted); font-size: 12px; line-height: 1.25; text-wrap: balance; }
+.dir-a .row.is-soon .count { color: var(--text); font-weight: 600; }
+.dir-a .card { display: grid; gap: var(--s3); padding: var(--s3) var(--s3) var(--s2) var(--s4); border-radius: 16px; background: var(--card); }
+.dir-a .title { font-size: 16px; line-height: 1.25; }
+.dir-a .act { justify-content: space-between; }
+.dir-a .book { min-width: 96px; }
+.dir-a .banner { border-radius: 16px; background: var(--card); }
+.dir-a .sec-title { color: var(--muted); font-weight: 600; }
+.dir-a .chip { justify-self: start; display: inline-flex; align-items: center; min-height: 32px; padding: 0 var(--s3); border-radius: 999px; background: var(--accent); color: var(--accent-text); font-size: 13px; font-weight: 600; }
+.dir-a .venues { display: grid; gap: var(--s3); }
+.dir-a .venue { padding: var(--s1) var(--s4) var(--s3); border-radius: 16px; background: var(--card); }
+.dir-a .t { border-radius: 999px; background: var(--page); }
+
+/* B · Poster: a small poster on every row, rounder type, black capsules. */
+.dir-b { --page: var(--bg); --card: var(--bg); --font: "Outfit", var(--system); }
+.dir-b .page-title { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+.dir-b .wordmark { font-size: 19px; font-weight: 600; }
+.dir-b .pill.is-area { border-color: var(--accent); background: var(--accent); color: var(--accent-text); }
+.dir-b .sec-title { font-size: 20px; font-weight: 600; }
+.dir-b .rows { display: grid; gap: var(--s6); }
+.dir-b .row { display: grid; grid-template-columns: 76px 1fr; grid-template-areas: "poster when" "poster what" "poster act"; column-gap: var(--s3); row-gap: 6px; align-items: start; }
+.dir-b .card { display: contents; }
+/* Stand-in for a TMDB poster: a dark tile in both themes, because real posters are dark and busy. */
+.dir-b .poster { display: flex; grid-area: poster; width: 76px; height: 114px; border-radius: 12px; border: 1px solid var(--line); background: #1f1f1f; color: #f3f3f3; }
+.dir-b .when { grid-area: when; display: flex; align-items: center; gap: var(--s2); }
+.dir-b .time { font-size: 26px; line-height: 1; font-weight: 600; }
+.dir-b .count { padding: 3px var(--s2); border-radius: 999px; background: var(--surface); font-size: 12px; font-weight: 500; }
+.dir-b .what { grid-area: what; }
+.dir-b .title { font-size: 17px; line-height: 1.2; font-weight: 600; }
+.dir-b .act { grid-area: act; margin-top: 2px; }
+.dir-b .book { min-width: 112px; font-weight: 600; font-size: 15px; }
+.dir-b .more { border: 1px solid var(--line); }
+.dir-b .banner { border-radius: 20px; background: var(--surface); }
+.dir-b .hero { grid-template-columns: 112px 1fr; grid-template-rows: auto 1fr; column-gap: var(--s4); align-items: start; }
+.dir-b .hero > * { grid-column: 2; }
+.dir-b .hero .poster { display: flex; grid-column: 1; grid-row: 1 / span 2; width: 112px; height: 168px; border-radius: 14px; font-size: 12px; }
+.dir-b .film-title { font-size: 26px; font-weight: 600; }
+.dir-b .hero .chip-box { grid-column: 1 / -1; display: grid; gap: 2px; margin-top: var(--s2); padding: var(--s3) var(--s4); border-radius: 16px; background: var(--surface); }
+.dir-b .chip { font-size: 16px; font-weight: 600; }
+.dir-b .venues { display: grid; gap: var(--s2); }
+.dir-b .t { border: 1.5px solid var(--text); border-radius: 999px; font-weight: 600; }
+.dir-b .t.is-started { border-color: var(--line); }
+.dir-b .share-film { border-color: var(--accent); background: var(--accent); color: var(--accent-text); font-weight: 600; }
+
+/* C · Board: a departures board. No cards, no pictures, hairlines only. */
+.dir-c { --page: var(--bg); --card: var(--bg); --font: var(--system); }
+.dir-c .page-title { font-size: 22px; }
+.dir-c .sec-head { padding-top: var(--s3); border-top: 1px solid var(--text); }
+.dir-c .row { display: grid; grid-template-columns: 78px 1fr auto; column-gap: var(--s2); align-items: start; padding: var(--s3) 0; border-bottom: 1px solid var(--line); }
+.dir-c .card { display: contents; }
+.dir-c .when { display: grid; gap: 2px; }
+.dir-c .time { font-size: 26px; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; }
+.dir-c .count { color: var(--muted); font-size: 12px; line-height: 1.25; text-wrap: balance; }
+.dir-c .row.is-soon .count { color: var(--text); font-weight: 700; }
+.dir-c .title { font-size: 16px; line-height: 1.25; }
+.dir-c .act { flex-direction: column; align-items: flex-end; gap: 0; }
+.dir-c .book { padding: 0 14px; border: 1.5px solid var(--book); background: transparent; color: var(--book) !important; }
+.dir-c .banner { margin: 0 0 var(--s2); padding: var(--s3) var(--s4); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.dir-c .film-title { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+.dir-c .chip { padding: 1px 7px; border: 1.5px solid var(--text); border-radius: 6px; color: var(--text); font-size: 12px; font-weight: 700; }
+.dir-c .venue { padding: var(--s1) 0 var(--s2); border-bottom: 1px solid var(--line); }
+.dir-c .times { gap: 0 var(--s1); }
+.dir-c .t { min-width: 60px; justify-content: flex-start; padding: 0; font-size: 18px; font-weight: 800; color: var(--book); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+.dir-c .t.is-started { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; }
+.dir-c .share-film { border-color: var(--text); }

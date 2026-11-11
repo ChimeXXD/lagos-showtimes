@@ -1,13 +1,30 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 design lane, reference board in progress (Wed 11 Nov 2026, evening)
+## Now: Day 1 design lane, waiting for Chime's pick (Wed 11 Nov 2026, late)
 
-Read this section first. The older section below is still right for everything else.
+Read this section first. The older sections below are still right for everything else.
+
+### Where the design lane stands
+- **Chime answered the reference board** (52 liked, 13 "Not for us"). Picks and the pattern summary are in `docs/design/REFERENCES.md`.
+- **Palette is chosen: G, with the Book button in a calm blue** (D-34: light `#2F5FB3`, dark `#8FB4F5`).
+- **Three directions are built** in `docs/design/direction-board/` (`index.html`, `board.css`, `skins.css`, `board.js`). Open with `open -a "Dia" "docs/design/direction-board/index.html"`. A · Rail (time in a left rail, soft cards, Figtree), B · Poster (poster on every row, black capsules, Outfit), C · Board (departures board, no cards, system font). The page has a Light/Dark switch and a name switch for the header.
+- **Chime wants custom illustrations and a custom icon**, with references from Pinterest first (O-13). Not started: the style should follow the direction.
+
+### Do next
+1. **Chime picks a direction and the name (O-1).** Log both in `docs/DECISIONS.md`.
+2. Write UI brief §1 to 3 from the pick, put the tokens in `src/styles/tokens.css` (also the two code-review leftovers below), and build the locked mockup with `interactions.json`.
+3. Illustration and icon references (O-13), then the empty state.
+4. Core lane (tests first) has not started: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
+
+### Not verified on the direction board
+- Seen only in headless Chromium, not in Dia or on a phone.
+- Font file sizes (30 KB limit) and the data cost of posters in direction B.
+- No fresh-context review (no helper agents without asking Chime).
 
 ### The reference board
 - **File:** `docs/design/reference-board/index.html`, with screenshots in `docs/design/reference-board/images/`. Both are local only: the images are git-ignored, and the page is excluded through `.git/info/exclude` (it names the reference library, which must not appear in the public repo). Nothing from the board is committed.
 - **Open it in Dia:** `open -a "Dia" "docs/design/reference-board/index.html"`. Chime's answers save in Dia's browser storage only. Chime presses "Download answers" when done; the file lands in `~/Downloads/lagos-showtimes-reference-answers.json`.
-- **What it has:** 127 references in 12 sections (108 iPhone, 19 desktop), each with "What it shows" and "How we'd use it", tick buttons, a note box, zoom (Esc closes, arrow keys step), and region marking in the zoom. A "Colour palette" section has the 8 colour roles and 10 candidate palettes (A to J) with exact hex values; all pass the contrast targets.
+- **What it has:** 127 references in 12 sections (108 iPhone, 19 desktop), each with "What it shows" and "How we'd use it", tick buttons, a note box, zoom (Esc closes, arrow keys step), and region marking in the zoom. A "Colour palette" section has the 8 colour roles and 10 candidate palettes (A to J) with exact hex values; all pass the contrast targets. Palette G now carries the blue Book button.
 - **Data shape:** references are in the `SECTIONS` array in the page's script. New ones go in the `EXTRA` array (`const EXTRA = [];/*EXTRA*/`) as `{section, id, app, mid, kind, what, how}`; `kind` is `"p"` (phone) or `"d"` (desktop); the image is `images/<id>.webp`.
 
 ### References per section today
@@ -27,12 +44,6 @@ Read this section first. The older section below is still right for everything e
 | About and sources (`about`) | 10 |
 
 The top-up (later on 11 Nov) added 52 references through the `EXTRA` array, ids `59-…` to `108-…` plus `d19-rows` and `d20-pi`. Every section is now at 10 or more. Claude chose 10 as the target, not 20, to keep the cost down; going to 20 is still open if Chime wants it.
-
-### Do next
-1. **Chime: reload the board in Dia and answer it**, then press "Download answers".
-2. When Chime has answered: read the downloaded answers, fill the picks table and pattern summary in `docs/design/REFERENCES.md`, then build three directions at 390 px in `docs/design/direction-board/index.html` and stop for Chime's pick and the name (O-1).
-3. Core lane (tests first) has not started: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
-4. Only if Chime asks: take sections from 10 towards 20. Search the reference library directly, one section at a time, 8 results per search, and look at every screenshot before writing its notes.
 
 ### Cost rule (learned the hard way this session)
 - **Never launch parallel agents or forks without asking Chime first and saying what it will cost.** Four parallel helpers, each carrying a full copy of a long conversation, used a whole five-hour usage limit in minutes. They were stopped; they left no files behind.

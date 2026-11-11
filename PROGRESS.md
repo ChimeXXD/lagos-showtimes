@@ -2,6 +2,28 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 1, design lane: references answered, three directions built (Wed 11 Nov 2026, late)
+
+**Changed**
+- Reference board topped up from 75 to 127 references (every section at 10 or more). Chime answered it: 52 liked, 13 "Not for us", palette G with a blue Book button (D-34).
+- `docs/design/REFERENCES.md`: picks table and pattern summary filled from Chime's answers.
+- `docs/design/direction-board/`: three directions (A · Rail, B · Poster, C · Board), each with Starting soon, the stale state and a film page with Stay or Go, at 390 px, with light/dark and name switches.
+- O-13 opened: illustrations and the app icon (Chime wants custom ones, references from Pinterest first).
+
+**Checked**
+- Headless Chromium, 9 frames in light and dark (18 renders): every frame 390 px wide, no sideways overflow, no clipped element, every link and button at least 44 x 44, all text at least 4.5:1 and start times at least 7:1, both fonts loaded, no console errors.
+- proof design check on the board: 9 screens, 1 issue left (no `interactions.json`; that belongs to the locked mockup after the pick).
+- ESLint clean on `board.js`. Reference board re-run after the palette edit: 127 images load, no errors.
+
+**Not verified**
+- The boards in Dia or on a phone (headless Chromium only).
+- Font file sizes for Figtree and Outfit against the 30 KB limit, and the data cost of posters (direction B). The board loads the fonts from Google; the site would self-host a subset.
+- No fresh-context review was run (cost rule: no helper agents without asking).
+
+**Next**
+- Chime picks a direction and the name (O-1). Then UI brief §1 to 3, tokens, and the illustration references (O-13).
+- Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
+
 ## Day 0, part two: deploy and source audit (Wed 11 Nov 2026)
 
 **Changed**

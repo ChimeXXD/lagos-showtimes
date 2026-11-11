@@ -36,3 +36,6 @@ docs/design/direction-board/images/
 
 # Scratch fetches during the audit (save real fixtures under tests/fixtures/ instead)
 tmp/
+
+# proof plugin output (design check screenshots)
+.proof/

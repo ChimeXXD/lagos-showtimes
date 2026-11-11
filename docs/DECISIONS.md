@@ -71,6 +71,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-33 | **Lagocine is the live source, switched on at Day 6 with full credit unless it has objected by then. No more permission emails.** It passes D-08's own test (robots.txt allows everything; no terms forbid automated reading). Every row says "From Lagocine, which read <cinema>'s site ..." and links back; at most 3 reads a day; we stop the day it asks. Chime confirms the change to `cleared` on Day 6. Supersedes the "permission first" part of D-07 and settles O-5 (coverage: the cinemas Lagocine lists) and O-12 (Silverbird is not read directly; no email sent). Filmhouse and EbonyLife are never read directly: their times sit behind a data path their rules disallow. A cut-down Lagocine fixture may now be committed (D-24). | Chime's call, 11 Nov: tired of asking, and showtimes are public facts. The cost, accepted: it is a rival's compiled work, the 11 Nov email asked first and may yet get a no, and Lagocine can block us, in which case the site falls back to sample data (tier C). |
 
+| D-34 | **Palette G, with the Book button in a calm blue.** Black and white throughout; the only colour is Book. Light: Book `#2F5FB3` with white text (6.16:1). Dark: Book `#8FB4F5` with `#06142E` text (8.73:1). The other roles are palette G as shown on the reference board. Tokens land in `src/styles/tokens.css` when the direction is picked. | Chime's pick on the reference board, 11 Nov: "I like the colors, apart from the book button. I don't like the book button being red; it's the primary button. Something like a calm blue." Contrast computed with the WCAG formula. |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -99,6 +101,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
 | O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
+| O-13 | **Illustrations and the app icon.** Chime wants custom illustrations (starting with the empty state) and a custom icon, with references gathered from Pinterest first. To settle: the style, and how it stays inside the page-weight limit (drawn in code, no downloaded images). Do after the direction is picked. | Chime |
 
 ### Data permission status (O-2)
 

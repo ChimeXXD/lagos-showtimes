@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction board · Lagos Showtimes</title>
+<!-- Board only. The site itself ships no blocking web font (UI brief §1.3); see the cost line under each direction. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..800&family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="board.css">
+<link rel="stylesheet" href="skins.css">
+</head>
+<body>
+<header class="board-top">
+  <div>
+    <h1 class="board-title" data-testid="board.title">Three directions</h1>
+    <p class="board-lede" data-testid="board.lede">Same three screens in each: Starting soon in Lekki, the same list when the times are a day old, and a film page with the Stay or Go answer. All three use palette G with the Book button changed from red to a calm blue, as you asked. Pick one direction; you can also take a part from another (say so).</p>
+  </div>
+  <div class="board-controls">
+    <div class="seg" role="group" aria-label="Light or dark">
+      <button type="button" data-theme-set="light" aria-pressed="true" data-testid="board.theme.light">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false" data-testid="board.theme.dark">Dark</button>
+    </div>
+    <div class="seg" role="group" aria-label="Name to try in the header">
+      <button type="button" data-name-set="Lagos Showtimes" aria-pressed="true" data-testid="board.name.working">Lagos Showtimes</button>
+      <button type="button" data-name-set="Wetin Dey Show" aria-pressed="false" data-testid="board.name.wetin">Wetin Dey Show</button>
+      <button type="button" data-name-set="Sinima" aria-pressed="false" data-testid="board.name.sinima">Sinima</button>
+      <button type="button" data-name-set="Gidi Showtimes" aria-pressed="false" data-testid="board.name.gidi">Gidi Showtimes</button>
+    </div>
+  </div>
+  <p class="board-note" data-testid="board.note">Mock data. Film and cinema names are real (from the Silverbird Ikeja sample and our cinema list). The times, runtimes, credits answers and "read" times are made up for this board. The clock in every frame is 18:45.</p>
+</header>
+
+<main id="directions"></main>
+
+<footer class="board-foot">
+  <p data-testid="board.foot">Not shown yet: the empty state with a small drawing, the area picker, Remind me and Share. Those follow the direction you pick.</p>
+</footer>
+
+<script defer src="board.js"></script>
+</body>
+</html>
