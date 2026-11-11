@@ -30,7 +30,7 @@ Read this section first. The older sections below are still right for everything
 - Poster source and cost are not settled: decide on Day 2 with the TMDB work (UI brief §1).
 
 ### Do next
-1. **Chime picks a drawing style and an icon** on `docs/design/direction-board/art.html` (three styles on the empty state with their Pinterest references, six icon drafts; "Copy my pick" gives one line). The Pinterest screenshots are local only (`direction-board/images/`, git-ignored). Then refine the pick, build the empty state, and export the icon files (favicon, home-screen icon, manifest).
+1. **Chime shortlists logos** on `docs/design/direction-board/logos.html` (20 options from the logo skill; "Copy my shortlist" gives one line). Chime picked the **Doodle** illustration style (D-39) and found the first six icon drafts on `art.html` too basic. Then: refine the shortlist, export the icon files (favicon, home-screen icon, manifest), and build the empty state with the doodle character. The Pinterest screenshots are local only (`direction-board/images/`, git-ignored).
 2. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
 
 ### Not verified on the direction board

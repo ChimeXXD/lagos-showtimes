@@ -36,3 +36,9 @@
 .ic-cut { fill: #0a0a0a; }
 .ic-letter { fill: #ffffff; font: 600 68px "Outfit", system-ui, sans-serif; }
 .pickbar .seg button { min-width: 44px; }
+.art-gap { margin-top: var(--s6); }
+.ic-tuft { fill: none; stroke: #ffffff; stroke-width: 4; stroke-linecap: round; }
+.ic-ink { fill: none; stroke: #0a0a0a; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.ic-thick { stroke-width: 5; }
+.ic-lens { fill: #2f5fb3; }
+.ic-paper { fill: #ffffff; stroke: #e2e2e2; stroke-width: 2; }

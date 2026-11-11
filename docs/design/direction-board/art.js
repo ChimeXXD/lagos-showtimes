@@ -37,6 +37,20 @@ const ICONS = [
     svg: `${tile}<path class="ic-glyph" d="M34 50L82 24v52z" opacity=".55"/><circle class="ic-glyph" cx="30" cy="50" r="11"/>` },
 ];
 
+// Second round: icons made from the doodle character Chime picked (D-39).
+const blob = `<path class="ic-glyph" d="M24 100V58C24 36 35 23 50 23s26 13 26 35v42z"/><path class="ic-tuft" d="M41 26q-4-9 2-14M59 26q5-8-1-14"/>`;
+const smile = `<path class="ic-ink" d="M43 66q7 6 14 0"/>`;
+const NEW_ICONS = [
+  { id: "7", name: "7 · The face", say: "The doodle character looking out. Friendly, and it ties the icon to the drawings.",
+    svg: `${tile}${blob}<circle class="ic-cut" cx="42" cy="53" r="4"/><circle class="ic-cut" cx="58" cy="53" r="4"/>${smile}` },
+  { id: "8", name: "8 · 3D glasses", say: "The character in cinema glasses, one lens in the Book blue. The most \"film\" of the four.",
+    svg: `${tile}${blob}<path class="ic-ink" d="M24 51h8M68 51h8M48 51h4"/><rect class="ic-cut" x="30" y="44" width="18" height="14" rx="4"/><rect class="ic-lens" x="52" y="44" width="18" height="14" rx="4"/>${smile}` },
+  { id: "9", name: "9 · In the seat", say: "The character peeking over a blue cinema seat, waiting for the film.",
+    svg: `${tile}<g transform="translate(0 -6)">${blob}<circle class="ic-cut" cx="42" cy="50" r="4"/><circle class="ic-cut" cx="58" cy="50" r="4"/></g><rect class="ic-blue" x="14" y="62" width="72" height="44" rx="14"/>` },
+  { id: "10", name: "10 · Line on white", say: "The same face as a black line drawing on white, closest to how the drawings look on the page.",
+    svg: `<rect class="ic-paper" x="1" y="1" width="98" height="98" rx="22"/><path class="ic-ink ic-thick" d="M26 99V58C26 37 36 25 50 25s24 12 24 33v41"/><path class="ic-ink" d="M41 27q-4-9 2-14M59 27q5-8-1-14"/><circle class="ic-cut" cx="42" cy="54" r="4"/><circle class="ic-cut" cx="58" cy="54" r="4"/>${smile}` },
+];
+
 const KEY = "sinima-art-pick";
 const icon = (i, size) => `<svg viewBox="0 0 100 100" width="${size}" height="${size}" aria-hidden="true" data-testid="art.icon.${i.id}.at${size}">${i.svg}</svg>`;
 
@@ -55,7 +69,7 @@ document.getElementById("styles").innerHTML = STYLES.map((s) => `<article class=
   </figure>
 </article>`).join("");
 
-document.getElementById("icons").innerHTML = ICONS.map((i) => `<article class="art-icon" data-testid="art.icon.${i.id}">
+const iconCard = (i) => `<article class="art-icon" data-testid="art.icon.${i.id}">
   <h3 class="art-name" data-testid="art.icon.${i.id}.name">${i.name}</h3>
   <div class="art-sizes">
     ${icon(i, 120)}
@@ -63,11 +77,13 @@ document.getElementById("icons").innerHTML = ICONS.map((i) => `<article class="a
     <div class="art-tab">${icon(i, 16)}<span data-testid="art.icon.${i.id}.tab">Sinima</span></div>
   </div>
   <p class="art-say" data-testid="art.icon.${i.id}.say">${i.say}</p>
-</article>`).join("");
+</article>`;
+document.getElementById("icons-new").innerHTML = NEW_ICONS.map(iconCard).join("");
+document.getElementById("icons").innerHTML = ICONS.map(iconCard).join("");
 
 const buttons = (list, kind) => list.map((x) => `<button type="button" data-kind="${kind}" data-value="${x.name}" aria-pressed="false" data-testid="art.pick.${kind}.${x.id}">${x.id}</button>`).join("");
 document.getElementById("style-buttons").innerHTML = buttons(STYLES, "style");
-document.getElementById("icon-buttons").innerHTML = buttons(ICONS, "icon");
+document.getElementById("icon-buttons").innerHTML = buttons([...NEW_ICONS, ...ICONS], "icon");
 
 const note = document.getElementById("art-note");
 const statusLine = document.getElementById("art-status");

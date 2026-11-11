@@ -80,6 +80,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | D-37 | **Type is Outfit, self-hosted, cut down to 25.5 KB.** One variable file (`public/fonts/outfit-sinima.woff2`): weights 400 to 600, Latin letters and accents, tabular figures kept; SIL Open Font License, copy in `public/fonts/OFL.txt`. Loaded with `font-display: swap`, so the phone's font shows first and the page never waits. The font is counted in the page budget (161.2 KB of 200 on the home page). Weight 700 is dropped; "₦" falls back to the phone's font because Outfit has no naira sign. | Chime named Peacock's typeface as a like, and direction B (D-35) is built on it. The full Latin file was 32.2 KB, over the UI brief's 30 KB limit; limiting weights to 400 to 600 brought it under. Measured 11 Nov 2026. |
 | D-38 | **Tokens are Tailwind's theme, and Tailwind's own colour palette is switched off** (`--color-*: initial` in `src/styles/tokens.css`). `check-tokens` now also fails on Tailwind palette classes and named colours. Closes the two items left from the Day 0 code review. | A class like `text-red-500` used to slip past the check; now it cannot exist, and the check says so loudly. The old `@theme inline` block pointed each token at itself. |
 
+| D-39 | **Illustrations are in the Doodle style:** hand-drawn black line drawings with a small friendly character (first seen with popcorn on the empty state), drawn in code so they cost almost nothing to load. The character needs to stay the same across screens. The app icon is still open (O-13). | Chime's pick on `docs/design/direction-board/art.html`, 11 Nov 2026, from three styles (Line, Bold shapes, Doodle). |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -108,7 +110,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
 | O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
-| O-13 | **Illustrations and the app icon.** Chime wants custom illustrations (starting with the empty state) and a custom icon, with references gathered from Pinterest first. To settle: the style, and how it stays inside the page-weight limit (drawn in code, no downloaded images). Do after the direction is picked. | Chime |
+| O-13 | **The app icon and logo.** Illustration style is settled (D-39: Doodle). Chime found the first six icon drafts too basic and asked for 20 logo options from the logo skill; they are on `docs/design/direction-board/logos.html` for Chime to shortlist two or three, which then get refined and exported (favicon, home-screen icon, manifest). | Chime |
 
 ### Data permission status (O-2)
 

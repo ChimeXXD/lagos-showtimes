@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo options · Sinima</title>
+<!-- Board only. The site ships its own 25 KB copy of Outfit. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="board.css">
+<link rel="stylesheet" href="pick.css">
+<link rel="stylesheet" href="logos.css">
+</head>
+<body class="has-pickbar">
+<header class="board-top">
+  <h1 class="board-title" data-testid="logos.title">20 logo options for Sinima</h1>
+  <p class="board-lede" data-testid="logos.lede">Each one is shown on black and on white, at home-screen size with its name, and at browser-tab size. Shortlist the two or three you like most and I'll refine those.</p>
+</header>
+
+<main id="logos" class="logos"></main>
+
+<section class="pick-more" aria-labelledby="logos-note-title">
+  <h2 class="direction-name" id="logos-note-title" data-testid="logos.note.title">Anything to change or combine?</h2>
+  <label class="pick-label" for="logos-note" data-testid="logos.note.label">Optional. For example: "13 but with the S from 1", or "none of these, more like the doodle".</label>
+  <textarea id="logos-note" class="pick-note" rows="3" data-testid="logos.note"></textarea>
+</section>
+
+<div class="pickbar" role="region" aria-label="Your shortlist">
+  <div class="pick-group">
+    <span class="pick-legend" data-testid="logos.picked.legend">Shortlist</span>
+    <strong class="logos-picked" id="logos-picked" data-testid="logos.picked">Nothing yet</strong>
+  </div>
+  <div class="pick-group pick-send">
+    <button type="button" class="pick-copy" id="logos-copy" data-testid="logos.copy">Copy my shortlist</button>
+    <span class="pick-status" id="logos-status" role="status" data-testid="logos.status">Press "Shortlist" on the ones you like.</span>
+  </div>
+</div>
+
+<script defer src="logos.js"></script>
+</body>
+</html>
