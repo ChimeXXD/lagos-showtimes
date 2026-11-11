@@ -1,5 +1,52 @@
 # Handoff: read this first when you pick the project back up
 
+## Now: Day 1 design lane, reference board in progress (Wed 11 Nov 2026, evening)
+
+Read this section first. The older section below is still right for everything else.
+
+### The reference board
+- **File:** `docs/design/reference-board/index.html`, with screenshots in `docs/design/reference-board/images/`. Both are local only: the images are git-ignored, and the page is excluded through `.git/info/exclude` (it names the reference library, which must not appear in the public repo). Nothing from the board is committed.
+- **Open it in Dia:** `open -a "Dia" "docs/design/reference-board/index.html"`. Chime's answers save in Dia's browser storage only. Chime presses "Download answers" when done; the file lands in `~/Downloads/lagos-showtimes-reference-answers.json`.
+- **What it has:** 127 references in 12 sections (108 iPhone, 19 desktop), each with "What it shows" and "How we'd use it", tick buttons, a note box, zoom (Esc closes, arrow keys step), and region marking in the zoom. A "Colour palette" section has the 8 colour roles and 10 candidate palettes (A to J) with exact hex values; all pass the contrast targets.
+- **Data shape:** references are in the `SECTIONS` array in the page's script. New ones go in the `EXTRA` array (`const EXTRA = [];/*EXTRA*/`) as `{section, id, app, mid, kind, what, how}`; `kind` is `"p"` (phone) or `"d"` (desktop); the image is `images/<id>.webp`.
+
+### References per section today
+| Section (id) | Count |
+| --- | --- |
+| Starting soon list (`soon`) | 15 |
+| Countdown (`countdown`) | 10 |
+| Freshness and source (`fresh`) | 10 |
+| Stay or Go chip (`credits`) | 10 |
+| Area button and picker (`area`) | 12 |
+| Film page and film list (`film`) | 10 |
+| Cinema page (`cinema`) | 10 |
+| Nothing showing (`empty`) | 10 |
+| Banners (`banners`) | 10 |
+| Remind me (`remind`) | 10 |
+| Share (`share`) | 10 |
+| About and sources (`about`) | 10 |
+
+The top-up (later on 11 Nov) added 52 references through the `EXTRA` array, ids `59-…` to `108-…` plus `d19-rows` and `d20-pi`. Every section is now at 10 or more. Claude chose 10 as the target, not 20, to keep the cost down; going to 20 is still open if Chime wants it.
+
+### Do next
+1. **Chime: reload the board in Dia and answer it**, then press "Download answers".
+2. When Chime has answered: read the downloaded answers, fill the picks table and pattern summary in `docs/design/REFERENCES.md`, then build three directions at 390 px in `docs/design/direction-board/index.html` and stop for Chime's pick and the name (O-1).
+3. Core lane (tests first) has not started: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
+4. Only if Chime asks: take sections from 10 towards 20. Search the reference library directly, one section at a time, 8 results per search, and look at every screenshot before writing its notes.
+
+### Cost rule (learned the hard way this session)
+- **Never launch parallel agents or forks without asking Chime first and saying what it will cost.** Four parallel helpers, each carrying a full copy of a long conversation, used a whole five-hour usage limit in minutes. They were stopped; they left no files behind.
+- Keep sessions short. Screenshots are the expensive part: pull 6 to 8 results per search, not more.
+- The reference library also shows a "usage is high this month" notice. It is free during its beta.
+
+### Verified in a headless browser after the top-up
+- All 127 screenshots load; each section shows the count in the table above; the zoom opens, the arrow key steps and Esc closes; a tick survives a reload; no console errors.
+
+### Not verified
+- Region marking with a finger on a real phone.
+- The board in Dia itself (only headless Chromium was run).
+- An older online copy of the board exists as a private page (58 references, old layout). It is out of date; Chime has not said whether to delete it.
+
 ## Latest: Day 0 done, Day 1 starts next (session of Wed 11 Nov 2026)
 
 Chime plans to start Day 1 on Thu 12 Nov. Start there; nothing else is waiting.
