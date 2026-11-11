@@ -2,6 +2,24 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 1: direction B and the name Sinima; renamed everywhere but Vercel (Wed 11 Nov 2026, night)
+
+**Changed**
+- Chime picked direction B · Poster (D-35) on a new side-by-side pick page, and the name Sinima (D-36) from a names page.
+- Renamed to Sinima: app title and heading, package name, fetcher user agent, README, CLAUDE.md, docs and design pages; GitHub repo to `ChimeXXD/sinima`; project folder to `Sinima`.
+
+**Checked**
+- After the rename: lint and typecheck clean, 3 unit tests pass, build 136.1 KB total (limit 200), e2e smoke test passes with the heading "Sinima", spec check PASS (40 features, 8 passing).
+- `gh repo view ChimeXXD/sinima` returns the repo; local `main` tracks it.
+- Outfit variable font, Latin subset: 32,228 bytes, over the 30 KB limit.
+
+**Not verified**
+- Vercel: not renamed (no login available to Claude). Whether the deploy still builds after the repo rename was not checked.
+- Name clash: two web searches only; no trademark search.
+
+**Next**
+- Chime renames the Vercel project. Then UI brief §1 to 3, tokens, illustration references (O-13).
+
 ## Day 1, design lane: references answered, three directions built (Wed 11 Nov 2026, late)
 
 **Changed**

@@ -1,6 +1,6 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 design lane, direction B picked, name still open (Wed 11 Nov 2026, late)
+## Now: Day 1 design lane, direction B and the name Sinima picked; Vercel rename waiting on Chime (Wed 11 Nov 2026, late)
 
 Read this section first. The older sections below are still right for everything else.
 
@@ -14,11 +14,19 @@ Read this section first. The older sections below are still right for everything
 
 ### Chime's picks so far
 - **Direction B · Poster** (D-35), no changes asked for.
-- **Name: not settled.** Chime likes Sinima but wants it more Nigerian or Lagosian; Wetin Dey Show and Lagos Showtimes are out. Sinima stands alone: Chime does not want names built on it. Ten options (Sinima plus nine different names) are on `docs/design/direction-board/names.html` ("Copy my pick" gives one line). None is checked for clashes; the Hausa and Igbo meanings are unconfirmed.
+- **Name: Sinima** (D-36). Chime asked for the old name to go everywhere.
+
+### The rename to Sinima (11 Nov)
+| Where | State |
+| --- | --- |
+| App, package, user agent (`SinimaBot`), README, CLAUDE.md, docs, design pages | Done and pushed. Old log entries and old decisions keep "Lagos Showtimes" on purpose. |
+| GitHub repo | Done: `ChimeXXD/sinima`. GitHub redirects the old address. The local remote points at the new one. |
+| Project folder | Done: `Projects/Personal Projects/Sinima`. Start new sessions from there. Claude's memory for the project was copied to the new folder's memory. |
+| Vercel project and address | **Not done.** Claude could not sign in (no Vercel login in the browser it drives, no Vercel CLI). Chime does it: Vercel dashboard > the project > Settings > General > Project Name: `sinima`; then Settings > Domains: add `sinima.vercel.app` if it is free. Then tell Claude the new address so the repo's homepage link and the docs can be updated. |
 
 ### Do next
-1. **Chime picks the name** on `names.html`. Check that name for clashes (other apps, sites, companies), then log it and close O-1.
-2. Write UI brief §1 to 3 for direction B, put the tokens in `src/styles/tokens.css` (also the two code-review leftovers below), and build the locked mockup with `interactions.json`. Measure the Outfit subset against 30 KB and decide where posters appear.
+1. **Chime renames the Vercel project** (steps in the table above) and gives the new address.
+2. Write UI brief §1 to 3 for direction B, put the tokens in `src/styles/tokens.css` (also the two code-review leftovers below), and build the locked mockup with `interactions.json`. **Outfit's Latin file measured 32.2 KB, over the 30 KB limit**: cut it to the characters we use, or fall back to the system font. Decide where posters appear.
 3. Illustration and icon references from Pinterest (O-13), then the empty state. Chime agreed this comes after the direction.
 4. Core lane (tests first) has not started: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
 
@@ -29,7 +37,7 @@ Read this section first. The older sections below are still right for everything
 
 ### The reference board
 - **File:** `docs/design/reference-board/index.html`, with screenshots in `docs/design/reference-board/images/`. Both are local only: the images are git-ignored, and the page is excluded through `.git/info/exclude` (it names the reference library, which must not appear in the public repo). Nothing from the board is committed.
-- **Open it in Dia:** `open -a "Dia" "docs/design/reference-board/index.html"`. Chime's answers save in Dia's browser storage only. Chime presses "Download answers" when done; the file lands in `~/Downloads/lagos-showtimes-reference-answers.json`.
+- **Open it in Dia:** `open -a "Dia" "docs/design/reference-board/index.html"`. Chime's answers save in Dia's browser storage only. Chime presses "Download answers" when done; the file lands in `~/Downloads/sinima-reference-answers.json`.
 - **What it has:** 127 references in 12 sections (108 iPhone, 19 desktop), each with "What it shows" and "How we'd use it", tick buttons, a note box, zoom (Esc closes, arrow keys step), and region marking in the zoom. A "Colour palette" section has the 8 colour roles and 10 candidate palettes (A to J) with exact hex values; all pass the contrast targets. Palette G now carries the blue Book button.
 - **Data shape:** references are in the `SECTIONS` array in the page's script. New ones go in the `EXTRA` array (`const EXTRA = [];/*EXTRA*/`) as `{section, id, app, mid, kind, what, how}`; `kind` is `"p"` (phone) or `"d"` (desktop); the image is `images/<id>.webp`.
 
@@ -79,8 +87,8 @@ Chime plans to start Day 1 on Thu 12 Nov. Start there; nothing else is waiting.
 8. **Chime's call: stop asking** (D-33). Lagocine becomes the live source on Day 6, with credit on every row, unless it objects first. No more emails.
 
 ### Where it stands
-- **Repo:** `ChimeXXD/lagos-showtimes`, public, `main` at the commit that holds this file. CI green (lint, typecheck, unit, build, budget, e2e).
-- **Deploy:** https://lagos-showtimes.vercel.app loads (HTTP 200). Not yet opened on Chime's phone.
+- **Repo:** `ChimeXXD/sinima` (renamed from `lagos-showtimes` on 11 Nov), public, `main` at the commit that holds this file. CI green (lint, typecheck, unit, build, budget, e2e).
+- **Deploy:** https://lagos-showtimes.vercel.app loads (HTTP 200); the address changes when Chime renames the Vercel project. Not yet opened on Chime's phone.
 - **Decisions:** D-01 to D-33 in `docs/DECISIONS.md`. Open: O-1 (name), O-3 (push), O-7 (other cities), O-10 (neighbouring areas list).
 - **Features:** 7 of 40 passing in `docs/features.json` (all of Day 0).
 - **Data:** the site runs on sample data through Day 5.
