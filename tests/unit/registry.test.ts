@@ -14,6 +14,14 @@ describe("data registries", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it("gives every area neighbours that are other listed areas (D-46)", () => {
+    const areas = new Set(cinemas.areas.map((a) => a.slug));
+    for (const area of cinemas.areas) {
+      expect(area.neighbours.length, area.slug).toBeGreaterThan(0);
+      expect(area.neighbours.filter((n) => !areas.has(n) || n === area.slug), area.slug).toEqual([]);
+    }
+  });
+
   it("only names cinemas that exist in the registry", () => {
     const ids = new Set(cinemas.cinemas.map((c) => c.id));
     const unknown = sources.sources.flatMap((s) => s.cinemaIds.filter((id) => !ids.has(id)));

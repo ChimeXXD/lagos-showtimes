@@ -10,19 +10,17 @@ Read this section first. The sections below are background; where they disagree 
 - **Sample data** (D2-3): `npm run refresh -- --fixtures` writes `data/showtimes.json`, `public/data/all.json` and `public/data/area/<slug>.json` (12 areas) on today's and tomorrow's dates in Lagos. 294 showings a day across 20 cinemas and 31 films. **These files are git-ignored** (D-45): run the command to make them.
 - **Credits** (D2-4, **not passing**): the match rule, keyword reading, manual entries and the merge into films are built and tested without the network. `scripts/tmdb.ts` has never asked TMDB anything: there is no key.
 - **Checks:** 299 unit tests and 10 browser tests pass; home page still 162.1 KB of 200 (nothing on screen uses the data yet).
-- **Features:** 18 of 40 passing. **Decisions:** D-01 to D-45. Open: O-3, O-7, O-10 (a draft is written under O-10 in `DECISIONS.md`, waiting for Chime).
+- **Features:** 18 of 40 passing. **Decisions:** D-01 to D-46. Open: O-3, O-7. The neighbouring areas are confirmed and in `data/cinemas.json` (D-46).
 
 ### Do next
 1. **When Chime adds the TMDB key:** `node scripts/tmdb.ts`, check every printed match by eye, fix wrong ones in `data/tmdb-overrides.json`, confirm the request paths and fields against the real answers, commit `data/credits.json`, then mark D2-4. Measure poster sizes then and decide where posters go (UI brief §1).
 2. **Day 3, the home screen** (`docs/PLAN.md`): `/area/[slug]` and `/`, showing row, area picker, "Now showing" list, empty state, banners. Follow the proof build skill's mockup steps: tokens and shared components first, one screen at a time.
 3. **Fresh sample data on every build:** add a `prebuild` step that runs `refresh --fixtures`, and something that rebuilds the site each day (a scheduled GitHub Action is free). Without it the deployed demo shows nothing a day after a deploy.
-4. Put the neighbouring areas into `data/cinemas.json` once Chime confirms them.
 5. Still to draw: the doodle character and the "nothing showing" screen.
 
 **Needs from Chime**
 - The free TMDB key (themoviedb.org > Settings > API) in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`.
-- A yes, or corrections, on the neighbouring-areas draft (O-10).
-- **A yes or no on automated reviews.** This session ran `/code-review --fix` twice, one background helper each (about 100k and 147k tokens), without asking first. They found real problems (17 findings, 11 fixed). The fresh-context verifier was not run.
+- Nothing more on reviews: Chime said yes to automated reviews (D-46). Run `/code-review --fix` after code changes and the verifier once per unit; still ask before launching several helpers at once. `.env.local` exists (copied from `.env.example`) and is waiting for the token.
 - Open the site on the phone, and try adding it to the home screen.
 
 ### Found this session

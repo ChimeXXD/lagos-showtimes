@@ -5,51 +5,103 @@
   "areas": [
     {
       "slug": "lekki",
-      "name": "Lekki"
+      "name": "Lekki",
+      "neighbours": [
+        "victoria-island",
+        "sangotedo"
+      ]
     },
     {
       "slug": "victoria-island",
-      "name": "Victoria Island"
+      "name": "Victoria Island",
+      "neighbours": [
+        "lekki",
+        "lagos-island"
+      ]
     },
     {
       "slug": "ikeja",
-      "name": "Ikeja"
+      "name": "Ikeja",
+      "neighbours": [
+        "maryland",
+        "agege"
+      ]
     },
     {
       "slug": "surulere",
-      "name": "Surulere"
+      "name": "Surulere",
+      "neighbours": [
+        "yaba",
+        "lagos-island",
+        "festac"
+      ]
     },
     {
       "slug": "yaba",
-      "name": "Yaba"
+      "name": "Yaba",
+      "neighbours": [
+        "surulere",
+        "ikorodu-road",
+        "lagos-island"
+      ]
     },
     {
       "slug": "lagos-island",
-      "name": "Lagos Island"
+      "name": "Lagos Island",
+      "neighbours": [
+        "victoria-island",
+        "surulere",
+        "yaba"
+      ]
     },
     {
       "slug": "festac",
-      "name": "Festac"
+      "name": "Festac",
+      "neighbours": [
+        "surulere",
+        "idimu"
+      ]
     },
     {
       "slug": "maryland",
-      "name": "Maryland"
+      "name": "Maryland",
+      "neighbours": [
+        "ikeja",
+        "ikorodu-road",
+        "yaba"
+      ]
     },
     {
       "slug": "agege",
-      "name": "Agege"
+      "name": "Agege",
+      "neighbours": [
+        "ikeja",
+        "idimu"
+      ]
     },
     {
       "slug": "sangotedo",
-      "name": "Sangotedo"
+      "name": "Sangotedo",
+      "neighbours": [
+        "lekki"
+      ]
     },
     {
       "slug": "ikorodu-road",
-      "name": "Ikorodu Road"
+      "name": "Ikorodu Road",
+      "neighbours": [
+        "maryland",
+        "yaba"
+      ]
     },
     {
       "slug": "idimu",
-      "name": "Idimu"
+      "name": "Idimu",
+      "neighbours": [
+        "agege",
+        "festac",
+        "ikeja"
+      ]
     }
   ],
   "areasWithoutCinemasYet": [
