@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick a name · Lagos Showtimes</title>
+<!-- Board only. The site itself ships no blocking web font (UI brief §1.3). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="board.css">
+<link rel="stylesheet" href="pick.css">
+<link rel="stylesheet" href="names.css">
+</head>
+<body class="has-pickbar">
+<header class="board-top">
+  <h1 class="board-title" data-testid="names.title">Pick a name</h1>
+  <p class="board-lede" data-testid="names.lede">Ten names built around Sinima, each shown three ways: in the header, in a WhatsApp share, and under the icon on a phone's home screen.</p>
+  <div class="board-controls">
+    <div class="seg" role="group" aria-label="Light or dark">
+      <button type="button" data-theme-set="light" aria-pressed="true" data-testid="board.theme.light">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false" data-testid="board.theme.dark">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main id="names" class="names"></main>
+
+<section class="pick-more" aria-labelledby="names-own-title">
+  <h2 class="direction-name" id="names-own-title" data-testid="names.own.title">Your own idea, or a change to one of these?</h2>
+  <label class="pick-label" for="names-note" data-testid="names.own.label">Optional. Type a name to try it in the card below.</label>
+  <input id="names-note" class="pick-note" type="text" autocomplete="off" data-testid="names.own.input">
+  <div id="names-own" class="names names-own"></div>
+  <p class="board-note" data-testid="names.caveat">Not checked yet: whether another app, site or company already uses any of these. I'll check the one you pick before it goes in.</p>
+</section>
+
+<div class="pickbar" role="region" aria-label="Your pick">
+  <div class="pick-group">
+    <span class="pick-legend" data-testid="names.picked.legend">Picked</span>
+    <strong class="names-picked" id="names-picked" data-testid="names.picked">Nothing yet</strong>
+  </div>
+  <div class="pick-group pick-send">
+    <button type="button" class="pick-copy" id="names-copy" data-testid="names.copy">Copy my pick</button>
+    <span class="pick-status" id="names-status" role="status" data-testid="names.status">Press "Pick this" on a card.</span>
+  </div>
+</div>
+
+<script defer src="names.js"></script>
+</body>
+</html>

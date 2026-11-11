@@ -1,6 +1,6 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 design lane, waiting for Chime's pick (Wed 11 Nov 2026, late)
+## Now: Day 1 design lane, direction B picked, name still open (Wed 11 Nov 2026, late)
 
 Read this section first. The older sections below are still right for everything else.
 
@@ -12,10 +12,14 @@ Read this section first. The older sections below are still right for everything
 - **Show, don't tell:** when Chime has to choose something visual, open an HTML page for it; keep the terminal reply short.
 - **Chime wants custom illustrations and a custom icon**, with references from Pinterest first (O-13). Not started: the style should follow the direction.
 
+### Chime's picks so far
+- **Direction B · Poster** (D-35), no changes asked for.
+- **Name: not settled.** Chime likes Sinima but wants it more Nigerian or Lagosian; Wetin Dey Show and Lagos Showtimes are out. Ten options are on `docs/design/direction-board/names.html` (open in Dia; "Copy my pick" gives one line). None is checked for clashes.
+
 ### Do next
-1. **Chime picks a direction and the name (O-1).** Log both in `docs/DECISIONS.md`.
-2. Write UI brief §1 to 3 from the pick, put the tokens in `src/styles/tokens.css` (also the two code-review leftovers below), and build the locked mockup with `interactions.json`.
-3. Illustration and icon references (O-13), then the empty state.
+1. **Chime picks the name** on `names.html`. Check that name for clashes (other apps, sites, companies), then log it and close O-1.
+2. Write UI brief §1 to 3 for direction B, put the tokens in `src/styles/tokens.css` (also the two code-review leftovers below), and build the locked mockup with `interactions.json`. Measure the Outfit subset against 30 KB and decide where posters appear.
+3. Illustration and icon references from Pinterest (O-13), then the empty state. Chime agreed this comes after the direction.
 4. Core lane (tests first) has not started: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
 
 ### Not verified on the direction board

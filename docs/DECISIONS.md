@@ -73,6 +73,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-34 | **Palette G, with the Book button in a calm blue.** Black and white throughout; the only colour is Book. Light: Book `#2F5FB3` with white text (6.16:1). Dark: Book `#8FB4F5` with `#06142E` text (8.73:1). The other roles are palette G as shown on the reference board. Tokens land in `src/styles/tokens.css` when the direction is picked. | Chime's pick on the reference board, 11 Nov: "I like the colors, apart from the book button. I don't like the book button being red; it's the primary button. Something like a calm blue." Contrast computed with the WCAG formula. |
 
+| D-35 | **Direction B · Poster.** A small poster on every showing row, a rounded typeface (Outfit on the board), black capsules for the area button and main actions, and Stay or Go as its own tile with the source under it. Still to settle inside it: the font file must fit the 30 KB limit (or fall back to the system font), and posters must fit the page-weight budget (D-28) and TMDB's terms (D-31); if they don't, posters stay on the film page only. | Chime's pick on `docs/design/direction-board/pick.html`, 11 Nov 2026, with no changes asked for. |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -89,7 +91,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | ID | Question | Owner |
 | --- | --- | --- |
-| O-1 | **Final name.** Recommended: **Wetin Dey Show**. Alternatives: Sinima, Gidi Showtimes. Only a clash search was done (6 Nov), no trademark or domain check. Decide by Day 1 so the design uses it. | Chime |
+| O-1 | **Final name.** Chime likes **Sinima** (11 Nov) but wants it to feel more Nigerian or Lagosian, and has ruled out Wetin Dey Show and Lagos Showtimes. Ten options around Sinima are on `docs/design/direction-board/names.html`. None is checked for clashes yet; check the one Chime picks. | Chime |
 | O-2 | **Data permission status per source** (update as replies arrive). | Chime |
 | O-3 | **Push notifications**: Phase 2 as D-11 says, or try a $0 version this week (GitHub Actions cron + stored subscriptions)? Proposal: Phase 2. | Chime |
 | O-4 | **Host**: Vercel Hobby or Cloudflare Pages. Proposal: Vercel (portfolio is there; preview deploys). | Chime |

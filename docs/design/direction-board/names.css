@@ -1,0 +1,19 @@
+/* names.html only. Cards use direction B's look: Outfit, black capsules. */
+.names { max-width: 1240px; margin: 0 auto var(--s8); display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--s4); }
+.names-own { margin: var(--s2) 0 0; grid-template-columns: minmax(0, 390px); }
+.name-card { display: grid; gap: var(--s3); align-content: start; padding: var(--s4); border: 1px solid var(--line); border-radius: 20px; background: var(--bg); font-family: "Outfit", var(--system); }
+.name-card[data-picked="true"] { border-color: var(--text); box-shadow: 0 0 0 1px var(--text); }
+.name-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); padding-bottom: var(--s3); border-bottom: 1px solid var(--line); }
+.name-mark { font-size: 22px; font-weight: 600; line-height: 1.1; overflow-wrap: anywhere; }
+.name-area { flex: none; display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 999px; background: var(--accent); color: var(--accent-text); font-size: 14px; font-weight: 600; }
+.name-means { margin: 0; font-size: 15px; line-height: 1.4; }
+.name-uses { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s2); }
+.name-use { display: grid; grid-template-columns: 92px 1fr; gap: var(--s2); align-items: center; color: var(--muted); font-size: 12px; }
+.name-share { padding: var(--s2) var(--s3); border-radius: 12px; background: var(--surface); color: var(--text); font-size: 13px; line-height: 1.35; }
+.name-home { display: grid; justify-items: center; gap: 4px; width: 76px; }
+.name-tile { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: var(--accent); color: var(--accent-text); font-size: 24px; font-weight: 600; }
+/* A phone's home screen cuts a long label; this shows roughly where. */
+.name-label { max-width: 76px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--text); font: 500 11px/1.2 var(--system); }
+.name-pick { justify-self: start; min-height: 44px; padding: 0 var(--s6); border: 1.5px solid var(--text); border-radius: 999px; background: transparent; color: var(--text); font: 600 14px/1 "Outfit", var(--system); cursor: pointer; }
+.name-pick[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
+.names-picked { font-size: 17px; }
