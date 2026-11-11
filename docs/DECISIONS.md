@@ -114,7 +114,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
 | O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
-| O-13 | **Logo and colours.** Round two is on `docs/design/direction-board/logos2.html`: the shortlisted Screen face, three mascots (owl, agama lizard, popcorn) generated with Figma AI by the `ip-as-logo` skill's prompt, and three marks (Ticket S, Front row, Seat map) from written design prompts with the logo skill, each in three colour sets. Chime picks one logo with one colour set; then tokens, favicon and manifest follow that pick. | Chime |
+| O-13 | **Logo and colours.** Chime's three finalists (11 Nov), each refined and shown as a full identity on `docs/design/direction-board/refine.html`: Screen face in Ink and blue, Ticket S in Cream and brown, Front row in Marigold night. Chime also likes the Palm green; all three are shown in it at the foot of the page. The mascots were not picked. Chime chooses one; then tokens, favicon and manifest follow. | Chime |
 
 ### Data permission status (O-2)
 
