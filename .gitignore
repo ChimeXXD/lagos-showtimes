@@ -42,3 +42,8 @@ tmp/
 
 # Full-size generated mascot sources (the page uses the .webp copies)
 docs/design/logo/mascots/*.png
+
+# Sample data written by `npm run refresh -- --fixtures`: dated today and tomorrow, so it is made
+# fresh for each build, not committed (D-45). Live data will be committed when a source is cleared.
+data/showtimes.json
+public/data/

@@ -22,6 +22,14 @@ Written 6 Nov 2026. `data/showtimes.json` is what the pages build from. `data/ci
 
 Unknown keys are ignored, so a newer writer can add fields without breaking an older reader. Any change that breaks a reader bumps `schemaVersion`.
 
+How the validator reads the table (D-45):
+- "Ended more than 1 hour before" means the showing started more than 90 minutes before `generatedAt`: 30 minutes to "ended" (D-05) plus the hour.
+- A showing with no `fetchedAt` is dropped; one whose `fetchedAt` is there but is not UTC refuses the file.
+- A showing is also dropped when its film or cinema is not in the file, or when its `id` repeats an earlier showing's.
+- A booking link's host must be the cinema's `website` or `bookingHost`, or a subdomain of one ("www." is ignored). Tracking parameters are `utm_*` and the usual click ids (`fbclid`, `gclid` and the like).
+- `sample: false` is corrected to `true` when any showing comes from a `fixture` source.
+- `films[].credits` may be left out or `null`; when present it needs `during`, `after`, `confidence` and a `sources` list.
+
 ## Full example
 
 An illustrative file: real cinemas and film titles, **made-up times and price**. It is not data and is not a test fixture. It also lives at `docs/examples/showtimes-v1.example.json`, and a unit test checks that it validates.
@@ -224,4 +232,8 @@ The chip never says "Go" without a source that says so.
 
 ## Per-area files (D-18)
 
-`refresh` also writes one file per area, `public/data/area/<slug>.json`, and `public/data/all.json`, in the same v1 shape but holding only that area's cinemas, their showings for today and tomorrow, and the films and sources those showings use. Pages load only their own file. The size budget (D-21) applies per file.
+`refresh` also writes one file per area, `public/data/area/<slug>.json`, and `public/data/all.json`, in the same v1 shape but holding only that area's cinemas, their showings for today and tomorrow, and the films and sources those showings use. Pages load only their own file. The size budget (D-21) applies per file: at most 20 KB gzipped each (D-45). "Tomorrow" runs to 04:00 the morning after, so a 00:30 show stays with its evening.
+
+## Sample data (D-20, D-45)
+
+`npm run refresh -- --fixtures` builds these files from the saved pages listed in `tests/fixtures/index.json` (the entries marked `sample`). Rows from the day the pages were saved move onto today and rows from the day after onto tomorrow, both in Lagos, keeping their wall-clock times; later days are dropped. A cinema with no saved tomorrow gets its saved day again. Sample rows have no booking link, every source's `method` is `fixture`, and `sample` is `true`. The files are dated today, so they are made by the command and not committed.

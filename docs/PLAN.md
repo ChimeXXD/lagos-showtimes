@@ -72,11 +72,12 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 
 ### Day 2: Data
 - [x] `lib/data/types.ts` and `validate.ts` from `DATA.md`; the DATA.md example validates; broken fixtures fail with clear messages
-- [ ] Parsers for two sources, tests first on saved fixtures: Lagocine (the live source from Day 6, D-33) and Veezi (the Silverbird Ikeja fixture). Save and cut down one Lagocine cinema page and one day page first (D-24)
-- [ ] `scripts/refresh.ts --fixtures` writes `data/showtimes.json` and the per-area files from fixtures, with dates moved onto today and tomorrow (D-18, D-20)
+- [x] Parsers for two sources, tests first on saved fixtures: Lagocine (the live source from Day 6, D-33) and Veezi (the Silverbird Ikeja fixture). Save and cut down one Lagocine cinema page and one day page first (D-24)
+- [x] `scripts/refresh.ts --fixtures` writes `data/showtimes.json` and the per-area files from fixtures, with dates moved onto today and tomorrow (D-18, D-20)
 - [ ] `scripts/tmdb.ts`: match films, read keywords 179430/179431, write `data/credits.json`; `data/tmdb-overrides.json` and `data/credits-manual.json` merged in (D-19, D-25); report the share of films with an answer
-- [ ] Draft the neighbouring areas list for Chime to confirm (O-10)
-- [ ] Decide coverage (O-5) and name the launch tier (D-23) from replies so far; update `data/cinemas.json` (coordinates, addresses from the cinemas' own pages)
+- [x] Draft the neighbouring areas list for Chime to confirm (O-10): the draft is in `DECISIONS.md` under O-10, waiting for Chime
+- [x] Decide coverage (O-5) and name the launch tier (D-23): coverage is the 20 cinemas Lagocine lists (D-33); the site is tier C (sample data) today and becomes tier A on Day 6 if Lagocine has not objected
+- [ ] Update `data/cinemas.json` (coordinates, addresses from the cinemas' own pages): not started; it needs pages that have not been saved
 
 ### Day 3: Home
 - [ ] `/area/[slug]` as the static "Starting soon near you" page and `/` for all Lagos (D-18): next 2 hours, then Later tonight, then Tomorrow

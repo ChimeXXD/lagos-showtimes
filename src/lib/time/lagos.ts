@@ -10,7 +10,7 @@ const UTC_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const HOUR = 3_600_000;
 /** The evening "day" runs to 04:00 Lagos time (SPEC §3). */
-const EVENING_ENDS_HOUR = 4;
+export const EVENING_ENDS_HOUR = 4;
 
 const partsFormat = new Intl.DateTimeFormat("en-GB", {
   timeZone: LAGOS,

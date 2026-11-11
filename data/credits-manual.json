@@ -1,0 +1,4 @@
+{
+  "about": "Chime's own credits entries (D-19). Key: our film id. Value: { \"during\": \"yes|no\", \"after\": \"yes|no\", \"source\": { \"name\", \"url\" (https), \"checkedAt\" (UTC, like 2026-11-10T09:00:00Z) } }. An entry wins over TMDB's keywords and is the only way \"Go\" appears.",
+  "films": {}
+}

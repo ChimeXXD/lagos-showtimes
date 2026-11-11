@@ -1,0 +1,32 @@
+{
+  "about": "Every saved page under tests/fixtures/, cut down by scripts/reduce-fixture.ts (D-24). savedAt is when the one manual request was made (UTC). `refresh --fixtures` builds the sample data from the entries marked sample; the others are for parser tests only.",
+  "fixtures": [
+    {
+      "file": "lagocine/2026-11-11-day.html",
+      "sourceId": "lagocine",
+      "page": "lagocine-day",
+      "pageUrl": "https://lagocine.com/day/2026-11-11/",
+      "savedAt": "2026-11-11T00:36:34Z",
+      "sample": true
+    },
+    {
+      "file": "lagocine/2026-11-11-cinema-silverbird-ikeja.html",
+      "sourceId": "lagocine",
+      "page": "lagocine-cinema",
+      "cinemaId": "silverbird-ikeja",
+      "pageUrl": "https://lagocine.com/cinema/silverbird-ikeja/",
+      "savedAt": "2026-11-11T00:36:27Z",
+      "sample": true
+    },
+    {
+      "file": "silverbird/2026-11-11-ikeja.html",
+      "sourceId": "silverbird",
+      "page": "veezi-sessions",
+      "cinemaId": "silverbird-ikeja",
+      "pageUrl": "https://ticketing.eu.veezi.com/sessions/?siteToken=9chn7w68550a7sxgexpdng2ndm",
+      "savedAt": "2026-11-11T00:36:35Z",
+      "sample": false,
+      "why": "Silverbird is not read directly (D-33), and its page writes some titles differently from Lagocine's, so the same showing would be listed twice."
+    }
+  ]
+}

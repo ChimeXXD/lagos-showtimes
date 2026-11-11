@@ -243,8 +243,8 @@
         "size within budget"
       ],
       "verify": "npm run refresh -- --fixtures && npm test -- validate && npm test -- scripts/refresh",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: the verify command passes (refresh writes 14 files; the validate tests read them back from disk; `npm test -- scripts/refresh` 39 pass). With the clock at 00:30 Lagos on 20 Nov: data/showtimes.json, all.json and 12 area files all validate with an empty log; sample is true and every source is a fixture; all 588 showings fall on 20 or 21 Nov in Lagos; each of the 20 cinemas keeps the fixture's wall-clock times; Silverbird Ikeja uses its own saved tomorrow and the others repeat the saved day (D-45); the largest file is 10.3 KB gzipped against a 20 KB limit. Lagocine's 59 repeated rows are counted once (294 showings a day, not 353)."
     },
     {
       "id": "D2-4",
@@ -260,7 +260,7 @@
       ],
       "verify": "node scripts/tmdb.ts --dry-run; grep -r TMDB out/ || echo clean",
       "passes": false,
-      "evidence": ""
+      "evidence": "11 Nov 2026, not passing: there is no TMDB key, so the script has never asked TMDB anything. Built and tested without the network: the match rule (an exact title on one current film, else unmatched), keywords 179430/179431 to credits, tmdb-overrides.json and credits-manual.json merged, the share printed, refresh putting the answers on films. `npm test -- scripts/credits scripts/tmdb` 28 pass, the script's tests against TMDB's documented response shapes, not real responses. `node scripts/tmdb.ts --dry-run` prints 31 films to look up and '0 of 31 films have a credits answer'. Still to do with the key: one real run, every match checked by eye, and the grep of out/."
     },
     {
       "id": "D3-1",
