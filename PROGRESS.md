@@ -2,6 +2,29 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 0, part two: deploy and source audit (Wed 11 Nov 2026)
+
+**Changed**
+- Chime deployed to Vercel: https://lagos-showtimes.vercel.app.
+- Finished the source audit: terms, listing URL patterns and days ahead in `data/sources.json`; findings in `docs/RESEARCH.md`; conclusions as D-31 (TMDB terms) and D-32 (no source clearable without a yes), with O-12 open (Silverbird via Veezi).
+- `scripts/reduce-fixture.ts` cuts a saved page down to listing markup (D-24). First fixture: `tests/fixtures/silverbird/2026-11-11-ikeja.html`.
+- Silverbird Ikeja's address and Veezi page added to `data/cinemas.json`.
+
+**Checked**
+- `curl https://lagos-showtimes.vercel.app/` returned 200; Vercel's commit status on `main` is success.
+- Fixture: 38.8 KB, 70 `<time>` entries, 0 images, scripts or poster links; 9 date headings (11 and 12 Nov, then 4 to 10 Dec).
+- Filmhouse film and showtimes pages: 0 times and 0 booking links in the HTML. EbonyLife home: embedded page data is empty.
+- Spec check PASS (40 features, 7 passing). Lint and typecheck clean.
+
+**Not verified**
+- The deploy on Chime's phone.
+- Whether Filmhouse's times come from `/api/` specifically (inferred: they are not in the HTML, and `/api/` is the disallowed data path).
+- Lagocine's exact days ahead beyond the one cinema page read.
+
+**Next**
+- Chime: TMDB API key before Day 2; decide O-12.
+- Day 1: design direction and core lane.
+
 ## Plan review and Day 0, part one (Wed 11 Nov 2026)
 
 **Changed**

@@ -66,6 +66,9 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-30 | **The repo is public from Day 0 (11 Nov 2026), not private until Day 7.** Supersedes that part of D-01, D-17 and L-6. The site still launches on Day 7; the README says it is a work in progress until then. Rename the repo when the name lands (O-1); GitHub redirects the old address. | Chime's call. GitHub would not run Actions on the private repo without a working payment method, and the budget is $0. Public repos run Actions free. It also removes the Vercel bot-commit problem (O-8). The cost: the unfinished work and the build log are visible from the start. |
 
+| D-31 | **TMDB's API terms are read; closes O-6.** What they require of us: non-commercial use only (section 2.A); never cache TMDB data for longer than 6 months (1.C), so `data/credits.json` is re-fetched at least that often (the weekly re-check covers it); the TMDB logo and the not-endorsed notice shown prominently (section 3); nothing that misleads about where the data comes from. No rate limit is stated. Chime still needs a free API key before Day 2. | Claude read https://www.themoviedb.org/api-terms-of-use on 11 Nov 2026 after Chime asked to move on from reading it. |
+| D-32 | **Audit result (11 Nov 2026): no source can be cleared on robots and terms alone.** Lagocine is readable but is another person's compiled work (asked). Filmhouse and EbonyLife put no times in their HTML. Genesis needs a written yes (D-29). Silverbird's Veezi page is readable, but Silverbird's own terms forbid copying its content or linking to its site without written permission (O-12). So the site is tier C (sample data, D-23) until a reply arrives. The one fixture is Silverbird Ikeja's Veezi listing, cut down (D-24). | Each finding is quoted in `data/sources.json`. Being plain about it now keeps Day 7 honest. |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -92,6 +95,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-8 | **Does Vercel Hobby deploy commits made by the refresh bot** on a private repo? Checked 11 Nov: Vercel's help page says that on a private repo the person pushing must be the owner of the Hobby team, and forum reports show deploys blocked when the commit author is someone else. No source covers a bot specifically. It stops mattering on Day 7 (public repo); before then the workflow can commit under Chime's GitHub identity. Vercel is still workable. | Chime decides O-4 |
 | O-9 | **Budget numbers** (D-21): measured; D-26 proposes 160 KB JS and 200 KB total. Confirm or change. | Chime |
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
+| O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
 
 ### Data permission status (O-2)
@@ -99,10 +103,10 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | Source | Robots.txt (11 Nov) | Terms read | Asked | Reply | Status |
 | --- | --- | --- | --- | --- | --- |
 | Lagocine | Allows all | No terms page found (home links only to privacy) | 11 Nov (contact@lagocine.com) | — | Not cleared |
-| Filmhouse (www.filmhouseng.com) | Allows public pages; disallows `/api/` and every `/select-tickets` page | No terms link found; privacy policy not read | 11 Nov (onlinesupport@filmhouseng.com) | — | Not cleared |
+| Filmhouse (www.filmhouseng.com) | Allows public pages; disallows `/api/` and every `/select-tickets` page | Read `/terms-conditions`: nothing on automated access. Times are not in the HTML | 11 Nov (onlinesupport@filmhouseng.com) | — | Not cleared |
 | Genesis (genesiscinemas.com) | Allows `/`, with the content signal `use=reference`, `ai-train=no` | Read: covers ticket sales only, nothing on automated access | Not yet | — | Not cleared (O-11) |
-| EbonyLife (ebonylifecinemas.com) | Allows all (no rules) | No terms link found | Not yet | — | Not cleared |
-| Silverbird (Veezi) | Veezi allows `/sessions/`, disallows `/purchase/`; silverbirdcinemas.com carries `use=reference` | No terms link on the Veezi page | Not yet | — | Not cleared |
+| EbonyLife (ebonylifecinemas.com) | Allows all (no rules) | No terms page. Times are not in the HTML | Not yet | — | Not cleared |
+| Silverbird (Veezi) | Veezi allows `/sessions/`, disallows `/purchase/`; silverbirdcinemas.com carries `use=reference` | silverbirdcinemas.com terms forbid copying and linking without written permission (O-12) | Not yet | — | Not cleared |
 | Syticks API | `api.syticks.com` did not resolve | No | Not yet | — | Not cleared |
 | Showtimes NG | `use=reference`, `ai-train=no` (6 Nov) | n/a | Not planned | — | **Do not use** |
-| TMDB | n/a (API) | FAQ read; full terms pending (O-6) | n/a | — | Cleared for non-commercial use with attribution |
+| TMDB | n/a (API) | Full terms read 11 Nov (D-31) | n/a | — | Cleared for non-commercial use with attribution |

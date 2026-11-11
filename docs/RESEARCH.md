@@ -63,3 +63,14 @@ The market research, competitors and sources are in `PRD.md` (6 Nov 2026). This 
 - Google's showtimes cards for Lagos cinemas.
 - Ticketing platforms' Lagos cinema coverage (Nairabox, Syticks, others).
 - TMDB API rate limits and caching rules.
+
+## Source audit findings (11 Nov 2026)
+
+One manual request per page, with the named user agent. Full quotes are in `data/sources.json`.
+
+- **Veezi (Silverbird Ikeja):** `ticketing.eu.veezi.com/sessions/?siteToken=9chn7w68550a7sxgexpdng2ndm`. Server-rendered. Structure: `#sessionsByDateConent > .date > h3.date-title` then `.film` blocks with `h3.title`, `span.censor`, and `ul.session-times li a[href*="/purchase/"] time`. Dates have no year ("Wednesday 11, November"); times are 12-hour ("10:40 AM"). Full programme for today and tomorrow, plus a few advance dates.
+- **Filmhouse:** listing pattern `/movies/<film-slug>/showtimes/<yyyy-mm-dd>?location=all` (from the sitemap and a film page). The page is a skeleton: no times and no booking links in the HTML. robots.txt disallows `/api/`.
+- **EbonyLife:** a static shell; its embedded page data is empty.
+- **Lagocine:** `/cinema/<id>/` and `/day/<yyyy-mm-dd>/` are static HTML with times, ratings and addresses in the page.
+- **Genesis:** the home page HTML lists `/<site>/booknow/<id>` links for every location.
+- **TMDB terms:** non-commercial only; cache for at most 6 months; logo and notice required (D-31).

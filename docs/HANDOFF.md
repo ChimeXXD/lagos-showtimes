@@ -1,27 +1,31 @@
 # Handoff: read this first when you pick the project back up
 
-## Latest: plan review done, Day 0 half done, Wed 11 Nov 2026
+## Latest: Day 0 done except the TMDB key, Wed 11 Nov 2026
 
 ### Where it stands
-- **Plan review** (`docs/PLAN-REVIEW.md`) approved by Chime. New decisions D-18 to D-25: a static page per area, credits wording fixed plus a manual credits file, sample data on today's dates, budget from measurement, four added Must features, launch tiers, cut-down fixtures.
-- **Scaffold exists** and lint, typecheck, unit tests (3) and build pass locally. Home is a placeholder; tokens are placeholders until Day 1.
-- **Empty-app weight measured:** 131.9 KB JS, 136.1 KB total, gzipped. D-26 proposes 160 KB JS and 200 KB total per page; provisional until Chime confirms (O-9).
-- **Git:** pushed to `ChimeXXD/lagos-showtimes`, **public from Day 0 (D-30)** because GitHub would not run Actions on the private repo without a payment method. Playwright passes locally (1 of 1). No Vercel deploy yet.
-- **Outreach:** emails to Lagocine and Filmhouse sent 11 Nov. Host is Vercel (D-27); budget confirmed (D-28); Genesis and Silverbird's own site need a written yes (D-29).
-- **Source audit, part one:** robots.txt for every host is in `data/sources.json`. Nothing is `cleared`.
-  - Lagocine and EbonyLife allow everything. Veezi allows `/sessions/` pages.
-  - Filmhouse allows public pages but disallows `/api/` and all `/select-tickets` pages.
-  - Genesis and silverbirdcinemas.com carry the same `use=reference` signal as Showtimes NG (O-11).
-  - `api.syticks.com` did not resolve.
+- **Plan review** (`docs/PLAN-REVIEW.md`) approved. Decisions now run D-01 to D-32. The ones that change the build most: a static page per area (D-18), credits wording and a manual credits file (D-19), sample data on today's dates (D-20), budget 160 KB JS and 200 KB total per page (D-26, D-28), launch tiers (D-23), cut-down fixtures (D-24), repo public from Day 0 (D-30).
+- **Repo:** `ChimeXXD/lagos-showtimes`, public. CI green on `main` (lint, typecheck, unit, build, budget, e2e).
+- **Deploy:** https://lagos-showtimes.vercel.app (Vercel, D-27). Loads; not yet checked on Chime's phone.
+- **Scaffold:** placeholder home page and placeholder tokens until Day 1.
+- **Outreach:** Lagocine and Filmhouse emailed on 11 Nov. No replies yet. One follow-up allowed after a week.
+- **Source audit finished (D-32): nothing can be cleared on robots and terms alone.**
+  - Lagocine: readable static HTML, but its compiled work. Asked.
+  - Filmhouse and EbonyLife: no times in their HTML. Need a yes or a feed.
+  - Genesis: needs a written yes (D-29).
+  - Silverbird via Veezi: readable, but Silverbird's own terms forbid copying and linking without written permission (O-12, open).
+  - So the site is **tier C (sample data)** until a reply arrives.
+- **Fixture:** `tests/fixtures/silverbird/2026-11-11-ikeja.html`, cut down by `scripts/reduce-fixture.ts`. 70 showings across today and tomorrow, plus advance dates. Dates have no year and times are 12-hour.
+- **TMDB terms read (D-31):** non-commercial, cache at most 6 months, logo and notice.
 
 ### Do next
-1. Chime: import the repo in Vercel; read TMDB's terms (O-6) and add the key.
-2. CI is green on the public repo (run 42931829240). Private deploy (D0-4) is the last scaffold item.
-3. Finish the audit: remaining terms, listing URL patterns, days ahead, cut-down fixtures (D-24).
-4. Tick Day 0 in `PLAN.md` and `features.json` with evidence, then Day 1 (design direction + core lane).
+1. Chime: get a free TMDB API key (themoviedb.org > Settings > API) into `.env.local` and the repo's GitHub secret `TMDB_READ_TOKEN`, before Day 2. Decide O-12. Open the deploy on the phone.
+2. **Day 1** (`docs/PLAN.md`): design lane (references, three directions at 390 px, Chime picks one and the name, O-1) and core lane, tests first (`lib/time`, `lib/wording`, `lib/ics`).
+3. Day 2: the first parser is Veezi, from the fixture above.
 
 ### Watch out for
-- Don't fetch any cinema site on a schedule until it is `cleared` (D-08). Fetch booking links never: Filmhouse and Veezi disallow them.
-- The Mac is short of memory. The proof guard refuses test and e2e runs near 80%. Closing Dia and Figma frees about 8.9 GB.
+- Never fetch a cinema site on a schedule until it is `cleared` (D-08). Never fetch booking links: Filmhouse and Veezi disallow them.
+- The repo is public: no personal addresses, keys or full saved pages in commits. Full saved pages live in the git-ignored `tmp/audit/`.
+- The proof guard refuses test runs when the Mac is near 80% memory. Closing Dia and Figma frees about 8.9 GB.
+- The commit gate refuses a commit when the same command also changes files; make edits first, then commit on its own.
 - This Mac runs Node 24.12; CI and `.nvmrc` say 22.
 - Agmen (Tactics Board) is being built on the same Mac: one dev server at a time.

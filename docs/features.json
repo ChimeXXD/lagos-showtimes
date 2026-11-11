@@ -60,11 +60,11 @@
       "title": "Private deploy on the free host",
       "criteria": [
         "deploy URL loads",
-        "not linked publicly"
+        "public from Day 0 (D-30, was: not linked publicly)"
       ],
       "verify": "manual: open the deploy URL on the phone",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "curl https://lagos-showtimes.vercel.app/ -> 200 on 11 Nov 2026; Vercel commit status success on main. Not yet opened on the phone."
     },
     {
       "id": "D0-5",
@@ -77,8 +77,8 @@
         "one fixture saved per reachable source, cut down to listing markup before commit (D-24)"
       ],
       "verify": "node -e \"const s=require('./data/sources.json');console.log(s.sources.map(x=>[x.id,x.robots.checkedAt,x.terms.checkedAt]))\"",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "data/sources.json: robots and terms checked 2026-11-11 for all six candidate sources, with quotes or \"not found\"; listing pattern and days ahead recorded where a listing page is readable; one fixture (Silverbird Ikeja via Veezi), the only source with a readable listing we may save. Lagocine and Genesis have none by choice (awaiting a yes); Filmhouse and EbonyLife have no times in their HTML."
     },
     {
       "id": "D0-6",
@@ -86,12 +86,12 @@
       "priority": "must",
       "title": "Permission emails sent by Chime",
       "criteria": [
-        "askedAt filled for Lagocine and each chain",
+        "askedAt filled for Lagocine and Filmhouse (Chime chose to send these two only)",
         "DECISIONS O-2 table updated"
       ],
       "verify": "manual: Chime confirms",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "Both emails sent 11 Nov 2026 with Chime's approval; Gmail showed \"Message sent\" for each; askedAt set in data/sources.json."
     },
     {
       "id": "D1-1",

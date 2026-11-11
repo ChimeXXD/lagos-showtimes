@@ -234,19 +234,20 @@
       "name": "Silverbird Cinemas Ikeja",
       "chain": "Silverbird",
       "area": "ikeja",
-      "address": "Ikeja City Mall, Ikeja, Lagos (no street address found)",
+      "address": "174/194 Obafemi Awolowo Way, Ikeja City Mall, Alausa, Ikeja, Lagos",
       "geo": null,
       "website": null,
       "bookingHost": "ticketing.eu.veezi.com",
       "lagocinePage": "https://lagocine.com/cinema/silverbird-ikeja/",
       "listedOnLagocine": true,
       "sourceUrls": [
+        "https://ticketing.eu.veezi.com/sessions/?siteToken=9chn7w68550a7sxgexpdng2ndm",
         "https://lagocine.com/cinemas/",
         "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/",
         "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive",
         "https://www.vanguardngr.com/2026/02/top-10-largest-cinemas-in-nigeria-by-ticket-revenue"
       ],
-      "notes": "Most visited Lagos cinema in 2024 (206,440 admissions); top Nigerian cinema by 2025 revenue (5 screens, per Vanguard). Booking via Veezi."
+      "notes": "Most visited Lagos cinema in 2024 (206,440 admissions); top Nigerian cinema by 2025 revenue (5 screens, per Vanguard). Booking via Veezi. Address as shown on its Lagocine page, 11 Nov 2026. Veezi sessions page found via that page and silverbirdcinemas.com."
     },
     {
       "id": "silverbird-galleria",

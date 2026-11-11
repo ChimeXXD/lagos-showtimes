@@ -56,10 +56,10 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [x] Scripts: `lint`, `typecheck`, `test`, `test:e2e`, `build`, `budget`, `refresh`; one Vitest test and one Playwright test pass
 - [x] CI (`.github/workflows/ci.yml`) green on `main` (run 42931829240)
 - [x] Measure the empty app's transferred size and JS; set the budget from it and log it as a decision (D-21, O-9)
-- [ ] Private deploy on the chosen host (preview protected or unlisted)
-- [ ] **Data-source audit**: for each source in DECISIONS O-2, read robots.txt and terms, quote the relevant lines, note the listing URL pattern and how many days ahead it publishes. Fill `data/sources.json` (format in `DATA.md`). Save one listing page per source to `tmp/` by hand-triggered single request, then commit a cut-down copy (listing markup only) to `tests/fixtures/<source>/<date>.html` (D-24)
-- [ ] **Chime sends the outreach emails** (`docs/OUTREACH.md`): Lagocine first, then Filmhouse, Genesis, EbonyLife, Silverbird, Syticks. Log "Asked" dates in DECISIONS
-- [ ] Chime reads TMDB's full API terms (O-6); get a TMDB API key into `.env.local` and GitHub Secrets
+- [x] Private deploy on the chosen host (preview protected or unlisted)
+- [x] **Data-source audit**: for each source in DECISIONS O-2, read robots.txt and terms, quote the relevant lines, note the listing URL pattern and how many days ahead it publishes. Fill `data/sources.json` (format in `DATA.md`). Save one listing page per source to `tmp/` by hand-triggered single request, then commit a cut-down copy (listing markup only) to `tests/fixtures/<source>/<date>.html` (D-24)
+- [x] **Chime sends the outreach emails** (`docs/OUTREACH.md`): Lagocine first, then Filmhouse, Genesis, EbonyLife, Silverbird, Syticks. Log "Asked" dates in DECISIONS
+- [ ] TMDB terms read by Claude (D-31). Still to do: Chime gets a TMDB API key into `.env.local` and GitHub Secrets
 
 ### Day 1: Design direction (D-13) + core lane (D-14)
 - [ ] Collect 30–50 references by surface (`docs/design/REFERENCES.md`); images stay local
