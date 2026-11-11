@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Illustrations and icon · Sinima</title>
+<!-- Board only. The site ships its own 25 KB copy of Outfit. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="board.css">
+<link rel="stylesheet" href="pick.css">
+<link rel="stylesheet" href="art.css">
+</head>
+<body class="has-pickbar">
+<header class="board-top">
+  <h1 class="board-title" data-testid="art.title">Illustrations and icon</h1>
+  <p class="board-lede" data-testid="art.lede">Two choices. First the drawing style, shown on the "nothing showing" screen with the Pinterest references it comes from. Then the app icon. These are first drafts drawn in code: pick the direction and I'll refine it.</p>
+  <div class="board-controls">
+    <div class="seg" role="group" aria-label="Light or dark">
+      <button type="button" data-theme-set="light" aria-pressed="true" data-testid="board.theme.light">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false" data-testid="board.theme.dark">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="direction" aria-labelledby="art-style-title">
+    <h2 class="direction-name" id="art-style-title" data-testid="art.style.title">1. Drawing style</h2>
+    <div id="styles" class="art-styles"></div>
+    <figure class="art-ref art-ref-wide">
+      <figcaption data-testid="art.lagos.caption">Lagos references, for what the drawings could show later (a danfo, the skyline). From Pinterest.</figcaption>
+      <img src="images/ref-lagos.jpg" alt="Pinterest results for Lagos illustrations: yellow danfo buses and skyline line drawings" loading="lazy" data-testid="art.lagos.image">
+    </figure>
+  </section>
+
+  <section class="direction" aria-labelledby="art-icon-title">
+    <h2 class="direction-name" id="art-icon-title" data-testid="art.icon.title">2. App icon</h2>
+    <p class="board-note" data-testid="art.icon.note">Each icon is shown large, at home-screen size with its label, and at browser-tab size. A good icon still reads at the smallest size.</p>
+    <div id="icons" class="art-icons"></div>
+    <div class="art-refs">
+      <figure class="art-ref">
+        <figcaption data-testid="art.ref.marks.caption">Reference: simple black and white marks. From Pinterest.</figcaption>
+        <img src="images/ref-icon-marks.jpg" alt="Pinterest results for minimal black and white app icons and letter marks" loading="lazy" data-testid="art.ref.marks.image">
+      </figure>
+      <figure class="art-ref">
+        <figcaption data-testid="art.ref.cinema.caption">Reference: cinema symbols (ticket, clapper, reel). From Pinterest.</figcaption>
+        <img src="images/ref-icon-cinema.jpg" alt="Pinterest results for cinema icons: tickets, clapperboards and film reels" loading="lazy" data-testid="art.ref.cinema.image">
+      </figure>
+    </div>
+  </section>
+</main>
+
+<section class="pick-more" aria-labelledby="art-note-title">
+  <h2 class="direction-name" id="art-note-title" data-testid="art.note.title">Anything to change?</h2>
+  <label class="pick-label" for="art-note" data-testid="art.note.label">Optional. For example: "style 3 but with a danfo", or "icon 2 in blue".</label>
+  <textarea id="art-note" class="pick-note" rows="3" data-testid="art.note"></textarea>
+</section>
+
+<div class="pickbar" role="region" aria-label="Your pick">
+  <div class="pick-group">
+    <span class="pick-legend" id="art-style-legend" data-testid="art.pick.style.legend">Style</span>
+    <div class="seg" role="group" aria-labelledby="art-style-legend" id="style-buttons"></div>
+  </div>
+  <div class="pick-group">
+    <span class="pick-legend" id="art-icon-legend" data-testid="art.pick.icon.legend">Icon</span>
+    <div class="seg" role="group" aria-labelledby="art-icon-legend" id="icon-buttons"></div>
+  </div>
+  <div class="pick-group pick-send">
+    <button type="button" class="pick-copy" id="art-copy" data-testid="art.copy">Copy my pick</button>
+    <span class="pick-status" id="art-status" role="status" data-testid="art.status">Choose a style and an icon.</span>
+  </div>
+</div>
+
+<script defer src="art.js"></script>
+</body>
+</html>

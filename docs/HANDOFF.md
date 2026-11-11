@@ -1,6 +1,6 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 design lane, direction B and the name Sinima picked; Vercel rename waiting on Chime (Wed 11 Nov 2026, late)
+## Now: Day 1 design lane, direction B and the name Sinima picked; renamed everywhere (Wed 11 Nov 2026, late)
 
 Read this section first. The older sections below are still right for everything else.
 
@@ -22,7 +22,7 @@ Read this section first. The older sections below are still right for everything
 | App, package, user agent (`SinimaBot`), README, CLAUDE.md, docs, design pages | Done and pushed. Old log entries and old decisions keep "Lagos Showtimes" on purpose. |
 | GitHub repo | Done: `ChimeXXD/sinima`. GitHub redirects the old address. The local remote points at the new one. |
 | Project folder | Done: `Projects/Personal Projects/Sinima`. Start new sessions from there. Claude's memory for the project was copied to the new folder's memory. |
-| Vercel project and address | **Not done.** Claude could not sign in (no Vercel login in the browser it drives, no Vercel CLI). Chime does it: Vercel dashboard > the project > Settings > General > Project Name: `sinima`; then Settings > Domains: add `sinima.vercel.app` if it is free. Then tell Claude the new address so the repo's homepage link and the docs can be updated. |
+| Vercel project and address | Done by Chime: the project is `sinima-app` and the site is https://sinima-app.vercel.app (`sinima` was taken). The old address no longer loads. The repo's homepage link points at the new one. |
 
 ### Direction B is in the app (11 Nov, night)
 - UI brief §1 to 3 are written. Tokens, type sizes and radii are in `src/styles/tokens.css` (Tailwind's theme; its own colour palette is off, D-38). Outfit is self-hosted at 25.5 KB (D-37).
@@ -30,9 +30,8 @@ Read this section first. The older sections below are still right for everything
 - Poster source and cost are not settled: decide on Day 2 with the TMDB work (UI brief §1).
 
 ### Do next
-1. **Chime renames the Vercel project** (steps in the table above) and gives the new address.
-2. **Illustration and icon references from Pinterest (O-13)**, shown to Chime on an HTML page, then the empty state and the icon draft.
-3. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
+1. **Chime picks a drawing style and an icon** on `docs/design/direction-board/art.html` (three styles on the empty state with their Pinterest references, six icon drafts; "Copy my pick" gives one line). The Pinterest screenshots are local only (`direction-board/images/`, git-ignored). Then refine the pick, build the empty state, and export the icon files (favicon, home-screen icon, manifest).
+2. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
 
 ### Not verified on the direction board
 - Seen only in headless Chromium, not in Dia or on a phone.
@@ -84,7 +83,7 @@ Chime plans to start Day 1 on Thu 12 Nov. Start there; nothing else is waiting.
 1. **Plan review.** Claude read every file and wrote `docs/PLAN-REVIEW.md`: what would not work as written, features to add, and the phases. Chime said yes to all of it (D-18 to D-25).
 2. **Scaffold.** Next.js static export with the pinned versions, placeholder home page and tokens, lint, typecheck, unit tests, budget script, Playwright smoke test.
 3. **Budget measured.** The empty app is 131.9 KB JS and 136.1 KB total, gzipped. Limits set at 160 KB JS and 200 KB total per page (D-26, D-28). Chime left the numbers to Claude.
-4. **Host: Vercel** (D-27). Chime deployed it: https://lagos-showtimes.vercel.app.
+4. **Host: Vercel** (D-27). Chime deployed it; since the rename it is https://sinima-app.vercel.app.
 5. **Outreach.** Chime had Claude draft and send two emails from Chime's Gmail in the browser: Lagocine (`contact@lagocine.com`) and Filmhouse (`onlinesupport@filmhouseng.com`). No replies yet.
 6. **Repo made public on Day 0** (D-30). GitHub would not run Actions on a private repo without a payment method, and the budget is $0. History was replaced with one clean commit first, because an early commit held a personal email address.
 7. **Source audit finished** (D-32). Nothing can be cleared on robots and terms alone, except that Lagocine's own rules allow reading it.
@@ -92,7 +91,7 @@ Chime plans to start Day 1 on Thu 12 Nov. Start there; nothing else is waiting.
 
 ### Where it stands
 - **Repo:** `ChimeXXD/sinima` (renamed from `lagos-showtimes` on 11 Nov), public, `main` at the commit that holds this file. CI green (lint, typecheck, unit, build, budget, e2e).
-- **Deploy:** https://lagos-showtimes.vercel.app loads (HTTP 200); the address changes when Chime renames the Vercel project. Not yet opened on Chime's phone.
+- **Deploy:** https://sinima-app.vercel.app loads (HTTP 200, checked 11 Nov after the rename). Not yet opened on Chime's phone.
 - **Decisions:** D-01 to D-33 in `docs/DECISIONS.md`. Open: O-1 (name), O-3 (push), O-7 (other cities), O-10 (neighbouring areas list).
 - **Features:** 7 of 40 passing in `docs/features.json` (all of Day 0).
 - **Data:** the site runs on sample data through Day 5.

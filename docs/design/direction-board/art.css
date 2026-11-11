@@ -1,0 +1,38 @@
+/* art.html only: drawing styles and icon options, in direction B's look. */
+.art-styles { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--s6); margin: var(--s4) 0 var(--s6); }
+.art-style { display: grid; gap: var(--s3); align-content: start; }
+.art-name { margin: 0; font-size: 17px; font-weight: 700; }
+.art-say { margin: 0; color: var(--muted); font-size: 13px; max-width: 46ch; }
+/* The "nothing showing" screen, cut to the part that matters. */
+.art-frame { display: grid; justify-items: center; gap: var(--s3); padding: var(--s8) var(--s6); border: 1px solid var(--line); border-radius: 28px; background: var(--bg); color: var(--text); font-family: "Outfit", var(--system); text-align: center; }
+.art-frame svg { width: 240px; height: 160px; }
+.art-head { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.2; }
+.art-sub { margin: 0; color: var(--muted); font-size: 15px; }
+.art-cta { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s6); border-radius: 999px; background: var(--accent); color: var(--accent-text); font-size: 15px; font-weight: 600; }
+.art-ref { margin: 0; display: grid; gap: var(--s2); }
+.art-ref figcaption { color: var(--muted); font-size: 13px; }
+.art-ref img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 16px; }
+.art-ref-wide { max-width: 720px; }
+.art-refs { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--s6); margin-top: var(--s6); }
+
+.art-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--s4); margin-top: var(--s4); }
+.art-icon { display: grid; gap: var(--s3); padding: var(--s4); border: 1px solid var(--line); border-radius: 20px; background: var(--bg); }
+.art-sizes { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s4); }
+.art-sizes svg { display: block; }
+.art-home { display: grid; justify-items: center; gap: 4px; }
+.art-home span, .art-tab span { color: var(--text); font: 500 11px/1.2 var(--system); }
+.art-tab { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; }
+
+/* Drawing colours follow the theme. The icon tile is black in both themes. */
+.ink { stroke: var(--text); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.ink-fill { fill: var(--text); }
+.soft { fill: var(--surface); }
+.blue { fill: var(--book); }
+.paper { fill: var(--bg); }
+.ic-tile { fill: #0a0a0a; }
+.ic-glyph { fill: #ffffff; }
+.ic-line { fill: none; stroke: #ffffff; stroke-width: 8; stroke-linecap: round; }
+.ic-blue { fill: #8fb4f5; }
+.ic-cut { fill: #0a0a0a; }
+.ic-letter { fill: #ffffff; font: 600 68px "Outfit", system-ui, sans-serif; }
+.pickbar .seg button { min-width: 44px; }
