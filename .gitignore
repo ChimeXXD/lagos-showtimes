@@ -39,3 +39,6 @@ tmp/
 
 # proof plugin output (design check screenshots)
 .proof/
+
+# Full-size generated mascot sources (the page uses the .webp copies)
+docs/design/logo/mascots/*.png

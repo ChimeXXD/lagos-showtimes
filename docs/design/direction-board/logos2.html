@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima · logo and colour, round two</title>
+<!-- Presentation page. The site ships its own 25 KB copy of Outfit. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="logos2.css">
+</head>
+<body>
+<main class="page">
+  <header class="intro">
+    <p class="eyebrow">Identity · round two</p>
+    <h1>Seven logos, each in its colours</h1>
+    <p class="lede">The one you shortlisted, then six new ones. Logos 1 to 3 are mascots made with the mascot skill and Figma AI. Logos 4 to 6 are marks built from a written design prompt with the logo skill. Every new logo is shown in three colour sets, so you can choose the logo and the colours together. Press "Pick this" under the one you want.</p>
+  </header>
+  <div id="logos"></div>
+  <section class="note">
+    <h2>Anything to mix or change?</h2>
+    <label for="note">Optional. For example: "the owl, but in the Palm colours", or "logo 5 with a different word style".</label>
+    <textarea id="note" rows="3"></textarea>
+  </section>
+</main>
+<div class="bar" role="region" aria-label="Your pick">
+  <p><span class="bar-label">Picked</span> <strong id="picked">Nothing yet</strong></p>
+  <p class="bar-send"><button type="button" id="copy">Copy my pick</button> <span id="status" role="status">Press "Pick this" under a colour set.</span></p>
+</div>
+<script defer src="logos2.js"></script>
+</body>
+</html>
