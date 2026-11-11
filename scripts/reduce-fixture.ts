@@ -12,6 +12,8 @@ type Rule = {
   keep: string;
   /** Removed from inside it, on top of ALWAYS_DROP. */
   drop: string[];
+  /** Elements outside the listing that the parser also reads (a build stamp), kept ahead of it. */
+  alsoKeep?: string[];
   /** Said in the fixture's header comment. */
   kept: string;
   removed: string;
@@ -32,6 +34,22 @@ const RULES: Record<string, Rule> = {
     drop: [".poster-container"],
     kept: "titles, ratings, dates, times, links",
     removed: "page chrome, scripts, styles, the cinema banner and every poster image",
+  },
+  // Lagocine's day page: one card per film, with every showing in Lagos that day (D-33).
+  "lagocine-day": {
+    keep: ".movie-grid",
+    drop: [".next-popover", "button"],
+    alsoKeep: ['meta[name="lagocine-built"]'],
+    kept: "titles, ratings, cinemas, times, formats, booking links, and the page's build stamp",
+    removed: "page chrome, scripts, styles, the pop-ups, every poster image and the embedded film descriptions",
+  },
+  // Lagocine's page for one cinema: one row per film, with its times for each day.
+  "lagocine-cinema": {
+    keep: ".programme",
+    drop: [],
+    alsoKeep: ['meta[name="lagocine-built"]'],
+    kept: "titles, ratings, days, times, booking links, and the page's build stamp",
+    removed: "page chrome, scripts, styles, every poster image and the embedded film descriptions",
   },
 };
 
@@ -78,6 +96,11 @@ const listing = $(rule.keep);
 if (listing.length !== 1) {
   fail(`"${rule.keep}" matched ${listing.length} elements in ${input}, expected 1. Has the page layout changed?`);
 }
+const extras = (rule.alsoKeep ?? []).map((selector) => {
+  const found = $(selector);
+  if (found.length !== 1) fail(`"${selector}" matched ${found.length} elements in ${input}, expected 1.`);
+  return $.html(found);
+});
 listing.find([...ALWAYS_DROP, ...rule.drop].join(", ")).remove();
 listing.find("*").addBack().each((_, el) => {
   if (el.type !== "tag") return;
@@ -89,7 +112,8 @@ listing.find("*").addBack().each((_, el) => {
 listing.find("*").addBack().contents().filter((_, node) => node.type === "comment").remove();
 
 // Collapse the blank lines the removals leave behind.
-const body = ($.html(listing) ?? "")
+const body = [...extras, $.html(listing) ?? ""]
+  .join("\n")
   .split("\n")
   .map((line) => line.trimEnd())
   .filter((line) => line.trim() !== "")

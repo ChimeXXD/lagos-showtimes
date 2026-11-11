@@ -227,8 +227,8 @@
         "times converted to UTC once"
       ],
       "verify": "npm test -- scripts/sources",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- scripts/sources` 20 pass on three saved pages cut down by reduce-fixture (D-24). Lagocine day page: 353 rows, 31 films, 20 cinemas, counts per cinema, 207 booking links and 52 formats, all matching counts taken from the saved page with a separate script. Lagocine cinema page and Silverbird's Veezi page: 70 rows each, and the two agree on every start time. Every start time goes through lagosLocalToUtc once (10:00 Lagos is 09:00Z; 12-hour times, noon and midnight covered); a time with another offset, a wrong weekday or a changed layout throws."
     },
     {
       "id": "D2-3",
