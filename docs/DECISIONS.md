@@ -82,6 +82,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-39 | **Illustrations are in the Doodle style:** hand-drawn black line drawings with a small friendly character (first seen with popcorn on the empty state), drawn in code so they cost almost nothing to load. The character needs to stay the same across screens. The app icon is still open (O-13). | Chime's pick on `docs/design/direction-board/art.html`, 11 Nov 2026, from three styles (Line, Bold shapes, Doodle). |
 
+| D-40 | **The logo is "Screen face":** a cinema screen with two eyes glancing sideways, with the wordmark "Sinima" in Outfit 600. Black on white or white on black, with the eyes in the Book blue. Source files: `docs/design/logo/sinima-mark.svg` and `sinima-icon.svg`. Presented with the colours and type on `docs/design/direction-board/identity.html`. Still a first presentation: Chime may ask for refinements before it goes into the app (favicon, home-screen icon, manifest). Closes the icon part of O-13. | Chime shortlisted only this one of 20 options on `logos.html`, 11 Nov 2026. |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -110,7 +112,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 | O-11 | **Genesis and Silverbird's own site carry the same `use=reference` signal as Showtimes NG.** Treat them the same way (written permission only), or read the signal as allowing a listing that links back? Proposal: written permission only. | Chime |
 | O-12 | **Silverbird through Veezi.** Veezi's robots.txt allows the listing page and it has no terms, but silverbirdcinemas.com's terms forbid copying and linking without written permission. Proposal: treat Silverbird as needing a written yes, and send it the chain email. | Chime |
 | O-10 | **Neighbouring areas list** (D-22): Claude drafts on Day 2, Chime confirms. | Chime |
-| O-13 | **The app icon and logo.** Illustration style is settled (D-39: Doodle). Chime found the first six icon drafts too basic and asked for 20 logo options from the logo skill; they are on `docs/design/direction-board/logos.html` for Chime to shortlist two or three, which then get refined and exported (favicon, home-screen icon, manifest). | Chime |
+| O-13 | **Logo sign-off.** The logo is chosen (D-40) and presented on `identity.html`. Open: Chime's sign-off or changes, then export into the app (favicon, home-screen icon, manifest) and refine the doodle character (D-39). | Chime |
 
 ### Data permission status (O-2)
 

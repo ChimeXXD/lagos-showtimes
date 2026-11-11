@@ -30,7 +30,7 @@ Read this section first. The older sections below are still right for everything
 - Poster source and cost are not settled: decide on Day 2 with the TMDB work (UI brief §1).
 
 ### Do next
-1. **Chime shortlists logos** on `docs/design/direction-board/logos.html` (20 options from the logo skill; "Copy my shortlist" gives one line). Chime picked the **Doodle** illustration style (D-39) and found the first six icon drafts on `art.html` too basic. Then: refine the shortlist, export the icon files (favicon, home-screen icon, manifest), and build the empty state with the doodle character. The Pinterest screenshots are local only (`direction-board/images/`, git-ignored).
+1. **Chime signs off the identity** on `docs/design/direction-board/identity.html`: the Screen face logo (D-40) with the colours, type and two phone screens. Doodle is the illustration style (D-39). After sign-off: put the icon into the app (favicon, home-screen icon, manifest), refine the doodle character, build the empty state. **When Chime says "present" a logo or identity, this page is the standard:** lockups on dark and light, mark, app icon, one colour, favicon at real sizes, colour swatches with names and uses, type, and the thing in use.
 2. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
 
 ### Not verified on the direction board

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima identity</title>
+<!-- Presentation page. The site ships its own 25 KB copy of Outfit. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..700&display=swap">
+<link rel="stylesheet" href="identity.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- The mark: a cinema screen with two eyes glancing sideways. Colours come from where it is used. -->
+  <symbol id="mark" viewBox="16 27 68 46">
+    <rect x="16" y="27" width="68" height="46" rx="15" fill="currentColor"/>
+    <circle cx="39" cy="50" r="9" fill="var(--hole)"/><circle cx="62" cy="50" r="9" fill="var(--hole)"/>
+    <circle cx="42.5" cy="51" r="4.5" fill="var(--pupil)"/><circle cx="65.5" cy="51" r="4.5" fill="var(--pupil)"/>
+  </symbol>
+</svg>
+
+<main class="page">
+  <header class="intro">
+    <p class="eyebrow">Identity · first presentation</p>
+    <h1>Sinima</h1>
+    <div class="intro-row">
+      <p class="lede">Sinima is how Lagos says cinema. The mark is a cinema screen that looks back at you: two eyes glancing sideways at whatever is about to start. Black, white, and one calm blue.</p>
+      <ul class="chips"><li>Friendly</li><li>Plain-spoken</li><li>Quick</li></ul>
+    </div>
+  </header>
+
+  <section class="heroes" aria-label="Primary lockup">
+    <figure class="hero on-ink">
+      <div class="lockup"><svg class="lockup-mark"><use href="#mark"/></svg><span class="word">Sinima</span></div>
+      <p class="tagline">What's starting soon?</p>
+      <figcaption>Primary lockup on Ink</figcaption>
+    </figure>
+    <figure class="hero on-paper">
+      <div class="lockup"><svg class="lockup-mark"><use href="#mark"/></svg><span class="word">Sinima</span></div>
+      <p class="tagline">What's starting soon?</p>
+      <figcaption>Primary lockup on Paper</figcaption>
+    </figure>
+  </section>
+
+  <section class="four" aria-label="The mark in use">
+    <figure class="card on-paper">
+      <div class="stage"><svg style="width:104px;height:70px"><use href="#mark"/></svg></div>
+      <figcaption>Mark</figcaption>
+    </figure>
+    <figure class="card">
+      <div class="stage"><span class="icon on-ink" style="--s:104px"><svg><use href="#mark"/></svg></span></div>
+      <figcaption>App icon</figcaption>
+    </figure>
+    <figure class="card">
+      <div class="stage">
+        <span class="icon on-paper mono outline" style="--s:76px"><svg><use href="#mark"/></svg></span>
+        <span class="icon on-ink mono" style="--s:76px"><svg><use href="#mark"/></svg></span>
+      </div>
+      <figcaption>One colour</figcaption>
+    </figure>
+    <figure class="card">
+      <div class="stage stage-col">
+        <div class="tab"><span class="icon on-ink" style="--s:16px"><svg><use href="#mark"/></svg></span><span>Sinima · Starting soon in Lekki</span></div>
+        <div class="sizes">
+          <span class="icon on-ink" style="--s:48px"><svg><use href="#mark"/></svg></span>
+          <span class="icon on-ink" style="--s:32px"><svg><use href="#mark"/></svg></span>
+          <span class="icon on-ink" style="--s:16px"><svg><use href="#mark"/></svg></span>
+        </div>
+      </div>
+      <figcaption>Favicon at actual size: tab, 48, 32, 16</figcaption>
+    </figure>
+  </section>
+
+  <section class="shelf" aria-label="App icon sizes">
+    <div class="shelf-icons">
+      <span class="icon on-ink shadow" style="--s:168px"><svg><use href="#mark"/></svg></span>
+      <span class="icon on-ink shadow" style="--s:84px"><svg><use href="#mark"/></svg></span>
+      <span class="icon on-ink shadow" style="--s:48px"><svg><use href="#mark"/></svg></span>
+      <span class="icon on-ink shadow" style="--s:24px"><svg><use href="#mark"/></svg></span>
+    </div>
+    <div class="shelf-home">
+      <span class="icon on-ink shadow" style="--s:60px"><svg><use href="#mark"/></svg></span>
+      <span class="home-label">Sinima</span>
+      <p>On a phone's home screen, with its label.</p>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="card pad">
+      <p class="eyebrow">Colour</p>
+      <ul class="swatches">
+        <li><span class="sw" style="background:#0a0a0a"></span><b>Ink</b><code>#0A0A0A</code><small>Text, start times, black capsules, the app icon</small></li>
+        <li><span class="sw" style="background:#2f5fb3"></span><b>Screen blue</b><code>#2F5FB3</code><small>The Book button and the eyes. Nothing else</small></li>
+        <li><span class="sw" style="background:#8fb4f5"></span><b>Sky</b><code>#8FB4F5</code><small>Screen blue in dark mode</small></li>
+        <li><span class="sw line" style="background:#f3f3f3"></span><b>Mist</b><code>#F3F3F3</code><small>Tiles, banners, quiet surfaces</small></li>
+        <li><span class="sw line" style="background:#ffffff"></span><b>Paper</b><code>#FFFFFF</code><small>Page background</small></li>
+      </ul>
+      <ul class="minor">
+        <li><span class="dot" style="background:#555555"></span><b>Grey</b> <code>#555555</code> cinema names and "read 2 hours ago" lines</li>
+        <li><span class="dot" style="background:#8a4b00"></span><b>Amber</b> <code>#8A4B00</code> old data, always with words</li>
+        <li><span class="dot" style="background:#e2e2e2"></span><b>Line</b> <code>#E2E2E2</code> hairlines and outlines</li>
+      </ul>
+    </div>
+    <div class="card pad">
+      <p class="eyebrow">Type</p>
+      <p class="type-head">What's starting soon near you?</p>
+      <p class="type-note">Outfit 600 · headlines, start times and the wordmark</p>
+      <p class="type-time"><span>19:30</span><span class="soon">Starts in 45 min</span></p>
+      <p class="type-body">Every Lagos cinema's showtimes in one place. Each time says where it came from and how fresh it is.</p>
+      <p class="type-note">Outfit 400 · body and interface</p>
+      <div class="buttons"><span class="btn book">Book</span><span class="btn black">Lekki ▾</span><span class="btn ghost">Remind me</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow out">In the app, on a phone</p>
+    <div class="phones">
+      <div class="phone on-paper">
+        <div class="p-top"><span class="p-brand"><svg><use href="#mark"/></svg>Sinima</span><span class="btn black sm">Lekki ▾</span></div>
+        <h2 class="p-title">Starting soon in Lekki</h2>
+        <ul class="p-rows">
+          <li><span class="p-poster">Clayface</span><div><p class="p-time">19:00 <span class="soon">Starts in 15 min</span></p><p class="p-film">Clayface</p><p class="p-meta">Filmhouse Lekki IMAX · IMAX</p><p class="p-fresh">From Lagocine, which read Filmhouse's site 25 min ago</p><span class="btn book sm">Book</span></div></li>
+          <li><span class="p-poster">Street Fighter</span><div><p class="p-time">20:10 <span class="soon">Starts in 1 h 25 min</span></p><p class="p-film">Street Fighter</p><p class="p-meta">Filmhouse Palms Mall Lekki · 3D</p><p class="p-fresh">From Lagocine, which read Filmhouse's site 25 min ago</p><span class="btn book sm">Book</span></div></li>
+        </ul>
+      </div>
+      <div class="phone on-ink dark">
+        <div class="p-top"><span class="p-brand"><svg><use href="#mark"/></svg>Sinima</span><span class="btn black sm">Lekki ▾</span></div>
+        <div class="p-empty">
+          <svg viewBox="0 0 240 160" class="doodle" role="img" aria-label="A small doodle character holding popcorn">
+            <path d="M84 136c-4-34 8-62 33-62s36 28 31 62"/><circle class="f" cx="108" cy="98" r="2.8"/><circle class="f" cx="127" cy="98" r="2.8"/><path d="M110 109q8 7 15 0"/>
+            <path d="M96 76q-3-12 6-16M136 76q4-10-3-17"/><path d="M150 112l5 26h20l5-26z"/><path d="M158 112l2 26M172 112l-2 26"/><path d="M152 110q2-9 9-5q3-9 10-2q8-4 8 7"/><path d="M146 118q-10 4-14 12"/>
+            <path d="M40 140q10-5 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0"/><path d="M52 60v10M47 65h10M190 40v8M186 44h8"/>
+          </svg>
+          <p class="p-film big">Nothing starts in the next 2 hours in Lekki.</p>
+          <p class="p-meta">Here's later tonight.</p>
+          <span class="btn black">See later tonight</span>
+        </div>
+      </div>
+    </div>
+    <p class="foot">Sample showings for this page. The drawing is the Doodle style you picked, as a first draft.</p>
+  </section>
+</main>
+</body>
+</html>
