@@ -9,7 +9,7 @@
       "owner": "Lagocine (operator not named)",
       "homepage": "https://lagocine.com/",
       "listingUrlPattern": "https://lagocine.com/cinema/<cinema-id>/ and https://lagocine.com/day/<yyyy-mm-dd>/",
-      "method": "permission-feed",
+      "method": "public-page",
       "status": "pending",
       "robots": {
         "checkedAt": "2026-11-11",
@@ -54,7 +54,7 @@
         "thc-agege",
         "viva-ikeja"
       ],
-      "notes": "Preferred source if it agrees (D-07). Says it reads each cinema's own pages daily, sells nothing, takes no commission. 11 Nov: home page is static HTML (build stamp lagocine-built 2026-11-11T00:05:05+01:00). Still needs permission: robots allowing crawling is not a licence to republish (PRD). Audit: cinema and day pages are static HTML with the times in the page. The sitemap lists day pages for today plus six days and some December dates; the Silverbird Ikeja page carried a full programme for today and tomorrow only. No fixture committed: waiting for the reply to the 11 Nov email."
+      "notes": "Preferred source if it agrees (D-07). Says it reads each cinema's own pages daily, sells nothing, takes no commission. 11 Nov: home page is static HTML (build stamp lagocine-built 2026-11-11T00:05:05+01:00). Still needs permission: robots allowing crawling is not a licence to republish (PRD). Audit: cinema and day pages are static HTML with the times in the page. The sitemap lists day pages for today plus six days and some December dates; the Silverbird Ikeja page carried a full programme for today and tomorrow only. No fixture committed: waiting for the reply to the 11 Nov email. D-33 (11 Nov): becomes the live source on Day 6 with full credit unless it objects first; status stays pending until Chime confirms cleared that day."
     },
     {
       "id": "filmhouse",

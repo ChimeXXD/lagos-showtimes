@@ -71,7 +71,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 
 ### Day 2: Data
 - [ ] `lib/data/types.ts` and `validate.ts` from `DATA.md`; the DATA.md example validates; broken fixtures fail with clear messages
-- [ ] Parsers for the first two sources (Lagocine if it agrees, else the biggest cleared chain), tests first on saved fixtures
+- [ ] Parsers for two sources, tests first on saved fixtures: Lagocine (the live source from Day 6, D-33) and Veezi (the Silverbird Ikeja fixture). Save and cut down one Lagocine cinema page and one day page first (D-24)
 - [ ] `scripts/refresh.ts --fixtures` writes `data/showtimes.json` and the per-area files from fixtures, with dates moved onto today and tomorrow (D-18, D-20)
 - [ ] `scripts/tmdb.ts`: match films, read keywords 179430/179431, write `data/credits.json`; `data/tmdb-overrides.json` and `data/credits-manual.json` merged in (D-19, D-25); report the share of films with an answer
 - [ ] Draft the neighbouring areas list for Chime to confirm (O-10)
@@ -104,7 +104,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [ ] Budget check and Lighthouse ≥ 90 (mobile) on home and film pages
 - [ ] Accessibility: keyboard, VoiceOver, TalkBack, 200% zoom, reduced motion
 - [ ] Real phones on mobile data: Chime's iPhone and a mid-range Android; note real load times
-- [ ] Refresh workflow: enable the schedule only for `cleared` sources; otherwise leave it disabled and say so in the README
+- [ ] Refresh workflow: if Lagocine has not objected, Chime confirms it as `cleared` and the schedule goes on (D-33); otherwise leave it disabled and say so in the README
 - [ ] `/about` complete: sources, TMDB logo and notice, takedown
 
 ### Day 7: Portfolio and public

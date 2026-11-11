@@ -13,12 +13,12 @@
   - Filmhouse and EbonyLife: no times in their HTML. Need a yes or a feed.
   - Genesis: needs a written yes (D-29).
   - Silverbird via Veezi: readable, but Silverbird's own terms forbid copying and linking without written permission (O-12, open).
-  - So the site is **tier C (sample data)** until a reply arrives.
+  - So the site runs on sample data through Day 5. **On Day 6 Lagocine becomes the live source, with credit, unless it has objected (D-33).** No more emails.
 - **Fixture:** `tests/fixtures/silverbird/2026-11-11-ikeja.html`, cut down by `scripts/reduce-fixture.ts`. 70 showings across today and tomorrow, plus advance dates. Dates have no year and times are 12-hour.
 - **TMDB terms read (D-31):** non-commercial, cache at most 6 months, logo and notice.
 
 ### Do next
-1. Chime: get a free TMDB API key (themoviedb.org > Settings > API) into `.env.local` and the repo's GitHub secret `TMDB_READ_TOKEN`, before Day 2. Decide O-12. Open the deploy on the phone.
+1. Chime: get a free TMDB API key (themoviedb.org > Settings > API) into `.env.local` and the repo's GitHub secret `TMDB_READ_TOKEN`, before Day 2. Open the deploy on the phone.
 2. **Day 1** (`docs/PLAN.md`): design lane (references, three directions at 390 px, Chime picks one and the name, O-1) and core lane, tests first (`lib/time`, `lib/wording`, `lib/ics`).
 3. Day 2: the first parser is Veezi, from the fixture above.
 
