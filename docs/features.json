@@ -104,8 +104,8 @@
         "images git-ignored"
       ],
       "verify": "grep -c '^| [0-9]' docs/design/REFERENCES.md",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: grep returns 52 picks (Chime liked 52 of 127 references shown; 2 over the 30-50 target). Pattern summary written. `git check-ignore docs/design/reference-board/images/x.webp` matches .gitignore."
     },
     {
       "id": "D1-2",
@@ -130,8 +130,8 @@
         "check-tokens lint passes"
       ],
       "verify": "npm run lint",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm run lint` clean (check-tokens: no hard-coded colours in src/). tests/unit/tokens.test.ts 26 pass (roles, contrast, colour check). tests/e2e/theme.spec.ts 6 pass (light and dark palette, font 25.5 KB, no sideways scroll at 390, 360, 320). UI brief §1-3 written for direction B."
     },
     {
       "id": "D1-4",

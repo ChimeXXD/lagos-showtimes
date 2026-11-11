@@ -1,17 +1,13 @@
 /*
  * Design tokens. The only file where colour values may be written (scripts/check-tokens.mjs).
- * PLACEHOLDER VALUES: neutral defaults for the Day 0 scaffold. The real palette, type scale and
- * motion come from the direction Chime picks on Day 1 (D-13, UI brief §2).
+ * Direction B · Poster (D-35) on palette G with a calm blue Book button (D-34). UI brief §2.
+ * Tailwind reads these as its theme, so `bg-surface`, `text-time` and `rounded-card` exist and
+ * Tailwind's own colour palette does not (`--color-*: initial`).
  */
 :root {
   color-scheme: light dark;
 
-  --color-bg: light-dark(#ffffff, #111111);
-  --color-surface: light-dark(#f4f4f2, #1c1c1c);
-  --color-text: light-dark(#141414, #f2f2f0);
-  --color-text-muted: light-dark(#55554f, #a8a8a2);
-  --color-focus: light-dark(#0b57d0, #9ec1ff);
-
+  /* Spacing scale (UI brief §2). Tailwind's p-1, p-2 … use the same 4 px step. */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -19,5 +15,49 @@
   --space-6: 24px;
   --space-8: 32px;
 
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Motion (UI brief §3). Nothing needs motion to be understood. */
+  --motion-fast: 120ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@theme {
+  --color-*: initial;
+
+  /* Colour roles: light-dark(light, dark). Contrast is tested in tests/unit/tokens.test.ts. */
+  --color-bg: light-dark(#ffffff, #0a0a0a);
+  --color-surface: light-dark(#f3f3f3, #1a1a1a);
+  --color-text: light-dark(#0a0a0a, #fafafa);
+  --color-text-muted: light-dark(#555555, #ababab);
+  --color-accent: light-dark(#0a0a0a, #fafafa);
+  --color-accent-text: light-dark(#ffffff, #0a0a0a);
+  --color-book: light-dark(#2f5fb3, #8fb4f5);
+  --color-book-text: light-dark(#ffffff, #06142e);
+  --color-stale: light-dark(#8a4b00, #f2c14e);
+  --color-focus: light-dark(#0b57d0, #9cc2ff);
+  --color-line: light-dark(#e2e2e2, #2c2c2c);
+  /* Stand-in behind a poster while it loads, and when there is none. Dark in both themes. */
+  --color-poster: light-dark(#1f1f1f, #1f1f1f);
+
+  /* Type: Outfit (one 25 KB file, weights 400 to 600), then the phone's own font. */
+  --font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-fresh: 12px;
+  --text-fresh--line-height: 1.35;
+  --text-meta: 13px;
+  --text-meta--line-height: 1.4;
+  --text-body: 15px;
+  --text-body--line-height: 1.4;
+  --text-title: 17px;
+  --text-title--line-height: 1.2;
+  --text-section: 20px;
+  --text-section--line-height: 1.2;
+  --text-time: 26px;
+  --text-time--line-height: 1;
+  --text-page: 28px;
+  --text-page--line-height: 1.15;
+
+  /* Shape: capsules for buttons and chips, soft corners elsewhere. */
+  --radius-chip: 999px;
+  --radius-poster: 12px;
+  --radius-card: 16px;
+  --radius-sheet: 20px;
 }

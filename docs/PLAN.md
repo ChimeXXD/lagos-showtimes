@@ -66,7 +66,8 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [ ] Pattern summary: what the picks share, what to avoid
 - [x] `docs/design/direction-board/index.html`: three directions, each showing Starting soon, a film page with Stay or Go, and a stale-data state, at 390 px wide
 - [x] **Chime picks a direction and the name (O-1)**; log both as decisions (D-35: direction B · Poster; D-36: Sinima)
-- [ ] Fill UI brief §1–3; write `src/styles/tokens.css`; draft icon
+- [x] Fill UI brief §1–3; write `src/styles/tokens.css` (D-37, D-38)
+- [ ] Draft icon, after the illustration references (O-13)
 - [ ] Core lane, tests first: `lib/time/lagos.ts`, `showingState.ts`, `lib/wording/freshness.ts`, `credits.ts`, `lib/ics/ics.ts`
 
 ### Day 2: Data

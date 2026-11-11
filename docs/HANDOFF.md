@@ -24,11 +24,15 @@ Read this section first. The older sections below are still right for everything
 | Project folder | Done: `Projects/Personal Projects/Sinima`. Start new sessions from there. Claude's memory for the project was copied to the new folder's memory. |
 | Vercel project and address | **Not done.** Claude could not sign in (no Vercel login in the browser it drives, no Vercel CLI). Chime does it: Vercel dashboard > the project > Settings > General > Project Name: `sinima`; then Settings > Domains: add `sinima.vercel.app` if it is free. Then tell Claude the new address so the repo's homepage link and the docs can be updated. |
 
+### Direction B is in the app (11 Nov, night)
+- UI brief §1 to 3 are written. Tokens, type sizes and radii are in `src/styles/tokens.css` (Tailwind's theme; its own colour palette is off, D-38). Outfit is self-hosted at 25.5 KB (D-37).
+- New tests: `tests/unit/tokens.test.ts` (contrast from the token values) and `tests/e2e/theme.spec.ts` (what the browser renders). The Day 0 code-review leftovers are closed.
+- Poster source and cost are not settled: decide on Day 2 with the TMDB work (UI brief §1).
+
 ### Do next
 1. **Chime renames the Vercel project** (steps in the table above) and gives the new address.
-2. Write UI brief §1 to 3 for direction B, put the tokens in `src/styles/tokens.css` (also the two code-review leftovers below), and build the locked mockup with `interactions.json`. **Outfit's Latin file measured 32.2 KB, over the 30 KB limit**: cut it to the characters we use, or fall back to the system font. Decide where posters appear.
-3. Illustration and icon references from Pinterest (O-13), then the empty state. Chime agreed this comes after the direction.
-4. Core lane (tests first) has not started: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
+2. **Illustration and icon references from Pinterest (O-13)**, shown to Chime on an HTML page, then the empty state and the icon draft.
+3. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
 
 ### Not verified on the direction board
 - Seen only in headless Chromium, not in Dia or on a phone.

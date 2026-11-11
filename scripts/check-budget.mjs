@@ -14,7 +14,8 @@ const KB = 1024;
 // one area's data. Add each new route to `pages` as it is built, with the data files it fetches
 // (paths under out/): a fetched JSON file is not referenced in the HTML, so it must be listed.
 const BUDGET = {
-  pages: [{ html: "index.html", data: [] }],
+  // The font is loaded from the stylesheet, not the HTML, so it is listed here to be counted.
+  pages: [{ html: "index.html", data: ["fonts/outfit-sinima.woff2"] }],
   jsKb: 160,
   totalKb: 200,
 };

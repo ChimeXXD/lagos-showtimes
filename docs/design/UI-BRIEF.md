@@ -1,29 +1,59 @@
 # UI brief
 
-How each page looks and behaves. **Draft, 6 Nov 2026.** §4–7 (screens, copy, states, test IDs) are ready to build from. §1–3 (direction, tokens, motion) are filled in on Day 1, after Chime picks a direction from `direction-board/` (D-13). Copy marked *new* can change at screen review. All freshness, showing and credits sentences come from `docs/DATA.md`; don't reword them here.
+How each page looks and behaves. **Draft, 6 Nov 2026; §1–3 written 11 Nov 2026** from Chime's pick of direction B (D-35), palette (D-34) and the name Sinima (D-36). §4–7 (screens, copy, states, test IDs) are ready to build from. Copy marked *new* can change at screen review. All freshness, showing and credits sentences come from `docs/DATA.md`; don't reword them here.
 
-## 1. Direction (Day 1)
+## 1. Direction: B · Poster (D-35)
 
-To be written from Chime's pick. Constraints any direction must meet:
+Chime picked this on 11 Nov 2026 from three directions. The reference is the three `b-…` frames on `direction-board/index.html` (Starting soon, the stale state, the film page). Where this brief and those frames disagree, the frames win until the real screen exists; after that the site wins (D-13).
 
-1. **Time is the hero.** The start time is the biggest thing on a row; the film title second.
-2. **Honesty is visible but quiet.** The freshness line sits under each row in a smaller, calm style. Never a coloured dot alone.
-3. **Fast on 3G.** System font stack or one variable font ≤ 30 KB; no hero images; posters optional and small.
-4. **One hand, outdoors.** Big targets, high contrast in sunlight, dark mode for the cinema itself.
-5. **Lagos voice, not slang overload.** Plain English with a little local warmth in headings and empty states.
+**In one line:** the film leads. Black and white, a small poster on every showing, round type, capsule buttons, and one colour on screen: the blue Book button.
 
-Questions for the direction board: list vs timeline look for "Starting soon"; how loud the Stay or Go chip is; whether the name's wordmark leans playful (Wetin Dey Show) or clean (Sinima); light-first or dark-first.
+What makes it B:
 
-## 2. Tokens (`src/styles/tokens.css`, Day 1)
+1. **The time is still the biggest thing on a row** (26 px, weight 600, tabular figures), with the countdown beside it in a small grey capsule. The film title comes second (17 px).
+2. **A small poster on every showing row** (76 × 114, corners 12). With no poster, or before it loads, a dark tile with the film's title stands in. Rows must read correctly with every poster missing.
+3. **Capsules.** Book, the area button, time chips and the countdown are full capsules. The area button and "Share this film" are black capsules; Book is the only blue thing.
+4. **Stay or Go is a tile, not a badge:** the answer in 16 px on a grey tile, with the detail line and source link under it. The loudest of the three directions, on purpose.
+5. **Freshness stays quiet:** 12 px grey under the cinema line, always in words. Stale wording turns the stale colour; the words carry it, the colour only backs them up.
+6. **Light first.** Dark mode follows the phone's setting and uses the same roles.
 
-- Colour roles: `bg`, `surface`, `text`, `text-muted`, `accent`, `book` (action), `stale` (paired with words), `focus`. Light and dark. AA contrast for all text; AAA for times.
-- Type: one family; sizes for time (large, tabular figures), title, body, meta.
-- Spacing 4 · 8 · 12 · 16 · 24 · 32. Radius: chip capsule, card 12.
-- Motion: countdown ticks without animation; row entry fades only when `prefers-reduced-motion` is not set.
+Constraints that still hold (unchanged from the draft): time is the hero; honesty is visible but quiet; fast on 3G; one hand, outdoors; Lagos voice without slang overload.
 
-## 3. Motion (Day 1)
+Not settled yet:
+- **Where poster images come from and what they cost** (Day 2, with the TMDB work). Never from cinema sites (rule 6). If they cannot fit the page budget (D-28) and TMDB's terms (D-31), posters stay on the film page only and rows use the title tile.
+- **Illustrations and the app icon** (O-13): references first, then the empty state.
 
-- No motion needed to understand anything. Optional: chip appear, banner slide. Reduced motion: none.
+## 2. Tokens (`src/styles/tokens.css`)
+
+Live in code; this table is a copy for reading. `tests/unit/tokens.test.ts` checks the contrast on every run, and `tests/e2e/theme.spec.ts` checks what the browser renders.
+
+| Role | Light | Dark | Used for |
+| --- | --- | --- | --- |
+| `bg` | `#ffffff` | `#0a0a0a` | The page |
+| `surface` | `#f3f3f3` | `#1a1a1a` | Tiles, banners, the countdown capsule |
+| `text` | `#0a0a0a` | `#fafafa` | Times, titles, body. 18:1 or more on `bg` |
+| `text-muted` | `#555555` | `#ababab` | Cinema line, freshness line |
+| `accent` | `#0a0a0a` | `#fafafa` | Black capsules (area button, share) |
+| `accent-text` | `#ffffff` | `#0a0a0a` | Text on `accent` |
+| `book` | `#2f5fb3` | `#8fb4f5` | The Book button only (D-34) |
+| `book-text` | `#ffffff` | `#06142e` | Text on `book` |
+| `stale` | `#8a4b00` | `#f2c14e` | Old data, always with words |
+| `focus` | `#0b57d0` | `#9cc2ff` | The 2 px focus ring |
+| `line` | `#e2e2e2` | `#2c2c2c` | Hairlines and capsule outlines (not text) |
+| `poster` | `#1f1f1f` | `#1f1f1f` | The tile behind a poster |
+
+- **Type:** Outfit, then the phone's own font. One file, `public/fonts/outfit-sinima.woff2`: 25.5 KB, weights 400 to 600, Latin letters and accents, loaded with `font-display: swap` so it never blocks the page. Sizes: page 28, section 20, time 26, title 17, body 15, meta 13, freshness 12. Weight 600 for times, titles and buttons; 400 for the rest. Outfit has no naira sign: "₦" falls back to the phone's font.
+- **Spacing:** 4 · 8 · 12 · 16 · 24 · 32.
+- **Radius:** capsule 999 (buttons, chips), poster 12, tile and card 16, sheet 20.
+- **Targets:** every link and button at least 44 × 44.
+- Tailwind's own colour classes (`text-red-500`, `bg-white`) are switched off; `npm run lint` fails if one is written, or a named colour, or a hex value outside `tokens.css`.
+
+## 3. Motion
+
+- Nothing needs motion to be understood.
+- Press feedback on buttons: 120 ms, `cubic-bezier(0.2, 0, 0, 1)` (`--motion-fast`, `--motion-ease`).
+- The countdown changes its text without animation.
+- Optional later: banner slide-in, chip appear. With `prefers-reduced-motion`: none of it.
 
 ## 4. Pages
 

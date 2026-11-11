@@ -2,6 +2,32 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 1: direction B written up; tokens and font in the app (Wed 11 Nov 2026, night)
+
+**Changed**
+- `docs/design/UI-BRIEF.md` §1 to 3 written for direction B · Poster.
+- `src/styles/tokens.css`: the real palette (G with the blue Book button), type sizes, radii and motion, as Tailwind's theme. Tailwind's own colour palette is off (D-38).
+- Outfit self-hosted at `public/fonts/outfit-sinima.woff2`, 25.5 KB, weights 400 to 600, with its licence (D-37). Counted in the page budget.
+- `scripts/check-tokens.mjs` now also fails on Tailwind palette classes and named colours.
+
+**Red first**
+- `tests/unit/tokens.test.ts` › "defines every colour role in light and dark" failed against the placeholder tokens (6 roles missing) before the new tokens were written.
+
+**Checked**
+- Unit: 29 pass (26 new: roles, contrast AA and AAA from the token values, the colour check's hits and misses).
+- e2e against the built site: 7 pass (light and dark palette as rendered, font served from our site at 25.5 KB, no sideways scroll at 390, 360 and 320).
+- Build and budget: home page 161.2 KB of 200 (JS 131.9 of 160), now counting the font.
+- Built CSS: `light-dark()` is compiled with a fallback for older Safari; no Tailwind palette classes are emitted.
+- Lint and typecheck clean.
+
+**Not verified**
+- On a real phone. The home page is still the placeholder, so only the font, colours and heading show.
+- No fresh-context or automated code review was run (cost rule: no helper agents without asking).
+- CI on GitHub for this commit.
+
+**Next**
+- Illustration and icon references (O-13). Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics`.
+
 ## Day 1: direction B and the name Sinima; renamed everywhere but Vercel (Wed 11 Nov 2026, night)
 
 **Changed**
