@@ -1,84 +1,84 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 done (design and core logic); Day 2, the data, is next (Wed 11 Nov 2026, late)
+## Now: Day 1 is done; Day 2 (the data) is next (session of Wed 11 Nov 2026, afternoon to night)
 
-Read this section first. The older sections below are still right for everything else.
+Read this section first. The Day 0 section below is background; where the two disagree, this one is right.
 
-### Where the design lane stands
-- **Chime answered the reference board** (52 liked, 13 "Not for us"). Picks and the pattern summary are in `docs/design/REFERENCES.md`.
-- **Palette is chosen: G, with the Book button in a calm blue** (D-34: light `#2F5FB3`, dark `#8FB4F5`).
-- **Three directions are built** in `docs/design/direction-board/` (`index.html`, `board.css`, `skins.css`, `board.js`). Open with `open -a "Dia" "docs/design/direction-board/index.html"`. A · Rail (time in a left rail, soft cards, Figtree), B · Poster (poster on every row, black capsules, Outfit), C · Board (departures board, no cards, system font). The page has a Light/Dark switch and a name switch for the header.
-- **Chime picks on `docs/design/direction-board/pick.html`** (added because Chime wants to choose by looking, not by reading the terminal): each screen with A, B and C side by side, and a bar at the bottom for the direction, the name and a note. "Copy my pick" gives one line to paste back. Open with `open -a "Dia" "docs/design/direction-board/pick.html"`.
-- **Show, don't tell:** when Chime has to choose something visual, open an HTML page for it; keep the terminal reply short.
-- **Chime wants custom illustrations and a custom icon**, with references from Pinterest first (O-13). Not started: the style should follow the direction.
+### Where it stands
+- **Name:** Sinima (D-36). Repo `ChimeXXD/sinima`, folder `Projects/Personal Projects/Sinima`, site https://sinima-app.vercel.app (the Vercel project is `sinima-app`; `sinima` was taken).
+- **Design, all decided:** direction B · Poster (D-35); type Outfit, self-hosted at 25.5 KB (D-37); logo Ticket S (D-42); colours Ink and blue, black and white with one calm blue (D-43); Doodle illustrations (D-39). UI brief §1 to 3 are written.
+- **In the app:** tokens in `src/styles/tokens.css` (Tailwind's theme; its own colours are off, D-38); the logo in the header (`src/components/Logo.tsx`); tab icon, home-screen icons and manifest (`scripts/make-icons.mjs` redraws them from `docs/design/logo/sinima-mark.svg`). The home page is still the placeholder.
+- **Core logic, done with tests first** (D1-4 to D1-8): `src/lib/time` (Lagos time, showing state, countdown), `src/lib/wording` (freshness, credits, showing), `src/lib/ics` (the Remind me calendar file). Open cases are settled in D-44.
+- **Checks:** 154 unit tests and 10 browser tests pass; home page 162.1 KB of 200. **CI is green on `9d285fe`.**
+- **Features:** 15 of 40 passing in `docs/features.json` (Day 0 and all of Day 1). **Decisions:** D-01 to D-44. Open: O-3 (push), O-7 (other cities), O-10 (neighbouring areas).
 
-### Chime's picks so far
-- **Direction B · Poster** (D-35), no changes asked for.
-- **Name: Sinima** (D-36). Chime asked for the old name to go everywhere.
+### What happened this session, in order
+1. **Reference board topped up** from 75 to 127 references (every section at 10 or more). Chime answered it: 52 liked, 13 "Not for us". Picks and the pattern summary are in `docs/design/REFERENCES.md`.
+2. **Three directions built** (A · Rail, B · Poster, C · Board). Chime asked to choose by looking, not by reading the terminal, so a side-by-side pick page was added. **Chime picked B · Poster.**
+3. **Name.** Chime liked Sinima, asked for other options (first a set built on Sinima, which was wrong; then nine unrelated names), and chose **Sinima**. Renamed everywhere: app, package, user agent (`SinimaBot`), docs, GitHub repo, project folder; Chime renamed Vercel.
+4. **Direction B put into the app:** tokens, Outfit cut down to fit the 30 KB limit, a stricter colour check, UI brief §1 to 3.
+5. **Illustrations:** three styles shown with Pinterest references; **Chime picked Doodle.**
+6. **Logo, five rounds.** Six code-drawn icons ("too basic"); 20 options (Chime shortlisted Screen face); a full identity presentation; then Chime reopened logo and colour and asked for more: three mascots generated with Figma AI (owl, agama, popcorn; not picked) and three marks from design prompts; Chime's three finalists refined; **Chime chose Ticket S**, asked for it to be cut properly (the notches were painted circles; now one cut shape with real holes) and shown in six colour sets; **Chime chose Ink and blue**, the colours already in the app.
+7. **Logo wired into the app** (header, icons, manifest), tests first.
+8. **Core logic built**, tests first (time, wording, calendar file).
+9. **CI fixed.** The browser-install step hung on GitHub's package server; it now skips the extra system packages and has a 5-minute limit. No test was removed.
 
-### The rename to Sinima (11 Nov)
-| Where | State |
-| --- | --- |
-| App, package, user agent (`SinimaBot`), README, CLAUDE.md, docs, design pages | Done and pushed. Old log entries and old decisions keep "Lagos Showtimes" on purpose. |
-| GitHub repo | Done: `ChimeXXD/sinima`. GitHub redirects the old address. The local remote points at the new one. |
-| Project folder | Done: `Projects/Personal Projects/Sinima`. Start new sessions from there. Claude's memory for the project was copied to the new folder's memory. |
-| Vercel project and address | Done by Chime: the project is `sinima-app` and the site is https://sinima-app.vercel.app (`sinima` was taken). The old address no longer loads. The repo's homepage link points at the new one. |
+### Do next (Day 2: the data)
+1. `src/lib/data/types.ts` (started) and `validate.ts` from `docs/DATA.md`; the DATA.md example must validate and each rule needs a failing fixture.
+2. Cut down the saved Lagocine pages in the git-ignored `tmp/audit/` to fixtures (D-24). Parsers for Lagocine and Veezi, tests first. The Silverbird fixture has no year in its dates and 12-hour times: convert through `lagosLocalToUtc`, the only local-to-UTC function.
+3. `scripts/refresh.ts --fixtures`: sample data on today's and tomorrow's dates, one file per area.
+4. TMDB matching and credits. Decide here where posters come from and what they cost (UI brief §1); if they can't fit the budget and TMDB's terms, posters stay on the film page only.
+5. Still to draw: the doodle character and the "nothing showing" screen (Day 3).
 
-### Direction B is in the app (11 Nov, night)
-- UI brief §1 to 3 are written. Tokens, type sizes and radii are in `src/styles/tokens.css` (Tailwind's theme; its own colour palette is off, D-38). Outfit is self-hosted at 25.5 KB (D-37).
-- New tests: `tests/unit/tokens.test.ts` (contrast from the token values) and `tests/e2e/theme.spec.ts` (what the browser renders). The Day 0 code-review leftovers are closed.
-- Poster source and cost are not settled: decide on Day 2 with the TMDB work (UI brief §1).
-
-### Do next
-1. **Design lane is settled:** direction B · Poster (D-35), name Sinima (D-36), type Outfit (D-37), Doodle illustrations (D-39), logo Ticket S (D-42), colours Ink and blue (D-43). The logo is in the app: header, tab icon, home-screen icons and manifest (`scripts/make-icons.mjs` redraws the icons from `docs/design/logo/sinima-mark.svg`). Still to draw: the doodle character and the empty state. The option pages stay in `docs/design/direction-board/` as the record. No more Figma generations without asking: they spend GenAI-Labs credits. **When Chime says "present" a logo or identity, `refine.html` and `ticket.html` are the standard.**
-2. **Core lane is done** (D1-4 to D1-8 pass, 154 unit tests): `src/lib/time`, `src/lib/wording`, `src/lib/ics`; open cases settled in D-44. **Day 1's gate is passed** except checking on Chime's phone.
-3. **Day 2 next:** `lib/data/types.ts` (started) and `validate.ts`; cut down the saved Lagocine pages in `tmp/audit/` to fixtures; parsers for Lagocine and Veezi (the Silverbird fixture has no year in its dates and 12-hour times: convert through `lagosLocalToUtc`); `refresh --fixtures`; TMDB matching. **Needs from Chime:** the free TMDB key in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`, and a yes on the neighbouring-areas list (O-10).
-
-### Not verified on the direction board
-- Seen only in headless Chromium, not in Dia or on a phone.
-- Font file sizes (30 KB limit) and the data cost of posters in direction B.
-- No fresh-context review (no helper agents without asking Chime).
-
-### The reference board
-- **File:** `docs/design/reference-board/index.html`, with screenshots in `docs/design/reference-board/images/`. Both are local only: the images are git-ignored, and the page is excluded through `.git/info/exclude` (it names the reference library, which must not appear in the public repo). Nothing from the board is committed.
-- **Open it in Dia:** `open -a "Dia" "docs/design/reference-board/index.html"`. Chime's answers save in Dia's browser storage only. Chime presses "Download answers" when done; the file lands in `~/Downloads/sinima-reference-answers.json`.
-- **What it has:** 127 references in 12 sections (108 iPhone, 19 desktop), each with "What it shows" and "How we'd use it", tick buttons, a note box, zoom (Esc closes, arrow keys step), and region marking in the zoom. A "Colour palette" section has the 8 colour roles and 10 candidate palettes (A to J) with exact hex values; all pass the contrast targets. Palette G now carries the blue Book button.
-- **Data shape:** references are in the `SECTIONS` array in the page's script. New ones go in the `EXTRA` array (`const EXTRA = [];/*EXTRA*/`) as `{section, id, app, mid, kind, what, how}`; `kind` is `"p"` (phone) or `"d"` (desktop); the image is `images/<id>.webp`.
-
-### References per section today
-| Section (id) | Count |
-| --- | --- |
-| Starting soon list (`soon`) | 15 |
-| Countdown (`countdown`) | 10 |
-| Freshness and source (`fresh`) | 10 |
-| Stay or Go chip (`credits`) | 10 |
-| Area button and picker (`area`) | 12 |
-| Film page and film list (`film`) | 10 |
-| Cinema page (`cinema`) | 10 |
-| Nothing showing (`empty`) | 10 |
-| Banners (`banners`) | 10 |
-| Remind me (`remind`) | 10 |
-| Share (`share`) | 10 |
-| About and sources (`about`) | 10 |
-
-The top-up (later on 11 Nov) added 52 references through the `EXTRA` array, ids `59-…` to `108-…` plus `d19-rows` and `d20-pi`. Every section is now at 10 or more. Claude chose 10 as the target, not 20, to keep the cost down; going to 20 is still open if Chime wants it.
-
-### Cost rule (learned the hard way this session)
-- **Never launch parallel agents or forks without asking Chime first and saying what it will cost.** Four parallel helpers, each carrying a full copy of a long conversation, used a whole five-hour usage limit in minutes. They were stopped; they left no files behind.
-- Keep sessions short. Screenshots are the expensive part: pull 6 to 8 results per search, not more.
-- The reference library also shows a "usage is high this month" notice. It is free during its beta.
-
-### Verified in a headless browser after the top-up
-- All 127 screenshots load; each section shows the count in the table above; the zoom opens, the arrow key steps and Esc closes; a tick survives a reload; no console errors.
+**Needs from Chime**
+- The free TMDB key (themoviedb.org > Settings > API) in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`. Claude cannot enter keys.
+- A yes on the neighbouring-areas list (O-10), which Claude drafts.
+- Open the site on the phone, and try adding it to the home screen.
 
 ### Not verified
-- Region marking with a finger on a real phone.
-- The board in Dia itself (only headless Chromium was run).
-- An older online copy of the board exists as a private page (58 references, old layout). It is out of date; Chime has not said whether to delete it.
+- Anything on a real phone: the site, the home-screen icon, the calendar file in iPhone and Google Calendar (the Day 5 check).
+- The design pages in Dia itself; they were tested in headless Chromium only.
+- Poster cost in data (direction B puts one on every row).
+- Name clash: two web searches only, no trademark search. `sinima.com` and `sinima.app` belong to others.
+- **No automated code review or fresh-context review ran this session**, although Chime's global instructions ask for one after code changes. It launches helper agents, and the cost rule below says to ask first. Chime has been told each time and has not yet said yes or no.
 
-## Latest: Day 0 done, Day 1 starts next (session of Wed 11 Nov 2026)
+### How Chime likes to work (added this session; the Day 0 list below still holds)
+- **Show, don't tell.** For any visual choice, build an HTML page with the options side by side and a way to pick ("Copy my pick" gives one line to paste back). Keep the terminal reply short.
+- **Always open every HTML page made for Chime in Dia, without being asked:** `open -a "Dia" <file>`.
+- **"Present a logo" means a full identity page**, with the logo and colours together: lockups on dark and light, mark, app icon, one colour, favicon at real sizes, named colour swatches with their uses, type, and the thing in use. `docs/design/direction-board/refine.html` and `ticket.html` are the standard. A plain grid of drafts is "basic".
+- Chime thinks out loud and changes direction; a pick is a shortlist until Chime says "go with it". Read what was actually asked (the first names page missed it).
+- Chime's notes are dictated, so wording can be loose; when a note is unclear, say how it was read.
 
-Chime plans to start Day 1 on Thu 12 Nov. Start there; nothing else is waiting.
+### Cost and money rules
+- **Never launch parallel agents or forks without asking Chime first and saying what it will cost.** Earlier, four parallel helpers used a whole five-hour usage limit in minutes.
+- **No more Figma AI generations without asking.** Three mascot images were made on the GenAI-Labs team (Chime's workplace, with Chime's yes); the cost in credits is not visible to Claude. File: "Sinima logo mascots" (figma.com/design/yuQMvnOTE5B0cH3mWtzSRK).
+- The reference library shows a "usage is high this month" notice; it is free during its beta. Pull 6 to 8 results per search.
+- $0 is a hard limit.
+
+### Design files, for the record (`docs/design/`)
+| File | What it is |
+| --- | --- |
+| `REFERENCES.md` | Chime's 52 picks and the pattern summary |
+| `UI-BRIEF.md` | Direction B, tokens, motion, pages, copy |
+| `direction-board/index.html`, `pick.html` | The three directions; the side-by-side pick page |
+| `direction-board/names.html` | Name options |
+| `direction-board/art.html` | Illustration styles with Pinterest references, first icon drafts |
+| `direction-board/logos.html`, `logos2.html` | 20 logo options; round two with mascots and marks |
+| `direction-board/identity.html`, `refine.html` | Screen face identity; the three finalists refined |
+| `direction-board/ticket.html` | Ticket S sculpted, six colour sets (`ticketPath()` in `ticket.js` generates the mark) |
+| `logo/` | Final mark as SVG; Screen face in `archive/`; mascot images in `mascots/` |
+| `reference-board/` | Local only, not in the repo (it names the reference library). 127 references; new ones go in the `EXTRA` array |
+
+Skills: `logo-generator` (op7418) is installed. `ip-as-logo` (s1dashu) is not installed; Claude read its instructions from GitHub. Chime can run `npx skills add s1dashu/ip-as-logo-skill`.
+
+### Watch out for (added this session)
+- Claude's memory for this project lives under the new folder name; start sessions from `Projects/Personal Projects/Sinima`.
+- The colour check (`npm run lint`) fails on any colour written outside `tokens.css`, including named colours and Tailwind's palette classes. Values the HTML needs (the browser-bar colour) are read from `tokens.css` at build time.
+- Piping a long build into several `grep` commands hung a shell once; run the build on its own.
+
+## Earlier: Day 0 (first session of Wed 11 Nov 2026)
+
+Background. Its "Where it stands" and "Do next" lists are out of date; use the section above.
 
 ### What happened this session, in order
 1. **Plan review.** Claude read every file and wrote `docs/PLAN-REVIEW.md`: what would not work as written, features to add, and the phases. Chime said yes to all of it (D-18 to D-25).
