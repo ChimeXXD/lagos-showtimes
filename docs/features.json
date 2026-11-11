@@ -214,8 +214,8 @@
         "each rule in DATA.md has a failing fixture"
       ],
       "verify": "npm test -- lib/data",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- lib/data` passes; validate.test.ts has 44 tests. The DATA.md example validates unchanged with an empty log. Every rule in DATA.md \u00a7Rules has a broken copy of the example that is refused, dropped or repaired with a named message: schemaVersion, UTC times (6 bad forms), timeZone, sample, source status and scheduled runs, sourceId, fetchedAt, bookingUrl (6 bad forms), duplicates, credits 'no' without a source, price (4 bad forms), ended showings."
     },
     {
       "id": "D2-2",
