@@ -259,8 +259,8 @@
         "share of films with an answer printed"
       ],
       "verify": "node scripts/tmdb.ts --dry-run; grep -r TMDB out/ || echo clean",
-      "passes": false,
-      "evidence": "11 Nov 2026, not passing: there is no TMDB key, so the script has never asked TMDB anything. Built and tested without the network: the match rule (an exact title on one current film, else unmatched), keywords 179430/179431 to credits, tmdb-overrides.json and credits-manual.json merged, the share printed, refresh putting the answers on films. `npm test -- scripts/credits scripts/tmdb` 28 pass, the script's tests against TMDB's documented response shapes, not real responses. `node scripts/tmdb.ts --dry-run` prints 31 films to look up and '0 of 31 films have a credits answer'. Still to do with the key: one real run, every match checked by eye, and the grep of out/."
+      "passes": true,
+      "evidence": "11 Nov 2026: first real run with Chime's key. `node scripts/tmdb.ts` matched 14 of 31 films; each match was checked by eye against TMDB's title and 2026 release date, and all 14 are right. The 17 unmatched are Nollywood titles TMDB does not list, or titles with more than one current film (Verity), which stay 'not known yet'. Keywords read: Spider-Man: Brand New Day has 179430 (after), Street Fighter has 179431 (during); '2 of 31 films have a credits answer (6%)'. `refresh` puts the ids, runtimes and answers on the films. The key is in no file under out/, data/, public/, scripts/, src/, tests/ or docs/ (grep for its value); the only 'TMDB' in out/ is the source name in the data files. `npm test -- scripts/credits scripts/tmdb` 29 pass. tmdb-overrides.json and credits-manual.json are merged (both still empty)."
     },
     {
       "id": "D3-1",

@@ -162,7 +162,13 @@ describe("refresh --fixtures", () => {
   it("gives each showing its id, its film and its source through the cinema's own site", () => {
     const showing = all.showings.find((s) => s.cinemaId === "ebonylife-vi")!;
     expect(showing.id).toBe(`ebonylife-vi_${showing.filmId}_${showing.startsAt}`);
-    expect(all.films.find((f) => f.id === showing.filmId)).toMatchObject({ runtimeMin: null, origin: null, tmdbId: null });
+    // Each film's TMDB id and runtime come from data/credits.json, which changes weekly, so the
+    // file itself is the expectation; a film it does not hold has neither.
+    const credits = (JSON.parse(readFileSync(join(root, "data/credits.json"), "utf8")) as { tmdb: Record<string, { tmdbId: number; runtimeMin: number | null }> }).tmdb;
+    for (const film of all.films) {
+      const found = Object.hasOwn(credits, film.id) ? credits[film.id] : undefined;
+      expect(film, film.id).toMatchObject({ origin: null, tmdbId: found?.tmdbId ?? null, runtimeMin: found?.runtimeMin ?? null });
+    }
     expect(showing).toMatchObject({
       sourceId: "lagocine",
       fetchedAt: "2026-11-11T00:36:34Z",

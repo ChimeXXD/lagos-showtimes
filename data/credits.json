@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "about": "Written by scripts/tmdb.ts. TMDB ids, runtimes and keyword ids for the films showing, keyed by film id. Kept at most 6 months (D-31). This product uses the TMDB API but is not endorsed or certified by TMDB.",
+  "tmdb": {
+    "agbara-nla-the-return": {
+      "tmdbId": 1792115,
+      "tmdbTitle": "Agbara Nla: The Return",
+      "runtimeMin": 155,
+      "keywordIds": [],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "alahun-the-weaver": {
+      "tmdbId": 1755101,
+      "tmdbTitle": "Alahun: The Weaver",
+      "runtimeMin": 120,
+      "keywordIds": [],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "arnie-and-barney": {
+      "tmdbId": 1365598,
+      "tmdbTitle": "Arnie & Barney",
+      "runtimeMin": 77,
+      "keywordIds": [
+        3126,
+        15285
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "clayface": {
+      "tmdbId": 1400940,
+      "tmdbTitle": "Clayface",
+      "runtimeMin": 109,
+      "keywordIds": [
+        1299,
+        1370,
+        9717,
+        9748,
+        10614,
+        11578,
+        10048,
+        157676,
+        183133,
+        228384,
+        240435,
+        283085,
+        312528,
+        367031
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "forgotten-island": {
+      "tmdbId": 1465063,
+      "tmdbTitle": "Forgotten Island",
+      "runtimeMin": 109,
+      "keywordIds": [
+        6054,
+        2041,
+        802,
+        1453,
+        1430,
+        2035,
+        5248,
+        5457,
+        6895,
+        10683,
+        11469,
+        10937,
+        12392,
+        15001,
+        210608,
+        248927,
+        273297,
+        278823,
+        289920,
+        293381,
+        320552,
+        348340,
+        348925,
+        372532,
+        381928,
+        381930
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "heart-of-the-beast": {
+      "tmdbId": 1263337,
+      "tmdbTitle": "Heart of the Beast",
+      "runtimeMin": 101,
+      "keywordIds": [
+        9880,
+        15162,
+        15218,
+        162365,
+        190899,
+        239821,
+        249530,
+        281585,
+        336497,
+        372834
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "other-mommy": {
+      "tmdbId": 1400837,
+      "tmdbTitle": "Other Mommy",
+      "runtimeMin": 93,
+      "keywordIds": [
+        818,
+        6152,
+        3358,
+        10114,
+        18035,
+        33711,
+        159939,
+        181109,
+        240315,
+        256183,
+        272553,
+        295907
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "phoenix-fury": {
+      "tmdbId": 1532702,
+      "tmdbTitle": "Phoenix Fury",
+      "runtimeMin": 131,
+      "keywordIds": [],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "ramayana-rise-of-a-legend": {
+      "tmdbId": 656908,
+      "tmdbTitle": "Ramayana: Rise of a Legend",
+      "runtimeMin": 201,
+      "keywordIds": [
+        185316,
+        185343,
+        192159,
+        211227,
+        375250,
+        377433
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "resident-evil": {
+      "tmdbId": 1423191,
+      "tmdbTitle": "Resident Evil",
+      "runtimeMin": 94,
+      "keywordIds": [
+        1533,
+        4884,
+        9744,
+        10349,
+        11181,
+        10794,
+        12377,
+        41645,
+        50009,
+        161184,
+        186565,
+        188839,
+        188957,
+        283085,
+        360949,
+        388461
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "spider-man-brand-new-day": {
+      "tmdbId": 969681,
+      "tmdbTitle": "Spider-Man: Brand New Day",
+      "runtimeMin": 145,
+      "keywordIds": [
+        9678,
+        242,
+        1701,
+        2766,
+        1308,
+        9715,
+        3986,
+        3289,
+        9717,
+        9663,
+        12375,
+        33637,
+        158456,
+        169909,
+        179430,
+        180547,
+        180734,
+        193946,
+        233300
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "street-fighter": {
+      "tmdbId": 1153576,
+      "tmdbTitle": "Street Fighter",
+      "runtimeMin": 120,
+      "keywordIds": [
+        779,
+        41645,
+        156159,
+        179431,
+        184656,
+        188955,
+        200234,
+        210608,
+        285633,
+        288793,
+        295504,
+        325765,
+        325844
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "the-cat-in-the-hat": {
+      "tmdbId": 1117898,
+      "tmdbTitle": "The Cat in the Hat",
+      "runtimeMin": 108,
+      "keywordIds": [
+        380,
+        818,
+        2656,
+        977,
+        15101,
+        40846,
+        188745,
+        188748,
+        204905,
+        288816,
+        309974,
+        317964,
+        320420,
+        324713,
+        325844
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    },
+    "whalefall": {
+      "tmdbId": 1255833,
+      "tmdbTitle": "Whalefall",
+      "runtimeMin": 106,
+      "keywordIds": [
+        4776,
+        818,
+        560,
+        10201,
+        10349,
+        226153,
+        266753,
+        325780,
+        325805,
+        326009,
+        336497
+      ],
+      "checkedAt": "2026-11-11T19:26:24Z"
+    }
+  }
+}

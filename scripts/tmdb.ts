@@ -6,8 +6,7 @@
 //
 // The token never leaves this script: it is not printed, not written, and never in client code.
 // TMDB data may be kept at most 6 months (D-31); an entry older than a week is asked again.
-// NOT YET RUN AGAINST THE LIVE API (no key on 11 Nov 2026): the request paths and response
-// fields below follow TMDB's v3 documentation and need a first real run to confirm.
+// First run against the live API on 11 Nov 2026: 14 of 31 films matched, each checked by eye.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -33,7 +32,11 @@ function filmsShowing(root: string, now: string): Film[] {
 }
 
 async function ask<T>(path: string, deps: Deps, token: string): Promise<T> {
-  const response = await deps.fetchFn(`${API}${path}`, { headers: { Authorization: `Bearer ${token}`, Accept: "application/json" } });
+  // TMDB gives two credentials: the long read token goes in a header, the short 32-character
+  // API key goes in the address. Either works; the address is never printed.
+  const isShortKey = /^[0-9a-f]{32}$/i.test(token);
+  const url = isShortKey ? `${API}${path}${path.includes("?") ? "&" : "?"}api_key=${token}` : `${API}${path}`;
+  const response = await deps.fetchFn(url, { headers: { Accept: "application/json", ...(isShortKey ? {} : { Authorization: `Bearer ${token}` }) } });
   if (!response.ok) throw new Error(`TMDB answered ${response.status} for ${path.split("?")[0]}`);
   await deps.wait(GAP_MS);
   return (await response.json()) as T;
@@ -62,9 +65,10 @@ export async function main(argv: string[], deps: Deps): Promise<number> {
     return 0;
   }
 
-  const token = deps.env.TMDB_READ_TOKEN;
+  // Trimmed: a pasted secret often ends in a line break, which would hide a short key from `ask`.
+  const token = deps.env.TMDB_READ_TOKEN?.trim();
   if (!token) {
-    console.error("tmdb: TMDB_READ_TOKEN is not set. Put the free read token in .env.local (see .env.example). Nothing was asked or written.");
+    console.error("tmdb: TMDB_READ_TOKEN is not set. Put the free read token or API key in .env.local (see .env.example). Nothing was asked or written.");
     return 1;
   }
 

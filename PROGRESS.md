@@ -2,6 +2,30 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 2: TMDB run for real; neighbours confirmed (Wed 11 Nov 2026, night)
+
+**Changed**
+- Chime added a TMDB key. `scripts/tmdb.ts` now also takes TMDB's short API key (sent in the address, never printed). `data/credits.json` written and committed: 14 films.
+- Neighbouring areas confirmed by Chime and added to `data/cinemas.json`; automated reviews allowed (D-46). D-47: the TMDB results and poster sizes.
+
+**Red first**
+- The first real run failed with "TMDB answered 401": the key in `.env.local` is the short API key, and the script only sent the long token's header.
+- `refresh.test.ts` › "gives each showing its id, its film ..." failed once `data/credits.json` existed (it expected `tmdbId: null`). The test read a file that now changes weekly, so that line now checks only the film's id and origin.
+
+**Checked**
+- `node scripts/tmdb.ts` against the live API: 14 of 31 matched. Each checked by eye with a second script that printed TMDB's title, release date and country: all 14 right. 2 of 31 have a credits answer (Spider-Man: Brand New Day, after; Street Fighter, during).
+- After `refresh`, those films carry the TMDB id, runtime and answer in `data/showtimes.json`.
+- The key's value appears in no file under `out/`, `data/`, `public/`, `scripts/`, `src/`, `tests/` or `docs/`.
+- Poster sizes from TMDB's image host for the 14 matches: 5.6 KB average at 92 px, 12.9 KB at 154 px, 17.5 KB at 185 px.
+- Unit: 301 pass. Lint, typecheck and build clean.
+
+**Not verified**
+- Three films a person could match by hand: "Ikenga" (TMDB has "Ikenga: The Last Festival", Aug 2026), "Ramayana" (probably the same film as "Ramayana: Rise of a Legend", listed twice by different cinemas) and "Verity" (two 2026 films share the title). Left unmatched.
+- The GitHub secret is not set; nothing in CI needs it yet.
+
+**Next**
+- Day 3: the home screen; posters shown to Chime side by side.
+
 ## Day 2: the data (Wed 11 Nov 2026, evening)
 
 **Changed**

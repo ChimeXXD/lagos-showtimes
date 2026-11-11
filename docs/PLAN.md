@@ -59,7 +59,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [x] Private deploy on the chosen host (preview protected or unlisted)
 - [x] **Data-source audit**: for each source in DECISIONS O-2, read robots.txt and terms, quote the relevant lines, note the listing URL pattern and how many days ahead it publishes. Fill `data/sources.json` (format in `DATA.md`). Save one listing page per source to `tmp/` by hand-triggered single request, then commit a cut-down copy (listing markup only) to `tests/fixtures/<source>/<date>.html` (D-24)
 - [x] **Chime sends the outreach emails** (`docs/OUTREACH.md`): Lagocine first, then Filmhouse, Genesis, EbonyLife, Silverbird, Syticks. Log "Asked" dates in DECISIONS
-- [ ] TMDB terms read by Claude (D-31). Still to do: Chime gets a TMDB API key into `.env.local` and GitHub Secrets
+- [x] TMDB terms read by Claude (D-31); Chime's key is in `.env.local` (11 Nov). Still to do before the scheduled refresh: the GitHub secret `TMDB_READ_TOKEN`
 
 ### Day 1: Design direction (D-13) + core lane (D-14)
 - [x] Collect 30–50 references by surface (`docs/design/REFERENCES.md`); images stay local
@@ -74,7 +74,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [x] `lib/data/types.ts` and `validate.ts` from `DATA.md`; the DATA.md example validates; broken fixtures fail with clear messages
 - [x] Parsers for two sources, tests first on saved fixtures: Lagocine (the live source from Day 6, D-33) and Veezi (the Silverbird Ikeja fixture). Save and cut down one Lagocine cinema page and one day page first (D-24)
 - [x] `scripts/refresh.ts --fixtures` writes `data/showtimes.json` and the per-area files from fixtures, with dates moved onto today and tomorrow (D-18, D-20)
-- [ ] `scripts/tmdb.ts`: match films, read keywords 179430/179431, write `data/credits.json`; `data/tmdb-overrides.json` and `data/credits-manual.json` merged in (D-19, D-25); report the share of films with an answer
+- [x] `scripts/tmdb.ts`: match films, read keywords 179430/179431, write `data/credits.json`; `data/tmdb-overrides.json` and `data/credits-manual.json` merged in (D-19, D-25); report the share of films with an answer
 - [x] Draft the neighbouring areas list for Chime to confirm (O-10): the draft is in `DECISIONS.md` under O-10, waiting for Chime
 - [x] Decide coverage (O-5) and name the launch tier (D-23): coverage is the 20 cinemas Lagocine lists (D-33); the site is tier C (sample data) today and becomes tier A on Day 6 if Lagocine has not objected
 - [ ] Update `data/cinemas.json` (coordinates, addresses from the cinemas' own pages): not started; it needs pages that have not been saved

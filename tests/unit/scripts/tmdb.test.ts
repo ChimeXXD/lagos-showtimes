@@ -23,7 +23,7 @@ function project(extra: Record<string, unknown> = {}): string {
 const noNetwork = vi.fn(() => Promise.reject(new Error("the network was used")));
 const deps = (root: string, over: Partial<Deps> = {}): Deps => ({ root, env: {}, fetchFn: noNetwork as unknown as typeof fetch, now: NOW, wait: () => Promise.resolve(), ...over });
 
-// TMDB's documented v3 shapes. Not yet checked against the live API: there was no key on 11 Nov 2026.
+// TMDB's v3 shapes, cut down. The real script ran against the live API with these paths on 11 Nov 2026.
 const answers: Record<string, unknown> = {
   "/search/movie?query=Whalefall&include_adult=false": { results: [{ id: 11, title: "Whalefall", original_title: "Whalefall", release_date: "2026-10-16" }] },
   "/search/movie?query=Street%20Fighter&include_adult=false": { results: [{ id: 4, title: "Street Fighter", release_date: "1994-12-23" }] },
@@ -85,6 +85,22 @@ describe("scripts/tmdb.ts", () => {
     expect(await main([], deps(root, { env: { TMDB_READ_TOKEN: "secret-token" }, fetchFn: fakeTmdb as unknown as typeof fetch }))).toBe(0);
     expect(fakeTmdb).not.toHaveBeenCalled();
     expect((JSON.parse(readFileSync(join(root, "data/credits.json"), "utf8")) as CreditsFile).tmdb.whalefall?.checkedAt).toBe("2026-11-08T20:00:00Z");
+  });
+
+  it("sends TMDB's short API key in the address instead of the header, and never prints it", async () => {
+    const key = "0123456789abcdef0123456789abcdef";
+    const seen: string[] = [];
+    const byKey = vi.fn((url: string, init?: RequestInit) => {
+      seen.push(url);
+      expect((init?.headers as Record<string, string>).Authorization).toBeUndefined();
+      const path = url.replace("https://api.themoviedb.org/3", "").replace(/[?&]api_key=[0-9a-f]{32}$/, "");
+      return Promise.resolve(Object.hasOwn(answers, path) ? Response.json(answers[path]) : new Response("{}", { status: 404 }));
+    });
+    // The line break is what a pasted secret often carries; the key is still recognised.
+    expect(await main([], deps(project(), { env: { TMDB_READ_TOKEN: `${key}\n` }, fetchFn: byKey as unknown as typeof fetch }))).toBe(0);
+    expect(seen[0]).toBe(`https://api.themoviedb.org/3/search/movie?query=Whalefall&include_adult=false&api_key=${key}`);
+    expect(seen).toContain(`https://api.themoviedb.org/3/movie/11?append_to_response=keywords&api_key=${key}`);
+    expect(printed()).not.toContain(key);
   });
 
   it("stops when TMDB refuses the token", async () => {

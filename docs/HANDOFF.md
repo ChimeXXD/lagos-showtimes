@@ -1,6 +1,6 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 2 is done except TMDB; Day 3 (the home screen) is next (session of Wed 11 Nov 2026, evening)
+## Now: Day 2 is done; Day 3 (the home screen) is next (session of Wed 11 Nov 2026, evening to night)
 
 Read this section first. The sections below are background; where they disagree with this one, this one is right. Design, name, working style, cost rules and "watch out for" in the Day 1 section still hold.
 
@@ -8,18 +8,19 @@ Read this section first. The sections below are background; where they disagree 
 - **Data format and validator** (D2-1): `src/lib/data/types.ts`, `validate.ts`. Every rule in DATA.md §Rules is enforced and tested.
 - **Parsers** (D2-2): `scripts/sources/lagocine.ts` (day page and cinema page) and `veezi.ts`, on three cut-down fixtures listed in `tests/fixtures/index.json`.
 - **Sample data** (D2-3): `npm run refresh -- --fixtures` writes `data/showtimes.json`, `public/data/all.json` and `public/data/area/<slug>.json` (12 areas) on today's and tomorrow's dates in Lagos. 294 showings a day across 20 cinemas and 31 films. **These files are git-ignored** (D-45): run the command to make them.
-- **Credits** (D2-4, **not passing**): the match rule, keyword reading, manual entries and the merge into films are built and tested without the network. `scripts/tmdb.ts` has never asked TMDB anything: there is no key.
-- **Checks:** 299 unit tests and 10 browser tests pass; home page still 162.1 KB of 200 (nothing on screen uses the data yet).
-- **Features:** 18 of 40 passing. **Decisions:** D-01 to D-46. Open: O-3, O-7. The neighbouring areas are confirmed and in `data/cinemas.json` (D-46).
+- **Credits** (D2-4): `node scripts/tmdb.ts` ran against TMDB with Chime's key. 14 of 31 films matched (all checked by eye); 2 have a credits answer. `data/credits.json` is committed; `refresh` puts the answers on films. The key in `.env.local` is TMDB's short API key, which the script accepts (D-47).
+- **Checks:** 301 unit tests and 10 browser tests pass; home page still 162.1 KB of 200 (nothing on screen uses the data yet).
+- **Features:** 19 of 40 passing (Days 0, 1 and 2). **Decisions:** D-01 to D-47. Open: O-3, O-7. The neighbouring areas are confirmed and in `data/cinemas.json` (D-46).
 
 ### Do next
-1. **When Chime adds the TMDB key:** `node scripts/tmdb.ts`, check every printed match by eye, fix wrong ones in `data/tmdb-overrides.json`, confirm the request paths and fields against the real answers, commit `data/credits.json`, then mark D2-4. Measure poster sizes then and decide where posters go (UI brief §1).
+1. **Posters:** sizes are measured (D-47). On Day 3 show Chime rows with 92 px and 154 px posters and the title tile side by side, then decide. Only 14 of 31 films have a poster.
+1. Ask Chime about three hand matches for `data/tmdb-overrides.json`: Ikenga, Ramayana, Verity (see `PROGRESS.md`).
 2. **Day 3, the home screen** (`docs/PLAN.md`): `/area/[slug]` and `/`, showing row, area picker, "Now showing" list, empty state, banners. Follow the proof build skill's mockup steps: tokens and shared components first, one screen at a time.
 3. **Fresh sample data on every build:** add a `prebuild` step that runs `refresh --fixtures`, and something that rebuilds the site each day (a scheduled GitHub Action is free). Without it the deployed demo shows nothing a day after a deploy.
 5. Still to draw: the doodle character and the "nothing showing" screen.
 
 **Needs from Chime**
-- The free TMDB key (themoviedb.org > Settings > API) in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`.
+- The GitHub secret `TMDB_READ_TOKEN` (the same value as in `.env.local`), before the scheduled refresh goes live.
 - Nothing more on reviews: Chime said yes to automated reviews (D-46). Run `/code-review --fix` after code changes and the verifier once per unit; still ask before launching several helpers at once. `.env.local` exists (copied from `.env.example`) and is waiting for the token.
 - Open the site on the phone, and try adding it to the home screen.
 
@@ -30,7 +31,6 @@ Read this section first. The sections below are background; where they disagree 
 - The commit gate once failed the typecheck while the build was rewriting `.next/types`; it passed on its own and on the retry.
 
 ### Not verified
-- Anything about TMDB against the live API. Poster cost.
 - Review findings left open, listed in `PROGRESS.md` (unchecked fields behind the validator's type; Veezi's year guess; a mistyped area slug; old area files never deleted).
 - Live booking links will make data files heavier than the 10.3 KB measured; the limit is 20 KB.
 - Everything in the Day 1 list below that needs a real phone.
@@ -66,7 +66,7 @@ Background. Its "Where it stands" and "Do next" lists are out of date; use the s
 5. Still to draw: the doodle character and the "nothing showing" screen (Day 3).
 
 **Needs from Chime**
-- The free TMDB key (themoviedb.org > Settings > API) in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`. Claude cannot enter keys.
+- The GitHub secret `TMDB_READ_TOKEN` (the same value as in `.env.local`), before the scheduled refresh goes live. Claude cannot enter keys.
 - A yes on the neighbouring-areas list (O-10), which Claude drafts.
 - Open the site on the phone, and try adding it to the home screen.
 
