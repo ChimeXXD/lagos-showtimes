@@ -274,8 +274,8 @@
         "returning visitor on / lands on the saved area"
       ],
       "verify": "npm run test:e2e -- home",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm run test:e2e -- home` 11 pass. With the clock frozen at 18:00 Lagos on the sample data's second day, /area/lekki lists exactly the showings from 18:01 to 20:00 under Starting soon, in order, then later ones; on the build day / shows soon, later and all of tomorrow in that order; a showing leaves the list the minute it starts; the page's own HTML holds the list in time order with no relative words; a saved area sends / to /area/<slug>, an unknown one does not; picking an area is remembered. A fresh-context verifier drove the built site at six times and agreed."
     },
     {
       "id": "D3-2",
@@ -287,8 +287,8 @@
         "stale and sample banners show when due"
       ],
       "verify": "npm run test:e2e -- freshness",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm run test:e2e -- freshness` 2 pass, `-- sample` 4 pass. Every row has a freshness line; the Sample data banner is on /, an area page and a film page and in the page's own HTML; a source read 30 hours before the clock shows 'yesterday at 12:00 \u00b7 check with the cinema' on its rows and the stale banner (the test rewrites the served page into live data, since the site holds only sample data)."
     },
     {
       "id": "D3-4",
@@ -300,8 +300,8 @@
         "tapping a film opens its page"
       ],
       "verify": "npm run test:e2e -- films",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm run test:e2e -- films` 3 pass. Typing ' RAMA ' leaves Ramayana and Ramayana: Rise of a Legend; 'zzz' leaves none and says so; tapping Spider-Man: Brand New Day opens /film/spider-man-brand-new-day with its showings. A film with no showing left to start is no longer listed."
     },
     {
       "id": "D3-5",
@@ -313,8 +313,8 @@
         "no distances or travel times"
       ],
       "verify": "npm run test:e2e -- empty",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm run test:e2e -- empty` 1 pass. An area with nothing in the next 2 hours says so and lists each neighbouring area as '<name> \u00b7 <n> starting soon' or '<name> \u00b7 nothing soon', with counts checked against the data files; no distance or travel time; following a neighbour does not change the saved area."
     },
     {
       "id": "D3-3",

@@ -80,11 +80,11 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [ ] Update `data/cinemas.json` (coordinates, addresses from the cinemas' own pages): not started; it needs pages that have not been saved
 
 ### Day 3: Home
-- [ ] `/area/[slug]` as the static "Starting soon near you" page and `/` for all Lagos (D-18): next 2 hours, then Later tonight, then Tomorrow
-- [ ] Area picker (remembered; `/` sends a returning visitor to their area); empty state with neighbouring areas (D-22)
-- [ ] "Now showing" film list on home with a filter box (D-22)
-- [ ] Showing row: time, film, cinema, format, freshness line, Book link
-- [ ] Sample-data and stale banners
+- [x] `/area/[slug]` as the static "Starting soon near you" page and `/` for all Lagos (D-18): next 2 hours, then Later tonight, then Tomorrow
+- [x] Area picker (remembered; `/` sends a returning visitor to their area); empty state with neighbouring areas (D-22)
+- [x] "Now showing" film list on home with a filter box (D-22)
+- [x] Showing row: time, film, cinema, format, freshness line, Book link
+- [x] Sample-data and stale banners
 - [ ] Chime approves home on the phone; screenshot saved
 
 ### Day 4: Film, cinema, area, Stay or Go

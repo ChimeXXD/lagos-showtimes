@@ -87,19 +87,19 @@ The static HTML of `/` and `/area/[slug]` holds one time-ordered list with absol
 
 ## 8. Acceptance checks
 
-- [ ] 1. With the clock at Fri 6 Nov 2026 18:00 Lagos, `/area/lekki` on the test fixtures lists only showings starting 18:00–20:00 under Starting soon, sorted by time. verify: `npm run test:e2e -- home`
+- [x] 1. With the clock at Fri 6 Nov 2026 18:00 Lagos, `/area/lekki` on the test fixtures lists only showings starting 18:00–20:00 under Starting soon, sorted by time. verify: `npm run test:e2e -- home`
 - [ ] 2. A showing at 17:59 shows "Started 1 min ago" and has no Book link. verify: `npm run test:e2e -- started` and `npm test -- lib/time/showingState`
-- [ ] 3. Every row has a freshness line; a source read 30 h ago shows the stale wording and the banner. verify: `npm run test:e2e -- freshness`
+- [x] 3. Every row has a freshness line; a source read 30 h ago shows the stale wording and the banner. verify: `npm run test:e2e -- freshness`
 - [ ] 4. The film page for a TMDB film tagged `aftercreditsstinger` shows "Stay: scene after the credits · TMDB"; an untagged film shows "Credits scene: not known yet"; "Go" shows only for a film with a manual entry that has a link (D-19). verify: `npm test -- lib/wording/credits` and `npm run test:e2e -- film`
 - [ ] 5. The .ics file parses (RFC 5545), has `DTSTART:20261106T183000Z` for a 19:30 Lagos show and an alarm at `-PT30M`. verify: `npm test -- lib/ics`
-- [ ] 6. With the device zone set to America/New_York in Playwright, times still show Lagos time. verify: `npm run test:e2e -- timezone`
+- [x] 6. With the device zone set to America/New_York in Playwright, times still show Lagos time. verify: `npm run test:e2e -- timezone`
 - [ ] 7. Home and area pages are within the budget set on Day 0 (D-21); Lighthouse mobile ≥ 90 performance and accessibility. verify: `npm run build && npm run budget`, plus a Lighthouse run with the scores written in `PROGRESS.md`
 - [ ] 8. `/about` lists every source with status, the TMDB logo and notice, and a takedown contact. verify: `npm run test:e2e -- about`
-- [ ] 9. With fixtures active, a "Sample data" banner shows on every page and no row has a booking link. verify: `npm run test:e2e -- sample`
+- [x] 9. With fixtures active, a "Sample data" banner shows on every page and no row has a booking link. verify: `npm run test:e2e -- sample`
 - [ ] 10. `npm run refresh -- --fixtures` run on any day writes showings dated today and tomorrow in Lagos with the fixtures' wall-clock times (D-20). verify: `npm test -- scripts/refresh`
-- [ ] 11. Typing part of a film's title in the "Now showing" filter on home leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
-- [ ] 12. An area with no showing in the next 2 hours shows the empty state with its neighbouring areas and their counts (D-22). verify: `npm run test:e2e -- empty`
-- [ ] 13. A returning visitor with a saved area who opens `/` lands on `/area/<slug>` (D-18). verify: `npm run test:e2e -- home`
+- [x] 11. Typing part of a film's title in the "Now showing" filter on home leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
+- [x] 12. An area with no showing in the next 2 hours shows the empty state with its neighbouring areas and their counts (D-22). verify: `npm run test:e2e -- empty`
+- [x] 13. A returning visitor with a saved area who opens `/` lands on `/area/<slug>` (D-18). verify: `npm run test:e2e -- home`
 
 ## 9. Risks and assumptions
 

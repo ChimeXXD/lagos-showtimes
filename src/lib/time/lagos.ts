@@ -30,6 +30,11 @@ export function utcMs(iso: string): number {
   return ms;
 }
 
+/** The UTC string, to the second, for milliseconds since the epoch: "2026-11-06T18:30:00Z". */
+export function utcString(ms: number): string {
+  return new Date(ms).toISOString().replace(/\.\d{3}Z$/, "Z");
+}
+
 function partsAt(ms: number): LagosParts {
   const found: Record<string, string> = {};
   for (const part of partsFormat.formatToParts(ms)) found[part.type] = part.value;
@@ -105,5 +110,5 @@ export function lagosLocalToUtc(local: LagosLocal): string {
   const back = partsAt(wallAsUtc - offset);
   const same = (["year", "month", "day", "hour", "minute"] as const).every((k) => back[k] === local[k]);
   if (!same) throw new Error(`Not a real Lagos time: ${JSON.stringify(local)}`);
-  return new Date(wallAsUtc - offset).toISOString().replace(".000Z", "Z");
+  return utcString(wallAsUtc - offset);
 }

@@ -2,7 +2,7 @@
 // For each budgeted page: gzip the HTML and every local script and stylesheet it references
 // (script src, stylesheet and preload links), then compare with the limits below.
 // Gzip size approximates what a host sends; real transfer adds headers and may use brotli.
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
 
@@ -15,10 +15,19 @@ const KB = 1024;
 // (paths under out/): a fetched JSON file is not referenced in the HTML, so it must be listed.
 const BUDGET = {
   // The font is loaded from the stylesheet, not the HTML, so it is listed here to be counted.
-  pages: [{ html: "index.html", data: ["fonts/outfit-sinima.woff2"] }],
+  // All of Lagos, and the heaviest area and film page in this build, whichever they are today.
+  pages: () => ["index.html", heaviest("area"), heaviest("film")].map((html) => ({ html, data: ["fonts/outfit-sinima.woff2"] })),
   jsKb: 160,
   totalKb: 200,
 };
+
+/** The largest page in a folder of out/, e.g. "area/lekki.html". Pages of one kind share their scripts. */
+function heaviest(dir) {
+  const pages = existsSync(join(OUT, dir)) ? readdirSync(join(OUT, dir)).filter((name) => name.endsWith(".html")) : [];
+  if (pages.length === 0) throw new Error(`check-budget: no pages in out/${dir}/`);
+  const size = (name) => statSync(join(OUT, dir, name)).size;
+  return `${dir}/${pages.reduce((a, b) => (size(b) > size(a) ? b : a))}`;
+}
 
 const gz = (path) => gzipSync(readFileSync(path), { level: 9 }).length;
 
@@ -61,7 +70,7 @@ if (!existsSync(OUT)) {
 const kb = (n) => (n / KB).toFixed(1).padStart(7);
 let failed = false;
 console.log("page                     html      js     css   other   total  (gzipped KB)");
-for (const page of BUDGET.pages) {
+for (const page of BUDGET.pages()) {
   const r = measure(page);
   console.log(`${r.page.padEnd(20)} ${kb(r.html)} ${kb(r.js)} ${kb(r.css)} ${kb(r.other)} ${kb(r.total)}`);
   if (r.js > BUDGET.jsKb * KB) {

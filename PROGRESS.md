@@ -2,6 +2,37 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 3: the home screen (Wed 11 Nov 2026, night)
+
+**Changed**
+- Routes: `/` (all of Lagos), `/area/[slug]` (12 areas), `/film/[slug]` (a plain list for now).
+- `src/lib/data/select.ts` (list data, sections, banner, film counts, section names) and `load.ts`; `src/lib/time/useNow.ts`.
+- Components: `Page`, `ShowingsBoard`, `ShowingRow`, `AreaPicker`, `FilmList`.
+- `npm run build` now runs `refresh --fixtures` first. The budget script measures `/`, the largest area page and the largest film page.
+- `docs/design/direction-board/posters.html`: three poster options for Chime to pick from. D-48.
+
+**Red first**
+- `select.test.ts` failed with "Cannot find package '@/lib/data/select'"; later additions failed with "laterName is not a function", "nextDayName is not a function" and, for film counts with the time, a wrong count.
+- **The browser tests were written before the screens but first run after them, so they were not seen failing.** One failed for its own reason (it looked for `datetime`, React writes `dateTime`). A verifier then judged each: most would fail if their requirement broke; the weak ones it named were fixed or removed, and three tests were added (section order with Tomorrow, the real Book path, films that have finished).
+- The smoke test's heading check changed from "Sinima" (the placeholder) to the wordmark plus "Starting soon in Lagos".
+
+**Checked**
+- Unit 324 pass. Browser 32 pass. Lint, typecheck and build clean.
+- Budget with tonight's build: `/` 188.3 KB, Lekki 177.0, the largest film page 175.2, of 200. With a full two-day programme `/` measured 195.7.
+- Screenshots at 390 and 360 px, light and dark, compared by eye with the direction B frame: header, title, banner, rows, picker sheet, empty state, film list.
+- `/code-review --fix`: 10 findings, 7 fixed (a showing could stay bookable up to 30 s after its start; the "Check on" link could open the wrong site; the sample banner could vanish on an area with no rows). Fresh-context verifier: 11 of 12 requirements passed; its one gap (a "Today and tomorrow" heading baked into the page) and its note on film counts are fixed.
+
+**Not verified**
+- On a real phone (the Day 3 gate, D3-3). VoiceOver or TalkBack reading a row.
+- The deployed site: Vercel must run the new prebuild step; not checked yet.
+- Soft navigation to `/` does not redirect to the saved area (D-48 d).
+- Type sizes written in components (`text-[14px]`, `text-[19px]`, `text-[10px]`) are not tokens yet.
+- The site empties two days after a build; nothing rebuilds daily.
+
+**Next**
+- Chime: pick a poster option; look at the site on the phone.
+- Day 4: film page (areas, Stay or Go tile), cinema page, started rows.
+
 ## Day 2: TMDB run for real; neighbours confirmed (Wed 11 Nov 2026, night)
 
 **Changed**

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima · posters on rows</title>
+<style>
+  @font-face { font-family: "Outfit"; src: url("../../../public/fonts/outfit-sinima.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+  :root {
+    --bg: #ffffff; --surface: #f3f3f3; --text: #0a0a0a; --muted: #555555; --accent: #0a0a0a; --accent-text: #ffffff;
+    --line: #e2e2e2; --poster: #1f1f1f; --poster-text: #f3f3f3; --focus: #0b57d0;
+  }
+  :root[data-theme="dark"] { --bg: #0a0a0a; --surface: #1a1a1a; --text: #fafafa; --muted: #ababab; --accent: #fafafa; --accent-text: #0a0a0a; --line: #2c2c2c; --focus: #9cc2ff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: var(--surface); color: var(--text); font: 400 15px/1.45 "Outfit", system-ui, sans-serif; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .top { max-width: 1280px; margin: 0 auto 24px; display: grid; gap: 12px; }
+  h1 { margin: 0; font-size: 28px; line-height: 1.15; font-weight: 600; }
+  .lede { margin: 0; max-width: 72ch; color: var(--muted); }
+  .seg { display: inline-flex; width: fit-content; padding: 4px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); }
+  .seg button, .pick { min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--text); font: 600 14px/1 inherit; font-family: inherit; cursor: pointer; }
+  .seg button[aria-pressed="true"], .pick { background: var(--accent); color: var(--accent-text); }
+  .options { max-width: 1280px; margin: 0 auto; display: flex; gap: 24px; overflow-x: auto; padding-bottom: 12px; align-items: flex-start; }
+  .option { flex: 0 0 390px; display: grid; gap: 12px; }
+  .option h2 { margin: 0; font-size: 20px; font-weight: 600; }
+  .facts { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; color: var(--muted); font-size: 13px; }
+  .facts b { color: var(--text); font-weight: 600; }
+  .frame { width: 390px; padding: 16px 16px 24px; border: 1px solid var(--line); border-radius: 28px; background: var(--bg); }
+  .sec { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px; }
+  .sec h3 { margin: 0; font-size: 20px; font-weight: 600; }
+  .sec span { color: var(--muted); font-size: 13px; }
+  .rows { margin: 0; padding: 0; list-style: none; display: grid; gap: 24px; }
+  .row { display: grid; grid-template-columns: 76px 1fr; column-gap: 12px; }
+  .tile { display: flex; align-items: flex-end; width: 76px; height: 114px; padding: 6px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--poster); color: var(--poster-text); font-size: 10px; line-height: 1.15; font-weight: 600; }
+  img.tile { padding: 0; object-fit: cover; }
+  .body { display: grid; gap: 6px; align-content: start; min-width: 0; }
+  .when { display: flex; align-items: center; gap: 8px; }
+  .time { font-size: 26px; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .count { padding: 3px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; font-weight: 500; }
+  .title { font-size: 17px; line-height: 1.2; font-weight: 600; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .fresh { color: var(--muted); font-size: 12px; }
+  .sample { display: inline-flex; align-items: center; justify-content: center; width: fit-content; min-width: 112px; min-height: 44px; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-weight: 600; }
+  .zoom { display: flex; flex-wrap: wrap; gap: 24px; }
+  .zoom figure { margin: 0; display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
+  .zoom img { width: 228px; height: 342px; border-radius: 12px; border: 1px solid var(--line); object-fit: cover; background: var(--poster); }
+  .lede b { color: var(--text); font-weight: 600; }
+  .copied { min-height: 20px; margin: 0; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Posters on the showing rows</h1>
+  <p class="lede">The same seven Lekki showings three ways. TMDB has a poster for 14 of the 31 films now showing, so in the two poster options some rows still show the dark title tile. Posters would load from TMDB's image host, one at a time as you scroll, and stay off in data-saver mode. Sizes were measured on 11 Nov 2026. <b>A has no posters; B and C do.</b> B and C differ only in sharpness, which a laptop screen hides, so the strip below enlarges one poster three times, as a sharp phone screen would show it.</p>
+  <div class="zoom" id="zoom"></div>
+  <div class="seg" role="group" aria-label="Theme">
+    <button type="button" aria-pressed="true" data-theme-set="light">Light</button>
+    <button type="button" aria-pressed="false" data-theme-set="dark">Dark</button>
+  </div>
+  <p class="copied" id="copied" role="status"></p>
+</header>
+<main class="options" id="options"></main>
+<script>
+  const POSTERS = {
+    "Street Fighter": "/dJPT2Uf12X6aFg8i5N67NTpIZ9t.jpg",
+    "Clayface": "/9l1NuFjel2j89hiuiJbsxfblqjy.jpg",
+    "Agbara Nla: The Return": "/ea2IOcZnkRJfwZUmTJBqbvgQAgF.jpg",
+    "Whalefall": "/vjTYUTgh9nO88i6HZ4YPRhiFL05.jpg",
+    "Spider-Man: Brand New Day": "/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg",
+  };
+  const ROWS = [
+    ["18:15", "Starts in 15 min", "Maybe… Maybe Not", "Genesis Deluxe Purple Mall"],
+    ["19:00", "Starts in 1 h", "Street Fighter", "Filmhouse Lekki IMAX · 2D"],
+    ["19:00", "Starts in 1 h", "Ramayana", "Filmhouse Ikota · 2D"],
+    ["19:10", "Starts in 1 h 10 min", "Clayface", "Filmhouse Circle Mall · 2D"],
+    ["19:30", "Starts in 1 h 30 min", "Agbara Nla: The Return", "Grand Cinemas Lekki"],
+    ["19:45", "Starts in 1 h 45 min", "Spider-Man: Brand New Day", "Filmhouse Lekki IMAX · IMAX 2D"],
+    ["20:00", "Starts in 2 h", "Whalefall", "Genesis Deluxe Purple Mall"],
+  ];
+  const OPTIONS = [
+    { id: "A", name: "A · Title tile only", size: null, facts: [["Data", "None. Nothing extra to load."], ["Look", "Every row the same. Fastest, plainest."], ["Posters", "Only on the film page."]] },
+    { id: "B", name: "B · Small poster file (92 px wide)", size: "w92", facts: [["Data", "About 5.6 KB a poster; all 14 come to 79 KB."], ["Look", "A little soft on a sharp phone screen: the file is smaller than the space it fills."], ["Mix", "Rows without a poster keep the tile."]] },
+    { id: "C", name: "C · Sharper poster file (154 px wide)", size: "w154", facts: [["Data", "About 12.9 KB a poster; all 14 come to 180 KB."], ["Look", "Sharp on every phone."], ["Mix", "Rows without a poster keep the tile."]] },
+  ];
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const tile = (title, size) => size && POSTERS[title]
+    ? `<img class="tile" width="76" height="114" alt="" src="images/posters/${size}-${POSTERS[title].slice(1)}">`
+    : `<div class="tile" aria-hidden="true">${esc(title)}</div>`;
+  document.getElementById("options").innerHTML = OPTIONS.map((o) => `<section class="option" aria-labelledby="opt-${o.id}">
+    <h2 id="opt-${o.id}">${o.name}</h2>
+    <ul class="facts">${o.facts.map(([k, v]) => `<li><b>${k}:</b> ${v}</li>`).join("")}</ul>
+    <button class="pick" type="button" data-pick="Posters: option ${o.name}">Copy my pick: ${o.id}</button>
+    <div class="frame"><div class="sec"><h3>Starting soon</h3><span>next 2 hours</span></div>
+      <ul class="rows">${ROWS.map(([time, count, title, meta]) => `<li class="row">${tile(title, o.size)}
+        <div class="body"><div class="when"><span class="time">${time}</span><span class="count">${count}</span></div>
+        <div><div class="title">${esc(title)}</div><div class="meta">${esc(meta)}</div><div class="fresh">Sample data saved from Lagocine on 11 Nov</div></div>
+        <span class="sample">Sample only</span></div></li>`).join("")}</ul>
+    </div>
+  </section>`).join("");
+  document.getElementById("zoom").innerHTML = [["w92", "B · small file, enlarged 3 times"], ["w154", "C · sharper file, enlarged 3 times"]]
+    .map(([size, label]) => `<figure><img alt="" src="images/posters/${size}-${POSTERS["Street Fighter"].slice(1)}"><figcaption>${label}</figcaption></figure>`).join("");
+  document.querySelectorAll("[data-theme-set]").forEach((b) => b.addEventListener("click", () => {
+    document.documentElement.dataset.theme = b.dataset.themeSet;
+    b.parentElement.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  }));
+  document.querySelectorAll("[data-pick]").forEach((b) => b.addEventListener("click", async () => {
+    const text = b.dataset.pick;
+    try { await navigator.clipboard.writeText(text); document.getElementById("copied").textContent = `Copied: "${text}". Paste it back to Claude.`; }
+    catch { document.getElementById("copied").textContent = `Tell Claude: "${text}"`; }
+  }));
+</script>
+</body>
+</html>

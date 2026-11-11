@@ -1,6 +1,16 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 2 is done; Day 3 (the home screen) is next (session of Wed 11 Nov 2026, evening to night)
+## Now: Day 3 is built, waiting for Chime on the phone; Day 4 is next (Wed 11 Nov 2026, night)
+
+Read this first, then the Day 2 section under it for the data pipeline. Where they disagree, this one is right.
+
+- **Built:** `/`, `/area/[slug]`, a plain `/film/[slug]`; showing rows, sections by the clock, area picker with a remembered area, "Now showing" with a filter, empty state with neighbouring areas, sample and stale banners. Details and open cases: D-48 and the Day 3 entry in `PROGRESS.md`.
+- **Checks:** 324 unit and 32 browser tests pass. 23 of 40 features pass; D3-3 (Chime approves on the phone) is the one Day 3 item left.
+- **Waiting for Chime:** a poster pick (`docs/design/direction-board/posters.html`; its poster images are local only, in the git-ignored `images/posters/`); a look on the phone; whether the wordmark should go to the saved area; three TMDB hand matches (Ikenga, Ramayana, Verity); whether `.claude/proof.json` may change so build and typecheck stop colliding.
+- **Risks to deal with:** `/` weighs 195.7 KB of 200 with a full programme, so it must carry less before live booking links arrive; the site empties two days after a build; type sizes in components are not tokens; Vercel has not yet been seen running the prebuild step.
+- **Do next (Day 4):** film page grouped by area with the Stay or Go tile, cinema page, "Started 5 min ago" rows with no Book link, then the Should items. Wire in posters once Chime picks.
+
+## Earlier: Day 2 (session of Wed 11 Nov 2026, evening to night)
 
 Read this section first. The sections below are background; where they disagree with this one, this one is right. Design, name, working style, cost rules and "watch out for" in the Day 1 section still hold.
 
