@@ -117,8 +117,8 @@
         "pick and name logged as decisions"
       ],
       "verify": "open docs/design/direction-board/index.html",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: 9 frames (3 directions x 3 screens) measured at 390 px wide in headless Chromium, light and dark. Chime picked B · Poster on pick.html (D-35) and the name Sinima on names.html (D-36)."
     },
     {
       "id": "D1-3",

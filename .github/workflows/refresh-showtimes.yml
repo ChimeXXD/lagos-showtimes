@@ -44,7 +44,7 @@ jobs:
       - name: Fetch cleared sources, validate, write data/showtimes.json
         run: npm run refresh
         env:
-          FETCH_USER_AGENT: "LagosShowtimesBot/0.1 (+https://github.com/ChimeXXD/lagos-showtimes)"
+          FETCH_USER_AGENT: "SinimaBot/0.1 (+https://github.com/ChimeXXD/sinima)"
           TMDB_READ_TOKEN: ${{ secrets.TMDB_READ_TOKEN }}
 
       - name: Commit if changed

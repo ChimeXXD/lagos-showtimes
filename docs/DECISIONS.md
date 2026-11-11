@@ -75,6 +75,8 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | D-35 | **Direction B · Poster.** A small poster on every showing row, a rounded typeface (Outfit on the board), black capsules for the area button and main actions, and Stay or Go as its own tile with the source under it. Still to settle inside it: the font file must fit the 30 KB limit (or fall back to the system font), and posters must fit the page-weight budget (D-28) and TMDB's terms (D-31); if they don't, posters stay on the film page only. | Chime's pick on `docs/design/direction-board/pick.html`, 11 Nov 2026, with no changes asked for. |
 
+| D-36 | **The name is Sinima.** Closes O-1. It replaces the working title "Lagos Showtimes" everywhere: the site, the repo (`ChimeXXD/sinima`), the Vercel project, the project folder and the fetcher's user agent (`SinimaBot`). Supersedes the names in D-17 and the PRD's recommendation (Wetin Dey Show). Older log entries keep the old name. | Chime's pick, 11 Nov 2026, after seeing ten options: "I want us to use the name Sinima." It is how "cinema" is said and spelt in Yoruba and Hausa. Clash check, light: two web searches found no app or company called Sinima in Nigerian film or showtimes; `sinima.com` and `sinima.app` are registered by others (we use neither; the budget is $0). No trademark search was done. |
+
 ## Lessons carried from Meridian and Agmen
 
 | ID | Lesson | How it applies |
@@ -91,7 +93,7 @@ From `docs/PLAN-REVIEW.md`. Chime said yes to all on 11 Nov 2026.
 
 | ID | Question | Owner |
 | --- | --- | --- |
-| O-1 | **Final name.** Chime likes **Sinima** (11 Nov) but wants it to feel more Nigerian or Lagosian, and has ruled out Wetin Dey Show and Lagos Showtimes. Chime then asked for names that are not built on Sinima; ten options (Sinima plus nine others) are on `docs/design/direction-board/names.html`. None is checked for clashes yet, and the Hausa and Igbo meanings are unconfirmed; check the one Chime picks. | Chime |
+| O-1 | **Final name.** Closed by D-36: Sinima. | Chime |
 | O-2 | **Data permission status per source** (update as replies arrive). | Chime |
 | O-3 | **Push notifications**: Phase 2 as D-11 says, or try a $0 version this week (GitHub Actions cron + stored subscriptions)? Proposal: Phase 2. | Chime |
 | O-4 | **Host**: Vercel Hobby or Cloudflare Pages. Proposal: Vercel (portfolio is there; preview deploys). | Chime |

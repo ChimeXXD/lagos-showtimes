@@ -11,7 +11,7 @@ const NAMES = [
   ["Abeg Wait", "Pidgin for \"please wait\". A nod to Stay or Go: don't leave before the scene after the credits."],
   ["Gidi Reel", "\"Las Gidi\", the street name for Lagos, plus a film reel. The only one that says Lagos."],
 ];
-const KEY = "lagos-showtimes-name-pick";
+const KEY = "sinima-name-pick";
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "own";
 

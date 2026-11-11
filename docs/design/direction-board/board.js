@@ -86,7 +86,7 @@ function row(r, stale) {
 }
 
 const topBar = `<header class="top">
-  <a class="wordmark" href="#" data-testid="wordmark" data-wordmark>Lagos Showtimes</a>
+  <a class="wordmark" href="#" data-testid="wordmark" data-wordmark>Sinima</a>
   <button class="pill is-area" type="button" data-testid="area.button">Lekki ▾</button>
   <button class="pill" type="button" aria-label="Filters" data-testid="filters.button">${ICON.filter}</button>
 </header>`;
@@ -114,7 +114,7 @@ const venue = (v) => `<li class="venue" data-testid="film.venue.${v.id}">
 
 const film = () => `<header class="top">
     <a class="back" href="#" data-testid="film.back">‹ Lekki</a>
-    <a class="wordmark" href="#" style="margin-right:0" data-testid="wordmark" data-wordmark>Lagos Showtimes</a>
+    <a class="wordmark" href="#" style="margin-right:0" data-testid="wordmark" data-wordmark>Sinima</a>
   </header>
   <div class="hero">
     <div class="poster" aria-hidden="true" data-testid="film.poster">Clayface</div>

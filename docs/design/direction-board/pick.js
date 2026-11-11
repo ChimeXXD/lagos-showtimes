@@ -1,8 +1,8 @@
 // pick.html: remembers the chosen direction, name and note in this browser, and copies them as one line.
-const KEY = "lagos-showtimes-direction-pick";
+const KEY = "sinima-direction-pick";
 const note = document.getElementById("pick-note");
 const statusLine = document.getElementById("pick-status");
-const choice = { direction: "", name: "Lagos Showtimes", note: "" };
+const choice = { direction: "", name: "Sinima", note: "" };
 
 function save() {
   try { localStorage.setItem(KEY, JSON.stringify(choice)); } catch { /* private window: the pick still works until the page closes */ }

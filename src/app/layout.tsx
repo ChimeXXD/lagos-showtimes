@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Lagos Showtimes",
+  title: "Sinima",
   description: "What's starting soon at Lagos cinemas, and should you stay after the credits?",
 };
 

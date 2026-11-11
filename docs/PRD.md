@@ -1,6 +1,6 @@
-> Written 6 Nov 2026. Decisions in `docs/DECISIONS.md` supersede anything here that disagrees. "Lagos Showtimes" is the folder name and working title; the brand is open (O-1).
+> Written 6 Nov 2026. Decisions in `docs/DECISIONS.md` supersede anything here that disagrees. The name is **Sinima** (D-36, 11 Nov 2026); "Lagos Showtimes" and "Wetin Dey Show" were working names.
 
-# Wetin Dey Show (working name: Lagos Showtimes)
+# Sinima (earlier working names: Wetin Dey Show, Lagos Showtimes)
 
 Every Lagos cinema's showtimes in one fast phone page, with when your film starts, where the time came from, and whether to stay for the credits.
 
@@ -216,7 +216,7 @@ This section shapes the whole build. The short version: **ask first, fetch polit
 **2. Fallback: a polite fetcher, per source, only when cleared.** For each source, record in `data/sources.json`: robots.txt result, terms of use (link and the relevant clause), permission status, and rate limit. Rules:
 - Read robots.txt on every run and obey it.
 - At most one request every 5 seconds per host, a few runs a day, at off-peak Lagos hours.
-- A clear user agent with a contact URL (`LagosShowtimesBot/0.1 (+https://github.com/ChimeXXD/lagos-showtimes)`).
+- A clear user agent with a contact URL (`SinimaBot/0.1 (+https://github.com/ChimeXXD/sinima)`).
 - Read only public listing pages. Never log in, never bypass a paywall, captcha or rate limit, never touch seat maps or checkout.
 - Store only what we show: film, cinema, start time, format, booking link. No personal data.
 - If a site's terms forbid automated access, or the owner asks us to stop, we stop that day.

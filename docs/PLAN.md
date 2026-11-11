@@ -1,4 +1,4 @@
-# Lagos Showtimes: the one-week build
+# Sinima: the one-week build
 
 Written 6 Nov 2026, revised 11 Nov 2026 after the plan review (`PLAN-REVIEW.md`, D-18 to D-25). Decisions are in `DECISIONS.md`. The PRD is `PRD.md`; this plan replaces its Phase 1 for the week.
 
@@ -65,7 +65,7 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [ ] Collect 30–50 references by surface (`docs/design/REFERENCES.md`); images stay local
 - [ ] Pattern summary: what the picks share, what to avoid
 - [x] `docs/design/direction-board/index.html`: three directions, each showing Starting soon, a film page with Stay or Go, and a stale-data state, at 390 px wide
-- [ ] **Chime picks a direction and the name (O-1)**; log both as decisions
+- [x] **Chime picks a direction and the name (O-1)**; log both as decisions (D-35: direction B · Poster; D-36: Sinima)
 - [ ] Fill UI brief §1–3; write `src/styles/tokens.css`; draft icon
 - [ ] Core lane, tests first: `lib/time/lagos.ts`, `showingState.ts`, `lib/wording/freshness.ts`, `credits.ts`, `lib/ics/ics.ts`
 

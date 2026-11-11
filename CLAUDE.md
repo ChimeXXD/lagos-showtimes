@@ -1,6 +1,6 @@
-# CLAUDE.md — Lagos Showtimes
+# CLAUDE.md — Sinima
 
-**Lagos Showtimes** is the working title (brand open, O-1; the PRD recommends "Wetin Dey Show"). You are building this project. Read this file first, then `docs/HANDOFF.md` (the latest session summary), `docs/PLAN.md` for the current day and `PROGRESS.md` for where the last session stopped.
+**Sinima** is the name (D-36; "Lagos Showtimes" was the working title, so older notes and log entries still say it). You are building this project. Read this file first, then `docs/HANDOFF.md` (the latest session summary), `docs/PLAN.md` for the current day and `PROGRESS.md` for where the last session stopped.
 Every product and architecture decision so far is in `docs/DECISIONS.md`. Don't reopen one unless it blocks you. If it does, write the problem under "Open" in `docs/DECISIONS.md` and ask Chime. Chime is they/them.
 
 ## What we are building

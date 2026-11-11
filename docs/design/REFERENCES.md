@@ -1,6 +1,6 @@
 # References (Day 1)
 
-Collect 30–50 references by surface. Save images under `reference-board/images/` (git-ignored: other products' UI is copyrighted, D-13). Note each pick here with what to take from it. If the reference library connector is available, save picks to a "Lagos Showtimes references" collection; never name the connector in the repo.
+Collect 30–50 references by surface. Save images under `reference-board/images/` (git-ignored: other products' UI is copyrighted, D-13). Note each pick here with what to take from it. If the reference library connector is available, save picks to a "Sinima references" collection; never name the connector in the repo.
 
 ## Surfaces and searches
 

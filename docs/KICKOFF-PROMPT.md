@@ -1,13 +1,13 @@
 # Kickoff prompts for Claude CLI
 
-Open Terminal in this folder (`Projects/Personal Projects/Lagos Showtimes`) and run `claude`. Paste one prompt per session.
+Open Terminal in this folder (`Projects/Personal Projects/Sinima`) and run `claude`. Paste one prompt per session.
 
 ## Session 1: Day 0 (setup, audit, ask)
 
 ```
 Read CLAUDE.md, docs/HANDOFF.md, docs/PLAN.md, docs/DECISIONS.md and docs/DATA.md. We're starting Day 0 of
-Lagos Showtimes. Ask me first which host to use (O-4: Vercel Hobby or Cloudflare Pages).
-1. git init, private GitHub repo ChimeXXD/lagos-showtimes, first commit of these docs.
+Sinima. Ask me first which host to use (O-4: Vercel Hobby or Cloudflare Pages).
+1. git init, private GitHub repo ChimeXXD/sinima, first commit of these docs.
 2. Scaffold Next.js in place with exact versions: next 16.4.3, react 19.3.1, react-dom 19.3.1, typescript 5.9.3,
    tailwindcss 4.3.3 + @tailwindcss/postcss 4.3.3, eslint 9 + eslint-config-next 16.4.3, @playwright/test 1.64.1,
    plus vitest and cheerio as dev dependencies (D-03). App Router, src/, static export. Add the npm scripts from
