@@ -50,8 +50,12 @@ jobs:
       - name: Page weight budget
         run: npm run budget
 
+      # No --with-deps: it runs apt-get for extra system packages, and on 11 Nov 2026 that step hung
+      # on the runner's package mirror until the job timed out. The runner image already has the
+      # libraries Chromium needs. The time limit turns any future hang into a quick, clear failure.
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        timeout-minutes: 5
+        run: npx playwright install chromium
 
       - name: E2E tests
         run: npm run test:e2e
