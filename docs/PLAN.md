@@ -62,13 +62,13 @@ Dates are a suggestion; start Day 0 whenever Chime does, and shift the rest.
 - [ ] TMDB terms read by Claude (D-31). Still to do: Chime gets a TMDB API key into `.env.local` and GitHub Secrets
 
 ### Day 1: Design direction (D-13) + core lane (D-14)
-- [ ] Collect 30–50 references by surface (`docs/design/REFERENCES.md`); images stay local
-- [ ] Pattern summary: what the picks share, what to avoid
+- [x] Collect 30–50 references by surface (`docs/design/REFERENCES.md`); images stay local
+- [x] Pattern summary: what the picks share, what to avoid
 - [x] `docs/design/direction-board/index.html`: three directions, each showing Starting soon, a film page with Stay or Go, and a stale-data state, at 390 px wide
 - [x] **Chime picks a direction and the name (O-1)**; log both as decisions (D-35: direction B · Poster; D-36: Sinima)
 - [x] Fill UI brief §1–3; write `src/styles/tokens.css` (D-37, D-38)
 - [x] Logo and icon: Ticket S in Ink and blue (D-42, D-43), in the header, tab, home screen and manifest
-- [ ] Core lane, tests first: `lib/time/lagos.ts`, `showingState.ts`, `lib/wording/freshness.ts`, `credits.ts`, `lib/ics/ics.ts`
+- [x] Core lane, tests first: `lib/time/lagos.ts`, `showingState.ts`, `lib/wording/freshness.ts`, `credits.ts`, `lib/ics/ics.ts`
 
 ### Day 2: Data
 - [ ] `lib/data/types.ts` and `validate.ts` from `DATA.md`; the DATA.md example validates; broken fixtures fail with clear messages

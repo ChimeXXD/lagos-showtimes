@@ -2,6 +2,32 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 1, core lane: time, wording and the calendar file (Wed 11 Nov 2026, late night)
+
+**Changed**
+- `src/lib/time/`: `lagos.ts` (UTC to Lagos, the one local-to-UTC function, day and evening helpers), `showingState.ts`, `countdown.ts`.
+- `src/lib/wording/`: `freshness.ts`, `credits.ts`, `showing.ts` (the row line and the full screen-reader sentence).
+- `src/lib/ics/ics.ts`: the Remind me calendar file and its file name. `src/lib/data/types.ts`: the credits and via shapes.
+- D-44 records the cases the docs left open.
+
+**Red first**
+- Each test file failed with "Cannot find package '@/lib/...'" before its module existed (lagos, countdown, freshness, credits, showing, ics).
+- `credits.test.ts` › "no Go with a checked date that is not a UTC time" failed with "Not a UTC time ending in Z: \"5 Nov\"" (a crash) before `citable()` was made safe.
+- One correction to a new test, not to behaviour: its expected error text had a lower-case "not" where the message says "Not".
+
+**Checked**
+- Unit: 154 pass (125 new). Each feature's verify command passes: `lib/time` 56, `lib/wording/freshness` 23, `lib/time/showingState` 29, `lib/wording/credits` 18, `lib/ics` 14.
+- A generated .ics file parsed with an independent library (Python icalendar): start 18:30 UTC, duration 2 h 17 min, alarm 30 min before, accented and escaped text intact, longest line 75 bytes.
+- Lint and typecheck clean.
+
+**Not verified**
+- The .ics file opened in iPhone Calendar and Google Calendar (Day 5 gate, needs Chime's phone).
+- Nothing is on screen yet: these are functions with tests; the pages that use them start on Day 3.
+- No fresh-context or automated code review was run (cost rule: no helper agents without asking).
+
+**Next**
+- Day 2: data types and validator, the Lagocine and Veezi parsers, sample data on today's dates, TMDB matching (needs Chime's TMDB key).
+
 ## Day 1: logo and colours settled; logo in the app (Wed 11 Nov 2026, late night)
 
 **Changed**

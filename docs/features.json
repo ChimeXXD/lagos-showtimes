@@ -144,8 +144,8 @@
         "midnight shows handled"
       ],
       "verify": "npm test -- lib/time",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- lib/time` 56 pass (tests/unit/lib/time/lagos.test.ts, showingState.test.ts). lagosLocalToUtc and formatTime tested; same results with the device zone set to New York, Tokyo, Kiritimati and UTC; 00:30 shows, month and year ends, and the 04:00 evening cut-off covered."
     },
     {
       "id": "D1-5",
@@ -158,8 +158,8 @@
         "sample wording tested"
       ],
       "verify": "npm test -- lib/wording/freshness",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- lib/wording/freshness` 23 pass. Each band tested at both edges (59 s / 60 s, 59 min 59 s / 1 h, 5 h 59 min 59 s / 6 h, Lagos midnight for today/yesterday/older); via wording in fresh, today, stale and old; sample wording."
     },
     {
       "id": "D1-6",
@@ -171,8 +171,8 @@
         "started is never bookable"
       ],
       "verify": "npm test -- lib/time/showingState",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- lib/time/showingState` 29 pass. States at -10:01, -10:00, -0:01, 0:00, +30:00 and +30:01; a showing at its start instant is 'started' and isBeforeStart is false; countdown wording at each minute boundary."
     },
     {
       "id": "D1-7",
@@ -186,8 +186,8 @@
         "Go only with a manual entry that has a link"
       ],
       "verify": "npm test -- lib/wording/credits",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- lib/wording/credits` 18 pass. Every DATA.md row; one named source gives 'Stay ... \u00b7 TMDB'; missing keyword gives 'not known yet'; Go only with a named source that has an https link and a checked date; a sweep of all 54 input combinations finds no 'Go' without one."
     },
     {
       "id": "D1-8",
@@ -201,8 +201,8 @@
         "UID and DTSTAMP"
       ],
       "verify": "npm test -- lib/ics",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "11 Nov 2026: `npm test -- lib/ics` 14 pass: DTSTART:20261106T183000Z for a 19:30 Lagos show, TRIGGER:-PT30M, CRLF, folding at 75 bytes without splitting multi-byte characters, UID and DTSTAMP. A generated file also parsed with the Python icalendar library (start 18:30 UTC, alarm 30 min before, text intact)."
     },
     {
       "id": "D2-1",

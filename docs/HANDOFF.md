@@ -1,6 +1,6 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 design lane finished (direction, name, logo, colours); core lane next (Wed 11 Nov 2026, late)
+## Now: Day 1 done (design and core logic); Day 2, the data, is next (Wed 11 Nov 2026, late)
 
 Read this section first. The older sections below are still right for everything else.
 
@@ -31,7 +31,8 @@ Read this section first. The older sections below are still right for everything
 
 ### Do next
 1. **Design lane is settled:** direction B · Poster (D-35), name Sinima (D-36), type Outfit (D-37), Doodle illustrations (D-39), logo Ticket S (D-42), colours Ink and blue (D-43). The logo is in the app: header, tab icon, home-screen icons and manifest (`scripts/make-icons.mjs` redraws the icons from `docs/design/logo/sinima-mark.svg`). Still to draw: the doodle character and the empty state. The option pages stay in `docs/design/direction-board/` as the record. No more Figma generations without asking: they spend GenAI-Labs credits. **When Chime says "present" a logo or identity, `refine.html` and `ticket.html` are the standard.**
-2. Core lane, tests first: `src/lib/time`, `src/lib/wording`, `src/lib/ics` (features D1-4 to D1-8).
+2. **Core lane is done** (D1-4 to D1-8 pass, 154 unit tests): `src/lib/time`, `src/lib/wording`, `src/lib/ics`; open cases settled in D-44. **Day 1's gate is passed** except checking on Chime's phone.
+3. **Day 2 next:** `lib/data/types.ts` (started) and `validate.ts`; cut down the saved Lagocine pages in `tmp/audit/` to fixtures; parsers for Lagocine and Veezi (the Silverbird fixture has no year in its dates and 12-hour times: convert through `lagosLocalToUtc`); `refresh --fixtures`; TMDB matching. **Needs from Chime:** the free TMDB key in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`, and a yes on the neighbouring-areas list (O-10).
 
 ### Not verified on the direction board
 - Seen only in headless Chromium, not in Dia or on a phone.
