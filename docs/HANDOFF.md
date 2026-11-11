@@ -1,8 +1,45 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Day 1 is done; Day 2 (the data) is next (session of Wed 11 Nov 2026, afternoon to night)
+## Now: Day 2 is done except TMDB; Day 3 (the home screen) is next (session of Wed 11 Nov 2026, evening)
 
-Read this section first. The Day 0 section below is background; where the two disagree, this one is right.
+Read this section first. The sections below are background; where they disagree with this one, this one is right. Design, name, working style, cost rules and "watch out for" in the Day 1 section still hold.
+
+### Where it stands
+- **Data format and validator** (D2-1): `src/lib/data/types.ts`, `validate.ts`. Every rule in DATA.md §Rules is enforced and tested.
+- **Parsers** (D2-2): `scripts/sources/lagocine.ts` (day page and cinema page) and `veezi.ts`, on three cut-down fixtures listed in `tests/fixtures/index.json`.
+- **Sample data** (D2-3): `npm run refresh -- --fixtures` writes `data/showtimes.json`, `public/data/all.json` and `public/data/area/<slug>.json` (12 areas) on today's and tomorrow's dates in Lagos. 294 showings a day across 20 cinemas and 31 films. **These files are git-ignored** (D-45): run the command to make them.
+- **Credits** (D2-4, **not passing**): the match rule, keyword reading, manual entries and the merge into films are built and tested without the network. `scripts/tmdb.ts` has never asked TMDB anything: there is no key.
+- **Checks:** 299 unit tests and 10 browser tests pass; home page still 162.1 KB of 200 (nothing on screen uses the data yet).
+- **Features:** 18 of 40 passing. **Decisions:** D-01 to D-45. Open: O-3, O-7, O-10 (a draft is written under O-10 in `DECISIONS.md`, waiting for Chime).
+
+### Do next
+1. **When Chime adds the TMDB key:** `node scripts/tmdb.ts`, check every printed match by eye, fix wrong ones in `data/tmdb-overrides.json`, confirm the request paths and fields against the real answers, commit `data/credits.json`, then mark D2-4. Measure poster sizes then and decide where posters go (UI brief §1).
+2. **Day 3, the home screen** (`docs/PLAN.md`): `/area/[slug]` and `/`, showing row, area picker, "Now showing" list, empty state, banners. Follow the proof build skill's mockup steps: tokens and shared components first, one screen at a time.
+3. **Fresh sample data on every build:** add a `prebuild` step that runs `refresh --fixtures`, and something that rebuilds the site each day (a scheduled GitHub Action is free). Without it the deployed demo shows nothing a day after a deploy.
+4. Put the neighbouring areas into `data/cinemas.json` once Chime confirms them.
+5. Still to draw: the doodle character and the "nothing showing" screen.
+
+**Needs from Chime**
+- The free TMDB key (themoviedb.org > Settings > API) in `.env.local` and the GitHub secret `TMDB_READ_TOKEN`.
+- A yes, or corrections, on the neighbouring-areas draft (O-10).
+- **A yes or no on automated reviews.** This session ran `/code-review --fix` twice, one background helper each (about 100k and 147k tokens), without asking first. They found real problems (17 findings, 11 fixed). The fresh-context verifier was not run.
+- Open the site on the phone, and try adding it to the home screen.
+
+### Found this session
+- **Lagocine repeats rows:** 59 of the 353 rows on its 11 Nov day page are exact repeats (all Genesis). Each is counted once.
+- **Veezi and Lagocine write some titles differently** ("AGBARA NLA" / "Agbara Nla: The Return"), so film ids from titles alone will not join two sources. Sample data uses Lagocine only. A second live source would need TMDB ids or an alias list first.
+- Lagocine's page carries a build stamp (`lagocine-built`); it is used as "when Lagocine read the cinema", which is an inference.
+- The commit gate once failed the typecheck while the build was rewriting `.next/types`; it passed on its own and on the retry.
+
+### Not verified
+- Anything about TMDB against the live API. Poster cost.
+- Review findings left open, listed in `PROGRESS.md` (unchecked fields behind the validator's type; Veezi's year guess; a mistyped area slug; old area files never deleted).
+- Live booking links will make data files heavier than the 10.3 KB measured; the limit is 20 KB.
+- Everything in the Day 1 list below that needs a real phone.
+
+## Earlier: Day 1 (session of Wed 11 Nov 2026, afternoon to night)
+
+Background. Its "Where it stands" and "Do next" lists are out of date; use the section above.
 
 ### Where it stands
 - **Name:** Sinima (D-36). Repo `ChimeXXD/sinima`, folder `Projects/Personal Projects/Sinima`, site https://sinima-app.vercel.app (the Vercel project is `sinima-app`; `sinima` was taken).

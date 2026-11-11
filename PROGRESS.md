@@ -2,6 +2,39 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Day 2: the data (Wed 11 Nov 2026, evening)
+
+**Changed**
+- `src/lib/data/types.ts` (all of schema v1) and `validate.ts` (every rule in DATA.md §Rules).
+- Two Lagocine fixtures cut down from the saved pages (`tests/fixtures/lagocine/`), listed with the Veezi one in `tests/fixtures/index.json`. `reduce-fixture` can now keep a page's build stamp.
+- Parsers: `scripts/sources/lagocine.ts` (day page, cinema page) and `veezi.ts`.
+- `scripts/pipeline.ts` and `refresh.ts`: `npm run refresh -- --fixtures` writes `data/showtimes.json`, `public/data/all.json` and 12 area files on today's and tomorrow's dates. The files are git-ignored (D-45).
+- Credits: `scripts/credits.ts` (match rule, keywords, manual entries, share), `scripts/tmdb.ts`, `data/tmdb-overrides.json`, `data/credits-manual.json` (both empty).
+- D-45 (the open cases), the O-10 draft, DATA.md notes on how the validator reads the table and on sample data.
+
+**Red first**
+- `validate.test.ts`, the two parser tests, `refresh.test.ts`, `credits.test.ts`: each failed with "Cannot find module" / "Cannot find package" before its module existed.
+- `refresh.test.ts` › "puts the TMDB id, runtime and credits answer on a film" failed with "expected { id: 'whalefall', … } to match object { tmdbId: 11 … }" before refresh merged credits.
+- Corrections to new tests, not to behaviour: the order of two error messages; Ramayana's rating (the page says "NR"); showing counts, after the parser showed Lagocine repeats 59 rows (checked with a separate script: all Genesis, same booking link); a missing fake answer in the TMDB test.
+
+**Checked**
+- Unit: 299 pass (145 new). `lib/data` 58, `scripts/sources` 20, `scripts/refresh` 39, `scripts/credits` and `scripts/tmdb` 28. Lint and typecheck clean.
+- Parser counts match counts taken from the saved pages with a separate Python script (353 rows, 31 films, 20 cinemas, 207 booking links, 52 formats). The Veezi and Lagocine pages for Silverbird Ikeja agree on all 70 start times.
+- `npm run refresh -- --fixtures` run for real: 14 files, largest 10.3 KB gzipped for a full two days (limit 20). `node scripts/tmdb.ts --dry-run`: 31 films to look up, no network.
+- `/code-review --fix` ran twice (one background helper each, about 100k and 147k tokens). First: 10 findings, 7 fixed (credits shape checked, missing link or price becomes null, reused showing ids dropped, more tracking parameters, log order). Second: 8 findings, 4 fixed (a show after midnight no longer counts as a saved tomorrow, a format written only in the title is kept, `--now` is checked, one duplicate constant removed).
+
+**Not verified**
+- **TMDB: nothing has been asked of the live API** (no key). The script's tests use TMDB's documented response shapes. D2-4 is not passing.
+- Review findings left open: fields the validator does not check behind its type (source `url` and `health`, cinema `sourceIds`, `via.url`); Veezi's year guess fails on a page that still lists yesterday; a cinema with a mistyped area would be missing from every area file with no warning; `writeFiles` never deletes a file for an area that has gone.
+- The build stamp as "when Lagocine read the cinema" is an inference (D-45 d).
+- No fresh-context verifier ran (the two reviews were the only helpers). Nothing on screen yet uses the data.
+- Poster source and cost: not decided; it needs the TMDB key to measure.
+- The neighbouring-areas draft was written from general knowledge, not checked on a map.
+
+**Next**
+- Chime: the TMDB key; a yes on the neighbouring areas.
+- Day 3: the home screen. Decide how a build gets fresh sample data (a `prebuild` step, plus something that rebuilds daily, or the deployed demo empties after a day).
+
 ## Day 1, core lane: time, wording and the calendar file (Wed 11 Nov 2026, late night)
 
 **Changed**
