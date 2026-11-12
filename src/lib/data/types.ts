@@ -58,6 +58,8 @@ export type Film = {
   rating: string | null;
   origin: FilmOrigin | null;
   tmdbId: number | null;
+  /** TMDB's image path ("/abc.jpg") for the poster; left out or null when there is none. */
+  posterPath?: string | null;
   credits?: CreditsInfo | null;
 };
 

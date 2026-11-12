@@ -1,6 +1,7 @@
-import type { ShowtimesFile, SourceMethod, Via } from "@/lib/data/types";
+import type { CreditsInfo, ShowtimesFile, SourceMethod, Via } from "@/lib/data/types";
 import { EVENING_ENDS_HOUR, eveningDayKey, toLagos, utcMs, utcString } from "@/lib/time/lagos";
 import { isBeforeStart, showingState } from "@/lib/time/showingState";
+import { creditsWording } from "@/lib/wording/credits";
 import type { FreshnessBand } from "@/lib/wording/freshness";
 
 // What a list page needs from a data file, and how its rows fall into sections. The page sends
@@ -10,21 +11,27 @@ import type { FreshnessBand } from "@/lib/wording/freshness";
 export type ListFresh = { source: string; method: SourceMethod; url: string; fetchedAt: string; via?: Via };
 /** `film`, `cinema` and `fresh` are positions in ListData's lists. */
 export type ListRow = { at: string; film: number; cinema: number; format: string | null; book: string | null; fresh: number };
+export type ListFilm = { id: string; title: string; /** TMDB's image path, or null. */ poster: string | null; rating: string | null; runtimeMin: number | null; stay: { chip: string; detail: string } };
+export type ListCinema = { id: string; name: string; area: string; chain: string; /** Has a booking page of its own. */ online: boolean; address: string | null; website: string | null };
 export type ListData = {
   sample: boolean;
-  films: { id: string; title: string }[];
-  cinemas: { id: string; name: string; area: string }[];
+  /** When the file was made. Stands in for "now" until the browser has the time. */
+  at: string;
+  films: ListFilm[];
+  cinemas: ListCinema[];
   fresh: ListFresh[];
   rows: ListRow[];
 };
 
+const UNKNOWN_CREDITS: CreditsInfo = { during: "unknown", after: "unknown", confidence: "unknown", sources: [], count: null };
 const HOUR = 3_600_000;
 const SOON_WINDOW = 2 * HOUR;
 
 /** A data file as list rows in start-time order. `filmId` keeps one film's showings only. */
-export function toListData(file: ShowtimesFile, only: { filmId?: string } = {}): ListData {
+export function toListData(file: ShowtimesFile, only: { filmId?: string; cinemaId?: string } = {}): ListData {
   const showings = file.showings
     .filter((showing) => only.filmId === undefined || showing.filmId === only.filmId)
+    .filter((showing) => only.cinemaId === undefined || showing.cinemaId === only.cinemaId)
     .sort((a, b) => a.startsAt.localeCompare(b.startsAt) || a.id.localeCompare(b.id));
   const films = file.films.filter((film) => showings.some((showing) => showing.filmId === film.id));
   const filmAt = new Map(films.map((film, i) => [film.id, i]));
@@ -55,8 +62,12 @@ export function toListData(file: ShowtimesFile, only: { filmId?: string } = {}):
   });
   return {
     sample: file.sample,
-    films: films.map(({ id, title }) => ({ id, title })),
-    cinemas: file.cinemas.map(({ id, name, area }) => ({ id, name, area })),
+    at: file.generatedAt,
+    films: films.map((film) => {
+      const { chip, detail } = creditsWording(film.credits ?? UNKNOWN_CREDITS);
+      return { id: film.id, title: film.title, poster: film.posterPath ?? null, rating: film.rating, runtimeMin: film.runtimeMin, stay: { chip, detail } };
+    }),
+    cinemas: file.cinemas.map(({ id, name, area, chain, address, website, bookingHost }) => ({ id, name, area, chain, online: Boolean(bookingHost), address, website })),
     fresh,
     rows,
   };
@@ -101,7 +112,7 @@ export function bannerFor(bands: FreshnessBand[]): Banner | null {
  * Each film with how many showings it has in the list, by title, for "Now showing". With the
  * time, only showings that have not started count, and a film with none left is not showing.
  */
-export function filmCounts(data: ListData, now: string | null = null): { id: string; title: string; showings: number }[] {
+export function filmCounts(data: ListData, now: string | null = null): (ListFilm & { showings: number })[] {
   const counts = (i: number) => data.rows.filter((row) => row.film === i && (now === null || isBeforeStart(showingState(row.at, now)))).length;
   return data.films
     .map((film, i) => ({ ...film, showings: counts(i) }))

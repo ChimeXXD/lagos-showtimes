@@ -12,7 +12,7 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 
 const names = (sources: CreditsSource[]) => sources.map((s) => s.name);
 /** "TMDB", "TMDB and RunPee", "TMDB, RunPee and aftercredits.com" */
-function list(items: string[]): string {
+export function list(items: string[]): string {
   return items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
 }
 /** A source we can point to: a name, an https link and the day it was checked. */

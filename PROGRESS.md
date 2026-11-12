@@ -2,6 +2,36 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## The redesign, built (Thu 12 Nov 2026)
+
+**Changed**
+- Chime rejected the Day 3 home screen as a design (D-49). Since then: a structure document (sitemap and journeys, PDF), a second reference board, and four mockup drafts (Danfo; cofounder.co style; back to the first with motion; Lagoon colours). Chime approved draft 4.
+- The app now is that mockup: `/`, `/area/[slug]`, `/cinema/[id]`, `/films`, `/film/[slug]`, `/soon`, the showing panel and the share dialog. Lagoon tokens, Geist and Anton, the mockup's styles and motion in `src/styles/sinima.css`.
+- Data: TMDB poster paths through `tmdb.ts`, `credits.json`, the pipeline and `Film.posterPath`; "Ramayana" matched by hand. `src/lib/data/format.ts`, `programme.ts`, richer list data; `src/lib/wording/film.ts`; `src/lib/browser.ts`, `src/lib/saved.ts`.
+- `SPEC.md` §5 and §8, `features.json` and the palette tests rewritten for the new design (D-54). The Day 3 components and their browser tests are deleted.
+
+**Red first**
+- Unit: `credits.test` "gives every film an entry" (posterPath missing); `programme.test` "Cannot find package '@/lib/data/format'"; `select.test` "keeps what a screen shows" (no `at`); `programme.test` "anchorFor is not a function".
+- **Browser tests were written before the screens but first run once the screens existed.** Three failed on that first run: one for a real fault (a build between midnight and 04:00 showed nothing under Today; fixed, D-54 c), two for faults in the tests (a heading locator; a 44 px check that needed half a pixel of rounding).
+
+**Checked**
+- Unit 366 pass. Browser 44 pass (run twice). Lint, typecheck, build clean.
+- `/code-review --fix` at high effort: 10 findings, 9 fixed by it. The serious ones: closing Share emptied the showing panel but left it blocking the page; "More areas" was cut off on phones and its lower options sat under the cards; the film page scrolled sideways at 390 px; a shared link with a broken `%` crashed the page. The tenth (rule 3: "today", "tomorrow" and "still to start" were written into the page's own HTML from the build time) was fixed afterwards: before the browser has the time, days are named by date, nothing is called soon, and the whole day is listed. A test now checks every kind of page for clock-dependent words.
+- Budget: the gate caught home at 200.9 KB, over the 200 limit, once the after-midnight fix put today's cards into the page's own HTML. The two fonts were then cut down to the letters and weights the site uses (35.3 KB to 21.6 KB). Now: home 188.0 KB, Films 184.2, Starting soon 185.5, heaviest area 188.0, cinema 180.7, film 181.5.
+- Screens captured from the built site at 1440 and 390 px, light and dark, and compared by eye with the mockup: home, a cinema, a film with IMAX chosen, Films, Starting soon, the panel on desktop and phone, share.
+- Text contrast on the mockup, both modes: nothing under 4.5:1 (3:1 large).
+
+**Not verified**
+- On a real phone. Posters loading over mobile data. A screen reader on the panel and the share dialog.
+- No fresh-context verifier ran on this build (the review ran instead; the Mac was at its memory ceiling).
+- Review notes left open: "Remind me" is still offered after a showing has started; font sizes are written in `sinima.css`, not as tokens; `validate.ts` does not check `posterPath`; unused helpers remain (`filmCounts`, `soonCount`, `nextDayName`, `loadArea`, `showingLine`, `showingSentence`).
+- The motion by eye: tests confirm it runs in the mockup; in the app it was not watched.
+- Kids and Nollywood filters, "Save image", the WhatsApp preview image, the About page, offline: not built.
+- Anton now holds capitals, digits and punctuation only; a film title with a letter outside those would fall back to Geist on its title poster.
+
+**Next**
+- Chime looks at the live site. Then: About page, the remaining Should items, a daily rebuild.
+
 ## Day 3: the home screen (Wed 11 Nov 2026, night)
 
 **Changed**

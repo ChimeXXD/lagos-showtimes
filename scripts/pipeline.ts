@@ -81,7 +81,7 @@ export function buildShowtimes(input: {
   cinemas: Cinema[];
   batches: Batch[];
   /** What data/credits.json and Chime's own entries say about a film, if anything. */
-  creditsFor?: (filmId: string) => Pick<Film, "tmdbId" | "runtimeMin" | "credits"> | undefined;
+  creditsFor?: (filmId: string) => Pick<Film, "tmdbId" | "runtimeMin" | "credits" | "posterPath"> | undefined;
 }): {
   file: ShowtimesFile;
   log: string[];

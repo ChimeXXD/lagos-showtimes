@@ -1,5 +1,7 @@
 # UI brief
 
+> **Superseded for the look and the screens (12 Nov 2026).** The design is now the approved mockup in `mockup/` (draft 4), built into the app: D-49 (structure), D-50 (format filter), D-52 (design and motion), D-53 (Lagoon colours), D-54 (what was built). Tokens are in `src/styles/tokens.css` and component styles in `src/styles/sinima.css`. What still holds below: the wording rules, the states table and the accessibility checklist.
+
 How each page looks and behaves. **Draft, 6 Nov 2026; §1–3 written 11 Nov 2026** from Chime's pick of direction B (D-35), palette (D-34) and the name Sinima (D-36). §4–7 (screens, copy, states, test IDs) are ready to build from. Copy marked *new* can change at screen review. All freshness, showing and credits sentences come from `docs/DATA.md`; don't reword them here.
 
 ## 1. Direction: B · Poster (D-35)

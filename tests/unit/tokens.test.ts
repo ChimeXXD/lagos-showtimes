@@ -30,14 +30,17 @@ function pair(fg: string, bg: string, mode: "light" | "dark"): number {
   return contrast(f[mode], b[mode]);
 }
 
-describe("design tokens (UI brief §2, D-34)", () => {
+describe("design tokens (D-53)", () => {
   it("defines every colour role in light and dark", () => {
     const roles = ["bg", "surface", "text", "text-muted", "accent", "accent-text", "book", "book-text", "stale", "focus", "line"];
     expect(roles.filter((r) => !colours.has(r))).toEqual([]);
   });
 
-  it("uses the calm blue Book button from D-34", () => {
-    expect(colours.get("book")).toEqual({ light: "#2f5fb3", dark: "#8fb4f5" });
+  it("uses the Lagoon colours from D-53: Teal for the primary button, Sea mist where white would be", () => {
+    expect(colours.get("book")).toEqual({ light: "#0b6e69", dark: "#5fd4c8" });
+    expect(colours.get("surface")?.light).toBe("#d9ebe7");
+    expect(colours.get("text")?.dark).toBe("#d9ebe7");
+    expect(colours.get("bg")?.dark).toBe("#0a0a0a");
   });
 
   it.each(["light", "dark"] as const)("keeps start times at AAA (7:1) in %s", (mode) => {

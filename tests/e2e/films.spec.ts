@@ -1,48 +1,83 @@
 import { expect, test } from "@playwright/test";
-import { dataFile, freeze, sampleTime } from "./helpers";
+import { dataFile, freeze, lagosClock, sampleTime, today } from "./helpers";
 
-// SPEC §8, check 11 (D-22).
-test("typing part of a title leaves only matching films, and tapping one opens its page", async ({ page, request }) => {
+test("Films lists every film still showing; typing narrows it; a film opens its page", async ({ page, request }) => {
   const all = await dataFile(request, "all");
   const now = await sampleTime(request, "18:00");
+  const showing = new Set(today(all, now).map((s) => s.filmId));
   await freeze(page, now);
-  await page.goto("/");
+  await page.goto("/films");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Films in Lagos");
+  const cards = page.locator('[data-testid^="film.card."]');
+  await expect(cards).toHaveCount(showing.size);
 
-  // Only films with a showing still to start are showing.
-  const items = page.locator('[data-testid^="films.item."]');
-  const stillShowing = new Set(all.showings.filter((s) => Date.parse(s.startsAt) > now.getTime()).map((s) => s.filmId));
-  expect(stillShowing.size).toBeGreaterThan(10);
-  expect(stillShowing.size).toBeLessThan(all.films.length);
-  await expect(items).toHaveCount(stillShowing.size);
   await page.getByTestId("films.filter").fill("  RAMA ");
-  await expect(items).toHaveText([/^Ramayana/, /^Ramayana: Rise of a Legend/]);
-
+  await expect(cards).toHaveCount([...showing].filter((id) => id.includes("rama")).length);
   await page.getByTestId("films.filter").fill("zzz");
-  await expect(items).toHaveCount(0);
+  await expect(cards).toHaveCount(0);
   await expect(page.getByTestId("films.none")).toHaveText('No film showing matches "zzz".');
 
   await page.getByTestId("films.filter").fill("spider");
-  await expect(items).toHaveCount(1);
-  await items.first().click();
+  await cards.first().getByRole("link").first().click();
   await expect(page).toHaveURL(/\/film\/spider-man-brand-new-day$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Spider-Man: Brand New Day");
-  expect(await page.locator('[data-testid^="showing.row."]').count()).toBeGreaterThan(0);
+  await expect(page.getByTestId("credits.chip")).toHaveText("Stay: scene after the credits · TMDB");
 });
 
-test("a film whose showings have all started is no longer listed as showing", async ({ page, request }) => {
-  // Two days after the sample data's last day nothing is left to start.
-  const late = new Date((await sampleTime(request, "18:00")).getTime() + 48 * 3_600_000);
-  await freeze(page, late);
-  await page.goto("/");
-  await expect(page.getByTestId("empty.soon")).toBeVisible();
-  await expect(page.locator('[data-testid^="films.item."]')).toHaveCount(0);
-  await expect(page.getByTestId("films.filter")).toHaveCount(0);
+test("on a film's page, choosing IMAX and an area leaves only the cinemas that match (D-50)", async ({ page, request }) => {
+  const all = await dataFile(request, "all");
+  const now = await sampleTime(request, "10:00");
+  const rows = today(all, now).filter((s) => s.filmId === "ramayana");
+  const imax = rows.filter((s) => (s.format ?? "").startsWith("IMAX"));
+  const cinemas = [...new Set(imax.map((s) => s.cinemaId))];
+  const others = new Set(rows.map((s) => s.cinemaId).filter((id) => !cinemas.includes(id)));
+  expect(cinemas.sort()).toEqual(["filmhouse-circle-mall", "filmhouse-lekki-imax"]);
+  await freeze(page, now);
+  await page.goto("/film/ramayana");
+
+  const venues = page.locator('[data-testid^="venue."]');
+  await expect(venues).toHaveCount(new Set(rows.map((s) => s.cinemaId)).size);
+  await page.getByTestId("format.chip.IMAX").click();
+  expect((await venues.evaluateAll((els) => els.map((el) => el.getAttribute("data-testid")!.replace("venue.", "")))).sort()).toEqual(cinemas);
+  await expect(page.getByTestId("format.left-out")).toHaveText(`${others.size} more cinemas show Ramayana in another format or don't say the format.`);
+  const first = imax.find((s) => s.cinemaId === "filmhouse-lekki-imax")!;
+  await expect(page.getByTestId("venue.filmhouse-lekki-imax").locator("[data-testid^='time.']").first()).toContainText(lagosClock(first.startsAt));
+
+  await page.getByTestId("area.chip.victoria-island").click();
+  await expect(venues).toHaveCount(0);
+  await expect(page.getByTestId("empty.film")).toContainText("No cinema in Victoria Island is showing Ramayana in IMAX today");
 });
 
-test("an area page lists only the films showing in that area", async ({ page, request }) => {
-  const surulere = await dataFile(request, "area/surulere");
-  await freeze(page, await sampleTime(request, "09:00"));
-  await page.goto("/area/surulere");
-  const ids = await page.locator('[data-testid^="films.item."]').evaluateAll((els) => els.map((el) => el.getAttribute("data-testid")!.replace("films.item.", "")));
-  expect(ids.sort()).toEqual([...new Set(surulere.showings.map((s) => s.filmId))].sort());
+for (const path of ["/film/ramayana", "/films", "/soon", "/cinema/ebonylife-vi"]) {
+  test(`${path} does not scroll sideways on a phone`, async ({ page, request }) => {
+    await freeze(page, await sampleTime(request, "10:00"));
+    await page.goto(path);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+}
+
+test("Starting soon lists only what starts in the next 2 hours, soonest first", async ({ page, request }) => {
+  const all = await dataFile(request, "all");
+  const now = await sampleTime(request, "18:00");
+  const soon = today(all, now).filter((s) => Date.parse(s.startsAt) - now.getTime() <= 2 * 3_600_000);
+  await freeze(page, now);
+  await page.goto("/soon");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Starting soon in Lagos");
+  const times = await page.getByTestId("section.soon").locator("[data-testid^='time.']").allTextContents();
+  expect(times.map((t) => t.slice(0, 5))).toEqual(soon.map((s) => lagosClock(s.startsAt)));
+  await expect(page.getByTestId("section.soon").getByTestId("soon.countdown").first()).toHaveText(/^Starts in /);
+});
+
+test.describe("with the phone set to New York", () => {
+  test.use({ timezoneId: "America/New_York" });
+  test("times are still Lagos times", async ({ page, request }) => {
+    const all = await dataFile(request, "all");
+    const now = await sampleTime(request, "18:00");
+    const row = today(all, now).find((s) => s.cinemaId === "ebonylife-vi")!;
+    await freeze(page, now);
+    await page.goto("/cinema/ebonylife-vi");
+    expect(await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone)).toBe("America/New_York");
+    await expect(page.locator("[data-testid^='time.']").first()).toContainText(lagosClock(row.startsAt));
+  });
 });

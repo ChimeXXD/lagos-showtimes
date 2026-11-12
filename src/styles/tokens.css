@@ -1,68 +1,62 @@
 /*
  * Design tokens. The only file where colour values may be written (scripts/check-tokens.mjs).
- * Direction B · Poster (D-35) on palette G with a calm blue Book button (D-34). UI brief §2.
- * Tailwind reads these as its theme, so `bg-surface`, `text-time` and `rounded-card` exist and
- * Tailwind's own colour palette does not (`--color-*: initial`).
+ * Lagoon in light, a true dark in dark (D-53), from the approved mockup (mockup/, draft 4).
+ * Tailwind reads the @theme block as its theme; its own colour palette is off (`--color-*: initial`).
  */
 :root {
   color-scheme: light dark;
 
-  /* Spacing scale (UI brief §2). Tailwind's p-1, p-2 … use the same 4 px step. */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
+  /* Spacing scale: 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40. */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s8: 32px;
+  --s10: 40px;
 
-  /* Motion (UI brief §3). Nothing needs motion to be understood. */
-  --motion-fast: 120ms;
-  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+  /* Shape: capsules for buttons and chips, soft corners elsewhere. */
+  --r-chip: 999px;
+  --r-poster: 14px;
+  --r-card: 20px;
+  --r-sheet: 28px;
+
+  --shadow: 0 18px 50px var(--color-shade);
 }
 
 @theme {
   --color-*: initial;
 
   /* Colour roles: light-dark(light, dark). Contrast is tested in tests/unit/tokens.test.ts. */
-  --color-bg: light-dark(#ffffff, #0a0a0a);
-  --color-surface: light-dark(#f3f3f3, #1a1a1a);
-  --color-text: light-dark(#0a0a0a, #fafafa);
-  --color-text-muted: light-dark(#555555, #ababab);
-  --color-accent: light-dark(#0a0a0a, #fafafa);
-  --color-accent-text: light-dark(#ffffff, #0a0a0a);
-  --color-book: light-dark(#2f5fb3, #8fb4f5);
-  --color-book-text: light-dark(#ffffff, #06142e);
+  --color-bg: light-dark(#eef6f4, #0a0a0a); /* Foam / black */
+  --color-surface: light-dark(#d9ebe7, #1a1a1a); /* Sea mist, where white would be */
+  --color-soft: light-dark(#c8e1dc, #242424);
+  --color-text: light-dark(#0c3b47, #d9ebe7); /* Lagoon / Sea mist */
+  --color-text-muted: light-dark(#42606a, #ababab);
+  --color-accent: light-dark(#0b6e69, #5fd4c8); /* Teal */
+  --color-accent-text: light-dark(#eef6f4, #062028);
+  --color-book: light-dark(#0b6e69, #5fd4c8); /* The primary button */
+  --color-book-text: light-dark(#eef6f4, #062028);
   --color-stale: light-dark(#8a4b00, #f2c14e);
   --color-focus: light-dark(#0b57d0, #9cc2ff);
-  --color-line: light-dark(#e2e2e2, #2c2c2c);
-  /* The three dots in the logo: blue on the black mark; on the white mark (dark mode) they read as holes. */
-  --color-logo-dot: light-dark(#2f5fb3, #0a0a0a);
-  /* Stand-in behind a poster while it loads, and when there is none. Dark in both themes. */
-  --color-poster: light-dark(#1f1f1f, #1f1f1f);
-  --color-poster-text: light-dark(#f3f3f3, #f3f3f3);
-  /* Behind an open sheet. */
-  --color-scrim: light-dark(#0a0a0a66, #00000099);
+  --color-line: light-dark(#b9d5d0, #2c2c2c);
+  --color-scrim: light-dark(rgba(12, 59, 71, 0.5), rgba(0, 0, 0, 0.66));
+  --color-shade: light-dark(rgba(12, 59, 71, 0.2), rgba(0, 0, 0, 0.5));
+  --color-shade-strong: light-dark(rgba(12, 59, 71, 0.3), rgba(0, 0, 0, 0.6));
+  /* The three dots in the logo. */
+  --color-logo-dot: light-dark(#5fd4c8, #0a0a0a);
 
-  /* Type: Outfit (one 25 KB file, weights 400 to 600), then the phone's own font. */
-  --font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --text-fresh: 12px;
-  --text-fresh--line-height: 1.35;
-  --text-meta: 13px;
-  --text-meta--line-height: 1.4;
-  --text-body: 15px;
-  --text-body--line-height: 1.4;
-  --text-title: 17px;
-  --text-title--line-height: 1.2;
-  --text-section: 20px;
-  --text-section--line-height: 1.2;
-  --text-time: 26px;
-  --text-time--line-height: 1;
-  --text-page: 28px;
-  --text-page--line-height: 1.15;
+  /* Title posters, for films with no artwork. The same in both themes, like real posters. */
+  --color-tp-teal: #0b6e69;
+  --color-tp-foam: #eef6f4;
+  --color-tp-lagoon: #0c3b47;
+  --color-tp-aqua: #5fd4c8;
+  --color-tp-coral: #b8361c;
+  --color-tp-deep: #062028;
+  --color-tp-mist: #d9ebe7;
 
-  /* Shape: capsules for buttons and chips, soft corners elsewhere. */
-  --radius-chip: 999px;
-  --radius-poster: 12px;
-  --radius-card: 16px;
-  --radius-sheet: 20px;
+  /* Type: Geist for text (17 KB), Anton for poster titles and the share headline (4 KB). */
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Anton", "Geist", system-ui, sans-serif;
 }

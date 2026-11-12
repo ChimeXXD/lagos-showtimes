@@ -14,9 +14,13 @@ const KB = 1024;
 // one area's data. Add each new route to `pages` as it is built, with the data files it fetches
 // (paths under out/): a fetched JSON file is not referenced in the HTML, so it must be listed.
 const BUDGET = {
-  // The font is loaded from the stylesheet, not the HTML, so it is listed here to be counted.
-  // All of Lagos, and the heaviest area and film page in this build, whichever they are today.
-  pages: () => ["index.html", heaviest("area"), heaviest("film")].map((html) => ({ html, data: ["fonts/outfit-sinima.woff2"] })),
+  // The fonts are loaded from the stylesheet, not the HTML, so they are listed here to be counted.
+  // Each kind of page: home, Films, Starting soon, and the heaviest area, cinema and film page.
+  pages: () =>
+    ["index.html", "films.html", "soon.html", heaviest("area"), heaviest("cinema"), heaviest("film")].map((html) => ({
+      html,
+      data: ["fonts/geist-sinima.woff2", "fonts/anton-sinima.woff2"],
+    })),
   jsKb: 160,
   totalKb: 200,
 };

@@ -7,9 +7,11 @@ import type { APIRequestContext, Page } from "@playwright/test";
 export type DataFile = {
   generatedAt: string;
   cinemas: { id: string; name: string; area: string }[];
-  films: { id: string; title: string }[];
-  showings: { cinemaId: string; filmId: string; startsAt: string; fetchedAt: string }[];
+  films: { id: string; title: string; posterPath?: string | null }[];
+  showings: { cinemaId: string; filmId: string; startsAt: string; format: string | null; fetchedAt: string }[];
 };
+
+const HOUR = 3_600_000;
 
 export async function dataFile(request: APIRequestContext, name: string): Promise<DataFile> {
   return (await (await request.get(`/data/${name}.json`)).json()) as DataFile;
@@ -18,9 +20,8 @@ export async function dataFile(request: APIRequestContext, name: string): Promis
 /** The instant of `hh:mm` Lagos time on the sample data's second day. Lagos is UTC+1 all year. */
 export async function sampleTime(request: APIRequestContext, hhmm: string): Promise<Date> {
   const { generatedAt } = await dataFile(request, "all");
-  const lagosDay = new Date(Date.parse(generatedAt) + 3_600_000).toISOString().slice(0, 10);
-  const nextDay = new Date(Date.parse(`${lagosDay}T00:00:00Z`) + 24 * 3_600_000).toISOString().slice(0, 10);
-  return new Date(Date.parse(`${nextDay}T${hhmm}:00Z`) - 3_600_000);
+  const nextDay = new Date(Date.parse(`${lagosDay(generatedAt)}T00:00:00Z`) + 24 * HOUR).toISOString().slice(0, 10);
+  return new Date(Date.parse(`${nextDay}T${hhmm}:00Z`) - HOUR);
 }
 
 /** Freezes the page's clock; call before `page.goto`. */
@@ -30,15 +31,17 @@ export async function freeze(page: Page, at: Date): Promise<void> {
 }
 
 /** "19:30" in Lagos for a UTC instant. */
-export const lagosClock = (iso: string) => new Date(Date.parse(iso) + 3_600_000).toISOString().slice(11, 16);
+export const lagosClock = (iso: string) => new Date(Date.parse(iso) + HOUR).toISOString().slice(11, 16);
+/** The Lagos calendar day, "2026-11-12", of a UTC instant. */
+export const lagosDay = (iso: string) => new Date(Date.parse(iso) + HOUR).toISOString().slice(0, 10);
 
-/** Start times (UTC) in an area that begin after `now` and no more than 2 hours later, in order. */
-export function startingSoon(file: DataFile, now: Date): string[] {
-  return file.showings
-    .map((s) => s.startsAt)
-    .filter((at) => Date.parse(at) > now.getTime() && Date.parse(at) - now.getTime() <= 2 * 3_600_000)
-    .sort();
+/** The showings that have not started at `now` and fall on the same Lagos day, in time order. */
+export function today(file: DataFile, now: Date): DataFile["showings"] {
+  const day = lagosDay(now.toISOString());
+  return file.showings.filter((s) => Date.parse(s.startsAt) > now.getTime() && lagosDay(s.startsAt) === day).sort((a, b) => a.startsAt.localeCompare(b.startsAt));
 }
 
-/** The Lagos calendar day, "2026-11-12", of a UTC instant. */
-export const lagosDay = (iso: string) => new Date(Date.parse(iso) + 3_600_000).toISOString().slice(0, 10);
+/** Cinema ids in the order of their next showing. */
+export function cinemasBySoonest(rows: DataFile["showings"]): string[] {
+  return [...new Set(rows.map((s) => s.cinemaId))];
+}

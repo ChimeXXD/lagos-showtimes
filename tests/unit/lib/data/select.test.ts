@@ -9,8 +9,9 @@ const file = example as ShowtimesFile;
 
 const list = (starts: string[]): ListData => ({
   sample: false,
-  films: [{ id: "whalefall", title: "Whalefall" }],
-  cinemas: [{ id: "a", name: "A", area: "lekki" }],
+  at: NOW,
+  films: [{ id: "whalefall", title: "Whalefall", poster: null, rating: null, runtimeMin: null, stay: { chip: "", detail: "" } }],
+  cinemas: [{ id: "a", name: "A", area: "lekki", chain: "A", online: false, address: null, website: null }],
   fresh: [{ source: "Lagocine", method: "public-page", url: "https://lagocine.com/", fetchedAt: "2026-11-06T16:00:00Z" }],
   rows: starts.map((at) => ({ at, film: 0, cinema: 0, format: null, book: null, fresh: 0 })),
 });
@@ -22,17 +23,30 @@ const group = (starts: string[], now = NOW) => {
 describe("toListData", () => {
   const data = toListData(file);
 
-  it("keeps what a row shows and drops the rest", () => {
+  it("keeps what a screen shows and drops the rest", () => {
     expect(data.sample).toBe(true);
+    expect(data.at).toBe("2026-11-06T16:05:00Z");
     expect(data.films).toEqual([
-      { id: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day" },
-      { id: "one-gidi-night", title: "One Gidi Night" },
+      { id: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", poster: null, rating: null, runtimeMin: null, stay: { chip: "Credits scene: not known yet", detail: "No source has told us yet." } },
+      { id: "one-gidi-night", title: "One Gidi Night", poster: null, rating: null, runtimeMin: null, stay: { chip: "Credits scene: not known yet", detail: "No source has told us yet." } },
     ]);
-    expect(data.cinemas[1]).toEqual({ id: "ebonylife-vi", name: "EbonyLife Cinemas", area: "victoria-island" });
+    expect(data.cinemas[1]).toEqual({ id: "ebonylife-vi", name: "EbonyLife Cinemas", area: "victoria-island", chain: "EbonyLife", online: false, address: "1637 Adetokunbo Ademola Street, Victoria Island, Lagos", website: "https://ebonylifecinemas.com/" });
     expect(data.rows).toEqual([
       { at: "2026-11-06T18:30:00Z", film: 0, cinema: 0, format: "IMAX", book: "https://www.filmhouseng.com/", fresh: 0 },
       { at: "2026-11-06T19:15:00Z", film: 1, cinema: 1, format: "2D", book: "https://ebonylifecinemas.com/", fresh: 1 },
     ]);
+  });
+
+  it("carries the poster, rating, runtime and the Stay or Go wording", () => {
+    const stay = { during: "unknown", after: "yes", confidence: "confirmed", sources: [{ name: "TMDB", url: "https://www.themoviedb.org/movie/1", checkedAt: "2026-11-06T10:00:00Z" }], count: null } as const;
+    const rich = toListData({ ...file, films: [{ ...file.films[0]!, posterPath: "/abc.jpg", rating: "12A", runtimeMin: 145, credits: { ...stay, sources: [...stay.sources] } }, file.films[1]!] });
+    expect(rich.films[0]).toEqual({ id: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", poster: "/abc.jpg", rating: "12A", runtimeMin: 145, stay: { chip: "Stay: scene after the credits · TMDB", detail: "TMDB lists an after-credits scene." } });
+  });
+
+  it("can keep one cinema's showings only", () => {
+    const one = toListData(file, { cinemaId: "ebonylife-vi" });
+    expect(one.rows).toHaveLength(1);
+    expect(one.films.map((f) => f.id)).toEqual(["one-gidi-night"]);
   });
 
   it("stores each source-and-read-time once, with the site it was read through", () => {
@@ -53,14 +67,14 @@ describe("toListData", () => {
     expect(reversed.rows.map((r) => r.at)).toEqual(["2026-11-06T18:30:00Z", "2026-11-06T19:15:00Z"]);
     const one = toListData(file, { filmId: "one-gidi-night" });
     expect(one.rows).toHaveLength(1);
-    expect(one.films).toEqual([{ id: "one-gidi-night", title: "One Gidi Night" }]);
+    expect(one.films.map((f) => f.id)).toEqual(["one-gidi-night"]);
   });
 });
 
 describe("filmCounts", () => {
   it("lists each film once with its number of showings, by title", () => {
     const twice = toListData({ ...file, showings: [...file.showings, { ...file.showings[0]!, id: "x", startsAt: "2026-11-06T20:00:00Z" }] });
-    expect(filmCounts(twice)).toEqual([
+    expect(filmCounts(twice).map(({ id, title, showings }) => ({ id, title, showings }))).toEqual([
       { id: "one-gidi-night", title: "One Gidi Night", showings: 1 },
       { id: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", showings: 2 },
     ]);
@@ -72,11 +86,11 @@ describe("filmCounts with the time", () => {
 
   it("counts only showings that have not started, and drops a film with none left", () => {
     // 19:30 in Lagos is 18:30Z, the second Spider-Man starts: it no longer counts. One Gidi Night is at 19:15Z.
-    expect(filmCounts(twice, "2026-11-06T18:30:00Z")).toEqual([
+    expect(filmCounts(twice, "2026-11-06T18:30:00Z").map(({ id, title, showings }) => ({ id, title, showings }))).toEqual([
       { id: "one-gidi-night", title: "One Gidi Night", showings: 1 },
       { id: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", showings: 1 },
     ]);
-    expect(filmCounts(twice, "2026-11-06T19:15:00Z")).toEqual([{ id: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", showings: 1 }]);
+    expect(filmCounts(twice, "2026-11-06T19:15:00Z").map((f) => [f.id, f.showings])).toEqual([["spider-man-brand-new-day", 1]]);
     expect(filmCounts(twice, "2026-11-06T20:00:00Z")).toEqual([]);
   });
 });

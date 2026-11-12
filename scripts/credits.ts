@@ -10,9 +10,10 @@ export const DURING_CREDITS = 179431;
 
 export type TmdbResult = { id: number; title: string; original_title?: string; release_date?: string };
 /** What one TMDB film told us, and when we asked. */
-export type TmdbFilm = { tmdbId: number; runtimeMin: number | null; keywordIds: number[]; checkedAt: string };
+/** `posterPath` is TMDB's image path ("/abc.jpg"); null when the film has no poster there. */
+export type TmdbFilm = { tmdbId: number; runtimeMin: number | null; posterPath?: string | null; keywordIds: number[]; checkedAt: string };
 export type ManualEntry = { during: string; after: string; source: CreditsSource };
-export type FilmCredits = { tmdbId: number | null; runtimeMin: number | null; credits: CreditsInfo };
+export type FilmCredits = { tmdbId: number | null; runtimeMin: number | null; posterPath: string | null; credits: CreditsInfo };
 
 const UTC_SECONDS = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
 // A film in cinemas now came out recently or is about to: old films with the same title are remakes' namesakes.
@@ -85,6 +86,7 @@ export function mergeCredits(input: { filmIds: string[]; tmdb: Record<string, Tm
     merged[filmId] = {
       tmdbId: found?.tmdbId ?? null,
       runtimeMin: found?.runtimeMin ?? null,
+      posterPath: found?.posterPath ?? null,
       credits: entry ? manualCredits(filmId, entry) : found ? creditsFromKeywords(found.tmdbId, found.keywordIds, found.checkedAt) : unknown(),
     };
   }

@@ -107,9 +107,16 @@ describe("mergeCredits", () => {
   it("gives every film an entry, matched or not", () => {
     expect(Object.keys(merged)).toEqual(["whalefall", "clayface", "one-gidi-night"]);
     expect(merged["one-gidi-night"]).toEqual({
-      tmdbId: null, runtimeMin: null,
+      tmdbId: null, runtimeMin: null, posterPath: null,
       credits: { during: "unknown", after: "unknown", confidence: "unknown", sources: [], count: null },
     });
+  });
+
+  it("carries TMDB's poster path, and null when there is none", () => {
+    const withPoster = mergeCredits({ filmIds: ["whalefall", "clayface", "x"], tmdb: { ...tmdb, whalefall: { ...tmdb.whalefall!, posterPath: "/abc.jpg" } }, manual: {} });
+    expect(withPoster.whalefall?.posterPath).toBe("/abc.jpg");
+    expect(withPoster.clayface?.posterPath).toBeNull();
+    expect(withPoster.x?.posterPath).toBeNull();
   });
 
   it("takes the id, runtime and keyword answer from TMDB", () => {

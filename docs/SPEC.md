@@ -62,12 +62,14 @@ Details, copy and test IDs are in `design/UI-BRIEF.md`.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | All of Lagos: Starting soon, Later tonight, Tomorrow; "Now showing" film list with a filter box; filters. Sends a returning visitor to their saved area (D-18) |
-| `/film/[slug]` | Every showing for one film; Stay or Go; Remind me; Share |
-| `/cinema/[id]` | One cinema: today and tomorrow, address, source and last read |
-| `/area/[slug]` | The "Starting soon near you" page for one area: same sections as `/`, that area's cinemas, neighbouring areas in the empty state (D-18, D-22) |
+| `/` | Home: every cinema in Lagos, soonest first, with the area chips, format chips and Today or Tomorrow. Sends a returning visitor to their saved area (D-18, D-49) |
+| `/area/[slug]` | Home for one area: its cinemas first, then the areas next to it, then the rest of Lagos |
+| `/cinema/[id]` | One cinema: address, source line, day tiles, and its films as poster cards with their times |
+| `/films` | Every film showing in Lagos as posters, with a search box and the format chips (D-50) |
+| `/film/[slug]` | One film: poster, Stay or Go, then the cinemas showing it, filtered by format, area and day |
+| `/soon` | Starting soon: showings in the next 2 hours, then later tonight, for all of Lagos or one area |
 
-The static HTML of `/` and `/area/[slug]` holds one time-ordered list with absolute times. The client regroups it by `now` and hides ended showings (D-18).
+Tapping any time opens that showing in a panel (a sheet on a phone): the ticket, the countdown, where the time came from, Book, Remind me and Share. A link ending in `#s=<film>@<start>` opens it directly. The static HTML holds cinemas, films and absolute times; the browser fills in relative words and drops showings that have started.
 | `/about` | How it works, sources and their status, TMDB notice and logo, takedown, privacy |
 
 ## 6. Interactions
@@ -87,19 +89,19 @@ The static HTML of `/` and `/area/[slug]` holds one time-ordered list with absol
 
 ## 8. Acceptance checks
 
-- [x] 1. With the clock at Fri 6 Nov 2026 18:00 Lagos, `/area/lekki` on the test fixtures lists only showings starting 18:00–20:00 under Starting soon, sorted by time. verify: `npm run test:e2e -- home`
-- [ ] 2. A showing at 17:59 shows "Started 1 min ago" and has no Book link. verify: `npm run test:e2e -- started` and `npm test -- lib/time/showingState`
-- [x] 3. Every row has a freshness line; a source read 30 h ago shows the stale wording and the banner. verify: `npm run test:e2e -- freshness`
-- [ ] 4. The film page for a TMDB film tagged `aftercreditsstinger` shows "Stay: scene after the credits · TMDB"; an untagged film shows "Credits scene: not known yet"; "Go" shows only for a film with a manual entry that has a link (D-19). verify: `npm test -- lib/wording/credits` and `npm run test:e2e -- film`
-- [ ] 5. The .ics file parses (RFC 5545), has `DTSTART:20261106T183000Z` for a 19:30 Lagos show and an alarm at `-PT30M`. verify: `npm test -- lib/ics`
-- [x] 6. With the device zone set to America/New_York in Playwright, times still show Lagos time. verify: `npm run test:e2e -- timezone`
+- [x] 1. With the clock at 18:00 Lagos on the sample data's second day, `/area/lekki` lists Lekki's cinemas in the order of their next showing, each with its next times, followed by the areas next to Lekki (D-49). verify: `npm run test:e2e -- cinemas`
+- [x] 2. A showing leaves every list the second it starts; an open showing that has started says "Started …" and has no Book link. verify: `npm run test:e2e -- showing` and `npm test -- lib/time/showingState`
+- [x] 3. Every showing says where its time came from; a source read 30 h ago shows the stale wording and the banner. verify: `npm run test:e2e -- showing`
+- [x] 4. The film page for a TMDB film tagged `aftercreditsstinger` shows "Stay: scene after the credits · TMDB"; an untagged film shows "Credits scene: not known yet"; "Go" shows only for a film with a manual entry that has a link (D-19). verify: `npm test -- lib/wording/credits` and `npm run test:e2e -- film`
+- [x] 5. The .ics file parses (RFC 5545), has `DTSTART:20261106T183000Z` for a 19:30 Lagos show and an alarm at `-PT30M`. verify: `npm test -- lib/ics`
+- [x] 6. With the device zone set to America/New_York in Playwright, times still show Lagos time. verify: `npm run test:e2e -- films`
 - [ ] 7. Home and area pages are within the budget set on Day 0 (D-21); Lighthouse mobile ≥ 90 performance and accessibility. verify: `npm run build && npm run budget`, plus a Lighthouse run with the scores written in `PROGRESS.md`
 - [ ] 8. `/about` lists every source with status, the TMDB logo and notice, and a takedown contact. verify: `npm run test:e2e -- about`
-- [x] 9. With fixtures active, a "Sample data" banner shows on every page and no row has a booking link. verify: `npm run test:e2e -- sample`
-- [ ] 10. `npm run refresh -- --fixtures` run on any day writes showings dated today and tomorrow in Lagos with the fixtures' wall-clock times (D-20). verify: `npm test -- scripts/refresh`
-- [x] 11. Typing part of a film's title in the "Now showing" filter on home leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
-- [x] 12. An area with no showing in the next 2 hours shows the empty state with its neighbouring areas and their counts (D-22). verify: `npm run test:e2e -- empty`
-- [x] 13. A returning visitor with a saved area who opens `/` lands on `/area/<slug>` (D-18). verify: `npm run test:e2e -- home`
+- [x] 9. With fixtures active, a "Sample data" banner shows on every page and no showing has a booking link. verify: `npm run test:e2e -- cinemas`
+- [x] 10. `npm run refresh -- --fixtures` run on any day writes showings dated today and tomorrow in Lagos with the fixtures' wall-clock times (D-20). verify: `npm test -- scripts/refresh`
+- [x] 11. Typing part of a film's title on the Films tab leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
+- [x] 12. Choosing a format on home or on a film's page leaves only the cinemas showing in that format and says how many were left out (D-50). verify: `npm run test:e2e -- films` and `npm run test:e2e -- cinemas`
+- [x] 13. A returning visitor with a saved area who opens `/` lands on `/area/<slug>` (D-18). verify: `npm run test:e2e -- cinemas`
 
 ## 9. Risks and assumptions
 

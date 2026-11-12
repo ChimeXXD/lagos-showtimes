@@ -6,30 +6,34 @@
       "tmdbId": 1792115,
       "tmdbTitle": "Agbara Nla: The Return",
       "runtimeMin": 155,
+      "posterPath": "/ea2IOcZnkRJfwZUmTJBqbvgQAgF.jpg",
       "keywordIds": [],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "alahun-the-weaver": {
       "tmdbId": 1755101,
       "tmdbTitle": "Alahun: The Weaver",
       "runtimeMin": 120,
+      "posterPath": "/8R361wK5IXN4pYws7PQTposlJgF.jpg",
       "keywordIds": [],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "arnie-and-barney": {
       "tmdbId": 1365598,
       "tmdbTitle": "Arnie & Barney",
       "runtimeMin": 77,
+      "posterPath": "/5PmDs2QlPas0xGgxxZM793y0XIP.jpg",
       "keywordIds": [
         3126,
         15285
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "clayface": {
       "tmdbId": 1400940,
       "tmdbTitle": "Clayface",
       "runtimeMin": 109,
+      "posterPath": "/9l1NuFjel2j89hiuiJbsxfblqjy.jpg",
       "keywordIds": [
         1299,
         1370,
@@ -46,12 +50,13 @@
         312528,
         367031
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "forgotten-island": {
       "tmdbId": 1465063,
       "tmdbTitle": "Forgotten Island",
       "runtimeMin": 109,
+      "posterPath": "/myd1K3gefdNAWFsGNRDdMeiK9Qg.jpg",
       "keywordIds": [
         6054,
         2041,
@@ -80,12 +85,13 @@
         381928,
         381930
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "heart-of-the-beast": {
       "tmdbId": 1263337,
       "tmdbTitle": "Heart of the Beast",
       "runtimeMin": 101,
+      "posterPath": "/6sYemVUn79UPKz1ZsSG6kPU4RVy.jpg",
       "keywordIds": [
         9880,
         15162,
@@ -98,12 +104,13 @@
         336497,
         372834
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "other-mommy": {
       "tmdbId": 1400837,
       "tmdbTitle": "Other Mommy",
       "runtimeMin": 93,
+      "posterPath": "/fGRNCssTRrhYZxNzykGGCoMsAVq.jpg",
       "keywordIds": [
         818,
         6152,
@@ -118,19 +125,21 @@
         272553,
         295907
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "phoenix-fury": {
       "tmdbId": 1532702,
       "tmdbTitle": "Phoenix Fury",
       "runtimeMin": 131,
+      "posterPath": "/g6orCbnrC5xcuLIqiKhHHVhlxnq.jpg",
       "keywordIds": [],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
-    "ramayana-rise-of-a-legend": {
+    "ramayana": {
       "tmdbId": 656908,
       "tmdbTitle": "Ramayana: Rise of a Legend",
       "runtimeMin": 201,
+      "posterPath": "/dPrtk4iNf6T5w8fWfg4uxDDbJSW.jpg",
       "keywordIds": [
         185316,
         185343,
@@ -139,12 +148,28 @@
         375250,
         377433
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
+    },
+    "ramayana-rise-of-a-legend": {
+      "tmdbId": 656908,
+      "tmdbTitle": "Ramayana: Rise of a Legend",
+      "runtimeMin": 201,
+      "posterPath": "/dPrtk4iNf6T5w8fWfg4uxDDbJSW.jpg",
+      "keywordIds": [
+        185316,
+        185343,
+        192159,
+        211227,
+        375250,
+        377433
+      ],
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "resident-evil": {
       "tmdbId": 1423191,
       "tmdbTitle": "Resident Evil",
       "runtimeMin": 94,
+      "posterPath": "/gAgWJhUSQWCgtKR8170nMkYlBda.jpg",
       "keywordIds": [
         1533,
         4884,
@@ -163,12 +188,13 @@
         360949,
         388461
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "spider-man-brand-new-day": {
       "tmdbId": 969681,
       "tmdbTitle": "Spider-Man: Brand New Day",
       "runtimeMin": 145,
+      "posterPath": "/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg",
       "keywordIds": [
         9678,
         242,
@@ -190,12 +216,13 @@
         193946,
         233300
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "street-fighter": {
       "tmdbId": 1153576,
       "tmdbTitle": "Street Fighter",
       "runtimeMin": 120,
+      "posterPath": "/dJPT2Uf12X6aFg8i5N67NTpIZ9t.jpg",
       "keywordIds": [
         779,
         41645,
@@ -211,12 +238,13 @@
         325765,
         325844
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "the-cat-in-the-hat": {
       "tmdbId": 1117898,
       "tmdbTitle": "The Cat in the Hat",
       "runtimeMin": 108,
+      "posterPath": "/mWN6knIVJ2o7eGwSm7mOgSCwNUc.jpg",
       "keywordIds": [
         380,
         818,
@@ -234,12 +262,13 @@
         324713,
         325844
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     },
     "whalefall": {
       "tmdbId": 1255833,
       "tmdbTitle": "Whalefall",
       "runtimeMin": 106,
+      "posterPath": "/vjTYUTgh9nO88i6HZ4YPRhiFL05.jpg",
       "keywordIds": [
         4776,
         818,
@@ -253,7 +282,7 @@
         326009,
         336497
       ],
-      "checkedAt": "2026-11-11T19:26:24Z"
+      "checkedAt": "2026-11-12T00:11:52Z"
     }
   }
 }

@@ -1,6 +1,16 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: the home screen is being redesigned; nothing more is built until Chime approves mockups (Thu 12 Nov 2026)
+## Now: the approved redesign is built and live; waiting for Chime's look (Thu 12 Nov 2026)
+
+**Read D-49 to D-54 and the top entry of `PROGRESS.md`.** In short: Chime rejected the Day 3 screen, approved a new structure (cinemas first), picked references, went through four mockup drafts and approved draft 4 (first design, with motion, in Lagoon colours). That mockup is now the app.
+
+- **Where things are:** tokens `src/styles/tokens.css`; component styles and motion `src/styles/sinima.css` (class names match `mockup/mockup.css`); boards in `src/components/` (`CinemasBoard`, `CinemaBoard`, `FilmsBoard`, `FilmBoard`, `SoonBoard`), shared `Cards.tsx`, `Filters.tsx`, `Showing.tsx` (the panel and time chips), `Share.tsx`; data helpers `src/lib/data/programme.ts`, `format.ts`, `select.ts`.
+- **Checks:** 360 unit and 32 browser tests. 26 of 40 features pass.
+- **Lessons from this stretch, for whoever continues:** Chime judges by looking. Show a mockup with the picks it follows listed under each screen. Do not restyle beyond what was asked ("keep the layout, change the colours" means exactly that). Read dictated words loosely ("downfall" was Danfo; "D9EB7" was `#d9ebe7`). Say back what was understood before building.
+- **Open with Chime:** the font was never picked (Geist is in); three TMDB hand matches (Ikenga, Verity; Ramayana was done by assumption); whether the wordmark should go to the saved area.
+- **Not built yet:** About page with the TMDB notice (needed before launch, D-09), kids and Nollywood filters, "Save image" on share, the WhatsApp preview image, offline, a daily rebuild (the sample site empties two days after a build).
+
+## Earlier: the redesign in progress (Thu 12 Nov 2026)
 
 **Read D-49 first.** Chime rejected the Day 3 home screen as a design. The plan's Day 4 is on hold.
 

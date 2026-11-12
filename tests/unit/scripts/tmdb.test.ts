@@ -29,7 +29,7 @@ const answers: Record<string, unknown> = {
   "/search/movie?query=Street%20Fighter&include_adult=false": { results: [{ id: 4, title: "Street Fighter", release_date: "1994-12-23" }] },
   "/search/movie?query=One%20Gidi%20Night&include_adult=false": { results: [] },
   "/search/movie?query=Clayface&include_adult=false": { results: [] },
-  "/movie/11?append_to_response=keywords": { title: "Whalefall", runtime: 107, keywords: { keywords: [{ id: 179430, name: "aftercreditsstinger" }, { id: 12, name: "sea" }] } },
+  "/movie/11?append_to_response=keywords": { title: "Whalefall", runtime: 107, poster_path: "/whale.jpg", keywords: { keywords: [{ id: 179430, name: "aftercreditsstinger" }, { id: 12, name: "sea" }] } },
   "/movie/77?append_to_response=keywords": { title: "Clayface", runtime: 0, keywords: { keywords: [] } },
 };
 const fakeTmdb = vi.fn((url: string, init?: RequestInit) => {
@@ -63,9 +63,9 @@ describe("scripts/tmdb.ts", () => {
     expect(await main([], deps(root, { env: { TMDB_READ_TOKEN: "secret-token" }, fetchFn: fakeTmdb as unknown as typeof fetch }))).toBe(0);
     const written = JSON.parse(readFileSync(join(root, "data/credits.json"), "utf8")) as CreditsFile;
     expect(written.tmdb).toEqual({
-      whalefall: { tmdbId: 11, tmdbTitle: "Whalefall", runtimeMin: 107, keywordIds: [179430, 12], checkedAt: NOW },
+      whalefall: { tmdbId: 11, tmdbTitle: "Whalefall", runtimeMin: 107, posterPath: "/whale.jpg", keywordIds: [179430, 12], checkedAt: NOW },
       // Matched by hand in tmdb-overrides.json, so it is not searched for. A runtime of 0 is unknown.
-      clayface: { tmdbId: 77, tmdbTitle: "Clayface", runtimeMin: null, keywordIds: [], checkedAt: NOW },
+      clayface: { tmdbId: 77, tmdbTitle: "Clayface", runtimeMin: null, posterPath: null, keywordIds: [], checkedAt: NOW },
     });
     expect(printed()).toContain('no sure match for "Street Fighter"'); // only the 1994 film was found
     expect(printed()).toContain('no sure match for "One Gidi Night"');
@@ -80,7 +80,7 @@ describe("scripts/tmdb.ts", () => {
   });
 
   it("does not ask again about a film answered in the last week, or one marked no match by hand", async () => {
-    const cached = { schemaVersion: 1, about: "", tmdb: { whalefall: { tmdbId: 11, runtimeMin: 107, keywordIds: [179430], checkedAt: "2026-11-08T20:00:00Z" } } };
+    const cached = { schemaVersion: 1, about: "", tmdb: { whalefall: { tmdbId: 11, runtimeMin: 107, posterPath: "/whale.jpg", keywordIds: [179430], checkedAt: "2026-11-08T20:00:00Z" } } };
     const root = project({ "data/credits.json": cached, "data/tmdb-overrides.json": { films: { "street-fighter": null, "one-gidi-night": null, clayface: null } } });
     expect(await main([], deps(root, { env: { TMDB_READ_TOKEN: "secret-token" }, fetchFn: fakeTmdb as unknown as typeof fetch }))).toBe(0);
     expect(fakeTmdb).not.toHaveBeenCalled();
@@ -101,6 +101,13 @@ describe("scripts/tmdb.ts", () => {
     expect(seen[0]).toBe(`https://api.themoviedb.org/3/search/movie?query=Whalefall&include_adult=false&api_key=${key}`);
     expect(seen).toContain(`https://api.themoviedb.org/3/movie/11?append_to_response=keywords&api_key=${key}`);
     expect(printed()).not.toContain(key);
+  });
+
+  it("asks again about a film whose saved answer has no poster field yet", async () => {
+    const cached = { schemaVersion: 1, about: "", tmdb: { whalefall: { tmdbId: 11, runtimeMin: 107, keywordIds: [179430], checkedAt: "2026-11-10T20:00:00Z" } } };
+    const root = project({ "data/credits.json": cached, "data/tmdb-overrides.json": { films: { whalefall: 11, "street-fighter": null, "one-gidi-night": null, clayface: null } } });
+    expect(await main([], deps(root, { env: { TMDB_READ_TOKEN: "secret-token" }, fetchFn: fakeTmdb as unknown as typeof fetch }))).toBe(0);
+    expect((JSON.parse(readFileSync(join(root, "data/credits.json"), "utf8")) as CreditsFile).tmdb.whalefall?.posterPath).toBe("/whale.jpg");
   });
 
   it("stops when TMDB refuses the token", async () => {

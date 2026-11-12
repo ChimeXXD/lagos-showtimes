@@ -1,27 +1,22 @@
 import type { Metadata } from "next";
-import { FilmList } from "@/components/FilmList";
-import { Page } from "@/components/Page";
-import { ShowingsBoard } from "@/components/ShowingsBoard";
+import { CinemasBoard } from "@/components/CinemasBoard";
+import { Shell } from "@/components/Shell";
 import { AREA_KEY } from "@/lib/area";
 import { areas, loadAll } from "@/lib/data/load";
 import { toListData } from "@/lib/data/select";
 
-export const metadata: Metadata = { title: "Starting soon in Lagos · Sinima" };
+export const metadata: Metadata = { title: "Cinemas in Lagos · Sinima" };
 
 // A returning visitor goes straight to their area (D-18). The saved area is only on the phone,
 // so this runs there, before the page is drawn. An area that no longer exists is ignored.
 const toSavedArea = `try{var a=localStorage.getItem(${JSON.stringify(AREA_KEY)});if(${JSON.stringify(areas.map((area) => area.slug))}.indexOf(a)>-1)location.replace("/area/"+a)}catch(e){}`;
 
-/** All of Lagos: the same screen as an area page (UI brief §4.1). */
+/** Home: every cinema in Lagos, soonest first (D-49). */
 export default function Home() {
-  const file = loadAll();
-  const data = toListData(file);
   return (
-    <Page area={null}>
+    <Shell tab="cinemas">
       <script dangerouslySetInnerHTML={{ __html: toSavedArea }} />
-      <h1 className="mx-4 mt-2 mb-4 text-page font-semibold tracking-[-0.01em]">Starting soon in Lagos</h1>
-      <ShowingsBoard data={data} place="Lagos" />
-      <FilmList data={data} />
-    </Page>
+      <CinemasBoard data={toListData(loadAll())} areas={areas} area={null} />
+    </Shell>
   );
 }

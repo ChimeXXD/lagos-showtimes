@@ -118,20 +118,20 @@
       ],
       "verify": "open docs/design/direction-board/index.html",
       "passes": true,
-      "evidence": "11 Nov 2026: 9 frames (3 directions x 3 screens) measured at 390 px wide in headless Chromium, light and dark. Chime picked B · Poster on pick.html (D-35) and the name Sinima on names.html (D-36)."
+      "evidence": "11 Nov 2026: 9 frames (3 directions x 3 screens) measured at 390 px wide in headless Chromium, light and dark. Chime picked B \u00b7 Poster on pick.html (D-35) and the name Sinima on names.html (D-36)."
     },
     {
       "id": "D1-3",
       "day": 1,
       "priority": "must",
-      "title": "Tokens and UI brief §1-3",
+      "title": "Tokens and UI brief \u00a71-3",
       "criteria": [
         "src/styles/tokens.css exists",
         "check-tokens lint passes"
       ],
       "verify": "npm run lint",
       "passes": true,
-      "evidence": "11 Nov 2026: `npm run lint` clean (check-tokens: no hard-coded colours in src/). tests/unit/tokens.test.ts 26 pass (roles, contrast, colour check). tests/e2e/theme.spec.ts 6 pass (light and dark palette, font 25.5 KB, no sideways scroll at 390, 360, 320). UI brief §1-3 written for direction B."
+      "evidence": "11 Nov 2026: `npm run lint` clean (check-tokens: no hard-coded colours in src/). tests/unit/tokens.test.ts 26 pass (roles, contrast, colour check). tests/e2e/theme.spec.ts 6 pass (light and dark palette, font 25.5 KB, no sideways scroll at 390, 360, 320). UI brief \u00a71-3 written for direction B."
     },
     {
       "id": "D1-4",
@@ -266,55 +266,55 @@
       "id": "D3-1",
       "day": 3,
       "priority": "must",
-      "title": "Area page and home: Starting soon near you (D-18)",
+      "title": "Home: cinemas near you, soonest first (D-49)",
       "criteria": [
-        "/area/[slug] and / list next 2 hours, then later tonight, then tomorrow",
-        "sorted by start time",
-        "static HTML holds the time-ordered list",
-        "returning visitor on / lands on the saved area"
+        "/ lists every cinema and /area/[slug] lists that area's cinemas first, then the areas next to it, then the rest",
+        "each card shows the next films and times, soonest first",
+        "the page's own HTML holds the cinemas and absolute times",
+        "a returning visitor on / lands on the saved area"
       ],
-      "verify": "npm run test:e2e -- home",
+      "verify": "npm run test:e2e -- cinemas",
       "passes": true,
-      "evidence": "11 Nov 2026: `npm run test:e2e -- home` 11 pass. With the clock frozen at 18:00 Lagos on the sample data's second day, /area/lekki lists exactly the showings from 18:01 to 20:00 under Starting soon, in order, then later ones; on the build day / shows soon, later and all of tomorrow in that order; a showing leaves the list the minute it starts; the page's own HTML holds the list in time order with no relative words; a saved area sends / to /area/<slug>, an unknown one does not; picking an area is remembered. A fresh-context verifier drove the built site at six times and agreed."
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- cinemas` 11 pass. With the clock at 18:00 Lagos on the sample data's second day, /area/lekki lists Lekki's cinemas in the order of their next showing (checked against the data file), each with its next time and 'in N min'; 'Next to Lekki' follows. A showing leaves a card the minute it starts; Tomorrow shows the whole next day; an area is remembered and / redirects to it; the HTML holds cinemas, absolute times and the sample banner with no relative words; nothing scrolls sideways at 390, 360 or 320 px and every control is at least 44 px tall."
     },
     {
       "id": "D3-2",
       "day": 3,
       "priority": "must",
-      "title": "Freshness line and banners on every showing",
+      "title": "Every showing says where its time came from; sample and stale banners",
       "criteria": [
-        "every row has a freshness line",
+        "the showing panel and every card carry the freshness sentence",
         "stale and sample banners show when due"
       ],
-      "verify": "npm run test:e2e -- freshness",
+      "verify": "npm run test:e2e -- showing",
       "passes": true,
-      "evidence": "11 Nov 2026: `npm run test:e2e -- freshness` 2 pass, `-- sample` 4 pass. Every row has a freshness line; the Sample data banner is on /, an area page and a film page and in the page's own HTML; a source read 30 hours before the clock shows 'yesterday at 12:00 \u00b7 check with the cinema' on its rows and the stale banner (the test rewrites the served page into live data, since the site holds only sample data)."
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- showing` 5 pass and `-- cinemas` covers the sample banner. The panel reads 'Sample data saved from Lagocine on 11 Nov' with 'Sample only' and no Book link. With the page rewritten into live data on its way to the browser: read 1 hour ago gives 'From Lagocine, which read EbonyLife's site 1 hour ago'; read 30 hours ago gives the stale banner and 'yesterday at 12:00 \u00b7 check with the cinema'."
     },
     {
       "id": "D3-4",
       "day": 3,
       "priority": "must",
-      "title": "Now showing film list with a filter box (D-22)",
+      "title": "Films tab: every film showing, with a search box (D-22, D-49)",
       "criteria": [
         "typing part of a title leaves only matching films",
         "tapping a film opens its page"
       ],
       "verify": "npm run test:e2e -- films",
       "passes": true,
-      "evidence": "11 Nov 2026: `npm run test:e2e -- films` 3 pass. Typing ' RAMA ' leaves Ramayana and Ramayana: Rise of a Legend; 'zzz' leaves none and says so; tapping Spider-Man: Brand New Day opens /film/spider-man-brand-new-day with its showings. A film with no showing left to start is no longer listed."
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- films` 4 pass. /films lists every film with a showing still to start; ' RAMA ' narrows it; 'zzz' says no film matches; Spider-Man: Brand New Day opens /film/spider-man-brand-new-day."
     },
     {
       "id": "D3-5",
       "day": 3,
       "priority": "must",
-      "title": "Empty state offers neighbouring areas (D-22)",
+      "title": "The areas next to yours follow your own (D-22, D-49)",
       "criteria": [
-        "area with nothing in 2 hours shows its neighbours with counts",
+        "an area's home lists the neighbouring areas' cinemas under 'Next to <area>'",
         "no distances or travel times"
       ],
-      "verify": "npm run test:e2e -- empty",
+      "verify": "npm run test:e2e -- cinemas",
       "passes": true,
-      "evidence": "11 Nov 2026: `npm run test:e2e -- empty` 1 pass. An area with nothing in the next 2 hours says so and lists each neighbouring area as '<name> \u00b7 <n> starting soon' or '<name> \u00b7 nothing soon', with counts checked against the data files; no distance or travel time; following a neighbour does not change the saved area."
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- cinemas`: /area/lekki shows a 'Next to Lekki' group with cinemas from the neighbouring areas confirmed in D-46. No distance or travel time is shown anywhere. This replaces the old empty state with neighbour counts."
     },
     {
       "id": "D3-3",
@@ -332,27 +332,29 @@
       "id": "D4-1",
       "day": 4,
       "priority": "must",
-      "title": "Film page with every showing in Lagos",
+      "title": "Film page: every cinema showing it, by format, area and day (D-50)",
       "criteria": [
-        "grouped by area, sorted by time",
-        "Stay or Go chip"
+        "cinemas soonest first with their times",
+        "Stay or Go wording",
+        "format and area chips leave only matching cinemas and say what was left out"
       ],
-      "verify": "npm run test:e2e -- film",
-      "passes": false,
-      "evidence": ""
+      "verify": "npm run test:e2e -- films",
+      "passes": true,
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- films`: /film/ramayana lists every cinema showing it; IMAX leaves Filmhouse Circle Mall and Lekki IMAX and says how many were left out; Victoria Island plus IMAX says no cinema matches. /film/spider-man-brand-new-day shows 'Stay: scene after the credits \u00b7 TMDB'."
     },
     {
       "id": "D4-2",
       "day": 4,
       "priority": "must",
-      "title": "Cinema and area pages",
+      "title": "Cinema page: its programme as poster cards",
       "criteria": [
         "today and tomorrow",
-        "address and source line"
+        "address and source line",
+        "a poster or title poster on every film"
       ],
       "verify": "npm run test:e2e -- cinema",
-      "passes": false,
-      "evidence": ""
+      "passes": true,
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- cinema` 3 pass (the same filter also runs cinemas.spec). /cinema/genesis-purple-lekki shows its films soonest first, five across at 1440 px and two at 390 px; a TMDB poster where there is one and a title poster otherwise, exactly one per card; the source line; and 'Nothing more is showing today' late at night."
     },
     {
       "id": "D4-3",
@@ -360,11 +362,12 @@
       "priority": "must",
       "title": "Started showings never bookable (e2e)",
       "criteria": [
-        "row at now-1 min says Started and has no Book link"
+        "a live showing has a Book link to the cinema's own site until it starts",
+        "from the start second it says Started and has no Book link"
       ],
-      "verify": "npm run test:e2e -- started",
-      "passes": false,
-      "evidence": ""
+      "verify": "npm run test:e2e -- showing",
+      "passes": true,
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- showing`: one minute before the start the panel shows 'Starts in 1 min' and 'Book on EbonyLife's site' (https, new tab, rel noopener); 61 seconds later it shows 'Started \u2026' and no Book link. The time also leaves the cinema's page (cinemas.spec)."
     },
     {
       "id": "D4-4",
@@ -377,7 +380,7 @@
       ],
       "verify": "npm run test:e2e -- filters",
       "passes": false,
-      "evidence": ""
+      "evidence": "12 Nov 2026, not passing: the format filter (IMAX, 4D, 3D) is built and tested on home, Films and the film page (D-50). Kids and Nollywood/Hollywood filters are not built."
     },
     {
       "id": "D4-5",
@@ -403,7 +406,7 @@
       ],
       "verify": "manual on both phones + npm run test:e2e -- remind",
       "passes": false,
-      "evidence": ""
+      "evidence": "12 Nov 2026, not passing: Remind me downloads the .ics from the showing panel (`npm run test:e2e -- showing` checks the file name, DTSTART and the 30-minute alarm) and the panel shows a live countdown. Still to do: open the file on an iPhone and an Android phone."
     },
     {
       "id": "D5-2",
@@ -417,7 +420,7 @@
       ],
       "verify": "manual: paste link in WhatsApp",
       "passes": false,
-      "evidence": ""
+      "evidence": "12 Nov 2026, not passing: the share dialog (the Fixtured pattern) is built; Copy link copies a link that opens the exact showing, with no tracking (`npm run test:e2e -- showing`); Share uses the phone's share sheet or WhatsApp. Still to do: the preview card image, and pasting a link in WhatsApp on a phone."
     },
     {
       "id": "D5-3",

@@ -51,7 +51,8 @@ export async function main(argv: string[], deps: Deps): Promise<number> {
   const manual = readJson<{ films: Record<string, ManualEntry> }>(join(root, "data/credits-manual.json"), { films: {} }).films;
   const cachePath = join(root, "data/credits.json");
   const cache = readJson<CreditsFile | null>(cachePath, null)?.tmdb ?? {};
-  const fresh = (filmId: string) => Object.hasOwn(cache, filmId) && Date.parse(now) - Date.parse((cache[filmId] as TmdbFilm).checkedAt) < WEEK_MS;
+  // An answer saved before posters were kept has no posterPath field: ask again.
+  const fresh = (filmId: string) => Object.hasOwn(cache, filmId) && (cache[filmId] as TmdbFilm).posterPath !== undefined && Date.parse(now) - Date.parse((cache[filmId] as TmdbFilm).checkedAt) < WEEK_MS;
   const report = (tmdb: Record<string, TmdbFilm>) => console.log(`tmdb: ${answerShare(mergeCredits({ filmIds: films.map((film) => film.id), tmdb, manual })).text}`);
 
   const noMatch = films.filter((film) => Object.hasOwn(overrides, film.id) && overrides[film.id] === null);
@@ -85,11 +86,12 @@ export async function main(argv: string[], deps: Deps): Promise<number> {
       console.log(`tmdb: no sure match for "${film.title}"; it stays "not known yet"`);
       continue;
     }
-    const details = await ask<{ title?: string; runtime?: number | null; keywords?: { keywords?: { id: number }[] } }>(`/movie/${tmdbId}?append_to_response=keywords`, deps, token);
+    const details = await ask<{ title?: string; runtime?: number | null; poster_path?: string | null; keywords?: { keywords?: { id: number }[] } }>(`/movie/${tmdbId}?append_to_response=keywords`, deps, token);
     tmdb[film.id] = {
       tmdbId,
       tmdbTitle: details.title,
       runtimeMin: typeof details.runtime === "number" && details.runtime > 0 ? details.runtime : null,
+      posterPath: typeof details.poster_path === "string" ? details.poster_path : null,
       keywordIds: (details.keywords?.keywords ?? []).map((keyword) => keyword.id),
       checkedAt: now,
     };
