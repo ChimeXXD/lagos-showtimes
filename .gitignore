@@ -51,3 +51,6 @@ public/data/
 # Design mockup posters: TMDB images, kept local (D-31)
 mockup/posters/
 mockup/fonts/
+
+# Cinema logos for the Cinemas page mockup: the chains own them, kept local until Chime decides (D-55)
+mockup/logos/

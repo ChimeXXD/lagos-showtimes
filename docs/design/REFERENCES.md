@@ -132,3 +132,14 @@ Chime answered `reference-board/round2.html` (44 shown, 28 answered: 21 liked, 7
 | Share | Fixtured (Visual style, Interaction): "I really like this idea, so we need to integrate it into our webapp ... check the interactions as well"; Polarsteps (Layout) | |
 
 Fixtured's share flow, from the reference library's three screens: a share button on the event opens a sheet from the bottom with a heavy two-line headline, one line of text, a card tilted about 6 degrees, then "Share Event" (dark) and "Copy Link" (light); tapping Copy Link changes its label to "Link copied". The library holds still screens only, so the timing of the motion is ours.
+
+## Round 3 (12 Nov 2026): the Cinemas page (D-55)
+
+Chime's review of the live Cinemas page: "so overwhelming"; show each cinema's **logo** instead of the listing, no poster strips, and group each cinema's information as one connected unit. Board: `reference-board/round3-cinemas.html` (24 shown, local only). Chime picked two, both Instacart:
+
+| Reference | Ticked | What Sinima takes |
+| --- | --- | --- |
+| Instacart "All grocery stores" (phone) | Visual style, Colour, Layout | One row per cinema: a square logo tile on the left, the name in bold, one coloured status line ("Next 18:15 · 9 films today"), small grey tags under it (IMAX, Book online). No poster strip, no film rows. |
+| Instacart stores (web) | Layout | On a computer, the same row as a card, three per row, in groups with a heading and "Show all" on the heading's line so it belongs to its group. |
+
+Colour: Instacart's green status line becomes Lagoon's Teal; its yellow highlight tag is not taken (yellow was dropped in D-52/D-53).
