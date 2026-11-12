@@ -1,14 +1,60 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: the approved redesign is built and live; waiting for Chime's look (Thu 12 Nov 2026)
+## Now: the redesign is live and Chime calls it "a good starting point"; a list of fixes comes next (end of Thu 12 Nov 2026)
 
-**Read D-49 to D-54 and the top entry of `PROGRESS.md`.** In short: Chime rejected the Day 3 screen, approved a new structure (cinemas first), picked references, went through four mockup drafts and approved draft 4 (first design, with motion, in Lagoon colours). That mockup is now the app.
+Read this section first. Everything below it is background; where they disagree, this is right.
 
-- **Where things are:** tokens `src/styles/tokens.css`; component styles and motion `src/styles/sinima.css` (class names match `mockup/mockup.css`); boards in `src/components/` (`CinemasBoard`, `CinemaBoard`, `FilmsBoard`, `FilmBoard`, `SoonBoard`), shared `Cards.tsx`, `Filters.tsx`, `Showing.tsx` (the panel and time chips), `Share.tsx`; data helpers `src/lib/data/programme.ts`, `format.ts`, `select.ts`.
-- **Checks:** 360 unit and 32 browser tests. 26 of 40 features pass.
-- **Lessons from this stretch, for whoever continues:** Chime judges by looking. Show a mockup with the picks it follows listed under each screen. Do not restyle beyond what was asked ("keep the layout, change the colours" means exactly that). Read dictated words loosely ("downfall" was Danfo; "D9EB7" was `#d9ebe7`). Say back what was understood before building.
-- **Open with Chime:** the font was never picked (Geist is in); three TMDB hand matches (Ikenga, Verity; Ramayana was done by assumption); whether the wordmark should go to the saved area.
-- **Not built yet:** About page with the TMDB notice (needed before launch, D-09), kids and Nollywood filters, "Save image" on share, the WhatsApp preview image, offline, a daily rebuild (the sample site empties two days after a build).
+### Start here tomorrow
+1. **Ask Chime for the list of fixes.** Chime's last words: "I like it, it's a good starting point, but there are a lot of things we need to fix." The list has not been given yet. Do not guess it. Collect it, say it back in a table, then fix it item by item.
+2. Fix against the live site (https://sinima-app.vercel.app) and the approved mockup (`mockup/index.html`, draft 4). Keep the layout, the Lagoon colours and the motion unless Chime says otherwise.
+3. Show results visually (screens side by side, opened in Dia), not as terminal text.
+
+### What happened this session, in order
+1. **Day 2, the data** (D-45 to D-47): data format and validator, Lagocine and Veezi parsers, `refresh --fixtures` (sample data on today's dates), TMDB matching with Chime's key. All committed.
+2. **Day 3, a first home screen** was built and went live. **Chime rejected it as a design** (D-49): one showing per row on desktop, empty poster boxes, an area dropdown, nothing of the references in it.
+3. **Structure first:** a designed PDF, `docs/design/structure/Sinima - Sitemap and user journey (draft 2).pdf`. Chime approved it and all six decisions in it: Cinemas is home, area as chips, a panel per showing, day tabs not weeks, Starting soon as a tab, uncovered cinemas still listed.
+4. **Format filter added** as a key feature (D-50): find a film by IMAX, 4D or 3D and by area.
+5. **Second reference board** (`docs/design/reference-board/round2.html`, local only): 44 shown, 21 liked, 7 "Not for us". Picks are in `docs/design/REFERENCES.md`. Chime's instruction: follow the picks closely.
+6. **Four mockup drafts** in `mockup/`: (1) Danfo colours: layout liked, yellow not; (2) restyled after cofounder.co: rejected; (3) draft 1 again with draft 2's motion; (4) Lagoon colours with a true dark mode: **approved** (D-52, D-53).
+7. **Built into the app and deployed** (D-54), commit `df40dda`. A code review at high effort found ten faults; all ten are fixed.
+
+### Where it stands
+- **Live:** `/` and `/area/[slug]` (cinemas, soonest first), `/cinema/[id]`, `/films`, `/film/[slug]`, `/soon`; the showing panel (side panel on desktop, sheet on a phone); Share (tilted card, Share, Copy link, WhatsApp); Remind me (.ics); format, area and day filters; hearts and "Your cinemas".
+- **Design:** Lagoon in light (Foam page `#eef6f4`, Sea mist `#d9ebe7` where white would be, Lagoon text `#0c3b47`, Teal `#0b6e69` primary), true black in dark with Sea mist text and Teal `#5fd4c8`. Dark mode follows the phone. Fonts: Geist for text, Anton for poster titles and the share headline, both cut down (21.6 KB together).
+- **Code map:** tokens `src/styles/tokens.css`; component styles and motion `src/styles/sinima.css` (class names match `mockup/mockup.css`); boards in `src/components/` (`CinemasBoard`, `CinemaBoard`, `FilmsBoard`, `FilmBoard`, `SoonBoard`); shared `Cards.tsx`, `Filters.tsx`, `Showing.tsx`, `Share.tsx`, `Poster.tsx`, `Shell.tsx`; data helpers `src/lib/data/programme.ts`, `format.ts`, `select.ts`; day wording `src/lib/wording/day.ts`.
+- **Data:** still sample data from the 11 Nov Lagocine pages; every Book button reads "Sample only". 15 of 31 films have a TMDB poster; the rest get a title poster.
+- **Checks:** 366 unit and 44 browser tests; heaviest page 188.0 KB of 200. CI green on `df40dda`. 26 of 40 features pass.
+- **The gate:** `.claude/proof.json` runs typecheck, browser tests and budget in order as one check. Chime pre-approves every change to that file; do not ask.
+
+### Open with Chime
+- **The fix list** (see Start here).
+- **Font:** never picked. Geist is in because the mockup showed it. Six free options are in the mockup's top bar.
+- **TMDB hand matches:** Ikenga and Verity are unmatched; Ramayana was matched to "Ramayana: Rise of a Legend" by assumption.
+- **The wordmark:** should tapping "Sinima" go to the saved area instead of all of Lagos?
+- **Title posters** use deep teal and navy in dark mode too; Chime dislikes a green tint in dark mode and has not commented on these.
+
+### Not built yet
+- About page with the TMDB notice (required before launch, D-09).
+- Kids and Nollywood/Hollywood filters; "Save image" on the share sheet; the WhatsApp preview image; offline; "Use my location".
+- A daily rebuild: the sample site empties two days after each deploy.
+- Live data (Lagocine, Day 6 of the plan, D-33).
+
+### Known faults and things not verified
+- "Remind me" is still offered after a showing has started.
+- Nothing has been checked on a real phone; the motion was not watched by eye in the app; no screen reader pass.
+- The fresh-context verifier did not run on the final build (the Mac was at its memory ceiling; closing Dia and Brave frees about 8.9 GB).
+- Font sizes are written in `sinima.css`, not as tokens. `validate.ts` does not check `posterPath`. Unused helpers remain (`filmCounts`, `soonCount`, `nextDayName`, `loadArea`, `showingLine`, `showingSentence`).
+- A title with a letter outside Anton's cut-down set falls back to Geist on its title poster.
+
+### How Chime works (learned this session; the earlier lists below still hold)
+- **Judges by looking.** A design is only real once Chime has seen it. Function passing is not design approval.
+- **Follow the picks.** Under each mockup screen, list which references it follows and what was taken from each.
+- **Change only what was asked.** "Keep the layout, change the colours" means exactly that. The cofounder.co restyle went further than asked and was rejected.
+- **Say it back first.** For a big request, write what was understood and the plan in a table before starting.
+- **Documents must look designed** (the structure PDF is the standard).
+- **Dictation is loose:** "downfall" meant Danfo; "D9EB7" meant `#d9ebe7`; "start day one" meant the next day.
+- **Standing yeses:** automated reviews (one helper at a time), and every `.claude/proof.json` change.
+- **Chime thinks out loud and reverses.** A pick is a shortlist until Chime says "approved" or "go with it".
 
 ## Earlier: the redesign in progress (Thu 12 Nov 2026)
 
