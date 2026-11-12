@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinima · Cinemas redesign 1</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="mockup.css">
+<link rel="stylesheet" href="cinemas.css">
+</head>
+<body class="desk-only">
+<div class="bar">
+  <b data-testid="bar-title">Sinima · the Cinemas tab, redesign 1</b>
+  <label data-testid="bar-colours">Colours
+    <span class="seg" role="group" aria-label="Theme">
+      <button type="button" aria-pressed="true" data-theme-set="light" data-testid="theme-light">Lagoon light</button>
+      <button type="button" aria-pressed="false" data-theme-set="dark" data-testid="theme-dark">Dark</button>
+    </span>
+  </label>
+  <label data-testid="bar-size">Desktop frames
+    <span class="seg" role="group" aria-label="Desktop frame size">
+      <button type="button" aria-pressed="true" data-size="fit" data-testid="size-fit">Fit</button>
+      <button type="button" aria-pressed="false" data-size="full" data-testid="size-full">Full size</button>
+    </span>
+  </label>
+</div>
+<main class="doc">
+  <h1 data-testid="doc-title">The Cinemas tab: logos, not listings</h1>
+  <p class="lede" data-testid="doc-lede">From your review: the page was “so overwhelming”. Each cinema is now one row with its logo, its name, the next time and two small tags, after your two Instacart picks. The filters at the top stay as they are. Real cinemas and times from the 11 November listing, clock at 13:45. Logos are the chains' own and stay on this Mac until you decide we can use them.</p>
+  <div id="screens"></div>
+</main>
+<script>window.ONLY = "desk";</script>
+<script src="data.js"></script>
+<script src="cinemas.js"></script>
+</body>
+</html>

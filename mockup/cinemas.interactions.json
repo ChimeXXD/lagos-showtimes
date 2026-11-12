@@ -1,0 +1,973 @@
+[
+ {
+  "element": "area-1",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/area/<slug> (All Lagos: /cinemas), remembered on this phone"
+ },
+ {
+  "element": "area-2",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/area/<slug> (All Lagos: /cinemas), remembered on this phone"
+ },
+ {
+  "element": "area-3",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/area/<slug> (All Lagos: /cinemas), remembered on this phone"
+ },
+ {
+  "element": "area-all",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/area/<slug> (All Lagos: /cinemas), remembered on this phone"
+ },
+ {
+  "element": "area-more",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "closed",
+   "open",
+   "focus"
+  ],
+  "effect": "toggle: menu of every area with its cinema count"
+ },
+ {
+  "element": "day-today",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "focus"
+  ],
+  "effect": "filter: today or tomorrow"
+ },
+ {
+  "element": "day-tomorrow",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "focus"
+  ],
+  "effect": "filter: today or tomorrow"
+ },
+ {
+  "element": "format-1",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "filter: only cinemas showing in that format; the rest counted in the left-out line"
+ },
+ {
+  "element": "format-2",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "filter: only cinemas showing in that format; the rest counted in the left-out line"
+ },
+ {
+  "element": "format-3",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "off",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "filter: only cinemas showing in that format; the rest counted in the left-out line"
+ },
+ {
+  "element": "group-all-row-1-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-1-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-10-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-10-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-11-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-11-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-12-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-12-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-2-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-2-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-3-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-3-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-4-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-4-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-5-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-5-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-6-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-6-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-7-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-7-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-8-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-8-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-all-row-9-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-all-row-9-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-area-row-1-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-area-row-1-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-area-row-2-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-area-row-2-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-area-row-3-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-area-row-3-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-area-row-4-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-area-row-4-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-area-row-5-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-area-row-5-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-area-row-6-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-area-row-6-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-next-all",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/area/<neighbour> list (all cinemas next to the area)"
+ },
+ {
+  "element": "group-next-row-1-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-next-row-1-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-next-row-2-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-next-row-2-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-next-row-3-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-next-row-3-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-saved-row-1-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-saved-row-1-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "group-saved-row-2-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "group-saved-row-2-save",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "duration_ms": 150,
+  "reduced_motion": "no scale",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "toggle: keeps the cinema under Your cinemas on this phone (localStorage); the heart fills Teal",
+  "note": "pressed scales the heart to 0.85; label switches between Add to / Remove from your cinemas"
+ },
+ {
+  "element": "search-open",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "hover",
+   "pressed",
+   "focus"
+  ],
+  "effect": "navigate:/cinema/<id>",
+  "note": "The whole row is the link (stretched). Desktop hover: border goes to the text colour. Phone pressed: row at 70% opacity. 150ms ease (colour and border); touch has no hover, so it maps to pressed"
+ },
+ {
+  "element": "tab-1",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/"
+ },
+ {
+  "element": "tab-2",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/cinemas or the saved area"
+ },
+ {
+  "element": "tab-3",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "on",
+   "hover",
+   "focus"
+  ],
+  "effect": "navigate:/soon"
+ },
+ {
+  "element": "wordmark",
+  "trigger": "tap",
+  "delay_ms": 0,
+  "easing": "ease",
+  "duration_ms": 150,
+  "reduced_motion": "no transition",
+  "states": [
+   "default",
+   "focus"
+  ],
+  "effect": "navigate:/"
+ }
+]
