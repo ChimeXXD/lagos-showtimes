@@ -969,5 +969,270 @@
    "focus"
   ],
   "effect": "navigate:/"
+ },
+ {
+  "element": "pick-area",
+  "trigger": "tap",
+  "states": [
+   "default",
+   "pressed",
+   "focus"
+  ],
+  "effect": "open sheet: Choose an area (slides up from the bottom; the page dims)",
+  "duration_ms": 400,
+  "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+  "delay_ms": 0,
+  "reduced_motion": "appears without sliding"
+ },
+ {
+  "element": "pick-day",
+  "trigger": "tap",
+  "states": [
+   "default",
+   "pressed",
+   "focus"
+  ],
+  "effect": "open sheet: Today or Tomorrow",
+  "duration_ms": 400,
+  "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+  "delay_ms": 0,
+  "reduced_motion": "appears without sliding"
+ },
+ {
+  "element": "pick-format",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed",
+   "focus"
+  ],
+  "effect": "open sheet: Any format, IMAX, 4D",
+  "duration_ms": 400,
+  "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+  "delay_ms": 0,
+  "reduced_motion": "appears without sliding"
+ },
+ {
+  "element": "summary-edit",
+  "trigger": "tap",
+  "states": [
+   "default",
+   "pressed",
+   "focus"
+  ],
+  "effect": "open sheet: Filters (area, day and format together)",
+  "duration_ms": 400,
+  "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+  "delay_ms": 0,
+  "reduced_motion": "appears without sliding"
+ },
+ {
+  "element": "sheet-area-all",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: all of Lagos; closes the sheet",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-more",
+  "trigger": "tap",
+  "states": [
+   "closed",
+   "open"
+  ],
+  "effect": "expand: every area",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-done",
+  "trigger": "tap",
+  "states": [
+   "default",
+   "pressed"
+  ],
+  "effect": "close the sheet and apply the filters; the label counts the cinemas that match",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-1",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-2",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-3",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-4",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-5",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-6",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-7",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-8",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-9",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-10",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-11",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
+ },
+ {
+  "element": "sheet-area-12",
+  "trigger": "tap",
+  "states": [
+   "off",
+   "on",
+   "pressed"
+  ],
+  "effect": "filter: that area; option 1 and 2 sheets close on tap, option 3 waits for the button",
+  "duration_ms": 150,
+  "easing": "ease",
+  "delay_ms": 0,
+  "reduced_motion": "no transition"
  }
 ]
