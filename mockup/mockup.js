@@ -1,4 +1,4 @@
-// Sinima home redesign, draft 3: the draft 1 (Danfo) design with draft 2's motion. Every screen is drawn from the real Lagos listing in data.js,
+// Sinima home redesign, draft 4 (Lagoon colours): the draft 1 design with draft 2's motion. Every screen is drawn from the real Lagos listing in data.js,
 // with the clock at 13:45 on Wed 11 Nov 2026 (Lagos). Each section lists the picks it follows.
 const { areas, cinemas, films } = window.SINIMA;
 const NOW = 13 * 60 + 45;
@@ -14,7 +14,7 @@ const fmt = (f) => (!f || f === "2D" ? null : f.startsWith("IMAX") ? "IMAX" : f 
 const meta = (film) => [runtime(film.runtime), film.rating].filter(Boolean).join(" · ") || "Runtime not listed";
 
 const I = {
-  mark: '<svg viewBox="19 8 62 84" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M34 8H66A15 15 0 0 1 81 23A3.5 3.5 0 0 1 78.29,26.41A12 12 0 0 0 78.29,49.79A3.5 3.5 0 0 1 81 53.2V77A15 15 0 0 1 66 92H34A15 15 0 0 1 19 77A3.5 3.5 0 0 1 21.71,73.59A12 12 0 0 0 21.71,50.21A3.5 3.5 0 0 1 19 46.8V23A15 15 0 0 1 34 8ZM36.1 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0ZM46.6 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0ZM57.1 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0Z"/><g fill="#ffcb05"><circle cx="39.5" cy="50" r="3.4"/><circle cx="50" cy="50" r="3.4"/><circle cx="60.5" cy="50" r="3.4"/></g></svg>',
+  mark: '<svg viewBox="19 8 62 84" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M34 8H66A15 15 0 0 1 81 23A3.5 3.5 0 0 1 78.29,26.41A12 12 0 0 0 78.29,49.79A3.5 3.5 0 0 1 81 53.2V77A15 15 0 0 1 66 92H34A15 15 0 0 1 19 77A3.5 3.5 0 0 1 21.71,73.59A12 12 0 0 0 21.71,50.21A3.5 3.5 0 0 1 19 46.8V23A15 15 0 0 1 34 8ZM36.1 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0ZM46.6 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0ZM57.1 50a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0 -6.8 0Z"/><g fill="#5fd4c8"><circle cx="39.5" cy="50" r="3.4"/><circle cx="50" cy="50" r="3.4"/><circle cx="60.5" cy="50" r="3.4"/></g></svg>',
   search: '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
   pin: '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>',
   heart: (on) => `<svg class="heart${on ? " on" : ""}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.500-4.600-7.500-10A4.300 4.300 0 0 1 12 7.300 4.300 4.300 0 0 1 19.500 10c0 5.400-7.500 10-7.500 10z"/></svg>`,
@@ -199,7 +199,7 @@ document.addEventListener("click", (e) => {
 });
 document.getElementById("pickbtn").addEventListener("click", async () => {
   const font = document.querySelector('[data-font][aria-pressed="true"]').dataset.font, theme = root.dataset.theme || "light";
-  const text = `Home redesign draft 3 (first design with motion): font = ${font}; looked at it in ${theme} mode. Changes I want: `;
+  const text = `Home redesign draft 4 (Lagoon): font = ${font}; looked at it in ${theme} mode. Changes I want: `;
   try { await navigator.clipboard.writeText(text); document.getElementById("picked").textContent = `Copied: "${text}" Paste it to Claude and add your changes.`; }
   catch { document.getElementById("picked").textContent = `Tell Claude: "${text}"`; }
 });
