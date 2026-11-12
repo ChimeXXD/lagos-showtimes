@@ -1,6 +1,46 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: the redesign is live and Chime calls it "a good starting point"; a list of fixes comes next (end of Thu 12 Nov 2026)
+## Now: Chime's first review is fixed and the Cinemas tab is rebuilt (end of Thu 12 Nov 2026, night)
+
+Read this section first. Everything below it is background; where they disagree, this is right.
+
+### Start here next time
+1. **Ask Chime what is next on the review.** Chime gave the fixes in two screen recordings and is going through the app one screen at a time. Done so far: the tab order, phone search, the chips, the Cinemas tab. Chime has said they are happy with the Films, film and Starting soon pages for now.
+2. **Phone pickers on other pages?** Chime said Cinemas only for now (D-57). The Films page and film pages still use chips on a phone. Ask after Chime has used the Cinemas tab.
+3. Show results visually, before and after, opened in Dia. **Vet every mockup before showing it**: measure centring and overflow at 390, 360 and 320 px, light and dark, and look at every frame. Mockups are not builds: nothing goes into the app until Chime says build.
+
+### What happened this session
+1. **Fixes from the first recording (D-55):** the tabs now read Films, Cinemas, Starting soon, and `/` is Films. The phone search button opens a search box with matching films. On phones the area chips wrap instead of being cut off, and "Starting soon" stays on one line.
+2. **Cinemas tab redesign:**
+   - Round 3 references (`docs/design/reference-board/round3-cinemas.html`, local only). Chime picked Instacart's list and its web layout.
+   - Mockup rounds 1 and 2 (`mockup/cinemas.html`). Chime picked Option 1 for the phone filters (D-56) and answered the open points (D-57): real logos with a removal route, Cinemas page only, Leisure Mall merged.
+3. **Built (D-56, D-57):** logo rows, phone pickers with sheets, 12 chain logos (`public/logos/`, sources in `data/logos.json`), a footer line about removing logos, and the freshness line under the first heading.
+4. **The test build makes its sample data as of 08:00 Lagos**, locally and in CI. Built at the real hour, a late-evening build drops the day's ended showings and two HTML tests fail; that broke CI twice tonight. Vercel's own build still uses the real hour.
+
+### Where it stands
+- **Live:** https://sinima-app.vercel.app, commit `fe89c65` and later. CI is green on the last push (21:14 Lagos).
+- **Checks:**
+  - 384 unit tests pass.
+  - The full browser suite passed on the last commit.
+  - The heaviest page is 188.7 KB of 200.
+  - 28 of 42 features pass.
+- **Code map additions:**
+  - `src/components/CinemaRow.tsx` (row and logo tile)
+  - `src/components/Pickers.tsx` (phone pickers and sheets)
+  - `src/components/Search.tsx`, `src/components/Tabs.tsx`
+  - `src/styles/cinemas.css`
+  - `rowWarning` in `src/lib/wording/freshness.ts`
+
+### Known faults and things not verified
+- Not checked on a real phone: the sheets, and whether the keyboard rises when the search button is tapped.
+- "Your cinemas" lists only saved cinemas with showings left. A saved cinema with nothing more today drops out; it used to say "nothing more today". This matches the mockup; ask Chime if it matters.
+- The freshness line joins one line per source. With live data from several chains it could get long.
+- Search lists every film in the data, even one with no showings left today.
+- Old `/films` links give a "page not found".
+- Still open from before: About page with the TMDB notice, a daily rebuild, live data, "Remind me" after a showing starts, Kids/Nollywood filters, the font pick.
+
+## Earlier: the redesign went live (Thu 12 Nov 2026, evening)
+
 
 Read this section first. Everything below it is background; where they disagree, this is right.
 
