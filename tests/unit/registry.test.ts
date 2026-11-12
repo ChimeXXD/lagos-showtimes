@@ -28,3 +28,11 @@ describe("data registries", () => {
     expect(unknown).toEqual([]);
   });
 });
+
+describe("one cinema, one entry (D-56)", () => {
+  it("lists Leisure Mall's cinema once, as Filmhouse Surulere", () => {
+    expect(cinemas.cinemas.map((c) => c.id)).not.toContain("leisure-mall-surulere");
+    const surulere = cinemas.cinemas.find((c) => c.id === "filmhouse-surulere")!;
+    expect(surulere.address).toBe("Leisure Mall, Surulere, Lagos");
+  });
+});

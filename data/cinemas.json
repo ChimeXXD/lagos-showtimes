@@ -135,7 +135,7 @@
       "name": "Filmhouse Surulere",
       "chain": "Filmhouse",
       "area": "surulere",
-      "address": null,
+      "address": "Leisure Mall, Surulere, Lagos",
       "geo": null,
       "website": "https://filmhouseng.com/",
       "bookingHost": "www.filmhouseng.com",
@@ -143,9 +143,10 @@
       "listedOnLagocine": true,
       "sourceUrls": [
         "https://lagocine.com/cinemas/",
-        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/"
+        "https://nairametrics.com/2025/02/01/top-10-most-visited-cinema-locations-in-lagos-2024/",
+        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
       ],
-      "notes": null
+      "notes": "Inside Leisure Mall: the \"Leisure Mall Cinema\" Discover Lagos names is this cinema, listed once (D-56)."
     },
     {
       "id": "filmhouse-circle-mall",
@@ -468,22 +469,6 @@
         "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
       ],
       "notes": "No booking page found by Lagocine."
-    },
-    {
-      "id": "leisure-mall-surulere",
-      "name": "Leisure Mall Cinema",
-      "chain": "Independent (unverified)",
-      "area": "surulere",
-      "address": "Leisure Mall, Surulere, Lagos",
-      "geo": null,
-      "website": null,
-      "bookingHost": null,
-      "lagocinePage": null,
-      "listedOnLagocine": false,
-      "sourceUrls": [
-        "https://www.discoverlagos.ng/post/the-best-cinemas-in-lagos-where-movie-magic-comes-alive"
-      ],
-      "notes": "Named by Discover Lagos; not on Lagocine on 6 Nov 2026. Operating status unverified."
     }
   ]
 }
