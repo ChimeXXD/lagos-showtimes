@@ -66,6 +66,9 @@ for (const width of [390, 360, 320]) {
     await expect(chips).toHaveCount(5); // three areas, All Lagos, More areas
     const cut = await chips.evaluateAll((els) =>
       els.filter((el) => {
+        // On a film's page the chips sit low; bring each into view first, or a point below the
+        // window reads as "covered" (it did in CI, where the font sets a little wider).
+        el.scrollIntoView({ block: "center" });
         const box = el.getBoundingClientRect();
         if (box.left < 0 || box.right > window.innerWidth) return true;
         // The middle of each edge (2 px in; the corners are rounded off) must be this chip, not
