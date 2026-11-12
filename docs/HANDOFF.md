@@ -1,43 +1,81 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: Chime's first review is fixed and the Cinemas tab is rebuilt (end of Thu 12 Nov 2026, night)
+## Now: waiting for Chime to pick a theme-switch motion (Thu 12 to Fri 13 Nov 2026, past midnight)
 
 Read this section first. Everything below it is background; where they disagree, this is right.
 
 ### Start here next time
-1. **Ask Chime what is next on the review.** Chime gave the fixes in two screen recordings and is going through the app one screen at a time. Done so far: the tab order, phone search, the chips, the Cinemas tab. Chime has said they are happy with the Films, film and Starting soon pages for now.
-2. **Phone pickers on other pages?** Chime said Cinemas only for now (D-57). The Films page and film pages still use chips on a phone. Ask after Chime has used the Cinemas tab.
-3. Show results visually, before and after, opened in Dia. **Vet every mockup before showing it**: measure centring and overflow at 390, 360 and 320 px, light and dark, and look at every frame. Mockups are not builds: nothing goes into the app until Chime says build.
+1. **Get Chime's pick for the theme-switch motion.** The page is `mockup/theme-motion/index.html`, open in Dia. It shows four options playing on real screenshots: A Curtain, B Widescreen, C House lights, D Next frame. Chime answers with "Copy my pick". The live site still uses a circle that opens out from the switch (D-59). Chime rejected the circle ("the exact animation style I use for my portfolio website") and wants a different one. If none fits, Chime offered to search for references; do that next.
+2. **Then build the pick:** swap the `clip-path` circle in `src/components/ThemeToggle.tsx` for the chosen motion, using the values on the pick page. Swap the icon's quarter turn for the "sun sets, moon rises" slide; its CSS is in `src/styles/sinima.css`, at the theme switch block. Keep reduced motion as a cross-fade. Update the circle test in `tests/e2e/theme.spec.ts` to check the new motion. Record a new D-entry superseding D-59.
+3. **Ask Chime what is next on the review.** Done so far:
+   - the tab order (D-55)
+   - phone search
+   - the phone chips
+   - the Cinemas tab (D-56, D-57)
+   - the light/dark switch (D-58)
+   - its motion (in progress)
 
-### What happened this session
-1. **Fixes from the first recording (D-55):** the tabs now read Films, Cinemas, Starting soon, and `/` is Films. The phone search button opens a search box with matching films. On phones the area chips wrap instead of being cut off, and "Starting soon" stays on one line.
+   Chime is happy with the Films, film and Starting soon pages for now.
+4. **Open questions with Chime:**
+   - Should the switch get a third state, "follow my phone"? Once tapped, there is no way back to the phone's setting.
+   - Should the phone pickers go on the Films page and film pages? Chime said Cinemas only for now.
+   - Should a saved cinema with nothing more today stay under "Your cinemas"?
+5. **How to work with Chime here:**
+   - Show results visually, before and after, opened in Dia.
+   - Vet every mockup before showing it: measure centring and overflow at 390, 360 and 320 px, light and dark, and look at every frame.
+   - Mockups are not builds: nothing goes into the app until Chime says build.
+   - For motion, show the options side by side and playing, with a quarter-speed control.
+
+### What happened this session, in order
+1. **Fixes from the first recording (D-55):**
+   - The tabs read Films, Cinemas, Starting soon, and `/` is Films (`/films` is gone).
+   - The phone search button opens a search box with matching films.
+   - The area chips wrap instead of being cut off, and "Starting soon" stays on one line.
 2. **Cinemas tab redesign:**
    - Round 3 references (`docs/design/reference-board/round3-cinemas.html`, local only). Chime picked Instacart's list and its web layout.
-   - Mockup rounds 1 and 2 (`mockup/cinemas.html`). Chime picked Option 1 for the phone filters (D-56) and answered the open points (D-57): real logos with a removal route, Cinemas page only, Leisure Mall merged.
-3. **Built (D-56, D-57):** logo rows, phone pickers with sheets, 12 chain logos (`public/logos/`, sources in `data/logos.json`), a footer line about removing logos, and the freshness line under the first heading.
-4. **The test build makes its sample data as of 08:00 Lagos**, locally and in CI. Built at the real hour, a late-evening build drops the day's ended showings and two HTML tests fail; that broke CI twice tonight. Vercel's own build still uses the real hour.
+   - Mockup rounds 1 and 2 (`mockup/cinemas.html`). In the second round Chime asked for better phone filters, centred logos, Magnificent's real logo and better spacing on desktop. Chime also said: "Vet all this design before you show me."
+   - Chime picked Option 1, one row of pickers (D-56), then answered the open points (D-57): real logos with a removal route, Cinemas page only, and Leisure Mall merged into Filmhouse Surulere.
+3. **Built (D-56, D-57):**
+   - logo rows, and phone pickers that open sheets
+   - 12 chain logos (`public/logos/`, sources in `data/logos.json`)
+   - a footer line on having a logo removed
+   - the freshness line under the first heading
+4. **Light/dark switch (D-58):**
+   - A round button beside search on every screen. It follows the phone until tapped, then keeps the choice (`ls.theme`).
+   - A head script in `layout.tsx` applies the kept choice before the first paint, browser bar included.
+   - Also fixed: the phone picker labels were cut short at 360 and 320 px.
+5. **Switch motion (D-59):** Chime found the instant switch "stagnant". I built a circle reveal using the browser's view transitions, with the icon turning a quarter. Chime then rejected the circle as their portfolio's style, and the four options above were made.
+6. **The test build makes its sample data as of 08:00 Lagos**, locally (`playwright.config.ts`) and in CI. A late-evening build drops the day's ended showings, and two HTML tests failed; that broke CI twice.
+7. **Memory:** the Mac sat near the memory guard's limit (78%). Browser test runs were refused twice until Chime closed Brave and Dia. Run browser tests one file at a time.
 
 ### Where it stands
-- **Live:** https://sinima-app.vercel.app, commit `fe89c65` and later. CI is green on the last push (21:14 Lagos).
+- **Live:** https://sinima-app.vercel.app. The last app change is `f837df7` (the circle motion); `55fbc40` adds the pick page. CI was green on every push since `a7ff565`.
 - **Checks:**
   - 384 unit tests pass.
-  - The full browser suite passed on the last commit.
+  - The full browser suite passed on the last app commit, with 11 theme tests.
   - The heaviest page is 188.7 KB of 200.
-  - 28 of 42 features pass.
+  - 29 of 43 features pass.
 - **Code map additions:**
-  - `src/components/CinemaRow.tsx` (row and logo tile)
-  - `src/components/Pickers.tsx` (phone pickers and sheets)
-  - `src/components/Search.tsx`, `src/components/Tabs.tsx`
+  - `src/components/CinemaRow.tsx`, `Pickers.tsx`, `Search.tsx`, `Tabs.tsx`, `ThemeToggle.tsx`
   - `src/styles/cinemas.css`
   - `rowWarning` in `src/lib/wording/freshness.ts`
+  - `THEME_KEY` in `src/lib/area.ts`
+  - `--color-tile-*` tokens
 
 ### Known faults and things not verified
-- Not checked on a real phone: the sheets, and whether the keyboard rises when the search button is tapped.
-- "Your cinemas" lists only saved cinemas with showings left. A saved cinema with nothing more today drops out; it used to say "nothing more today". This matches the mockup; ask Chime if it matters.
-- The freshness line joins one line per source. With live data from several chains it could get long.
-- Search lists every film in the data, even one with no showings left today.
+- Nothing checked on a real phone: the sheets, the search keyboard, the switch, and the motion. View transitions need iOS 18; older iPhones switch at once.
+- "Your cinemas" lists only saved cinemas with showings left.
+- The freshness line joins one line per source, so it could get long with live data.
+- Search lists films with no showings left today.
 - Old `/films` links give a "page not found".
-- Still open from before: About page with the TMDB notice, a daily rebuild, live data, "Remind me" after a showing starts, Kids/Nollywood filters, the font pick.
+- `src/styles/sinima.css` is 301 lines, just over the guideline of about 300. Move the theme switch rules out when the motion changes.
+- Still open from before:
+  - the About page with the TMDB notice
+  - a daily rebuild
+  - live data
+  - "Remind me" after a showing starts
+  - the Kids and Nollywood filters
+  - the font pick
 
 ## Earlier: the redesign went live (Thu 12 Nov 2026, evening)
 

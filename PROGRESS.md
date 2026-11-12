@@ -2,6 +2,17 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Theme-switch motion: four options for Chime (Fri 13 Nov 2026, past midnight)
+
+**Changed**
+- Chime rejected the circle reveal (D-59) as the style of their own portfolio. `mockup/theme-motion/index.html` plays four replacements on light and dark screenshots of the Cinemas tab: A Curtain, B Widescreen, C House lights, D Next frame. Each has an icon motion where the sun sets as the moon rises, and the page has quarter-speed, pause and copy-my-pick controls. The screenshots are git-ignored.
+
+**Checked**
+- Each option was captured three times during one switch at quarter speed. The motion runs as described, and the switch drawn on top sits at the real button's measured place (x 330, y 12 at 390 px).
+
+**Next**
+- Build Chime's pick in `ThemeToggle.tsx` (see HANDOFF).
+
 ## The theme switch animates (Thu 12 Nov 2026, night)
 
 **Changed** (D-59)
