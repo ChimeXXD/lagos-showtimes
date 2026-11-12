@@ -36,14 +36,14 @@ export function AreaChips({ areas, current, onPick }: { areas: AreaInfo[]; curre
         {label}
       </button>
     ) : (
-      <Link href={slug ? `/area/${slug}` : "/"} {...props} onClick={() => rememberArea(slug)}>
+      <Link href={slug ? `/area/${slug}` : "/cinemas"} {...props} onClick={() => rememberArea(slug)}>
         {label}
       </Link>
     );
   };
   return (
     <div className="chips area" role="group" aria-label="Area">
-      {/* On a phone only this part scrolls sideways; the menu sits outside it, or the scrolling row would cut it off. */}
+      {/* On a phone the chips wrap; the menu sits outside this row and hangs from the whole block (D-55). */}
       <div className="chips-row">
         {shown.map((area) => (
           <span key={area.slug}>{chip(area.slug, area.slug === current ? (<><Icon name="pin" />{area.name}</>) : area.name, `area.chip.${area.slug}`)}</span>

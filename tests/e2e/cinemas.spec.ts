@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { cinemasBySoonest, dataFile, freeze, lagosClock, sampleTime, today } from "./helpers";
 
-// The home screen: cinemas near you, soonest first (D-49).
+// The Cinemas tab: cinemas near you, soonest first (D-49; no longer the home page since D-55).
 test("an area's home lists its cinemas soonest first, each with its next times", async ({ page, request }) => {
   const all = await dataFile(request, "all");
   const now = await sampleTime(request, "18:00");
@@ -76,7 +76,7 @@ test("Tomorrow shows the whole of the next day", async ({ page, request }) => {
 });
 
 test("picking an area opens its page and is remembered; All Lagos forgets it", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/cinemas");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cinemas in Lagos");
   await page.getByTestId("area.more").click();
   // The menu opens over the page: not cut off by the sideways-scrolling row of chips, and not under
@@ -96,7 +96,7 @@ test("picking an area opens its page and is remembered; All Lagos forgets it", a
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cinemas near Ikeja");
   expect(await page.evaluate(() => localStorage.getItem("ls.area"))).toBe("ikeja");
 
-  await page.goto("/");
+  await page.goto("/cinemas");
   await expect(page).toHaveURL(/\/area\/ikeja$/);
 
   await page.getByTestId("area.chip.all").click();
@@ -124,7 +124,7 @@ test("choosing IMAX leaves only cinemas showing in IMAX, and says what was left 
   const silent = new Set(all.cinemas.map((c) => c.id).filter((id) => rows.some((s) => s.cinemaId === id) && !rows.some((s) => s.cinemaId === id && s.format)));
   expect(imax.length).toBeGreaterThan(0);
   await freeze(page, now);
-  await page.goto("/");
+  await page.goto("/cinemas");
   await page.getByTestId("format.chip.IMAX").click();
   const shown = await page.locator('[data-testid^="cinema.card."]').evaluateAll((els) => els.map((el) => el.getAttribute("data-testid")!.replace("cinema.card.", "")));
   expect(shown.sort()).toEqual(imax.sort());
@@ -132,7 +132,7 @@ test("choosing IMAX leaves only cinemas showing in IMAX, and says what was left 
 });
 
 // CLAUDE.md rule 3: the page's own HTML may be read on a later day than it was built.
-for (const path of ["/area/lekki", "/", "/films", "/soon", "/cinema/genesis-purple-lekki", "/film/ramayana"]) {
+for (const path of ["/area/lekki", "/cinemas", "/", "/soon", "/cinema/genesis-purple-lekki", "/film/ramayana"]) {
   test(`${path}: the page's own HTML holds absolute times and the sample banner, and no word that depends on the clock`, async ({ request }) => {
     const html = (await (await request.get(path)).text()).replace(/<script[\s\S]*?<\/script>/g, "").replace(/<title>[^<]*<\/title>/, "");
     expect([...html.matchAll(/<time datetime="[^"]+Z"/gi)].length).toBeGreaterThan(5);

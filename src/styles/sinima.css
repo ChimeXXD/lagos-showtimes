@@ -20,6 +20,11 @@ h1, h2, h3, p { margin: 0; }
 .search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--color-text); font: inherit; }
 .search input::placeholder { color: var(--color-text-muted); }
 .search:focus-within { border-color: var(--color-text); }
+.search { position: relative; }
+.search .shut { display: none; }
+.menu.results { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; right: 0; width: auto; }
+.search input::-webkit-search-cancel-button { appearance: none; }
+.results .none { padding: var(--s3); color: var(--color-text-muted); font-size: 14px; }
 summary.chip { list-style: none; cursor: pointer; }
 summary.chip::-webkit-details-marker { display: none; }
 .fresh.stale { color: var(--color-stale); }
@@ -252,7 +257,7 @@ dialog.modal[open] { display: grid; gap: var(--s4); animation: row-in 420ms cubi
   .top .search { display: none; }
   .top .tabs { grid-column: 1 / -1; grid-row: 2; }
   .tabs { display: flex; margin-top: var(--s2); }
-  .tab { flex: 1; justify-content: center; padding: 0 8px; font-size: 14px; }
+  .tab { flex: 1 1 auto; justify-content: center; padding: 0 10px; font-size: 14px; white-space: nowrap; }
   .wrap { padding: 0 var(--s4) var(--s8); }
   .title { font-size: 30px; }
   .title u { text-decoration-thickness: 4px; text-underline-offset: 4px; }
@@ -267,11 +272,17 @@ dialog.modal[open] { display: grid; gap: var(--s4); animation: row-in 420ms cubi
   .strip, .strip > .po, .strip > .tp { height: 168px; }
   .t, .tab, .chip, .fav { min-height: 44px; }
   .chips > * { flex: 0 0 auto; }
-  /* The area row: only its chips scroll sideways. The row itself must not clip, or the "More areas" menu is cut off. */
-  .chips.area { overflow: visible; min-width: 0; }
-  .chips.area > .chips-row { display: flex; align-items: center; gap: var(--s2); flex: 0 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; margin: -2px 0 -2px calc(-1 * var(--s4)); padding: 2px 0 2px var(--s4); }
-  .chips-row > * { flex: 0 0 auto; }
-  .pop .menu { left: auto; right: 0; width: min(320px, calc(100vw - 2 * var(--s4))); }
+  /* The area chips wrap onto a second line instead of scrolling under "More areas" (D-55). The menu
+     hangs from the whole block, so it opens on screen wherever "More areas" lands. */
+  .chips.area { position: relative; flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+  .chips.area .sep { display: none; }
+  .chips.area .pop { position: static; }
+  .pop .menu { left: 0; right: auto; width: min(320px, 100%); }
+  /* Search opens under the logo on the page you are on; 16 px text so the phone does not zoom in. */
+  .top .search.open { display: flex; grid-column: 1 / -1; grid-row: 2; width: 100%; margin-top: var(--s2); padding-right: 0; }
+  .top:has(.search.open) .tabs { grid-row: 3; }
+  .search input { font-size: 16px; }
+  .search.open .shut { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; color: inherit; }
   .head .chips { margin-top: var(--s3); }
   .fav { width: 44px; }
   .logo { min-height: 44px; }

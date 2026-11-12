@@ -301,7 +301,7 @@
       ],
       "verify": "npm run test:e2e -- films",
       "passes": true,
-      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- films` 4 pass. /films lists every film with a showing still to start; ' RAMA ' narrows it; 'zzz' says no film matches; Spider-Man: Brand New Day opens /film/spider-man-brand-new-day."
+      "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- films` 4 pass. /films (now / since D-55) lists every film with a showing still to start; ' RAMA ' narrows it; 'zzz' says no film matches; Spider-Man: Brand New Day opens /film/spider-man-brand-new-day."
     },
     {
       "id": "D3-5",
@@ -315,6 +315,22 @@
       "verify": "npm run test:e2e -- cinemas",
       "passes": true,
       "evidence": "12 Nov 2026, after the redesign (D-49, D-54): `npm run test:e2e -- cinemas`: /area/lekki shows a 'Next to Lekki' group with cinemas from the neighbouring areas confirmed in D-46. No distance or travel time is shown anywhere. This replaces the old empty state with neighbour counts."
+    },
+    {
+      "id": "D3-6",
+      "day": 3,
+      "priority": "must",
+      "title": "Chime's review, 12 Nov: Films first, search that opens in place, area chips never cut off (D-55)",
+      "criteria": [
+        "the site opens on Films and every page's tabs read Films, Cinemas, Starting soon",
+        "a saved area sends the Cinemas tab to that area",
+        "on a phone the search button opens a search box on the same page; typing lists matching films; a match opens its film; no match says so; Escape closes it",
+        "every area chip is whole on screen at 390, 360 and 320 px",
+        "each tab name stays on one line at 360 and 320 px"
+      ],
+      "verify": "npm run test:e2e -- nav",
+      "passes": true,
+      "evidence": "12 Nov 2026: `npx playwright test tests/e2e/nav.spec.ts` 9 pass. Red first on the old code: the tab and search tests failed (no Films home, no search.open), the chip test listed area.chip.ikeja and area.chip.all cut off at 390 px, and the one-line test listed 'Starting soon' at 360 and 320 px."
     },
     {
       "id": "D3-3",

@@ -2,6 +2,33 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Chime's review, first fixes: Films first, search, phone chips (Thu 12 Nov 2026, evening)
+
+**Changed** (D-55)
+- Chime reviewed the live site by screen recording. The first three fixes are in:
+  - The tabs now read Films · Cinemas · Starting soon. `/` is Films; Cinemas moved to `/cinemas`; `/films` is gone. A saved area now sends the Cinemas tab to that area (`src/components/Tabs.tsx`), not the home page.
+  - Search (`src/components/Search.tsx`): on a phone the search button opens a box on the page you're on, and matching films show as you type. Before, it only jumped to the Films tab.
+  - On a phone the area chips wrap onto a second line. Before, they scrolled under "More areas" and were cut in half. Tab names also stay on one line down to 320 px.
+- Docs: `SPEC.md` routes, flows and acceptance check 14; `features.json` D3-6. `scripts/check-budget.mjs` now measures `cinemas.html` instead of the removed `films.html`; the limits are unchanged.
+- Existing tests were moved to the new addresses: `films.spec` uses `/` for `/films`, and `cinemas.spec` uses `/cinemas` for `/`. The requirement changed (D-55); the tests weren't weakened.
+- Mobbin references for the Cinemas page redesign are on `docs/design/reference-board/round3-cinemas.html` (local only: 24 references). The logo source for each brand is listed in the session notes.
+
+**Checked**
+- `tests/e2e/nav.spec.ts`: 9 tests, written first and red on the old code:
+  - The tab and search tests failed: no Films home, and no `search.open`.
+  - At 390 px the chip test listed `area.chip.ikeja` and `area.chip.all` as cut off.
+  - At 360 and 320 px the one-line test listed "Starting soon" as wrapped.
+- All 9 pass now. The full gate results are in the commit.
+- Budget: the heaviest page is 187.8 KB of 200.
+- Screenshots at 390 and 360 px and at 1440 px desktop, compared with the live site.
+
+**Not verified**
+- Not tried on a real iPhone: does the keyboard rise when the search button is tapped? The code focuses the box inside the tap, which iOS needs.
+- The Cinemas page redesign (logos, connected cards) is not started; it waits for Chime's reference picks and a mockup.
+
+**Next**
+- Chime picks references on round 3. Then a Cinemas page mockup with logos, which needs a call on using chain logos. After approval, build it.
+
 ## The redesign, built (Thu 12 Nov 2026)
 
 **Changed**

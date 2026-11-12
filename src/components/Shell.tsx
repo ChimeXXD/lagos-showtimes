@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { Icon } from "@/components/Icons";
 import { LogoMark } from "@/components/Logo";
+import { Search } from "@/components/Search";
+import { Tabs, type TabId } from "@/components/Tabs";
+import { areas, loadAll } from "@/lib/data/load";
 
-const TABS = [
-  ["cinemas", "Cinemas", "/"],
-  ["films", "Films", "/films"],
-  ["soon", "Starting soon", "/soon"],
-] as const;
+// Every page builds the same film list for search: read and sort it once per build, not once per page.
+let searchFilms: { id: string; title: string }[] | undefined;
+const filmsForSearch = () =>
+  (searchFilms ??= loadAll().films.map(({ id, title }) => ({ id, title })).sort((a, b) => a.title.localeCompare(b.title)));
 
 /** The frame every page shares: the logo, the three ways in, search, and the footer note. */
-export function Shell({ tab, children }: { tab: (typeof TABS)[number][0]; children: React.ReactNode }) {
+export function Shell({ tab, children }: { tab: TabId; children: React.ReactNode }) {
   return (
     <>
       <header className="top">
@@ -17,20 +18,8 @@ export function Shell({ tab, children }: { tab: (typeof TABS)[number][0]; childr
           <LogoMark />
           Sinima
         </Link>
-        <nav className="tabs" aria-label="Sections">
-          {TABS.map(([id, label, href]) => (
-            <Link key={id} href={href} className={id === tab ? "tab on" : "tab"} aria-current={id === tab ? "page" : undefined} data-testid={`tab.${id}`}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <form className="search" action="/films" role="search">
-          <Icon name="search" />
-          <input type="search" name="q" placeholder="Search a film" aria-label="Search a film" autoComplete="off" />
-        </form>
-        <Link href="/films" className="round" aria-label="Search a film">
-          <Icon name="search" />
-        </Link>
+        <Tabs tab={tab} areas={areas.map((area) => area.slug)} />
+        <Search films={filmsForSearch()} />
       </header>
       <main className="wrap">{children}</main>
       <footer className="foot">

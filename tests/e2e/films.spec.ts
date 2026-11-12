@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test";
 import { dataFile, freeze, lagosClock, sampleTime, today } from "./helpers";
 
-test("Films lists every film still showing; typing narrows it; a film opens its page", async ({ page, request }) => {
+test("Films (the home page, D-55) lists every film still showing; typing narrows it; a film opens its page", async ({ page, request }) => {
   const all = await dataFile(request, "all");
   const now = await sampleTime(request, "18:00");
   const showing = new Set(today(all, now).map((s) => s.filmId));
   await freeze(page, now);
-  await page.goto("/films");
+  await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Films in Lagos");
   const cards = page.locator('[data-testid^="film.card."]');
   await expect(cards).toHaveCount(showing.size);
@@ -48,7 +48,7 @@ test("on a film's page, choosing IMAX and an area leaves only the cinemas that m
   await expect(page.getByTestId("empty.film")).toContainText("No cinema in Victoria Island is showing Ramayana in IMAX today");
 });
 
-for (const path of ["/film/ramayana", "/films", "/soon", "/cinema/ebonylife-vi"]) {
+for (const path of ["/film/ramayana", "/", "/cinemas", "/soon", "/cinema/ebonylife-vi"]) {
   test(`${path} does not scroll sideways on a phone`, async ({ page, request }) => {
     await freeze(page, await sampleTime(request, "10:00"));
     await page.goto(path);

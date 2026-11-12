@@ -26,7 +26,7 @@ export default async function FilmPage({ params }: Props) {
   if (!film) throw new Error(`No film "${slug}" in the data`);
   return (
     <Shell tab="films">
-      <Link className="crumb" href="/films">
+      <Link className="crumb" href="/">
         <Icon name="back" />
         Films in Lagos
       </Link>

@@ -18,8 +18,8 @@ Accounts, ticket sales, ads, push notifications (D-11), group plans, crowd confi
 
 ## 1. Core flows
 
-1. **Tonight near me:** open the site → a returning visitor lands on their area's page; a first visit sees all of Lagos with the area picker (D-18) → "Starting soon" lists showings in the next 2 hours → tap Book → cinema's site in a new tab. Nothing soon in the area → the empty state offers neighbouring areas (D-22).
-2. **One film, anywhere:** type in the "Now showing" filter on home, or tap a film (D-22) → every showing in Lagos by start time, grouped by area → Stay or Go chip → Book or Remind me.
+1. **Tonight near me:** open the Cinemas tab → a returning visitor lands on their area's page; a first visit sees all of Lagos with the area picker (D-18, D-55) → "Starting soon" lists showings in the next 2 hours → tap Book → cinema's site in a new tab. Nothing soon in the area → the empty state offers neighbouring areas (D-22).
+2. **One film, anywhere:** the site opens on Films (D-55); search from any page or tap a film (D-22) → every showing in Lagos by start time, grouped by area → Stay or Go chip → Book or Remind me.
 3. **One cinema:** tap a cinema → today and tomorrow → address and source line.
 4. **Remind me:** tap Remind me → .ics downloads → phone calendar adds the event with a 30-minute alert. The page shows a live countdown.
 5. **Share:** tap Share → native share sheet (or WhatsApp link) with "Sinners · Filmhouse Lekki · Fri 19:30" and the page URL.
@@ -62,10 +62,10 @@ Details, copy and test IDs are in `design/UI-BRIEF.md`.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Home: every cinema in Lagos, soonest first, with the area chips, format chips and Today or Tomorrow. Sends a returning visitor to their saved area (D-18, D-49) |
-| `/area/[slug]` | Home for one area: its cinemas first, then the areas next to it, then the rest of Lagos |
+| `/` | Home, the Films tab: every film showing in Lagos as posters, with a search box and the format chips (D-50, D-55) |
+| `/cinemas` | The Cinemas tab: every cinema in Lagos, soonest first, with the area chips, format chips and Today or Tomorrow. Sends a returning visitor to their saved area (D-18, D-49, D-55) |
+| `/area/[slug]` | The Cinemas tab for one area: its cinemas first, then the areas next to it, then the rest of Lagos |
 | `/cinema/[id]` | One cinema: address, source line, day tiles, and its films as poster cards with their times |
-| `/films` | Every film showing in Lagos as posters, with a search box and the format chips (D-50) |
 | `/film/[slug]` | One film: poster, Stay or Go, then the cinemas showing it, filtered by format, area and day |
 | `/soon` | Starting soon: showings in the next 2 hours, then later tonight, for all of Lagos or one area |
 
@@ -99,9 +99,10 @@ Tapping any time opens that showing in a panel (a sheet on a phone): the ticket,
 - [ ] 8. `/about` lists every source with status, the TMDB logo and notice, and a takedown contact. verify: `npm run test:e2e -- about`
 - [x] 9. With fixtures active, a "Sample data" banner shows on every page and no showing has a booking link. verify: `npm run test:e2e -- cinemas`
 - [x] 10. `npm run refresh -- --fixtures` run on any day writes showings dated today and tomorrow in Lagos with the fixtures' wall-clock times (D-20). verify: `npm test -- scripts/refresh`
-- [x] 11. Typing part of a film's title on the Films tab leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
-- [x] 12. Choosing a format on home or on a film's page leaves only the cinemas showing in that format and says how many were left out (D-50). verify: `npm run test:e2e -- films` and `npm run test:e2e -- cinemas`
-- [x] 13. A returning visitor with a saved area who opens `/` lands on `/area/<slug>` (D-18). verify: `npm run test:e2e -- cinemas`
+- [x] 11. Typing part of a film's title on the Films tab (the home page, D-55) leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
+- [x] 12. Choosing a format on the Cinemas tab or on a film's page leaves only the cinemas showing in that format and says how many were left out (D-50). verify: `npm run test:e2e -- films` and `npm run test:e2e -- cinemas`
+- [x] 13. A returning visitor with a saved area who opens the Cinemas tab lands on `/area/<slug>` (D-18, D-55). verify: `npm run test:e2e -- cinemas`
+- [x] 14. The site opens on Films; every page's tabs read Films, Cinemas, Starting soon, each on one line down to 320 px; on a phone the search button opens a search box on the page you are on, matches open their film, and no match says so; every area chip is whole on screen at 390, 360 and 320 px (D-55). verify: `npm run test:e2e -- nav`
 
 ## 9. Risks and assumptions
 
