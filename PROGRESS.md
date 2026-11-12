@@ -2,6 +2,19 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## The theme switch animates (Thu 12 Nov 2026, night)
+
+**Changed** (D-59)
+- `ThemeToggle.tsx`: the switch runs `document.startViewTransition`, and the new page opens in a `clip-path` circle from the button (400 ms, strong ease-out). Both icons are drawn, and the hidden one sits turned away and faded (200 ms transitions, so a quick double tap reverses smoothly).
+- With reduced motion: the browser's cross-fade, and the icons only fade. A browser without view transitions switches at once.
+
+**Checked**
+- `theme.spec`: 11 pass, 2 of them new. The new tests could not run red first, because the memory guard stopped the run. On the old code they would time out, since nothing started a view transition.
+- Recorded on a phone and a computer, and stepped through at a quarter speed. The circle grows from the switch and covers the page; the icon turns.
+
+**Not verified**
+- Safari on an iPhone. View transitions need iOS 18; older versions switch at once.
+
 ## A light and dark switch (Thu 12 Nov 2026, night)
 
 **Changed** (D-58)

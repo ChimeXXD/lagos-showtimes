@@ -18,6 +18,18 @@ h1, h2, h3, p { margin: 0; }
 .wrap { padding: 0 var(--s10) var(--s10); }
 .top > .round { display: none; }
 .top > .round.theme { display: inline-grid; } /* the light and dark switch shows on every screen (D-58) */
+/* Switching theme (D-58): the new page opens out in a circle from the switch (ThemeToggle runs the
+   clip-path); the old page stays put beneath it. The icons swap with a quarter turn. */
+html.theme-wipe::view-transition-old(root), html.theme-wipe::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+.round.theme { position: relative; overflow: hidden; }
+.round.theme > span { position: absolute; inset: 0; display: grid; place-items: center; transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), opacity 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+/* The icon follows the theme on the page itself, so it is right from the first paint and does not turn on load. */
+.round.theme > .sun, :root[data-theme="dark"] .round.theme > .moon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+:root[data-theme="dark"] .round.theme > .sun { opacity: 1; transform: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .round.theme > .moon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+  :root:not([data-theme="light"]) .round.theme > .sun { opacity: 1; transform: none; }
+}
 /* On a computer the switch shares the search's column, so the tabs stay in the true middle. */
 @media (min-width: 761px) {
   .top > .search, .top > .round.theme { grid-row: 1; grid-column: 3; }
@@ -205,7 +217,7 @@ summary.chip::-webkit-details-marker { display: none; }
 .more-link::after { content: " →"; display: inline-block; transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1); }
 .more-link:hover::after { transform: translateX(3px); }
 .mini:hover i { transform: translateY(-2px); }
-@media (prefers-reduced-motion: reduce) { *, *::after, dialog::backdrop, .pwrap .soon { animation: none !important; } * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::after, dialog::backdrop, .pwrap .soon { animation: none !important; } * { transition: none !important; } .round.theme > span { transition: opacity 150ms ease !important; } .round.theme > span { transform: none !important; } }
 
 /* Area menu (Sweatpals) */
 .menu { width: 320px; padding: var(--s2); border: 1px solid var(--color-line); border-radius: 18px; background: var(--color-surface); box-shadow: var(--shadow); }

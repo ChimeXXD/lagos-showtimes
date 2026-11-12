@@ -68,3 +68,27 @@ test("with no choice made, the page follows the phone's setting", async ({ page 
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBeUndefined();
   await expect(page.getByTestId("theme.toggle")).toHaveAccessibleName("Switch to light mode");
 });
+
+// D-58: switching is animated: the new theme opens out in a circle from the switch. With reduced
+// motion it is a plain cross-fade, with no circle.
+for (const reduced of [false, true]) {
+  test(`switching ${reduced ? "with reduced motion cross-fades" : "opens the new theme in a circle from the switch"}`, async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "light", reducedMotion: reduced ? "reduce" : "no-preference" });
+    await page.goto("/");
+    const seen = page.evaluate(() => new Promise<string[]>((resolve) => {
+      const start = document.startViewTransition.bind(document);
+      document.startViewTransition = (update) => {
+        const transition = start(update);
+        // One frame after "ready": the switch starts its circle in its own "ready" handler, after this one.
+        void transition.ready.then(() => requestAnimationFrame(() => resolve(document.getAnimations().map((a) => `${(a.effect as KeyframeEffect).pseudoElement ?? ""} ${JSON.stringify((a.effect as KeyframeEffect).getKeyframes().map((k) => k.clipPath ?? ""))}`))));
+        return transition;
+      };
+    }));
+    await page.getByTestId("theme.toggle").click();
+    const animations = await seen;
+    const circle = animations.some((a) => a.startsWith("::view-transition-new(root)") && a.includes("circle("));
+    expect(circle).toBe(!reduced);
+    await expect(page.locator("body")).toHaveCSS("background-color", rgb("#0a0a0a"));
+    await expect(page.locator("html")).not.toHaveClass(/theme-wipe/); // cleaned up, so later transitions fade as normal
+  });
+}
