@@ -37,3 +37,34 @@ for (const width of [390, 360, 320]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }
+
+// D-58: a switch in the header, on a phone and on a computer, overrides the phone's setting and is
+// remembered on this device. The choice is applied before the page is drawn, so there is no flash.
+for (const [name, viewport] of [["phone", { width: 390, height: 844 }], ["computer", { width: 1440, height: 900 }]] as const) {
+  test(`on a ${name}, the header switch turns light into dark and back, and the choice is remembered`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.emulateMedia({ colorScheme: "light" });
+    await page.goto("/cinemas");
+    const body = page.locator("body");
+    const toggle = page.getByTestId("theme.toggle");
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAccessibleName("Switch to dark mode");
+    await toggle.click();
+    await expect(body).toHaveCSS("background-color", rgb("#0a0a0a"));
+    await expect(toggle).toHaveAccessibleName("Switch to light mode");
+    await expect(page.locator('meta[name="theme-color"]').first()).toHaveAttribute("content", "#0a0a0a");
+
+    await page.goto("/soon"); // another page, a full load: still dark, from the first paint
+    expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("dark");
+    await expect(body).toHaveCSS("background-color", rgb("#0a0a0a"));
+    await page.getByTestId("theme.toggle").click();
+    await expect(body).toHaveCSS("background-color", rgb("#eef6f4"));
+  });
+}
+
+test("with no choice made, the page follows the phone's setting", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+  expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBeUndefined();
+  await expect(page.getByTestId("theme.toggle")).toHaveAccessibleName("Switch to light mode");
+});

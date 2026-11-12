@@ -2,6 +2,22 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## A light and dark switch (Thu 12 Nov 2026, night)
+
+**Changed** (D-58)
+- `ThemeToggle.tsx`: a round button beside search on every screen (moon in light, sun in dark). It follows the phone until tapped, then keeps the choice (`ls.theme`). A script in the page head applies the kept choice before the first paint. The browser bar colour follows.
+- Tokens: `:root[data-theme]` fixes `color-scheme`. `--color-tile-edge` replaces the one `prefers-color-scheme` media query, so the dark logo tiles follow the switch too.
+- Header grid: four columns on a computer, three on a phone (logo, search, switch).
+- The phone pickers size to their words, and the area pin hides under 350 px. Labels were cut short at 360 and 320 px ("All L…"), which the earlier test did not check.
+
+**Checked**
+- `theme.spec`: 9 pass, 3 of them new. The new tests were written before the code, but the memory guard stopped the first run. So the red run is shown by `theme.toggle` being absent from HEAD, not by a failing run.
+- `cinemas-rows.spec`: 8 pass. The new label check failed first at 360 and 320 px.
+- Screenshots of the header at 390, 360, 320 and 1440 px, light and dark.
+
+**Not verified**
+- On a real phone.
+
 ## The Cinemas tab as logo rows (Thu 12 Nov 2026, night)
 
 **Changed** (D-56)

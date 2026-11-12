@@ -17,6 +17,13 @@ h1, h2, h3, p { margin: 0; }
 .wrap, .top { max-width: 1440px; margin: 0 auto; }
 .wrap { padding: 0 var(--s10) var(--s10); }
 .top > .round { display: none; }
+.top > .round.theme { display: inline-grid; } /* the light and dark switch shows on every screen (D-58) */
+/* On a computer the switch shares the search's column, so the tabs stay in the true middle. */
+@media (min-width: 761px) {
+  .top > .search, .top > .round.theme { grid-row: 1; grid-column: 3; }
+  .top > .round.theme { justify-self: end; }
+  .top > .search { margin-right: calc(44px + var(--s4)); }
+}
 .search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--color-text); font: inherit; }
 .search input::placeholder { color: var(--color-text-muted); }
 .search:focus-within { border-color: var(--color-text); }
@@ -238,7 +245,7 @@ dialog.modal[open] { display: grid; gap: var(--s4); animation: row-in 420ms cubi
   .panel-head { padding: var(--s3) var(--s4) var(--s2); }
   .panel-body { padding: 0 var(--s4); gap: var(--s4); }
   .panel-foot { padding: var(--s4) var(--s4) var(--s8); border-top: 0; }
-  .top { grid-template-columns: 1fr auto; padding: var(--s3) var(--s4) var(--s2); }
+  .top { grid-template-columns: 1fr auto auto; column-gap: var(--s2); padding: var(--s3) var(--s4) var(--s2); }
   .top .search { display: none; }
   .top .tabs { grid-column: 1 / -1; grid-row: 2; }
   .tabs { display: flex; margin-top: var(--s2); }

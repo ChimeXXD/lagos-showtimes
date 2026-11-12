@@ -23,10 +23,9 @@
 .vlogo { display: grid; place-items: center; flex-shrink: 0; width: 88px; height: 66px; border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--color-line); }
 .vlogo img { display: block; max-width: 82%; max-height: 58%; width: auto; height: auto; }
 .vlogo.light { background: var(--color-tile-light); }
-.vlogo.dark { background: var(--color-tile-dark); box-shadow: none; }
+.vlogo.dark { background: var(--color-tile-dark); box-shadow: inset 0 0 0 1px var(--color-tile-edge); }
 .vlogo.fill { box-shadow: none; }
 .vlogo.fill img { max-width: none; max-height: none; width: 100%; height: 100%; }
-@media (prefers-color-scheme: dark) { .vlogo.dark { box-shadow: inset 0 0 0 1px var(--color-line); } }
 
 .vname { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
 .vnext { margin-top: 3px; color: var(--color-accent); font-size: 14.5px; font-weight: 600; }
@@ -38,10 +37,11 @@
 .vtag.old { background: none; box-shadow: inset 0 0 0 1px var(--color-line); color: var(--color-stale); }
 
 /* Phone filters (D-56, option 1): one row of three pickers, each opens a sheet from the bottom */
-.pickers { display: none; grid-template-columns: 1.35fr 1fr 1fr; gap: var(--s2); margin-top: var(--s4); }
-.picker { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; min-height: 44px; padding: 0 12px; border: 1px solid var(--color-line); border-radius: var(--r-chip); background: var(--color-surface); color: inherit; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+/* Each picker takes the room its words need, so none is cut short down to 320 px. */
+.pickers { display: none; gap: 6px; margin-top: var(--s4); }
+.picker { display: flex; flex: 1 1 auto; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 44px; padding: 0 10px; border: 1px solid var(--color-line); border-radius: var(--r-chip); background: var(--color-surface); color: inherit; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
 .picker span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.picker .ico { width: 16px; height: 16px; flex: 0 0 16px; }
+.picker .ico { width: 14px; height: 14px; flex: 0 0 14px; }
 .picker.on { border-color: var(--color-book); background: var(--color-book); color: var(--color-book-text); }
 dialog.pick { gap: var(--s3); }
 dialog.pick h2 { font-size: 19px; font-weight: 700; }
@@ -59,7 +59,9 @@ dialog.pick h2 { font-size: 19px; font-weight: 700; }
   .vrow:active { background: none; opacity: 0.7; }
   .vlogo { width: 72px; height: 54px; border-radius: 12px; }
   .vname { font-size: 16px; }
-  .pickers { display: grid; }
+  .pickers { display: flex; }
   .wide-only { display: none !important; }
 }
+/* The smallest phones: the area picker drops its pin so all three labels fit. */
+@media (max-width: 350px) { .picker .ico:first-child:not(:last-child) { display: none; } }
 @media (prefers-reduced-motion: reduce) { .vrow, .heart { transition: none; } }

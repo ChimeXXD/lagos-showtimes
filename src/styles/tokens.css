@@ -3,6 +3,13 @@
  * Lagoon in light, a true dark in dark (D-53), from the approved mockup (mockup/, draft 4).
  * Tailwind reads the @theme block as its theme; its own colour palette is off (`--color-*: initial`).
  */
+/* The header switch (D-58) fixes one scheme; with no choice made, the page follows the phone. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
 :root {
   color-scheme: light dark;
 
@@ -50,6 +57,8 @@
   /* Logo tiles on the Cinemas tab (D-56): each chain's logo reads best on white or on near-black. */
   --color-tile-light: #ffffff;
   --color-tile-dark: #111111;
+  /* A dark tile needs a hairline on a dark page, or it melts into it. */
+  --color-tile-edge: light-dark(transparent, #2c2c2c);
 
   /* Title posters, for films with no artwork. The same in both themes, like real posters. */
   --color-tp-teal: #0b6e69;

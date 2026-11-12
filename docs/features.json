@@ -349,6 +349,21 @@
       "evidence": "12 Nov 2026: `npx playwright test tests/e2e/cinemas-rows.spec.ts tests/e2e/cinemas.spec.ts tests/e2e/nav.spec.ts` 34 pass; `npx vitest run tests/unit/logos.test.ts tests/unit/registry.test.ts` pass. Screenshots at 390 and 360 px and 1440 px, light and dark, match mockup/cinemas.html (Option 1)."
     },
     {
+      "id": "D3-8",
+      "day": 3,
+      "priority": "must",
+      "title": "A light and dark switch in the header (D-58)",
+      "criteria": [
+        "the switch is on every page's header on a phone and on a computer",
+        "with no choice made the page follows the phone",
+        "a tap switches the theme and the browser bar colour",
+        "the choice holds on the next page from its first paint"
+      ],
+      "verify": "npm run test:e2e -- theme",
+      "passes": true,
+      "evidence": "12 Nov 2026: `npx playwright test tests/e2e/theme.spec.ts` 9 pass (3 new: the switch on a phone and on a computer, and following the phone with no choice). Screenshots of the header at 390, 320 and 1440 px in light and dark."
+    },
+    {
       "id": "D3-3",
       "day": 3,
       "priority": "must",

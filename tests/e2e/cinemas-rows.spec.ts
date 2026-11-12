@@ -63,6 +63,9 @@ for (const width of [390, 360, 320]) {
       expect(b.height).toBeGreaterThanOrEqual(44);
     }
     await expect(page.getByTestId("area.chip.all")).toBeHidden(); // the desktop chips are not on a phone
+    // Each picker's words fit whole: no "All L…".
+    const cut = await page.locator(".picker span").evaluateAll((els) => els.filter((el) => el.scrollWidth > el.clientWidth).map((el) => el.textContent));
+    expect(cut).toEqual([]);
   });
 }
 

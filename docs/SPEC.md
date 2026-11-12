@@ -104,6 +104,7 @@ Tapping any time opens that showing in a panel (a sheet on a phone): the ticket,
 - [x] 13. A returning visitor with a saved area who opens the Cinemas tab lands on `/area/<slug>` (D-18, D-55). verify: `npm run test:e2e -- cinemas`
 - [x] 14. The site opens on Films; every page's tabs read Films, Cinemas, Starting soon, each on one line down to 320 px; on a phone the search button opens a search box on the page you are on, matches open their film, and no match says so; every area chip is whole on screen at 390, 360 and 320 px (D-55). verify: `npm run test:e2e -- nav`
 - [x] 15. The Cinemas tab shows each cinema as one row with its chain's logo centred on its tile, its name, "Next at HH:MM · N films" and tags, with no poster strips; where the times came from is said once, under the first heading; on a phone the filters are one row of three pickers (area, day, format), whole on screen at 390, 360 and 320 px, each opening a sheet; the footer says how a cinema can have its logo removed (D-56). verify: `npm run test:e2e -- cinemas-rows`
+- [x] 16. Every page's header has a light and dark switch on a phone and on a computer; with no choice it follows the phone; a tap switches the theme and the browser bar colour, and the choice holds on the next page from its first paint (D-58). verify: `npm run test:e2e -- theme`
 
 ## 9. Risks and assumptions
 

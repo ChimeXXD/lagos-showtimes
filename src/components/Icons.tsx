@@ -13,6 +13,8 @@ const PATHS = {
   caret: <path d="M7 10l5 5 5-5" />,
   map: <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14" />,
   globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3.500 3 14.500 0 18M12 3c-3 3.500-3 14.500 0 18" /></>,
+  sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400" /></>,
+  moon: <path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z" />,
 } as const;
 
 export function Icon({ name }: { name: keyof typeof PATHS }) {

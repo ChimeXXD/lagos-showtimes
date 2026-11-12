@@ -2,7 +2,9 @@ import Link from "next/link";
 import { LogoMark } from "@/components/Logo";
 import { Search } from "@/components/Search";
 import { Tabs, type TabId } from "@/components/Tabs";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { areas, loadAll } from "@/lib/data/load";
+import { pageColours } from "@/lib/theme/pageColours";
 
 // Every page builds the same film list for search: read and sort it once per build, not once per page.
 let searchFilms: { id: string; title: string }[] | undefined;
@@ -20,6 +22,7 @@ export function Shell({ tab, children }: { tab: TabId; children: React.ReactNode
         </Link>
         <Tabs tab={tab} areas={areas.map((area) => area.slug)} />
         <Search films={filmsForSearch()} />
+        <ThemeToggle bg={pageColours()} />
       </header>
       <main className="wrap">{children}</main>
       <footer className="foot">
