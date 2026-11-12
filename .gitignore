@@ -55,3 +55,4 @@ mockup/fonts/
 # Cinema logos for the Cinemas page mockup: the chains own them, kept local until Chime decides (D-55)
 mockup/logos/
 mockup/shots/
+mockup/theme-motion/*.png

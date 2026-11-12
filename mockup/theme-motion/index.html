@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-NG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme switch motion</title>
+<style>
+  :root { --bg: #eef6f4; --surface: #d9ebe7; --text: #0c3b47; --muted: #42606a; --line: #b9d5d0; --teal: #0b6e69; --teal-text: #eef6f4; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0a0a0a; --surface: #1a1a1a; --text: #d9ebe7; --muted: #ababab; --line: #2c2c2c; --teal: #5fd4c8; --teal-text: #062028; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 -apple-system, system-ui, sans-serif; }
+  main { max-width: 1320px; margin: 0 auto; padding: 36px 16px 80px; }
+  h1 { margin: 0 0 6px; font-size: 32px; letter-spacing: -0.02em; }
+  .lede { margin: 0 0 20px; max-width: 760px; color: var(--muted); }
+  .bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 24px; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .pill { min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; }
+  .pill[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: var(--teal-text); }
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .card h2 { margin: 12px 0 2px; font-size: 19px; }
+  .card p { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+  /* A phone frame holding two screenshots of the real Cinemas tab: the page now, and the next theme over it. */
+  .stage { position: relative; aspect-ratio: 390 / 844; overflow: hidden; border-radius: 28px; box-shadow: 0 0 0 1px var(--line); background: #000; }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage .over { visibility: hidden; }
+  /* The switch itself, drawn over the screenshot's own switch (390-wide page: 44 px button at x 330, y 12, measured). */
+  .switch { position: absolute; left: calc(330 / 390 * 100%); top: calc(12 / 844 * 100%); width: calc(44 / 390 * 100%); aspect-ratio: 1; border-radius: 999px; overflow: hidden; display: grid; place-items: center; }
+  .switch svg { position: absolute; width: 41%; height: 41%; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .card .row { display: flex; gap: 8px; margin-top: 10px; }
+  .answer { margin-top: 40px; padding: 18px; border-radius: 18px; background: var(--surface); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .answer p { margin: 0; flex: 1 1 300px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Theme switch: four ways to move</h1>
+  <p class="lede">The circle was your portfolio's, so here are four that belong to a cinema. Each plays on the real Cinemas tab, light to dark and back, on a loop. The switch's icon changes too: the sun sets as the moon rises, so it no longer turns. Press Quarter speed to see each step. With "reduce motion" on, every option becomes a plain cross-fade.</p>
+  <div class="bar">
+    <button class="pill" type="button" id="slow" aria-pressed="false">Quarter speed</button>
+    <button class="pill" type="button" id="pause" aria-pressed="false">Pause loops</button>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="answer">
+    <p id="said">Pick one, then press Copy and paste the line to Claude, with anything you'd change.</p>
+    <span id="picks"></span>
+    <button class="pill" type="button" id="copy">Copy my pick</button>
+  </div>
+</main>
+<script>
+// Each option animates the next theme's screenshot over the current one, the way the real switch would
+// animate the browser's view transition snapshots. Values are the ones the build would use.
+const ON_SCREEN = "cubic-bezier(0.77, 0, 0.175, 1)"; // strong ease-in-out: movement across the screen
+const OUT = "cubic-bezier(0.23, 1, 0.32, 1)";        // strong ease-out
+const OPTIONS = [
+  { id: "A", name: "Curtain", say: "Stage curtains part: the new theme opens from the centre line out to both sides. 450 ms.",
+    run: (over, under, t) => [over.animate({ clipPath: ["inset(0 50% 0 50%)", "inset(0 0% 0 0%)"] }, { duration: 450 * t, easing: ON_SCREEN })] },
+  { id: "B", name: "Widescreen", say: "A film frame opening up: the new theme grows from a thin band across the middle to fill the screen. 450 ms.",
+    run: (over, under, t) => [over.animate({ clipPath: ["inset(50% 0 50% 0)", "inset(0% 0 0% 0)"] }, { duration: 450 * t, easing: ON_SCREEN })] },
+  { id: "C", name: "House lights", say: "The lights going down before a film: the page dims, then the new theme fades up. Nothing moves. 400 ms.",
+    run: (over, under, t) => [
+      under.animate({ filter: ["brightness(1)", "brightness(0.35)"] }, { duration: 200 * t, easing: "ease-in-out", fill: "forwards" }),
+      over.animate({ opacity: [0, 1] }, { duration: 260 * t, delay: 140 * t, easing: OUT, fill: "backwards" }),
+    ] },
+  { id: "D", name: "Next frame", say: "Film moving through a projector: the new theme rises from the bottom while the old one moves up a little. 420 ms.",
+    run: (over, under, t) => [
+      over.animate({ clipPath: ["inset(100% 0 0 0)", "inset(0% 0 0 0)"] }, { duration: 420 * t, easing: OUT }),
+      under.animate({ transform: ["translateY(0)", "translateY(-3%)"] }, { duration: 420 * t, easing: OUT }),
+    ] },
+];
+const SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>';
+const MOON = '<path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/>';
+const SKIN = { light: { bg: "#d9ebe7", line: "#b9d5d0", ink: "#0c3b47" }, dark: { bg: "#1a1a1a", line: "#2c2c2c", ink: "#d9ebe7" } };
+let speed = 1, paused = false, pick = null;
+
+document.getElementById("grid").innerHTML = OPTIONS.map((o) => `<article class="card" data-option="${o.id}">
+  <div class="stage"><img class="under" src="light.png" alt="The Cinemas tab, light"><img class="over" alt="">
+    <span class="switch"><svg class="sun" viewBox="0 0 24 24">${SUN}</svg><svg class="moon" viewBox="0 0 24 24">${MOON}</svg></span></div>
+  <h2>${o.id} · ${o.name}</h2><p>${o.say}</p>
+  <div class="row"><button class="pill" type="button" data-play>Play once</button><button class="pill" type="button" data-pick="${o.id}" aria-pressed="false">Pick ${o.id}</button></div>
+</article>`).join("");
+
+// The switch's icon: the sun sets (slides down and fades) as the moon rises from below, and back. 250 ms.
+function setIcon(sw, theme, animate) {
+  const skin = SKIN[theme];
+  Object.assign(sw.style, { background: skin.bg, boxShadow: `0 0 0 1px ${skin.line}` });
+  const show = sw.querySelector(theme === "dark" ? ".sun" : ".moon"), hide = sw.querySelector(theme === "dark" ? ".moon" : ".sun");
+  for (const svg of [show, hide]) svg.style.stroke = skin.ink;
+  if (!animate) { show.style.opacity = 1; show.style.transform = "translateY(0)"; hide.style.opacity = 0; return; }
+  hide.animate({ transform: ["translateY(0)", "translateY(70%)"], opacity: [1, 0] }, { duration: 250 * speed, easing: OUT, fill: "forwards" });
+  show.animate({ transform: ["translateY(70%)", "translateY(0)"], opacity: [0, 1] }, { duration: 250 * speed, easing: OUT, fill: "forwards" });
+}
+
+async function play(card) {
+  if (card.dataset.busy) return;
+  card.dataset.busy = "1";
+  const o = OPTIONS.find((x) => x.id === card.dataset.option);
+  const under = card.querySelector(".under"), over = card.querySelector(".over"), sw = card.querySelector(".switch");
+  const next = under.getAttribute("src") === "light.png" ? "dark" : "light";
+  over.src = `${next}.png`; await over.decode();
+  over.style.visibility = "visible";
+  setIcon(sw, next, true);
+  const runs = o.run(over, under, speed);
+  await Promise.all(runs.map((a) => a.finished));
+  under.src = over.src; await under.decode();
+  runs.forEach((a) => a.cancel());
+  over.style.visibility = "hidden";
+  delete card.dataset.busy;
+}
+
+document.querySelectorAll(".card").forEach((card) => setIcon(card.querySelector(".switch"), "light", false));
+document.addEventListener("click", (e) => {
+  const card = e.target.closest(".card");
+  if (e.target.closest("[data-play]")) play(card);
+  const p = e.target.closest("[data-pick]");
+  if (p) { pick = p.dataset.pick; document.querySelectorAll("[data-pick]").forEach((b) => b.setAttribute("aria-pressed", String(b === p))); }
+});
+document.getElementById("slow").addEventListener("click", (e) => { speed = speed === 1 ? 4 : 1; e.currentTarget.setAttribute("aria-pressed", String(speed === 4)); });
+document.getElementById("pause").addEventListener("click", (e) => { paused = !paused; e.currentTarget.setAttribute("aria-pressed", String(paused)); });
+// Loop: each phone switches every 1.6 s (longer at quarter speed), staggered so they don't all move at once.
+OPTIONS.forEach((o, i) => setTimeout(function tick() { if (!paused) play(document.querySelector(`[data-option="${o.id}"]`)); setTimeout(tick, 1600 * speed + 400); }, 600 + i * 200));
+document.getElementById("copy").addEventListener("click", async () => {
+  const name = OPTIONS.find((o) => o.id === pick)?.name;
+  const text = pick ? `Theme switch: option ${pick} (${name}). Changes I want: ` : "Theme switch: none of these yet. What I want instead: ";
+  try { await navigator.clipboard.writeText(text); document.getElementById("said").textContent = `Copied: "${text}" Paste it to Claude.`; }
+  catch { document.getElementById("said").textContent = `Tell Claude: "${text}"`; }
+});
+</script>
+</body>
+</html>
