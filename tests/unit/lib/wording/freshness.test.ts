@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { freshness } from "@/lib/wording/freshness";
+import { freshness, rowWarning } from "@/lib/wording/freshness";
 
 const FILMHOUSE = { name: "Filmhouse's site", method: "public-page" } as const;
 const NOW = "2026-11-06T14:00:00Z"; // Fri 6 Nov, 15:00 in Lagos
@@ -112,5 +112,19 @@ describe("sample data (fixtures)", () => {
 
   it("names the day in Lagos", () => {
     expect(freshness(SAMPLE, "2026-11-06T23:30:00Z", NOW).text).toBe("Sample data saved from Filmhouse's site on 7 Nov");
+  });
+});
+
+// A cinema row on the Cinemas tab says when its times are not today's (D-56); the page says the
+// source once, so a row only needs the warning.
+describe("rowWarning", () => {
+  it("says nothing for times read today, or for sample data", () => {
+    for (const band of ["fresh", "today", "sample"] as const) expect(rowWarning(band)).toBeNull();
+  });
+  it("says a day-old read is from yesterday", () => {
+    expect(rowWarning("stale")).toBe("Times from yesterday");
+  });
+  it("says an older read may have changed", () => {
+    expect(rowWarning("old")).toBe("Times may have changed");
   });
 });

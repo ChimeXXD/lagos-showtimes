@@ -42,8 +42,11 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      # Sample data as of 08:00 in Lagos today, as in the local e2e build (playwright.config.ts): built at
+      # the real hour, a run after about 20:00 holds only the evening's last showings. Vercel's own build
+      # still runs `npm run build` at the real hour, which is right for the site people see.
       - name: Build (static export)
-        run: npm run build
+        run: node scripts/refresh.ts --fixtures --now "$(TZ=Africa/Lagos date +%F)T07:00:00Z" && npx --no-install next build
         env:
           TMDB_READ_TOKEN: ${{ secrets.TMDB_READ_TOKEN }}
 

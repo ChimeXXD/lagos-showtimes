@@ -1,0 +1,65 @@
+{
+  "about": "Each chain's own logo, only to name its cinemas on the Cinemas tab (D-56). Trimmed to the logo's own marks and resized; the files are in public/logos/. Magnificent's banner is cut in two and stacked to fit a tile. A chain that asks gets its logo removed the same day.",
+  "chains": {
+    "Filmhouse": {
+      "file": "filmhouse.png",
+      "tile": "dark",
+      "source": "https://filmhouseng.static.cinesync.io/images/theater/cinema/logo-desktop_1.png"
+    },
+    "Genesis": {
+      "file": "genesis.png",
+      "tile": "light",
+      "source": "https://genesiscinemas.com/wp-content/uploads/2026/03/genesis-logo-scaled.png"
+    },
+    "EbonyLife": {
+      "file": "ebonylife.png",
+      "tile": "dark",
+      "source": "https://ebonylifecinemas.com/images/logoBig.webp"
+    },
+    "Silverbird": {
+      "file": "silverbird.png",
+      "tile": "light",
+      "source": "https://silverbirdcinemas.com/wp-content/uploads/2018/04/cropped-stv-cinemas-favi-270x270.png"
+    },
+    "Blue Pictures": {
+      "file": "bluepictures.png",
+      "tile": "light",
+      "source": "https://bluepicturesng.com/wp-content/uploads/2023/02/bpe-logo.png"
+    },
+    "Filmworld": {
+      "file": "filmworld.png",
+      "tile": "light",
+      "source": "https://filmworldcinemas.com/wp-content/uploads/2021/04/Film-World.png"
+    },
+    "Grand": {
+      "file": "grand.png",
+      "tile": "dark",
+      "source": "https://grandcinemas.com.ng/wp-content/uploads/2018/06/GrandCinemas_Logo.png"
+    },
+    "Ozone": {
+      "file": "ozone.png",
+      "tile": "fill",
+      "source": "https://reach-cinema-storage.nyc3.digitaloceanspaces.com/ozone.jpeg01a71852-cb7e-4f3d-9e04-9f4d683d8458"
+    },
+    "Sky": {
+      "file": "sky.png",
+      "tile": "dark",
+      "source": "https://skycinemas.reachcinema.io/logo.svg"
+    },
+    "THC": {
+      "file": "thc.png",
+      "tile": "dark",
+      "source": "https://cinemaxthc.ng/img/logo.png"
+    },
+    "Viva": {
+      "file": "viva.png",
+      "tile": "dark",
+      "source": "https://reach-cinema-storage.nyc3.digitaloceanspaces.com/viva-logo.webp25f1972b-2431-429b-b88f-239994d67e10"
+    },
+    "Magnificent": {
+      "file": "magnificent.png",
+      "tile": "light",
+      "source": "https://www.magnificentcinemas.com/images/mag_logo.jpg"
+    }
+  }
+}

@@ -333,6 +333,22 @@
       "evidence": "12 Nov 2026: `npx playwright test tests/e2e/nav.spec.ts` 9 pass. Red first on the old code: the tab and search tests failed (no Films home, no search.open), the chip test listed area.chip.ikeja and area.chip.all cut off at 390 px, and the one-line test listed 'Starting soon' at 360 and 320 px."
     },
     {
+      "id": "D3-7",
+      "day": 3,
+      "priority": "must",
+      "title": "The Cinemas tab as logo rows, with phone pickers (D-56)",
+      "criteria": [
+        "each cinema is one row: chain logo centred on its tile, name, next time and film count, tags; no poster strips",
+        "where the times came from is said once, under the first list heading",
+        "on a phone the filters are one row of three pickers, whole at 390/360/320 px; each opens a sheet",
+        "the footer says the logos belong to their owners and how to have one removed",
+        "Leisure Mall's cinema is listed once, as Filmhouse Surulere"
+      ],
+      "verify": "npm run test:e2e -- cinemas-rows",
+      "passes": true,
+      "evidence": "12 Nov 2026: `npx playwright test tests/e2e/cinemas-rows.spec.ts tests/e2e/cinemas.spec.ts tests/e2e/nav.spec.ts` 34 pass; `npx vitest run tests/unit/logos.test.ts tests/unit/registry.test.ts` pass. Screenshots at 390 and 360 px and 1440 px, light and dark, match mockup/cinemas.html (Option 1)."
+    },
+    {
       "id": "D3-3",
       "day": 3,
       "priority": "must",

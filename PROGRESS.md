@@ -2,6 +2,37 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## The Cinemas tab as logo rows (Thu 12 Nov 2026, night)
+
+**Changed** (D-56)
+- Two mockup rounds (`mockup/cinemas.html`) after Chime's round 3 Instacart picks:
+  - Round 1: logo rows.
+  - Round 2: three phone filter options. Logos trimmed so they centre, Magnificent's real logo, the freshness line moved away from the filters.
+  - Chime picked Option 1 and said: build it, show the real logos with a way to have one removed, Cinemas page only, merge Leisure Mall.
+- Built:
+  - `CinemaRow.tsx`: logo tile, name, "Next at 14:00 · 4 films · Lekki", tags, a stretched link and a heart.
+  - `Pickers.tsx`: on a phone, three pickers in one row, each opening a sheet.
+  - `CinemasBoard.tsx`: groups (Your cinemas, the area, next door, then six from the rest of Lagos with "Show all"). The freshness line sits once, under the first heading.
+  - `src/styles/cinemas.css`, and the tile colour tokens.
+  - `CinemaCard` is gone; the times now live on each cinema's page.
+- Logos: 12 chains in `public/logos/` (41 KB together), each trimmed, resized and cut to 256 colours. `data/logos.json` names the source of each. The footer says the logos belong to their owners and links to GitHub issues for removal.
+- `rowWarning()` in `freshness.ts` puts "Times from yesterday" or "Times may have changed" on a row with old times.
+- `data/cinemas.json`: Leisure Mall merged into Filmhouse Surulere (21 cinemas).
+- Tests changed for the new requirement:
+  - `cinemas.spec`: the row states its next time in words; a time is tapped on the cinema's page; areas and formats are picked through the sheets.
+  - `nav.spec`: the chip test moved to a film's page, which still has chips.
+  - `playwright.config.ts` and CI (`.github/workflows/ci.yml`): the test build makes its sample data as of 08:00 Lagos. Without that, a build after about 20:00 holds only the evening's last showings and two HTML tests fail. Those tests were not changed.
+
+**Checked**
+- `cinemas-rows.spec` (8 tests), plus `cinemas.spec` and `nav.spec`: 34 pass.
+- Unit tests: `logos.test.ts` 14 tests, the registry merge test, `rowWarning` 3 tests.
+- Not run red first: the browser tests in `cinemas-rows.spec` were written before the components but not run before them. The unit tests were run red first.
+- Screenshots of `/cinemas` and `/area/lekki` at 390 and 360 px and 1440 px, light and dark, with the area and format sheets open, compared with the mockup.
+
+**Not verified**
+- On a real phone: the sheets, and the keyboard rising for search.
+- The Films page and film pages keep their chips (Chime: Cinemas page only for now).
+
 ## Chime's review, first fixes: Films first, search, phone chips (Thu 12 Nov 2026, evening)
 
 **Changed** (D-55)

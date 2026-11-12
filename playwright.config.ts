@@ -26,7 +26,9 @@ export default defineConfig({
     // CI has already built out/ (with its secrets) and checked its budget: serve that same build.
     command: process.env.CI
       ? `node scripts/serve-out.mjs ${PORT}`
-      : `npm run build && node scripts/serve-out.mjs ${PORT}`,
+      : // Sample data as of 08:00 in Lagos today, so a build late in the evening still holds a full day
+        // (`npm run build` would make it at the real hour, and the day's ended showings drop out).
+        `node scripts/refresh.ts --fixtures --now ${new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Lagos" }).format(new Date())}T07:00:00Z && npx --no-install next build && node scripts/serve-out.mjs ${PORT}`,
     url: `http://127.0.0.1:${PORT}`,
     reuseExistingServer: false,
     timeout: 180_000,

@@ -18,8 +18,8 @@ test("the site opens on Films, and the tabs read Films, Cinemas, Starting soon o
 
 test("a saved area takes the Cinemas tab to that area, not the Films home", async ({ page }) => {
   await page.goto("/cinemas");
-  await page.getByTestId("area.more").click();
-  await page.getByTestId("area.option.ikeja").click();
+  await page.getByTestId("pick.area").click();
+  await page.getByTestId("sheet.area.ikeja").click();
   await expect(page).toHaveURL(/\/area\/ikeja$/);
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Films in Lagos");
@@ -61,7 +61,7 @@ test("search says so when no film matches, and Escape closes it", async ({ page 
 for (const width of [390, 360, 320]) {
   test(`at ${width} px every area chip is whole on screen, none cut off or covered`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 });
-    await page.goto("/cinemas");
+    await page.goto("/film/ramayana"); // the Cinemas tab uses pickers on a phone since D-56; a film's page still has chips
     const chips = page.locator('[data-testid^="area.chip."], [data-testid="area.more"]');
     await expect(chips).toHaveCount(5); // three areas, All Lagos, More areas
     const cut = await chips.evaluateAll((els) =>

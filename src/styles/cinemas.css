@@ -1,0 +1,65 @@
+/* The Cinemas tab (D-56), from mockup/cinemas.css: one row per cinema with its chain's logo, after
+   Chime's Instacart picks. Phone: rows on the page and one row of pickers for the filters.
+   Desktop: the rows as cards three across, and the approved filter chips. */
+
+/* A group: heading, a quiet note, and "Show all" on the same line so it belongs to the group */
+.vgroup { margin-top: var(--s8); }
+.vhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s2); margin-bottom: var(--s3); }
+.vhead h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.vhead span { color: var(--color-text-muted); font-size: 14px; }
+.vhead .all { margin-left: auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 14px; cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.vfresh { margin: 0 0 var(--s3); color: var(--color-text-muted); font-size: 13.5px; }
+
+/* One cinema: logo tile, name, one Teal line with the next time, small tags; the whole row opens it */
+.vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.vrow { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--s4); padding: var(--s4) var(--s4) var(--s4) var(--s5); border: 1px solid var(--color-line); border-radius: 18px; transition: border-color 150ms ease, background-color 150ms ease; }
+.vrow:hover { border-color: var(--color-text); }
+.vrow:active { background: var(--color-soft); }
+.vopen { position: absolute; inset: 0; border-radius: inherit; }
+.vrow .fav { position: relative; z-index: 1; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: none; box-shadow: none; inset: auto; }
+.vrow .fav:active .heart { transform: scale(0.85); }
+
+/* Logos are trimmed to their own marks (data/logos.json), so the tile's centre is the logo's centre. */
+.vlogo { display: grid; place-items: center; flex-shrink: 0; width: 88px; height: 66px; border-radius: 14px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--color-line); }
+.vlogo img { display: block; max-width: 82%; max-height: 58%; width: auto; height: auto; }
+.vlogo.light { background: var(--color-tile-light); }
+.vlogo.dark { background: var(--color-tile-dark); box-shadow: none; }
+.vlogo.fill { box-shadow: none; }
+.vlogo.fill img { max-width: none; max-height: none; width: 100%; height: 100%; }
+@media (prefers-color-scheme: dark) { .vlogo.dark { box-shadow: inset 0 0 0 1px var(--color-line); } }
+
+.vname { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
+.vnext { margin-top: 3px; color: var(--color-accent); font-size: 14.5px; font-weight: 600; }
+.vnext svg { display: inline-block; width: 12px; height: 12px; margin-right: 5px; vertical-align: -1px; fill: currentColor; }
+.vnext span { color: var(--color-text); font-weight: 500; }
+.vtags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+.vtag { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 6px; background: var(--color-soft); color: var(--color-text); font-size: 13px; font-weight: 500; }
+.vtag.fmt { background: var(--color-accent); color: var(--color-accent-text); font-weight: 700; }
+.vtag.old { background: none; box-shadow: inset 0 0 0 1px var(--color-line); color: var(--color-stale); }
+
+/* Phone filters (D-56, option 1): one row of three pickers, each opens a sheet from the bottom */
+.pickers { display: none; grid-template-columns: 1.35fr 1fr 1fr; gap: var(--s2); margin-top: var(--s4); }
+.picker { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; min-height: 44px; padding: 0 12px; border: 1px solid var(--color-line); border-radius: var(--r-chip); background: var(--color-surface); color: inherit; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.picker span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.picker .ico { width: 16px; height: 16px; flex: 0 0 16px; }
+.picker.on { border-color: var(--color-book); background: var(--color-book); color: var(--color-book-text); }
+dialog.pick { gap: var(--s3); }
+dialog.pick h2 { font-size: 19px; font-weight: 700; }
+.pick-list { display: grid; }
+.pick-list a, .pick-list button { display: flex; align-items: center; gap: var(--s3); min-height: 44px; padding: 0 var(--s3); border: 0; border-radius: 10px; background: none; color: inherit; font: inherit; font-weight: 500; text-align: left; cursor: pointer; }
+.pick-list .on { background: var(--color-soft); font-weight: 700; }
+.pick-list span { margin-left: auto; color: var(--color-text-muted); font-size: 13px; font-weight: 400; }
+
+@media (max-width: 760px) {
+  .vgroup { margin-top: var(--s6); }
+  .vhead { margin-bottom: var(--s1); }
+  .vhead h2 { font-size: 19px; }
+  .vgrid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .vrow { padding: var(--s3) 0; border: 0; border-radius: 0; gap: var(--s3); }
+  .vrow:active { background: none; opacity: 0.7; }
+  .vlogo { width: 72px; height: 54px; border-radius: 12px; }
+  .vname { font-size: 16px; }
+  .pickers { display: grid; }
+  .wide-only { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) { .vrow, .heart { transition: none; } }

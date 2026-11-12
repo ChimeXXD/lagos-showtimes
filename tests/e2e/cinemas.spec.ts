@@ -20,8 +20,8 @@ test("an area's home lists its cinemas soonest first, each with its next times",
   const firstRow = rows.find((s) => s.cinemaId === first)!;
   const card = page.getByTestId(`cinema.card.${first}`);
   await expect(card.getByTestId("cinema.name")).toHaveText(all.cinemas.find((c) => c.id === first)!.name);
-  await expect(card.locator("[data-testid^='time.']").first()).toContainText(lagosClock(firstRow.startsAt));
-  await expect(card.getByTestId("film.next").first()).toHaveText(/^in (\d+ h( \d+ min)?|\d+ min)$/);
+  // Since D-56 a row gives the next time in words; the times themselves are on the cinema's page.
+  await expect(card.getByTestId("cinema.next")).toHaveText(new RegExp(`^Next at ${lagosClock(firstRow.startsAt)} · `));
   // Next door comes after, and is named.
   await expect(page.getByTestId("group.next").getByRole("heading", { level: 2 })).toHaveText("Next to Lekki");
   expect(await page.getByTestId("group.next").locator('[data-testid^="cinema.card."]').count()).toBeGreaterThan(0);
@@ -32,8 +32,8 @@ test("tapping a time opens that showing; sample data cannot be booked", async ({
   const now = await sampleTime(request, "18:00");
   const row = today(all, now).find((s) => all.cinemas.find((c) => c.id === s.cinemaId)!.area === "lekki")!;
   await freeze(page, now);
-  await page.goto("/area/lekki");
-  await page.getByTestId(`cinema.card.${row.cinemaId}`).getByTestId(`time.${row.filmId}.${row.startsAt}`).click();
+  await page.goto(`/cinema/${row.cinemaId}`); // the times moved here from the Cinemas tab (D-56)
+  await page.getByTestId(`time.${row.filmId}.${row.startsAt}`).click();
 
   const panel = page.getByTestId("showing.panel");
   await expect(panel).toBeVisible();
@@ -78,11 +78,11 @@ test("Tomorrow shows the whole of the next day", async ({ page, request }) => {
 test("picking an area opens its page and is remembered; All Lagos forgets it", async ({ page }) => {
   await page.goto("/cinemas");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cinemas in Lagos");
-  await page.getByTestId("area.more").click();
-  // The menu opens over the page: not cut off by the sideways-scrolling row of chips, and not under
-  // the cards below it. A click alone would not show this, because the test scrolls to what it clicks.
+  await page.getByTestId("pick.area").click();
+  // The sheet opens over the page with every area on screen and not covered. A click alone would not
+  // show this, because the test scrolls to what it clicks.
   await page.evaluate(() => Promise.all(document.getAnimations().filter((a) => a.effect?.getComputedTiming().iterations !== Infinity).map((a) => a.finished.catch(() => undefined))));
-  const hidden = await page.locator('[data-testid^="area.option."]').evaluateAll((els) =>
+  const hidden = await page.locator('[data-testid^="sheet.area."]').evaluateAll((els) =>
     els.filter((el) => {
       const box = el.getBoundingClientRect();
       const y = box.top + box.height / 2;
@@ -91,7 +91,7 @@ test("picking an area opens its page and is remembered; All Lagos forgets it", a
     }).map((el) => el.getAttribute("data-testid")),
   );
   expect(hidden).toEqual([]);
-  await page.getByTestId("area.option.ikeja").click();
+  await page.getByTestId("sheet.area.ikeja").click();
   await expect(page).toHaveURL(/\/area\/ikeja$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cinemas near Ikeja");
   expect(await page.evaluate(() => localStorage.getItem("ls.area"))).toBe("ikeja");
@@ -99,7 +99,8 @@ test("picking an area opens its page and is remembered; All Lagos forgets it", a
   await page.goto("/cinemas");
   await expect(page).toHaveURL(/\/area\/ikeja$/);
 
-  await page.getByTestId("area.chip.all").click();
+  await page.getByTestId("pick.area").click();
+  await page.getByTestId("sheet.area.all").click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cinemas in Lagos");
   expect(await page.evaluate(() => localStorage.getItem("ls.area"))).toBeNull();
 });
@@ -125,7 +126,8 @@ test("choosing IMAX leaves only cinemas showing in IMAX, and says what was left 
   expect(imax.length).toBeGreaterThan(0);
   await freeze(page, now);
   await page.goto("/cinemas");
-  await page.getByTestId("format.chip.IMAX").click();
+  await page.getByTestId("pick.format").click();
+  await page.getByTestId("format.option.IMAX").click();
   const shown = await page.locator('[data-testid^="cinema.card."]').evaluateAll((els) => els.map((el) => el.getAttribute("data-testid")!.replace("cinema.card.", "")));
   expect(shown.sort()).toEqual(imax.sort());
   await expect(page.getByTestId("format.left-out")).toHaveText(`${silent.size} cinemas don't say the format of their showings, so they are not listed here.`);

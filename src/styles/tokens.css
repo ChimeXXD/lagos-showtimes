@@ -47,6 +47,10 @@
   /* The three dots in the logo. */
   --color-logo-dot: light-dark(#5fd4c8, #0a0a0a);
 
+  /* Logo tiles on the Cinemas tab (D-56): each chain's logo reads best on white or on near-black. */
+  --color-tile-light: #ffffff;
+  --color-tile-dark: #111111;
+
   /* Title posters, for films with no artwork. The same in both themes, like real posters. */
   --color-tp-teal: #0b6e69;
   --color-tp-foam: #eef6f4;

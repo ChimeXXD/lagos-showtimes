@@ -38,3 +38,8 @@ export function freshness(source: { name: string; method: SourceMethod }, fetche
   if (daysAgo === 1) return { band: "stale", text: `${read} yesterday at ${formatTime(readAt)} · check with the cinema`, bookable: true };
   return { band: "old", text: `${lastRead} ${formatDate(readAt)} · may have changed`, bookable: false };
 }
+
+/** The warning on a cinema's row when its times are not today's (D-56). The page names the source once. */
+export function rowWarning(band: FreshnessBand): string | null {
+  return band === "stale" ? "Times from yesterday" : band === "old" ? "Times may have changed" : null;
+}

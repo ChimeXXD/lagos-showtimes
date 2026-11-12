@@ -1,7 +1,7 @@
 // The Cinemas tab, redesign 1 (D-55), after Chime's picks: Instacart's store list (phone) and its
 // grouped store cards (web). Real cinemas and times from data.js, clock at 13:45 on Wed 11 Nov 2026.
 // Logos are the chains' own, kept local in mockup/logos/ (git-ignored) until Chime decides.
-const { areas, cinemas, films } = window.SINIMA;
+const { areas, cinemas } = window.SINIMA;
 const NOW = 13 * 60 + 45;
 const ONLY = window.ONLY || null; // "desk" or "phone": one kind of frame, for the design check
 

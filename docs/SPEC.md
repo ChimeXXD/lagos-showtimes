@@ -63,8 +63,8 @@ Details, copy and test IDs are in `design/UI-BRIEF.md`.
 | Route | Purpose |
 | --- | --- |
 | `/` | Home, the Films tab: every film showing in Lagos as posters, with a search box and the format chips (D-50, D-55) |
-| `/cinemas` | The Cinemas tab: every cinema in Lagos, soonest first, with the area chips, format chips and Today or Tomorrow. Sends a returning visitor to their saved area (D-18, D-49, D-55) |
-| `/area/[slug]` | The Cinemas tab for one area: its cinemas first, then the areas next to it, then the rest of Lagos |
+| `/cinemas` | The Cinemas tab: one row per cinema with its chain's logo, name, next time and tags, soonest first (D-56). Filters: area, format and day chips on a computer; one row of three pickers that open sheets on a phone. Sends a returning visitor to their saved area (D-18, D-49, D-55) |
+| `/area/[slug]` | The Cinemas tab for one area: your cinemas, its cinemas, the areas next to it, then six from the rest of Lagos with "Show all" (D-56) |
 | `/cinema/[id]` | One cinema: address, source line, day tiles, and its films as poster cards with their times |
 | `/film/[slug]` | One film: poster, Stay or Go, then the cinemas showing it, filtered by format, area and day |
 | `/soon` | Starting soon: showings in the next 2 hours, then later tonight, for all of Lagos or one area |
@@ -89,7 +89,7 @@ Tapping any time opens that showing in a panel (a sheet on a phone): the ticket,
 
 ## 8. Acceptance checks
 
-- [x] 1. With the clock at 18:00 Lagos on the sample data's second day, `/area/lekki` lists Lekki's cinemas in the order of their next showing, each with its next times, followed by the areas next to Lekki (D-49). verify: `npm run test:e2e -- cinemas`
+- [x] 1. With the clock at 18:00 Lagos on the sample data's second day, `/area/lekki` lists Lekki's cinemas in the order of their next showing, each saying its next time, followed by the areas next to Lekki (D-49, D-56). verify: `npm run test:e2e -- cinemas`
 - [x] 2. A showing leaves every list the second it starts; an open showing that has started says "Started …" and has no Book link. verify: `npm run test:e2e -- showing` and `npm test -- lib/time/showingState`
 - [x] 3. Every showing says where its time came from; a source read 30 h ago shows the stale wording and the banner. verify: `npm run test:e2e -- showing`
 - [x] 4. The film page for a TMDB film tagged `aftercreditsstinger` shows "Stay: scene after the credits · TMDB"; an untagged film shows "Credits scene: not known yet"; "Go" shows only for a film with a manual entry that has a link (D-19). verify: `npm test -- lib/wording/credits` and `npm run test:e2e -- film`
@@ -103,6 +103,7 @@ Tapping any time opens that showing in a panel (a sheet on a phone): the ticket,
 - [x] 12. Choosing a format on the Cinemas tab or on a film's page leaves only the cinemas showing in that format and says how many were left out (D-50). verify: `npm run test:e2e -- films` and `npm run test:e2e -- cinemas`
 - [x] 13. A returning visitor with a saved area who opens the Cinemas tab lands on `/area/<slug>` (D-18, D-55). verify: `npm run test:e2e -- cinemas`
 - [x] 14. The site opens on Films; every page's tabs read Films, Cinemas, Starting soon, each on one line down to 320 px; on a phone the search button opens a search box on the page you are on, matches open their film, and no match says so; every area chip is whole on screen at 390, 360 and 320 px (D-55). verify: `npm run test:e2e -- nav`
+- [x] 15. The Cinemas tab shows each cinema as one row with its chain's logo centred on its tile, its name, "Next at HH:MM · N films" and tags, with no poster strips; where the times came from is said once, under the first heading; on a phone the filters are one row of three pickers (area, day, format), whole on screen at 390, 360 and 320 px, each opening a sheet; the footer says how a cinema can have its logo removed (D-56). verify: `npm run test:e2e -- cinemas-rows`
 
 ## 9. Risks and assumptions
 

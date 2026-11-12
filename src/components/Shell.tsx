@@ -24,6 +24,10 @@ export function Shell({ tab, children }: { tab: TabId; children: React.ReactNode
       <main className="wrap">{children}</main>
       <footer className="foot">
         <p data-testid="footer.note">Times come from each cinema&apos;s own pages. Always book on the cinema&apos;s site.</p>
+        <p data-testid="footer.logos">
+          Cinema logos belong to their owners and only name each cinema. A cinema that wants its logo removed can{" "}
+          <a href="https://github.com/ChimeXXD/sinima/issues">ask here</a>; it goes the same day.
+        </p>
       </footer>
     </>
   );
