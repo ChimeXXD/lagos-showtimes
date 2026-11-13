@@ -361,7 +361,7 @@
       ],
       "verify": "npm run test:e2e -- theme",
       "passes": true,
-      "evidence": "12 Nov 2026: `npx playwright test tests/e2e/theme.spec.ts` 9 pass (3 new: the switch on a phone and on a computer, and following the phone with no choice). Screenshots of the header at 390, 320 and 1440 px in light and dark."
+      "evidence": "13 Nov 2026 (D-60): `npx playwright test tests/e2e/theme.spec.ts` 11 pass; the motion test checks no view transition, no colour fading anywhere, and the icon's blur, scale and fade (opacity only with reduced motion). Icon frames at 60 fps compared with Rune Icons' recording; header screenshots at 390, 360 and 1440 px in light and dark."
     },
     {
       "id": "D3-3",

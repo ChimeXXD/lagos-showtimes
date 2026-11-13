@@ -69,26 +69,37 @@ test("with no choice made, the page follows the phone's setting", async ({ page 
   await expect(page.getByTestId("theme.toggle")).toHaveAccessibleName("Switch to light mode");
 });
 
-// D-58: switching is animated: the new theme opens out in a circle from the switch. With reduced
-// motion it is a plain cross-fade, with no circle.
+// D-60 (after Rune Icons): the page changes at once, with no view transition; only the icon moves.
+// It shows the theme on screen: a sun in light, a moon in dark. The new one grows in from small,
+// blurred and faded, as the old one goes the same way. With reduced motion the icons only fade.
 for (const reduced of [false, true]) {
-  test(`switching ${reduced ? "with reduced motion cross-fades" : "opens the new theme in a circle from the switch"}`, async ({ page }) => {
+  test(`switching changes the page at once and ${reduced ? "fades the icon (reduced motion)" : "blurs and grows the new icon in"}`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: "light", reducedMotion: reduced ? "reduce" : "no-preference" });
     await page.goto("/");
-    const seen = page.evaluate(() => new Promise<string[]>((resolve) => {
-      const start = document.startViewTransition.bind(document);
-      document.startViewTransition = (update) => {
-        const transition = start(update);
-        // One frame after "ready": the switch starts its circle in its own "ready" handler, after this one.
-        void transition.ready.then(() => requestAnimationFrame(() => resolve(document.getAnimations().map((a) => `${(a.effect as KeyframeEffect).pseudoElement ?? ""} ${JSON.stringify((a.effect as KeyframeEffect).getKeyframes().map((k) => k.clipPath ?? ""))}`))));
-        return transition;
+    const toggle = page.getByTestId("theme.toggle");
+    await expect(toggle.locator(".sun")).toHaveCSS("opacity", "1");
+    await expect(toggle.locator(".moon")).toHaveCSS("opacity", "0");
+    await page.evaluate(() => {
+      (window as unknown as { transitions: number }).transitions = 0;
+      if (document.startViewTransition) document.startViewTransition = () => { (window as unknown as { transitions: number }).transitions++; throw new Error("no view transition"); };
+    });
+    // Tap and read in the same task, so a slow runner cannot let the 200 ms icon transition finish first.
+    const after = await toggle.evaluate((el: HTMLElement) => {
+      el.click();
+      const transitions = (a: Animation) => (a as CSSTransition).transitionProperty ?? "";
+      return {
+        background: getComputedStyle(document.body).backgroundColor,
+        moving: el.querySelector(".moon")!.getAnimations().map(transitions).sort(),
+        // Nothing else fades its colours across, so the page is never half in one theme and half in the other.
+        colours: document.getAnimations().filter((a) => /color/.test(transitions(a))).length,
       };
-    }));
-    await page.getByTestId("theme.toggle").click();
-    const animations = await seen;
-    const circle = animations.some((a) => a.startsWith("::view-transition-new(root)") && a.includes("circle("));
-    expect(circle).toBe(!reduced);
-    await expect(page.locator("body")).toHaveCSS("background-color", rgb("#0a0a0a"));
-    await expect(page.locator("html")).not.toHaveClass(/theme-wipe/); // cleaned up, so later transitions fade as normal
+    });
+    // Right after the tap: the page is already dark, and the moon is part-way in.
+    expect(after.background).toBe(rgb("#0a0a0a"));
+    expect(await page.evaluate(() => (window as unknown as { transitions: number }).transitions)).toBe(0);
+    expect(after.moving).toEqual(reduced ? ["opacity"] : ["filter", "opacity", "transform"]);
+    expect(after.colours).toBe(0);
+    await expect(toggle.locator(".moon")).toHaveCSS("opacity", "1");
+    await expect(toggle.locator(".sun")).toHaveCSS("opacity", "0");
   });
 }

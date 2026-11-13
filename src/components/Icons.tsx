@@ -13,8 +13,10 @@ const PATHS = {
   caret: <path d="M7 10l5 5 5-5" />,
   map: <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14" />,
   globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3.500 3 14.500 0 18M12 3c-3 3.500-3 14.500 0 18" /></>,
-  sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400" /></>,
-  moon: <path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z" />,
+  // A ring with eight short rays set well out from it (after Rune Icons, D-60).
+  sun: <><circle cx="12" cy="12" r="3" /><path d="M12 3.500V5M12 19v1.500M3.500 12H5M19 12h1.500M5.990 5.990l1.060 1.060M16.950 16.950l1.060 1.060M5.990 18.010l1.060-1.060M16.950 7.050l1.060-1.060" /></>,
+  // A full crescent: a circle (r 8, centred on 12 12 like the sun) with a smaller bite taken from its upper right.
+  moon: <path d="M12.385 4.009A8 8 0 1 0 19.991 11.615A5.500 5.500 0 0 1 12.385 4.009z" />,
 } as const;
 
 export function Icon({ name }: { name: keyof typeof PATHS }) {

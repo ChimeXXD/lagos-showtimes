@@ -2,6 +2,7 @@
 @import "./tokens.css";
 @import "./sinima.css";
 @import "./cinemas.css";
+@import "./theme-switch.css";
 
 /* Geist and Anton (SIL Open Font License, public/fonts/OFL.txt), cut down to what the site uses:
    Geist to Latin text at weights 400 to 700 (17 KB), Anton to capitals, digits and punctuation

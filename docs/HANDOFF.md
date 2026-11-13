@@ -1,30 +1,38 @@
 # Handoff: read this first when you pick the project back up
 
-## Now: waiting for Chime to pick a theme-switch motion (Thu 12 to Fri 13 Nov 2026, past midnight)
+## Now: the theme switch follows Rune Icons (Fri 13 Nov 2026, afternoon)
 
 Read this section first. Everything below it is background; where they disagree, this is right.
 
 ### Start here next time
-1. **Get Chime's pick for the theme-switch motion.** The page is `mockup/theme-motion/index.html`, open in Dia. It shows four options playing on real screenshots: A Curtain, B Widescreen, C House lights, D Next frame. Chime answers with "Copy my pick". The live site still uses a circle that opens out from the switch (D-59). Chime rejected the circle ("the exact animation style I use for my portfolio website") and wants a different one. If none fits, Chime offered to search for references; do that next.
-2. **Then build the pick:** swap the `clip-path` circle in `src/components/ThemeToggle.tsx` for the chosen motion, using the values on the pick page. Swap the icon's quarter turn for the "sun sets, moon rises" slide; its CSS is in `src/styles/sinima.css`, at the theme switch block. Keep reduced motion as a cross-fade. Update the circle test in `tests/e2e/theme.spec.ts` to check the new motion. Record a new D-entry superseding D-59.
-3. **Ask Chime what is next on the review.** Done so far:
-   - the tab order (D-55)
-   - phone search
-   - the phone chips
-   - the Cinemas tab (D-56, D-57)
-   - the light/dark switch (D-58)
-   - its motion (in progress)
-
-   Chime is happy with the Films, film and Starting soon pages for now.
-4. **Open questions with Chime:**
+1. **Ask Chime how the new switch feels on the phone** (D-60). The comparison page (Rune's frames above ours, a tappable copy at full and quarter speed) was in the session scratchpad, not the repo.
+2. **Ask Chime what is next on the review.** Done so far: the tab order (D-55), phone search, the phone chips, the Cinemas tab (D-56, D-57), the light/dark switch (D-58) and its motion (D-60). Chime is happy with the Films, film and Starting soon pages for now.
+3. **Open questions with Chime:**
    - Should the switch get a third state, "follow my phone"? Once tapped, there is no way back to the phone's setting.
    - Should the phone pickers go on the Films page and film pages? Chime said Cinemas only for now.
    - Should a saved cinema with nothing more today stay under "Your cinemas"?
-5. **How to work with Chime here:**
+4. **How to work with Chime here:**
    - Show results visually, before and after, opened in Dia.
-   - Vet every mockup before showing it: measure centring and overflow at 390, 360 and 320 px, light and dark, and look at every frame.
-   - Mockups are not builds: nothing goes into the app until Chime says build.
+   - Mockups are not builds: nothing goes into the app until Chime says build. ("Let's just use it" with a reference counts as build.)
    - For motion, show the options side by side and playing, with a quarter-speed control.
+
+### What happened this session
+- Chime's recording of runeicons: the page cuts in one frame; only the icon moves (shrink, blur and fade out; grow, sharpen and fade in), about 8 frames. The four motion options (`mockup/theme-motion/`) are dropped.
+- Built (D-60): no view transition; other transitions off for the switch (`theme-cut`); the icon shows the theme on screen; new sun and moon glyphs; the switch styles moved to `src/styles/theme-switch.css`.
+- Checks: theme.spec 11 pass, 384 unit tests, lint and types clean; frames compared with Rune's at 60 fps; code review fixed a test race and an off-centre moon.
+
+### Known faults and things not verified
+- Nothing checked on a real phone: the sheets, the search keyboard, the switch.
+- When the phone's own setting flips with no choice kept, colours fade across over 150 ms (unchanged from before).
+- "Your cinemas" lists only saved cinemas with showings left.
+- The freshness line joins one line per source, so it could get long with live data.
+- Search lists films with no showings left today.
+- Old `/films` links give a "page not found".
+- Still open from before: the About page with the TMDB notice, a daily rebuild, live data, "Remind me" after a showing starts, the Kids and Nollywood filters, the font pick.
+
+## Earlier: the circle reveal and four motion options (Thu 12 to Fri 13 Nov 2026, past midnight)
+
+The motion parts are superseded by D-60 above: Chime rejected the circle (D-59) as their portfolio's style, four options were made in `mockup/theme-motion/index.html`, then Chime sent the Rune Icons reference instead.
 
 ### What happened this session, in order
 1. **Fixes from the first recording (D-55):**

@@ -2,6 +2,27 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## The theme switch follows Rune Icons (Fri 13 Nov 2026, afternoon)
+
+**Changed** (D-60, supersedes D-59's circle)
+- Chime sent a screen recording of Rune Icons' switch and asked for its motion and icon. Frame by frame at 60 fps, the page cuts in one frame both ways and only the icon moves, in about 8 frames.
+- `ThemeToggle.tsx`: no view transition and no circle. A `theme-cut` class turns other transitions off until the new theme has been drawn (two frames), so tabs, chips and rows no longer fade their colours across.
+- `src/styles/theme-switch.css` (new; the switch rules moved out of `sinima.css`, now 289 lines): the icon shows the theme on screen (it used to show the other one). The new icon grows in from 60% size, 3 px blur and transparent over 200 ms; the old one goes the same way; reduced motion only fades.
+- `Icons.tsx`: a new sun (a ring with eight short rays) and a fuller crescent moon.
+
+**Checked**
+- Red first: the new motion test failed on the old code at `toHaveCSS("opacity", "1")` for the sun (received "0"); the colour check then failed with 34 running colour transitions, before the `theme-cut` fix.
+- `theme.spec`: 11 pass. Lint, typecheck and 384 unit tests pass.
+- The icon captured at 60 fps steps (animations paused and stepped) next to Rune's frames from the recording, both ways: both read as the new icon by the fourth frame. Headers at 390, 360 and 1440 px, light and dark.
+- `/code-review medium --fix`: fixed a timing race in the new test and a moon drawn 0.5 px off centre.
+
+**Not verified**
+- On a real phone.
+- When the phone's own setting flips with no choice kept, colours still fade across (as before).
+
+**Next**
+- Chime checks the switch on the phone; then the next item on the review.
+
 ## Theme-switch motion: four options for Chime (Fri 13 Nov 2026, past midnight)
 
 **Changed**
