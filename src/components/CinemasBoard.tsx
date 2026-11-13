@@ -37,7 +37,6 @@ export function CinemasBoard({ data, areas, area }: { data: ListData; areas: Are
   const silent = byCinema(showingOn(data.rows, day, now, null, !live)).filter((group) => group.rows.every((row) => row.format === null)).length;
   const inArea = (slugs: string[]) => groups.filter((group) => slugs.includes(data.cinemas[group.cinema]!.area));
   const inHere = here ? inArea([here.slug]) : [];
-  const kept = groups.filter((group) => saved.includes(data.cinemas[group.cinema]!.id));
   const count = (n: number) => `${n} ${n === 1 ? "cinema" : "cinemas"}`;
   const sections: [key: string, title: string, note: string, list: Group[], showAll: boolean][] = here
     ? [
@@ -46,7 +45,8 @@ export function CinemasBoard({ data, areas, area }: { data: ListData; areas: Are
         ["rest", "Elsewhere in Lagos", "soonest first", groups.filter((group) => ![here.slug, ...here.neighbours].includes(data.cinemas[group.cinema]!.area)), true],
       ]
     : [["all", format ? `Showing in ${format}` : "All cinemas", `${count(groups.length)} · soonest first`, groups, false]];
-  const shown = [...(kept.length ? [["saved", "Your cinemas", "tap a heart to keep one here", kept, false] as (typeof sections)[number]] : []), ...sections].filter(([, , , rows]) => rows.length > 0);
+  // Hearted cinemas have their own tab (D-61); here the heart only marks them.
+  const shown = sections.filter(([, , , rows]) => rows.length > 0);
   // Where the times came from: said once, under the first heading, beside the list it describes.
   // Each source the listed cinemas were read from is named, so no cinema's times are credited to another's.
   const fresh = [...new Set(groups.map((group) => sourceLine(data, group.rows[0]!, clock)).filter((line): line is string => line !== null))];
@@ -75,7 +75,7 @@ export function CinemasBoard({ data, areas, area }: { data: ListData; areas: Are
       {shown.map(([key, title, note, rows, showAll], index) => {
         const cut = showAll && !open && rows.length > ELSEWHERE;
         return (
-          <section key={key} className="vgroup" data-testid={key === "saved" ? "saved" : `group.${key}`}>
+          <section key={key} className="vgroup" data-testid={`group.${key}`}>
             <div className="vhead">
               <h2>{title}</h2>
               {note && <span>{note}</span>}
@@ -94,7 +94,7 @@ export function CinemasBoard({ data, areas, area }: { data: ListData; areas: Are
             <div className="vgrid">
               {(cut ? rows.slice(0, ELSEWHERE) : rows).map((group) => {
                 const id = data.cinemas[group.cinema]!.id;
-                return <CinemaRow key={id} cinema={group.cinema} rows={group.rows} data={data} first={!live || day !== 0} now={clock} saved={saved.includes(id)} areaName={key === "area" ? null : (areaNames[data.cinemas[group.cinema]!.area] ?? null)} testId={key === "saved" ? `saved.row.${id}` : `cinema.card.${id}`} />;
+                return <CinemaRow key={id} cinema={group.cinema} rows={group.rows} data={data} first={!live || day !== 0} now={clock} saved={saved.includes(id)} areaName={key === "area" ? null : (areaNames[data.cinemas[group.cinema]!.area] ?? null)} testId={`cinema.card.${id}`} />;
               })}
             </div>
           </section>

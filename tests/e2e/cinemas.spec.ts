@@ -105,17 +105,51 @@ test("picking an area opens its page and is remembered; All Lagos forgets it", a
   expect(await page.evaluate(() => localStorage.getItem("ls.area"))).toBeNull();
 });
 
-test("the heart keeps a cinema under Your cinemas, on this phone", async ({ page, request }) => {
+// D-61 (Chime, 13 Nov 2026): hearted cinemas live on their own tab, Your cinemas, not in a block on the Cinemas tab.
+test("the heart keeps a cinema on the Your cinemas tab, on this phone", async ({ page, request }) => {
   await freeze(page, await sampleTime(request, "18:00"));
   await page.goto("/area/lekki");
-  await expect(page.getByTestId("saved")).toHaveCount(0);
   await page.getByTestId("cinema.card.grand-lekki").getByTestId("cinema.save").click();
+  await expect(page.getByTestId("saved")).toHaveCount(0); // no block on the Cinemas tab any more
+  await page.getByTestId("tab.yours").click();
+  await expect(page).toHaveURL(/\/yours$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Your cinemas");
+  await expect(page.getByTestId("tab.yours")).toHaveAttribute("aria-current", "page");
   await expect(page.getByTestId("saved.row.grand-lekki")).toContainText("Grand Cinemas Lekki");
+  await expect(page.locator('[data-testid^="saved.row."]')).toHaveCount(1);
   await page.reload();
   await expect(page.getByTestId("saved.row.grand-lekki")).toBeVisible();
-  await page.getByTestId("cinema.card.grand-lekki").getByTestId("cinema.save").click();
-  await expect(page.getByTestId("saved")).toHaveCount(0);
+  await page.getByTestId("saved.row.grand-lekki").getByTestId("cinema.save").click();
+  await expect(page.locator('[data-testid^="saved.row."]')).toHaveCount(0);
+  await expect(page.getByTestId("yours.empty")).toContainText("Tap the heart on a cinema to keep it here.");
 });
+
+test("Your cinemas with nothing kept says how to keep one, and leads to the cinemas", async ({ page }) => {
+  await page.goto("/yours");
+  await expect(page.getByTestId("yours.empty")).toContainText("Tap the heart on a cinema to keep it here.");
+  await page.getByTestId("yours.browse").click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cinemas in Lagos");
+});
+
+test("a kept cinema with nothing more today still shows on Your cinemas, and says so", async ({ page, request }) => {
+  await page.addInitScript(() => localStorage.setItem("ls.cinemas", JSON.stringify(["grand-lekki"])));
+  await freeze(page, await sampleTime(request, "23:58"));
+  await page.goto("/yours");
+  const row = page.getByTestId("saved.row.grand-lekki");
+  await expect(row).toContainText("Grand Cinemas Lekki");
+  await expect(row).toContainText("Nothing more today");
+});
+
+for (const width of [390, 360, 320]) {
+  test(`at ${width} px the four tabs fit, each whole on screen`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/yours");
+    const tabs = page.locator('[data-testid^="tab."]');
+    await expect(tabs).toHaveCount(4);
+    expect(await tabs.evaluateAll((els) => els.filter((el) => { const box = el.getBoundingClientRect(); return box.left < 0 || box.right > window.innerWidth || el.scrollWidth > el.clientWidth; }).length)).toBe(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+}
 
 test("choosing IMAX leaves only cinemas showing in IMAX, and says what was left out", async ({ page, request }) => {
   const all = await dataFile(request, "all");

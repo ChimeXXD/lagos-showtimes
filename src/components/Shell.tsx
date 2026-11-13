@@ -11,7 +11,7 @@ let searchFilms: { id: string; title: string }[] | undefined;
 const filmsForSearch = () =>
   (searchFilms ??= loadAll().films.map(({ id, title }) => ({ id, title })).sort((a, b) => a.title.localeCompare(b.title)));
 
-/** The frame every page shares: the logo, the three ways in, search, and the footer note. */
+/** The frame every page shares: the logo, the four ways in, search, and the footer note. */
 export function Shell({ tab, children }: { tab: TabId; children: React.ReactNode }) {
   return (
     <>

@@ -65,3 +65,16 @@ dialog.pick h2 { font-size: 19px; font-weight: 700; }
 /* The smallest phones: the area picker drops its pin so all three labels fit. */
 @media (max-width: 350px) { .picker .ico:first-child:not(:last-child) { display: none; } }
 @media (prefers-reduced-motion: reduce) { .vrow, .heart { transition: none; } }
+/* The Your cinemas tab (D-61). In the tab bar it is a heart beside its name; on a phone, the heart alone. */
+.tab .heart { width: 18px; height: 18px; margin-right: 6px; stroke: currentColor; }
+.tab.on .heart.on { fill: currentColor; }
+.yours-empty { display: grid; justify-items: center; gap: var(--s2); margin-top: var(--s6); padding: var(--s10) var(--s6); text-align: center; }
+.yours-empty .heart { width: 36px; height: 36px; }
+.yours-empty p + p { color: var(--color-text-muted); }
+.yours-empty .btn { margin-top: var(--s3); }
+@media (max-width: 760px) {
+  .tab .heart { margin-right: 0; }
+  .tab:has(> .heart) { min-width: 44px; } /* the heart alone is still a 44 px target */
+  .tab .heart + span { display: none; } /* the link's aria-label still names it */
+}
+@media (max-width: 340px) { .tab { padding: 0 6px; } }

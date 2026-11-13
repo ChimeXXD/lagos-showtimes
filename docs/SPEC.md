@@ -64,7 +64,8 @@ Details, copy and test IDs are in `design/UI-BRIEF.md`.
 | --- | --- |
 | `/` | Home, the Films tab: every film showing in Lagos as posters, with a search box and the format chips (D-50, D-55) |
 | `/cinemas` | The Cinemas tab: one row per cinema with its chain's logo, name, next time and tags, soonest first (D-56). Filters: area, format and day chips on a computer; one row of three pickers that open sheets on a phone. Sends a returning visitor to their saved area (D-18, D-49, D-55) |
-| `/area/[slug]` | The Cinemas tab for one area: your cinemas, its cinemas, the areas next to it, then six from the rest of Lagos with "Show all" (D-56) |
+| `/area/[slug]` | The Cinemas tab for one area: its cinemas, the areas next to it, then six from the rest of Lagos with "Show all" (D-56) |
+| `/yours` | The Your cinemas tab: the cinemas hearted on this phone, soonest first; one with nothing more today stays and says so (D-61) |
 | `/cinema/[id]` | One cinema: address, source line, day tiles, and its films as poster cards with their times |
 | `/film/[slug]` | One film: poster, Stay or Go, then the cinemas showing it, filtered by format, area and day |
 | `/soon` | Starting soon: showings in the next 2 hours, then later tonight, for all of Lagos or one area |
@@ -102,9 +103,10 @@ Tapping any time opens that showing in a panel (a sheet on a phone): the ticket,
 - [x] 11. Typing part of a film's title on the Films tab (the home page, D-55) leaves only matching films, and tapping one opens its film page (D-22). verify: `npm run test:e2e -- films`
 - [x] 12. Choosing a format on the Cinemas tab or on a film's page leaves only the cinemas showing in that format and says how many were left out (D-50). verify: `npm run test:e2e -- films` and `npm run test:e2e -- cinemas`
 - [x] 13. A returning visitor with a saved area who opens the Cinemas tab lands on `/area/<slug>` (D-18, D-55). verify: `npm run test:e2e -- cinemas`
-- [x] 14. The site opens on Films; every page's tabs read Films, Cinemas, Starting soon, each on one line down to 320 px; on a phone the search button opens a search box on the page you are on, matches open their film, and no match says so; every area chip is whole on screen at 390, 360 and 320 px (D-55). verify: `npm run test:e2e -- nav`
+- [x] 14. The site opens on Films; every page's tabs read Films, Cinemas, Starting soon, Your cinemas (a heart alone on a phone, D-61), each on one line down to 320 px; on a phone the search button opens a search box on the page you are on, matches open their film, and no match says so; every area chip is whole on screen at 390, 360 and 320 px (D-55). verify: `npm run test:e2e -- nav`
 - [x] 15. The Cinemas tab shows each cinema as one row with its chain's logo centred on its tile, its name, "Next at HH:MM · N films" and tags, with no poster strips; where the times came from is said once, under the first heading; on a phone the filters are one row of three pickers (area, day, format), whole on screen at 390, 360 and 320 px, each opening a sheet; the footer says how a cinema can have its logo removed (D-56). verify: `npm run test:e2e -- cinemas-rows`
 - [x] 16. Every page's header has a light and dark switch on a phone and on a computer; with no choice it follows the phone; a tap switches the theme and the browser bar colour, and the choice holds on the next page from its first paint (D-58). verify: `npm run test:e2e -- theme`
+- [x] 17. A hearted cinema is listed on the Your cinemas tab, not on the Cinemas tab, and stays after a reload; one with nothing more today still shows and says so; with none kept the page says how to keep one (D-61). verify: `npm run test:e2e -- cinemas`
 
 ## 9. Risks and assumptions
 

@@ -364,6 +364,22 @@
       "evidence": "13 Nov 2026 (D-60): `npx playwright test tests/e2e/theme.spec.ts` 11 pass; the motion test checks no view transition, no colour fading anywhere, and the icon's blur, scale and fade (opacity only with reduced motion). Icon frames at 60 fps compared with Rune Icons' recording; header screenshots at 390, 360 and 1440 px in light and dark."
     },
     {
+      "id": "D3-9",
+      "day": 3,
+      "priority": "must",
+      "title": "Your cinemas: the hearted cinemas on their own tab (D-61)",
+      "criteria": [
+        "a fourth tab, Your cinemas, is on every page and fits whole at 390, 360 and 320 px",
+        "a hearted cinema is listed there, soonest first, and stays after a reload",
+        "a kept cinema with nothing more today still shows and says so",
+        "with none kept the page says how to keep one and links to the cinemas",
+        "the Cinemas tab no longer has a Your cinemas block"
+      ],
+      "verify": "npm run test:e2e -- cinemas nav",
+      "passes": true,
+      "evidence": "13 Nov 2026: `npx playwright test tests/e2e/cinemas.spec.ts tests/e2e/nav.spec.ts` 33 pass (6 new). Screenshots at 390, 360, 320 and 1440 px in light and dark."
+    },
+    {
       "id": "D3-3",
       "day": 3,
       "priority": "must",

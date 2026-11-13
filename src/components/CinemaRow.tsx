@@ -35,14 +35,16 @@ const Play = () => (
 
 /**
  * One cinema on the Cinemas tab (D-56): logo, name, the next time and how many films, and tags.
- * The whole row opens the cinema; the heart keeps it under Your cinemas. `first` is true when the
- * first time is not "next" (tomorrow, or before the clock is known).
+ * The whole row opens the cinema; the heart keeps it on the Your cinemas tab (D-61). `first` is true when the
+ * first time is not "next" (tomorrow, or before the clock is known). With no `rows` (a kept cinema whose
+ * day is over, on Your cinemas) the row says "Nothing more today" and carries no tags.
  */
 export function CinemaRow({ cinema, rows, data, first, now, saved, areaName, testId }: { cinema: number; rows: ListRow[]; data: ListData; first: boolean; now: string | null; saved: boolean; /** Shown when the list mixes areas. */ areaName: string | null; testId: string }) {
   const info = data.cinemas[cinema]!;
   const films = byFilm(rows).length;
-  const from = data.fresh[rows[0]!.fresh]!;
-  const warning = now === null ? null : rowWarning(freshness({ name: from.source, method: from.method }, from.fetchedAt, now, from.via).band);
+  const next = rows[0];
+  const from = next ? data.fresh[next.fresh]! : null;
+  const warning = now === null || from === null ? null : rowWarning(freshness({ name: from.source, method: from.method }, from.fetchedAt, now, from.via).band);
   return (
     <article className="vrow" data-testid={testId}>
       <ChainLogo chain={info.chain} name={info.name} />
@@ -51,22 +53,32 @@ export function CinemaRow({ cinema, rows, data, first, now, saved, areaName, tes
           {info.name}
         </h3>
         <p className="vnext" data-testid="cinema.next">
-          <Play />
-          {first ? "First" : "Next"} at <time dateTime={rows[0]!.at}>{formatTime(rows[0]!.at)}</time>{" "}
-          <span>
-            · {films} {films === 1 ? "film" : "films"}
-            {areaName && ` · ${areaName}`}
-          </span>
+          {next ? (
+            <>
+              <Play />
+              {first ? "First" : "Next"} at <time dateTime={next.at}>{formatTime(next.at)}</time>{" "}
+              <span>
+                · {films} {films === 1 ? "film" : "films"}
+                {areaName && ` · ${areaName}`}
+              </span>
+            </>
+          ) : (
+            <>
+              Nothing more today{areaName && <span> · {areaName}</span>}
+            </>
+          )}
         </p>
-        <div className="vtags">
-          {formatsOf(rows).map((tag) => (
-            <span key={tag} className="vtag fmt">
-              {tag}
-            </span>
-          ))}
-          <span className="vtag">{info.online ? "Book online" : "Tickets at the cinema"}</span>
-          {warning && <span className="vtag old">{warning}</span>}
-        </div>
+        {next && (
+          <div className="vtags">
+            {formatsOf(rows).map((tag) => (
+              <span key={tag} className="vtag fmt">
+                {tag}
+              </span>
+            ))}
+            <span className="vtag">{info.online ? "Book online" : "Tickets at the cinema"}</span>
+            {warning && <span className="vtag old">{warning}</span>}
+          </div>
+        )}
       </div>
       <Link className="vopen" href={`/cinema/${info.id}`} aria-label={`${info.name}: films and times`} data-testid="cinema.open" />
       <button type="button" className="fav" data-testid="cinema.save" aria-pressed={saved} aria-label={`${saved ? "Remove" : "Keep"} ${info.name} ${saved ? "from" : "in"} your cinemas`} onClick={() => toggleSaved(info.id)}>

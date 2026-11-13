@@ -3,13 +3,14 @@ import { freeze, sampleTime } from "./helpers";
 
 // Chime's review, 12 Nov 2026 (D-55): Films comes first. A visitor has a film in mind, picks it, then
 // sees every cinema showing it.
-test("the site opens on Films, and the tabs read Films, Cinemas, Starting soon on every page", async ({ page }) => {
+// D-61: a fourth tab, Your cinemas, holds the hearted cinemas.
+test("the site opens on Films, and the tabs read Films, Cinemas, Starting soon, Your cinemas on every page", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Films in Lagos");
   await expect(page.getByTestId("tab.films")).toHaveAttribute("aria-current", "page");
-  for (const path of ["/", "/cinemas", "/area/lekki", "/soon", "/film/ramayana", "/cinema/ebonylife-vi"]) {
+  for (const path of ["/", "/cinemas", "/area/lekki", "/soon", "/yours", "/film/ramayana", "/cinema/ebonylife-vi"]) {
     await page.goto(path);
-    await expect(page.getByRole("navigation", { name: "Sections" }).getByRole("link")).toHaveText(["Films", "Cinemas", "Starting soon"]);
+    await expect(page.getByRole("navigation", { name: "Sections" }).getByRole("link")).toHaveText(["Films", "Cinemas", "Starting soon", "Your cinemas"]);
   }
   await page.getByTestId("tab.cinemas").click();
   await expect(page).toHaveURL(/\/cinemas$/);

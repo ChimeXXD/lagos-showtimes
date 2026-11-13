@@ -2,6 +2,23 @@
 
 Build log for the one-week plan (`docs/PLAN.md`). Newest entry first. Each entry: **Changed**, **Checked** (with real numbers), **Not verified**, **Next**.
 
+## Your cinemas gets its own tab; round 4's look is dropped (Fri 13 Nov 2026, evening)
+
+**Changed** (D-61)
+- Earlier today: a hover state on the "More areas" menu; Verity matched to TMDB by hand; a round 4 reference board (89 Mobbin screens, local only), a picks page, and a mockup in a black-and-yellow "Marquee" look (`mockup/round4.*`). Chime rejected that look outright: fonts, colours, and the poster-less Starting soon rows.
+- Built in the existing design: a fourth tab, Your cinemas (`/yours`, `YoursBoard.tsx`). Hearted cinemas list there, soonest first; one with nothing more today stays and says so; with none kept, the page says how to keep one and links to the cinemas. The block is removed from the Cinemas tab. On a phone the tab is a heart alone.
+
+**Checked**
+- Red first: the new test failed on the old code at `expect(page.getByTestId("saved")).toHaveCount(0)` (received 1).
+- `cinemas.spec` and `nav.spec`: 33 pass (6 new: the tab, the empty state, a quiet kept cinema, four tabs whole at 390, 360 and 320 px). The old "tabs read Films, Cinemas, Starting soon" test now expects the fourth name, as Chime asked.
+- Screenshots at 390, 360, 320 and 1440 px, light and dark, with 0 to 4 kept cinemas.
+
+**Not verified**
+- On a real phone.
+
+**Next**
+- Chime's call on the Starting soon time filter (30 min · 1 hour · 2 hours · 4 hours · Today) in the existing design, posters kept. Posters for the 13 Nollywood films not on TMDB.
+
 ## The theme switch follows Rune Icons (Fri 13 Nov 2026, afternoon)
 
 **Changed** (D-60, supersedes D-59's circle)
