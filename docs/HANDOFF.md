@@ -5,6 +5,7 @@
 Read this section first. Everything below it is background; where they disagree, this is right.
 
 ### Start here next time
+0. **Round 4 is open (13 Nov, afternoon).** Chime's second recording asked for: a hover state on "More areas" (done, `77826b2`), real posters (Verity matched by hand, `e836f9b`; 13 Nollywood films are not on TMDB, so Chime chooses between adding them to TMDB or asking distributors), a new draft of Cinemas (your hearted cinemas as their own group) and Starting soon (a "starting within" filter: 30 min, 1 hour, 2 hours, 4 hours, any time today), and new colours. Mobbin references with four new palettes are in `docs/design/reference-board/round4.html` (local only, images git-ignored). Next: read Chime's pasted answers, then make three mockups of the two screens to pick from. Chime also looked again at every logo draft (`docs/design/direction-board/`): "the logo is all right, but I'm still not convinced".
 1. **Ask Chime how the new switch feels on the phone** (D-60). The comparison page (Rune's frames above ours, a tappable copy at full and quarter speed) was in the session scratchpad, not the repo.
 2. **Ask Chime what is next on the review.** Done so far: the tab order (D-55), phone search, the phone chips, the Cinemas tab (D-56, D-57), the light/dark switch (D-58) and its motion (D-60). Chime is happy with the Films, film and Starting soon pages for now.
 3. **Open questions with Chime:**
