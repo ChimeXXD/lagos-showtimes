@@ -162,3 +162,19 @@ for (const width of [390, 360, 320]) {
     expect(short).toEqual([]);
   });
 }
+
+// Chime, 13 Nov 2026: the "More areas" menu shows which area the pointer is on, in both themes.
+for (const scheme of ["light", "dark"] as const) {
+  test(`the More areas menu marks the area under the pointer (${scheme})`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.goto("/cinemas");
+    await page.getByTestId("area.more").click();
+    const option = page.getByTestId("area.option.surulere");
+    const other = page.getByTestId("area.option.yaba");
+    const idle = await other.evaluate((el) => getComputedStyle(el).backgroundColor);
+    await option.hover();
+    await expect(option).not.toHaveCSS("background-color", idle);
+    await expect(other).toHaveCSS("background-color", idle);
+  });
+}

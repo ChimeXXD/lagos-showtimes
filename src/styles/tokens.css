@@ -39,6 +39,7 @@
   --color-bg: light-dark(#eef6f4, #0a0a0a); /* Foam / black */
   --color-surface: light-dark(#d9ebe7, #1a1a1a); /* Sea mist, where white would be */
   --color-soft: light-dark(#c8e1dc, #242424);
+  --color-hover: light-dark(#bfdcd6, #2e2e2e); /* The item under the pointer in a menu: clearly off the surface */
   --color-text: light-dark(#0c3b47, #d9ebe7); /* Lagoon / Sea mist */
   --color-text-muted: light-dark(#42606a, #ababab);
   --color-accent: light-dark(#0b6e69, #5fd4c8); /* Teal */

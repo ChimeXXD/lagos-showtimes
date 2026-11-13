@@ -211,6 +211,7 @@ summary.chip::-webkit-details-marker { display: none; }
 .menu { width: 320px; padding: var(--s2); border: 1px solid var(--color-line); border-radius: 18px; background: var(--color-surface); box-shadow: var(--shadow); }
 .menu a { display: flex; align-items: center; gap: var(--s3); min-height: 44px; padding: 0 var(--s3); border-radius: 10px; font-weight: 500; }
 .menu a.on { background: var(--color-soft); font-weight: 700; }
+.menu a:hover, .menu a:focus-visible { background: var(--color-hover); }
 .menu a span { margin-left: auto; color: var(--color-text-muted); font-size: 13px; font-weight: 400; }
 .menu hr { border: 0; border-top: 1px solid var(--color-line); margin: var(--s2) 0; }
 
